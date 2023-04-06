@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('guias', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('apellidos');
+            $table->string('tlf')->nullable();
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
+            $table->foreignId('actividad_id')->constrained()->onDelete('cascade');
         });
     }
 
