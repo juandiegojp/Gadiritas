@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Actividad extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'titulo', 'descripcion', 'precio', 'duracion',
+        'max_personas', 'guia_id'
+    ];
+
+    public function guia()
+    {
+        return $this->belongsTo(Guia::class, 'guia_id');
+    }
+
+    public function comentario()
+    {
+        return $this->hasMany(Comentario::class, 'comentario_id');
+    }
 }
