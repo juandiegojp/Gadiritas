@@ -13,4 +13,8 @@ class Guia extends Model
         'nombre', 'apellidos','tlf',
         'email', 'password'
     ];
+
+    protected $hidden = [
+        'password'
+    ];
 }
