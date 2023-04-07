@@ -17,4 +17,8 @@ class Guia extends Model
     protected $hidden = [
         'password'
     ];
+
+    public function actividad(){
+        return $this->belongsTo(Actividad::class);
+    }
 }

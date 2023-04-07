@@ -15,6 +15,11 @@ class Actividad extends Model
     ];
 
 
+    public function comentario()
+    {
+        return $this->hasMany(Comentario::class, 'comentario_id');
+    }
+
     public function destino()
     {
         return $this->belongsTo(Destino::class, 'destino_id');
@@ -25,8 +30,9 @@ class Actividad extends Model
         return $this->belongsTo(Guia::class, 'guia_id');
     }
 
-    public function comentario()
+    public function reserva()
     {
-        return $this->hasMany(Comentario::class, 'comentario_id');
+        return $this->hasMany(Reserva::class, 'reserva_id');
     }
+
 }
