@@ -14,6 +14,12 @@ class Actividad extends Model
         'max_personas', 'guia_id'
     ];
 
+
+    public function destino()
+    {
+        return $this->belongsTo(Destino::class, 'destino_id');
+    }
+
     public function guia()
     {
         return $this->belongsTo(Guia::class, 'guia_id');
