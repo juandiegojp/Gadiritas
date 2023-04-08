@@ -45,7 +45,7 @@
                             {{ $usuario->email }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $usuario->tlf }}
+                            {{ $usuario->telefono }}
                         </td>
                         <td class="px-6 py-4">
                             aa
