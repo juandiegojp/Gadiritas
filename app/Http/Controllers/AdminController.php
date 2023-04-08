@@ -10,6 +10,8 @@ use App\Models\Reserva;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -53,9 +55,9 @@ class AdminController extends Controller
             'name' => $request->name,
             'apellidos' => $request->apellidos,
             'email' => $request->email,
-            'tlf' => $request->tlf,
-            'password' => $request->password1,
-            'is_admin' => $request->is_admin
+            'telefono' => $request->tlf,
+            'password' => Hash::make($request->password1),
+            'is_admin' => $request->input('is_admin') ? "True" : "False"
         ]);
 
         return redirect('/usuarios/detalles/'. $n_usuario->id);

@@ -25,6 +25,7 @@ Route::group(['middleware' => ['admin','auth']], function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/usuarios', [AdminController::class, 'usuarios'])->name('admin.usuarios');
     Route::get('/usuarios/create', [AdminController::class, 'usuariosForm'])->name('admin.usuariosCreate');
+    Route::post('/usuarios/create', [AdminController::class, 'storeUsuarios'])->name('admin.storeUsuarios');
     Route::get('/usuarios/detalles/{usuario}', [AdminController::class, 'datellesUsuario'])->name('admin.datellesUsuario');
 });
 

@@ -21,7 +21,7 @@
         </div>
         <div class="grid md:grid-cols-2 md:gap-6">
             <div class="relative z-0 w-full mb-6 group">
-                <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="tlf" id="tlf"
+                <input type="text" name="tlf" id="tlf"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" " required />
                 <label for="tlf"
@@ -53,7 +53,7 @@
             </div>
         </div>
         <div class="flex items-center mb-4">
-            <input id="is_admin" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <input id="is_admin" name="is_admin" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
             <label for="is_admin" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">¿Es administrador?</label>
         </div>
         <button type="submit"

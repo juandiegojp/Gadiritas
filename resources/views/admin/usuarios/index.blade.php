@@ -3,10 +3,6 @@
     Admin | Usuarios
 @endsection
 @section('content')
-    <a href="{{route('admin.usuariosCreate')}}"
-        class="inline-block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        Añadir usuarios
-    </a>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -15,13 +11,7 @@
                         Nombre
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Apellidos
-                    </th>
-                    <th scope="col" class="px-6 py-3">
                         Correo Electrónico
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Teléfono
                     </th>
                     <th scope="col" class="px-6 py-3 col-span-3 text-center">
                         Acciones
@@ -35,13 +25,7 @@
                             {{ $u->name }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ $u->apellidos }}
-                        </td>
-                        <td class="px-6 py-4">
                             {{ $u->email }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $u->tlf }}
                         </td>
                         <td class="px-6 py-4 flex justify-between">
                             <a href="{{ route('admin.datellesUsuario', $u->id) }}" class="font-medium text-gray-600 dark:text-gray-500 hover:underline">Ver detalles</a>
@@ -61,7 +45,7 @@
         </table>
     </div>
 
-
+<!-- Modal -->
   <div id="popup-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
       <div class="relative w-full h-full max-w-md md:h-auto">
           <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
