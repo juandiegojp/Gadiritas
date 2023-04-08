@@ -32,9 +32,14 @@ class AdminController extends Controller
         ]);
     }
 
-    public function create()
+    public function usuarios()
     {
-        //show form to create a blog post
+        $reservas = Reserva::all();
+        $users = User::all();
+        return view('admin.usuarios.index', [
+            'reservas' => $reservas,
+            'usuarios' => $users,
+        ]);
     }
 
     public function store(Request $request)
