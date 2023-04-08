@@ -42,7 +42,12 @@ class AdminController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function usuariosForm()
+    {
+        return view('admin.usuarios.create', []);
+    }
+
+    public function storeUsuarios(Request $request)
     {
         //store a new post
     }
