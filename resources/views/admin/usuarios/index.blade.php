@@ -44,7 +44,7 @@
                             {{ $u->tlf }}
                         </td>
                         <td class="px-6 py-4 flex justify-between">
-                            <a href="#" class="font-medium text-gray-600 dark:text-gray-500 hover:underline">Ver detalles</a>
+                            <a href="{{ route('admin.datellesUsuario', $u->id) }}" class="font-medium text-gray-600 dark:text-gray-500 hover:underline">Ver detalles</a>
                             <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                             <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" type="button">
                                 Borrar

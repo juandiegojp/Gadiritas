@@ -49,6 +49,22 @@ class AdminController extends Controller
 
     public function storeUsuarios(Request $request)
     {
-        //store a new post
+        $n_usuario = User::create([
+            'name' => $request->name,
+            'apellidos' => $request->apellidos,
+            'email' => $request->email,
+            'tlf' => $request->tlf,
+            'password' => $request->password1,
+            'is_admin' => $request->is_admin
+        ]);
+
+        return redirect('/usuarios/detalles/'. $n_usuario->id);
+    }
+
+    public function datellesUsuario(User $usuario)
+    {
+        return view('admin.usuarios.detalles', [
+            'usuario' => $usuario,
+        ]);
     }
 }
