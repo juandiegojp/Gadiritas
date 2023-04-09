@@ -69,4 +69,10 @@ class AdminController extends Controller
             'usuario' => $usuario,
         ]);
     }
+
+    public function borrarUsuario(User $usuario)
+    {
+        $usuario->delete();
+        return redirect('/usuarios');
+    }
 }
