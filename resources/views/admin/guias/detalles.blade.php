@@ -1,12 +1,12 @@
 @extends('admin.base')
 @section('title')
-    Admin | Detalles usuario
+    Admin | Detalles guia
 @endsection
 @section('content')
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                Detalles del cliente
+                Detalles del guia
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-700/25 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -25,9 +25,6 @@
                     <th scope="col" class="px-6 py-3">
                         Teléfono
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        ¿Es admin?
-                    </th>
                     <th scope="col" class="px-6 py-3 col-span-2 text-center">
                         Acciones
                     </th>
@@ -36,25 +33,22 @@
             <tbody>
                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        #{{ $usuario->id }}
+                        #{{ $guia->id }}
                     </td>
                     <th class="px-6 py-4">
-                        {{ $usuario->name }}
+                        {{ $guia->nombre }}
                     </th>
                     <td class="px-6 py-4">
-                        {{ $usuario->apellidos }}
+                        {{ $guia->apellidos }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $usuario->email }}
+                        {{ $guia->email }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $usuario->telefono }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ $usuario->is_admin ? 'Sí' : 'No' }}
+                        {{ $guia->tlf }}
                     </td>
                     <td class="px-6 py-4 flex justify-between items-center">
-                        <a href=" {{ route('admin.editarUsuario', $usuario->id) }} " class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
+                        <a href=" {{ route('admin.editarGuia', $guia->id) }} " class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
                         <a data-modal-target="popup-modal" data-modal-toggle="popup-modal" href="#"
                             class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                             Borrar
@@ -89,7 +83,7 @@
                     </svg>
                     <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">¿Estás seguro de querrer borrar a
                         este usuario?</h3>
-                    <form action="{{ route('admin.borrarUsuario', $usuario->id) }}" method="post">
+                    <form action="{{ route('admin.borrarGuia', $guia->id) }}" method="post">
                         @method('DELETE')
                         @csrf
                         <button data-modal-hide="popup-modal" type="submit"

@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['admin','auth']], function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
+
     // Usuarios
     Route::get('/usuarios', [AdminController::class, 'usuarios'])->name('admin.usuarios');
     Route::get('/usuarios/create', [AdminController::class, 'usuariosForm'])->name('admin.usuariosCreate');
@@ -31,6 +32,7 @@ Route::group(['middleware' => ['admin','auth']], function () {
     Route::get('/usuarios/{usuario}/edit', [AdminController::class, 'editarUsuario'])->name('admin.editarUsuario');
     Route::put('/usuarios/{usuario}/edit', [AdminController::class, 'updateUsuario'])->name('admin.updateUsuario');
     Route::delete('/usuarios/{usuario}/delete', [AdminController::class, 'borrarUsuario'])->name('admin.borrarUsuario');
+
     // Guias
     Route::get('/guias', [AdminController::class, 'guias'])->name('admin.guias');
     Route::get('/guias/create', [AdminController::class, 'guiasForm'])->name('admin.guiasCreate');

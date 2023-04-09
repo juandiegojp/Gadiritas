@@ -119,12 +119,11 @@ class AdminController extends Controller
     public function storeGuias(Request $request)
     {
         $n_usuario = Guia::create([
-            'name' => $request->name,
+            'nombre' => $request->nombre,
             'apellidos' => $request->apellidos,
             'email' => $request->email,
-            'telefono' => $request->tlf,
+            'tlf' => $request->tlf,
             'password' => Hash::make($request->password1),
-            'is_admin' => $request->input('is_admin') ? "True" : "False"
         ]);
 
         return redirect('/guias/detalles/'. $n_usuario->id);
@@ -150,9 +149,8 @@ class AdminController extends Controller
             'name' => $request->name,
             'apellidos' => $request->apellidos,
             'email' => $request->email,
-            'telefono' => $request->tlf,
+            'tlf' => $request->tlf,
             'password' => Hash::make($request->password1),
-            'is_admin' => $request->input('is_admin') ? "True" : "False"
         ]);
 
         return redirect('/guias/detalles/'. $guia->id);
