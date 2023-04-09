@@ -27,6 +27,8 @@ Route::group(['middleware' => ['admin','auth']], function () {
     Route::get('/usuarios/create', [AdminController::class, 'usuariosForm'])->name('admin.usuariosCreate');
     Route::post('/usuarios/create', [AdminController::class, 'storeUsuarios'])->name('admin.storeUsuarios');
     Route::get('/usuarios/detalles/{usuario}', [AdminController::class, 'datellesUsuario'])->name('admin.datellesUsuario');
+    Route::get('/usuarios/{usuario}/edit', [AdminController::class, 'editarUsuario'])->name('admin.editarUsuario');
+    Route::put('/usuarios/{usuario}/edit', [AdminController::class, 'updateUsuario'])->name('admin.updateUsuario');
     Route::delete('/usuarios/{usuario}/delete', [AdminController::class, 'borrarUsuario'])->name('admin.borrarUsuario');
 });
 

@@ -70,6 +70,27 @@ class AdminController extends Controller
         ]);
     }
 
+    public function editarUsuario(User $usuario)
+    {
+        return view('admin.usuarios.editar', [
+            'usuario' => $usuario,
+        ]);
+    }
+
+    public function updateUsuario(Request $request, User $usuario)
+    {
+        $usuario->update([
+            'name' => $request->name,
+            'apellidos' => $request->apellidos,
+            'email' => $request->email,
+            'telefono' => $request->tlf,
+            'password' => Hash::make($request->password1),
+            'is_admin' => $request->input('is_admin') ? "True" : "False"
+        ]);
+
+        return redirect('/usuarios/detalles/'. $usuario->id);
+    }
+
     public function borrarUsuario(User $usuario)
     {
         $usuario->delete();
