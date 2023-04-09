@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['admin','auth']], function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
+    // Usuarios
     Route::get('/usuarios', [AdminController::class, 'usuarios'])->name('admin.usuarios');
     Route::get('/usuarios/create', [AdminController::class, 'usuariosForm'])->name('admin.usuariosCreate');
     Route::post('/usuarios/create', [AdminController::class, 'storeUsuarios'])->name('admin.storeUsuarios');
@@ -30,6 +31,14 @@ Route::group(['middleware' => ['admin','auth']], function () {
     Route::get('/usuarios/{usuario}/edit', [AdminController::class, 'editarUsuario'])->name('admin.editarUsuario');
     Route::put('/usuarios/{usuario}/edit', [AdminController::class, 'updateUsuario'])->name('admin.updateUsuario');
     Route::delete('/usuarios/{usuario}/delete', [AdminController::class, 'borrarUsuario'])->name('admin.borrarUsuario');
+    // Guias
+    Route::get('/guias', [AdminController::class, 'guias'])->name('admin.guias');
+    Route::get('/guias/create', [AdminController::class, 'guiasForm'])->name('admin.guiasCreate');
+    Route::post('/guias/create', [AdminController::class, 'storeGuias'])->name('admin.storeGuias');
+    Route::get('/guias/detalles/{guia}', [AdminController::class, 'datellesGuia'])->name('admin.datellesGuia');
+    Route::get('/guias/{guia}/edit', [AdminController::class, 'editarGuia'])->name('admin.editarGuia');
+    Route::put('/guias/{guia}/edit', [AdminController::class, 'updateGuia'])->name('admin.updateGuia');
+    Route::delete('/guias/{guia}/delete', [AdminController::class, 'borrarGuia'])->name('admin.borrarGuia');
 });
 
 Route::middleware('auth')->group(function () {

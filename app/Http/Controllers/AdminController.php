@@ -34,6 +34,9 @@ class AdminController extends Controller
         ]);
     }
 
+
+    // Creación y manipulación de los datos de usuarios
+
     public function usuarios()
     {
         $reservas = Reserva::all();
@@ -96,4 +99,74 @@ class AdminController extends Controller
         $usuario->delete();
         return redirect('/usuarios');
     }
+
+
+    // Creación y manipulación de los datos de guias
+
+    public function guias()
+    {
+        $guia = Guia::all();
+        return view('admin.guias.index', [
+            'guias' => $guia,
+        ]);
+    }
+
+    public function guiasForm()
+    {
+        return view('admin.guias.create', []);
+    }
+
+    public function storeGuias(Request $request)
+    {
+        $n_usuario = Guia::create([
+            'name' => $request->name,
+            'apellidos' => $request->apellidos,
+            'email' => $request->email,
+            'telefono' => $request->tlf,
+            'password' => Hash::make($request->password1),
+            'is_admin' => $request->input('is_admin') ? "True" : "False"
+        ]);
+
+        return redirect('/guias/detalles/'. $n_usuario->id);
+    }
+
+    public function datellesGuia(Guia $guia)
+    {
+        return view('admin.guias.detalles', [
+            'guia' => $guia,
+        ]);
+    }
+
+    public function editarGuia(Guia $guia)
+    {
+        return view('admin.guias.editar', [
+            'guia' => $guia,
+        ]);
+    }
+
+    public function updateGuia(Request $request, Guia $guia)
+    {
+        $guia->update([
+            'name' => $request->name,
+            'apellidos' => $request->apellidos,
+            'email' => $request->email,
+            'telefono' => $request->tlf,
+            'password' => Hash::make($request->password1),
+            'is_admin' => $request->input('is_admin') ? "True" : "False"
+        ]);
+
+        return redirect('/guias/detalles/'. $guia->id);
+    }
+
+    public function borrarGuia(Guia $guia)
+    {
+        $guia->delete();
+        return redirect('/guias');
+    }
+
+
+    // Creación y manipulación de los datos de destinos
+
+
+    // Creación y manipulación de los datos de actividades
 }
