@@ -165,6 +165,127 @@ class AdminController extends Controller
 
     // Creación y manipulación de los datos de destinos
 
+    public function destinos()
+    {
+        $destino = Destino::all();
+        return view('admin.destinos.index', [
+            'destinos' => $destino,
+        ]);
+    }
+
+    public function destinosForm()
+    {
+        return view('admin.destinos.create', []);
+    }
+
+    public function storeDestinos(Request $request)
+    {
+        $n_destino = Destino::create([
+            'nombre' => $request->nombre,
+            'comarca' => $request->comarca,
+            'codigo_postal' => $request->codigo_postal,
+        ]);
+
+        return redirect('/destinos');
+    }
+
+    public function datellesDestino(Destino $destino)
+    {
+        return view('admin.destinos.detalles', [
+            'destino' => $destino,
+        ]);
+    }
+
+    public function editarDestino(Destino $destino)
+    {
+        return view('admin.destinos.editar', [
+            'destino' => $destino,
+        ]);
+    }
+
+    public function updateDestino(Request $request, Destino $destino)
+    {
+        $destino->update([
+            'nombre' => $request->nombre,
+            'comarca' => $request->comarca,
+            'codigo_postal' => $request->codigo_postal,
+        ]);
+
+        return redirect('/destinos/detalles/'. $destino->id);
+    }
+
+    public function borrarDestino(Request $request)
+    {
+        $idDestino = $request->input('id');
+        Destino::where('id', $idDestino)->delete();
+        return redirect('/destinos');
+    }
+
 
     // Creación y manipulación de los datos de actividades
+
+    public function actividades()
+    {
+        $actividades = Actividad::all();
+        return view('admin.actividades.index', [
+            'actividades' => $actividades,
+        ]);
+    }
+
+    public function actividadesForm()
+    {
+        return view('admin.actividades.create', []);
+    }
+
+    public function storeActividades(Request $request)
+    {
+        $n_actividad = Actividad::create([
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+            'precio' => $request->precio,
+            'duracion' => $request->duracion,
+            'max_personas' => $request->max_personas,
+            'guia_id' => $request->guia_id,
+            'destino_id' => $request->destino_id,
+        ]);
+
+        return redirect('/actividades/detalles/'. $n_actividad->id);
+    }
+
+    public function datellesActividad(Actividad $actividad)
+    {
+        return view('admin.actividades.detalles', [
+            'actividad' => $actividad,
+        ]);
+    }
+
+    public function editarActividad(Actividad $actividad)
+    {
+        return view('admin.actividades.editar', [
+            'actividad' => $actividad,
+        ]);
+    }
+
+    public function updateActividad(Request $request, Actividad $actividad)
+    {
+        $actividad->update([
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+            'precio' => $request->precio,
+            'duracion' => $request->duracion,
+            'max_personas' => $request->max_personas,
+            'guia_id' => $request->guia_id,
+            'destino_id' => $request->destino_id,
+        ]);
+
+        return redirect('/actividad/detalles/'. $actividad->id);
+    }
+
+    public function borrarActividad(Actividad $actividad)
+    {
+        $actividad->delete();
+        return redirect('/actividades');
+    }
+
+
 }
