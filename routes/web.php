@@ -45,7 +45,7 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('/destinos', [AdminController::class, 'destinos'])->name('admin.destinos');
     Route::get('/destinos/create', [AdminController::class, 'destinosForm'])->name('admin.destinosCreate');
     Route::post('/destinos/create', [AdminController::class, 'storeDestinos'])->name('admin.storeDestinos');
-    Route::get('/destinos/detalles/{destino}', [AdminController::class, 'datellesDestino'])->name('admin.datellesDestino');
+    //Route::get('/destinos/detalles/{destino}', [AdminController::class, 'datellesDestino'])->name('admin.datellesDestino');
     Route::get('/destinos/{destino}/edit', [AdminController::class, 'editarDestino'])->name('admin.editarDestino');
     Route::put('/destinos/{destino}/edit', [AdminController::class, 'updateDestino'])->name('admin.updateDestino');
     Route::delete('/destino/delete', [AdminController::class, 'borrarDestino'])->name('admin.borrarDestino');

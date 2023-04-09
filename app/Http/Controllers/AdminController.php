@@ -234,7 +234,13 @@ class AdminController extends Controller
 
     public function actividadesForm()
     {
-        return view('admin.actividades.create', []);
+        $destinos = Destino::all();
+        $guias = Guia::all();
+
+        return view('admin.actividades.create', [
+            'destinos' => $destinos,
+            'guias' => $guias,
+        ]);
     }
 
     public function storeActividades(Request $request)
