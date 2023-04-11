@@ -1,66 +1,40 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+% "Gadiritas"
+% Juan Diego Jurado Pimentel
+% Curso 2022/23
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Descripción general del proyecto
 
-## About Laravel
+Gadiritas es una aplicación web cuya finalidad es dar a conocer los pueblos más emblemáticos de la provincia de Cádiz 
+a través de actividades aptas para todo tipo de públicos, como rutas, visitas guiadas, excursiones, degustaciones y actividades 
+varias de la mano de nuestros guías oficiales de turismo.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Funcionalidad principal de la aplicación
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+La funcionalidad principal es que los usuarios puedan buscar actividades que les resulten interesantes en los pueblos/ciudades
+que vayan a visitar. Los usuarios podrán filtrar los resultados con el fin de encontrar la actividad que más encaje con lo
+que están buscando. Ellos podrán reservar las actividades indicando la fecha, hora y el número de personas que serán en
+la actividad en la que vayan a realizar. Además de hacer el pago una vez vayan a reserva la propia actividad.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Una vez la actividad ha finalizado, los usuarios también pueden dejar una reseña en la actividad, pudiendo ser esta valoración 
+positiva o negativa. Quedando reflejado en la sección de comentarios de la propia actividad y el resto de los usuarios puedan verlo.
 
-## Learning Laravel
+Los guías podrá ver las actividades que han reservado los usuarios, pudiendo ver los detalles generales de la actividad. Estas
+actividades serán asginadas por el administrador, es decir, el administrador es quien asigna la actividad a un guía y este
+guía será el encargado de llevar la actividad y solo este guia podrá ver los detalles y las reservas de las actividades asignadas.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+El administrador se encargará de dar de baja y alta a los usuarios como también a los guías. Además de añadir y borrar actividades.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Objetivos generales
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* Objetivo: Añadir y realizar búsqueda de recetas, además de poder comentar con el resto de usuarios y valorarlas.
 
-## Laravel Sponsors
+* Casos de uso: 
+  * Usuario (no logeado): "Iniciar sesión", "Registrarse"
+  * Usuario (Logeado): "Realizar búsqueda", "Filtrar resultados", "Reservar activdiad", "Valorar actividad"
+  * Guia: "Ver actividades", "Detalles actividad", "Marcar como completada".
+  * Administrador: "Dar de alta usuarios", "Dar de baja usuarios", "Bloquear usuarios", "Añadir actividades", "Modificar actividades", 
+                  "Borrar actividades", "Asignar actividad al guia"
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Elemento de innovación
+* Geolocalización. 
+* Pago via Paypal.
