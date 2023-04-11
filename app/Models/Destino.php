@@ -16,6 +16,6 @@ class Destino extends Model
 
     public function actividad()
     {
-        return $this->hasMany(Actividad::class, 'comentario_id');
+        return $this->hasMany(Actividad::class, 'actividad_id', 'id');
     }
 }

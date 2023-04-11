@@ -1,32 +1,32 @@
 @extends('admin.base')
 @section('title')
-    Admin | Detalles usuario
+    Admin | Detalles actividad
 @endsection
 @section('content')
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg m-2">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                Detalles del cliente
+                Detalles de la actividad
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-700/25 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        ID
+                        Título
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Nombre
+                        Precio
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Apellidos
+                        Duración
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Correo Electrónico
+                        Nº Personas (Max)
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Teléfono
+                        Destino
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        ¿Es admin?
+                        Guia
                     </th>
                     <th scope="col" class="px-6 py-3 col-span-2 text-center">
                         Acciones
@@ -36,25 +36,26 @@
             <tbody>
                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        #{{ $usuario->id }}
-                    </td>
-                    <th class="px-6 py-4">
-                        {{ $usuario->name }}
-                    </th>
-                    <td class="px-6 py-4">
-                        {{ $usuario->apellidos }}
+                        {{ $actividad->titulo }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $usuario->email }}
+                        {{ $actividad->precio }}€
                     </td>
                     <td class="px-6 py-4">
-                        {{ $usuario->telefono }}
+                        {{ $actividad->duracion }}h
                     </td>
                     <td class="px-6 py-4">
-                        {{ $usuario->is_admin ? 'Sí' : 'No' }}
+                        {{ $actividad->max_personas }} personas
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $actividad->destino->nombre }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $actividad->guia->nombre }}
                     </td>
                     <td class="px-6 py-4 flex justify-between items-center">
-                        <a href=" {{ route('admin.editarUsuario', $usuario->id) }} " class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
+                        <a href=" {{ route('admin.editarActividad', $actividad->id) }} "
+                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
                         <a data-modal-target="popup-modal" data-modal-toggle="popup-modal" href="#"
                             class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                             Borrar
@@ -63,7 +64,12 @@
                 </tr>
             </tbody>
         </table>
+        <div class="mt-4 flex flex-col space-y-4 w-5/6">
+            <h2 class="text-4xl font-extrabold dark:text-white underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">Descripción: </h2>
+            <p class="text-lg font-medium text-gray-900 dark:text-white">{!! nl2br(e($actividad->descripcion)) !!}</p>
+        </div>
     </div>
+
 
     <!-- Modal -->
     <div id="popup-modal" tabindex="-1"
@@ -89,7 +95,7 @@
                     </svg>
                     <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">¿Estás seguro de querrer borrar a
                         este usuario?</h3>
-                    <form action="{{ route('admin.borrarUsuario', $usuario->id) }}" method="post">
+                    <form action="{{ route('admin.borrarActividad', $actividad->id) }}" method="post">
                         @method('DELETE')
                         @csrf
                         <button data-modal-hide="popup-modal" type="submit"

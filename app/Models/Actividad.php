@@ -11,28 +11,28 @@ class Actividad extends Model
 
     protected $fillable = [
         'titulo', 'descripcion', 'precio', 'duracion',
-        'max_personas', 'guia_id'
+        'max_personas', 'guia_id', 'destino_id'
     ];
 
 
     public function comentario()
     {
-        return $this->hasMany(Comentario::class, 'comentario_id');
+        return $this->hasMany(Comentario::class, 'comentario_id', 'id');
     }
 
     public function destino()
     {
-        return $this->belongsTo(Destino::class, 'destino_id');
+        return $this->belongsTo(Destino::class, 'destino_id', 'id');
     }
 
     public function guia()
     {
-        return $this->belongsTo(Guia::class, 'guia_id');
+        return $this->belongsTo(Guia::class, 'guia_id', 'id');
     }
 
     public function reserva()
     {
-        return $this->hasMany(Reserva::class, 'reserva_id');
+        return $this->hasMany(Reserva::class, 'reserva_id', 'id');
     }
 
 }

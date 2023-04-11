@@ -1,24 +1,24 @@
 @extends('admin.base')
 @section('title')
-    Admin | Usuarios
+    Admin | Actividades
 @endsection
 @section('content')
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                Usuarios
+                Actividades
                 <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
-                    Aquí se muestran algunos de los datos de los usuarios. Puedes ver más información de un usuario haciendo click en
+                    Aquí se muestran algunos de los datos de los actividades. Puedes ver más información de un usuario haciendo click en
                     "Ver detalles".
                 </p>
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-700/25 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Nombre
+                        Título
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Correo Electrónico
+                        Destino
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Acciones
@@ -26,16 +26,16 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($usuarios as $u)
+                @forelse($actividades as $u)
                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $u->name }}
+                            {{ $u->titulo }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ $u->email }}
+                            {{ $u->destino->nombre }}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="{{ route('admin.datellesUsuario', $u->id) }}"
+                            <a href="{{ route('admin.datellesActividad', $u->id) }}"
                                 class="md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 font-medium text-gray-600 dark:text-gray-500 hover:underline">Ver
                                 detalles</a>
                         </td>
