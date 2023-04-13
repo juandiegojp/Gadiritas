@@ -2,24 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// Administrador
 Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
 
@@ -59,6 +46,17 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::put('/actividades/{actividad}/edit', [AdminController::class, 'updateActividad'])->name('admin.updateActividad');
     Route::delete('/actividades/{actividad}/delete', [AdminController::class, 'borrarActividad'])->name('admin.borrarActividad');
 });
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard', [UsuariosController::class, 'index'])->name('index');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
