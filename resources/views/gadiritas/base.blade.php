@@ -7,6 +7,8 @@
     <title>@yield('title')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+
+    @vite(['resources/css/gadiritas.css'])
 </head>
 <body>
     @include('gadiritas.navbar')
