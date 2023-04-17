@@ -5,12 +5,13 @@
 @section('content')
     <div id="contenedor_home">
         <div id="headings_home">
-            <h2 class="text-xl font-extrabold dark:text-white uppercase">Llena tu viaje</h2>
-            <h2 class="text-2xl font-extrabold dark:text-white">Excursiones en español por todo el mundo</h2>
+            <h2 class="text-xl font-extrabold dark:text-white uppercase">Encuentra tu actividad ideal</h2>
+            <h2 class="text-2xl font-extrabold dark:text-white">Experiencias inolvidables por todo Cádiz</h2>
         </div>
         <div id="busqueda">
-            <form action="" method="post">
-                <label for="default-search">Search</label>
+            <form action="{{ route('usuarios.busquedaActividades') }}" method="get">
+                @csrf
+                <label for="buscadorHome">Search</label>
                 <div id="buscador">
                     <div>
                         <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
@@ -19,8 +20,8 @@
                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
                     </div>
-                    <input type="search" id="default-search" placeholder="Comienza a buscar ahora..." required>
-                    <button type="submit">Search</button>
+                    <input type="search" id="buscadorHome" name="buscadorHome" placeholder="Comienza a buscar ahora..." required>
+                    <button type="submit">Buscar</button>
                 </div>
             </form>
         </div>

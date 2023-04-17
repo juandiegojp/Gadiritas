@@ -47,14 +47,15 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::delete('/actividades/{actividad}/delete', [AdminController::class, 'borrarActividad'])->name('admin.borrarActividad');
 });
 
-
+// Vista inicial cuando arrancas la app.
 Route::get('/', function () {
     return view('welcome');
 });
 
-
+// Todas las rutas para los usuarios.
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/dashboard', [UsuariosController::class, 'index'])->name('index');
+    Route::get('/index', [UsuariosController::class, 'index'])->name('usuarios.index');
+    Route::get('/resultados', [UsuariosController::class, 'busquedaActividades'])->name('usuarios.busquedaActividades');
 });
 
 

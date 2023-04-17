@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Actividad extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $fillable = [
         'titulo', 'descripcion', 'precio', 'duracion',
@@ -33,6 +34,14 @@ class Actividad extends Model
     public function reserva()
     {
         return $this->hasMany(Reserva::class, 'reserva_id', 'id');
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'titulo' => $this->titulo,
+            'destino_id' => $this->destino_id
+        ];
     }
 
 }

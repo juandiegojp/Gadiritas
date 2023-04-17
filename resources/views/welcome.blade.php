@@ -13,7 +13,7 @@
 <body>
     <div class="flex items-center justify-center w-full h-96">
         <p class="text-gray-500 dark:text-gray-400">Busca entre todas nuestras actividades tu favorita
-            <a href=" {{ route('index') }} " class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+            <a href=" {{ route('usuarios.index') }} " class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
                 ahora
                 <svg aria-hidden="true" class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">
