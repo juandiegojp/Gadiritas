@@ -28,6 +28,7 @@ class UsuariosController extends Controller
             foreach ($ciudades as $ciudad) {
                 foreach ($ciudad->actividad as $actividad) {
                     $actividades[] = [
+                        'id' => $actividad->id,
                         'titulo' => $actividad->titulo,
                         'descripcion' => $actividad->descripcion,
                         'precio' => $actividad->precio,
