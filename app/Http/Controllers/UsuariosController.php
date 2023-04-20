@@ -28,7 +28,9 @@ class UsuariosController extends Controller
                 'actividades' => $actividades,
             ]);
         }
-        $ciudades = Destino::where('nombre', 'ILIKE', '%'.$request->buscadorHome.'%')->get();
+        $ciudades = Destino::whereRaw('LOWER(unaccent(nombre)) LIKE ?',
+                                    ['%' . mb_strtolower(preg_replace('/[^\p{L}\p{N}\s]/u', '', $request->buscadorHome),
+                                    'UTF-8') . '%'])->get();
         if ($ciudades->isNotEmpty()) {
             $actividades = [];
             foreach ($ciudades as $ciudad) {
