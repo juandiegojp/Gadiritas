@@ -146,7 +146,7 @@ class AdminController extends Controller
     public function updateGuia(Request $request, Guia $guia)
     {
         $guia->update([
-            'name' => $request->name,
+            'nombre' => $request->name,
             'apellidos' => $request->apellidos,
             'email' => $request->email,
             'tlf' => $request->tlf,
