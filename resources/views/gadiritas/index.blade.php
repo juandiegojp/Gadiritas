@@ -9,7 +9,7 @@
             <h2 class="text-2xl font-extrabold dark:text-white">Experiencias inolvidables por todo Cádiz</h2>
         </div>
         <div id="busqueda">
-            <form action="{{ route('usuarios.busquedaActividades') }}" method="get">
+            <form action="{{ route('usuarios.busquedaActividades') }}" method="post">
                 @csrf
                 <label for="buscadorHome">Search</label>
                 <div id="buscador">

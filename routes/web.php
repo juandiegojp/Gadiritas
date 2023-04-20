@@ -55,7 +55,7 @@ Route::get('/', function () {
 // Todas las rutas para los usuarios.
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/index', [UsuariosController::class, 'index'])->name('usuarios.index');
-    Route::get('/resultados', [UsuariosController::class, 'busquedaActividades'])->name('usuarios.busquedaActividades');
+    Route::match(['get', 'post'], '/resultados', [UsuariosController::class, 'busquedaActividades'])->name('usuarios.busquedaActividades');
 });
 
 

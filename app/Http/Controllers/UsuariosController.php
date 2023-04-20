@@ -22,6 +22,12 @@ class UsuariosController extends Controller
      */
     public function busquedaActividades(Request $request)
     {
+        if ($request->isMethod('get')) {
+            $actividades = Actividad::all();
+            return view('gadiritas.resultados', [
+                'actividades' => $actividades,
+            ]);
+        }
         $ciudades = Destino::where('nombre', 'ILIKE', '%'.$request->buscadorHome.'%')->get();
         if ($ciudades->isNotEmpty()) {
             $actividades = [];

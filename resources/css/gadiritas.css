@@ -99,3 +99,52 @@
     --tw-bg-opacity: 1;
     background-color: rgb(30 64 175 / var(--tw-bg-opacity));
 }
+
+
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.image-wrapper img{
+    object-fit: contain;
+    width: 300px;
+    height: 200px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay h3 {
+    text-align: center;
+  }
+
+.overlay:hover {
+    opacity: 1;
+}
+
+.overlay h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.overlay a {
+    background-color: #fff;
+    color: #000;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+}
