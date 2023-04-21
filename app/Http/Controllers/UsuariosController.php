@@ -14,7 +14,12 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        return view('gadiritas.index', []);
+        $comarcas = Destino::select('comarca')->groupBy("comarca")->orderBy("comarca")->get();
+        $destinos = Destino::select('nombre', 'comarca')->get();
+        return view('gadiritas.index', [
+            'comarcas' => $comarcas,
+            'destinos' => $destinos,
+        ]);
     }
 
     /**
@@ -24,8 +29,12 @@ class UsuariosController extends Controller
     {
         if ($request->isMethod('get')) {
             $actividades = Actividad::all();
+            $comarcas = Destino::select('comarca')->groupBy("comarca")->orderBy("comarca")->get();
+            $destinos = Destino::select('nombre', 'comarca')->get();
             return view('gadiritas.resultados', [
                 'actividades' => $actividades,
+                'comarcas' => $comarcas,
+                'destinos' => $destinos,
             ]);
         }
         $ciudades = Destino::whereRaw('LOWER(unaccent(nombre)) LIKE ?',

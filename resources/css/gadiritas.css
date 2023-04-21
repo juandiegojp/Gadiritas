@@ -148,3 +148,19 @@
     border-radius: 0.25rem;
     text-decoration: none;
 }
+
+
+div .comarca-container {
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+.comarca {
+    display: none;
+    position: absolute;
+}
+
+.comarca-container:hover .comarca {
+    display: block;
+}
+
