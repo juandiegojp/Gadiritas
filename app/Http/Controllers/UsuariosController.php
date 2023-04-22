@@ -6,15 +6,16 @@ use App\Models\Actividad;
 use App\Models\Destino;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsuariosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $comarcas = Destino::select('comarca')->groupBy("comarca")->orderBy("comarca")->get();
+        $comarcas = Destino::select('comarca')
+            ->groupBy('comarca')
+            ->orderBy('comarca')
+            ->get();
         $destinos = Destino::select('nombre', 'comarca')->get();
         return view('gadiritas.index', [
             'comarcas' => $comarcas,
@@ -22,24 +23,14 @@ class UsuariosController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function busquedaActividades(Request $request)
     {
-        if ($request->isMethod('get')) {
-            $actividades = Actividad::all();
-            $comarcas = Destino::select('comarca')->groupBy("comarca")->orderBy("comarca")->get();
-            $destinos = Destino::select('nombre', 'comarca')->get();
-            return view('gadiritas.resultados', [
-                'actividades' => $actividades,
-                'comarcas' => $comarcas,
-                'destinos' => $destinos,
-            ]);
-        }
-        $ciudades = Destino::whereRaw('LOWER(unaccent(nombre)) LIKE ?',
-                                    ['%' . mb_strtolower(preg_replace('/[^\p{L}\p{N}\s]/u', '', $request->buscadorHome),
-                                    'UTF-8') . '%'])->get();
+        $comarcas = Destino::select('comarca')
+            ->groupBy('comarca')
+            ->orderBy('comarca')
+            ->get();
+        $destinos = Destino::select('nombre', 'comarca')->get();
+        $ciudades = Destino::whereRaw('LOWER(unaccent(nombre)) LIKE ?', ['%' . mb_strtolower(preg_replace('/[^\p{L}\p{N}\s]/u', '', $request->buscadorHome), 'UTF-8') . '%'])->get();
         if ($ciudades->isNotEmpty()) {
             $actividades = [];
             foreach ($ciudades as $ciudad) {
@@ -55,12 +46,36 @@ class UsuariosController extends Controller
                     ];
                 }
             }
-            return view('gadiritas.resultados', compact('actividades'));
+            return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos'));
         } else {
             return view('gadiritas.resultados', ['mensaje' => 'No se encontraron actividades para la ciudad buscada']);
         }
     }
 
+    public function actividades($destino)
+    {
+        $comarcas = Destino::select('comarca')
+            ->groupBy('comarca')
+            ->orderBy('comarca')
+            ->get();
+        $destinos = Destino::select('nombre', 'comarca')->get();
+        $ciudades = Destino::where('nombre', $destino)->get();
+        $actividades = [];
+        foreach ($ciudades as $ciudad) {
+            foreach ($ciudad->actividad as $actividad) {
+                $actividades[] = [
+                    'id' => $actividad->id,
+                    'titulo' => $actividad->titulo,
+                    'descripcion' => $actividad->descripcion,
+                    'precio' => $actividad->precio,
+                    'duracion' => $actividad->duracion,
+                    'max_personas' => $actividad->max_personas,
+                    'guia_id' => $actividad->guia_id,
+                ];
+            }
+        }
+        return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos')); // Devolver la vista con los resultados de la búsqueda
+    }
 
     /**
      * Store a newly created resource in storage.

@@ -14,7 +14,7 @@
                 <a href="#">Ver detalles</a>
             </div>
         </div>
-        <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">{{ $actividad['id'] }}</figcaption>
+        <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">{{ $actividad['titulo'] }}</figcaption>
     </figure>
     @endforeach
 </div>
