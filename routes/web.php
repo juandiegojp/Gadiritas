@@ -57,7 +57,8 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/index', [UsuariosController::class, 'index'])->name('usuarios.index');
     Route::post('/resultados', [UsuariosController::class, 'busquedaActividades'])->name('usuarios.busquedaActividades');
-    Route::get('/actividades/{destino}', [UsuariosController::class, 'actividades'])->name('usuarios.actividades');
+    Route::get('/resultados/{destino}', [UsuariosController::class, 'actividades'])->name('usuarios.actividades');
+    Route::get('/detalles/{destino}', [UsuariosController::class, 'detalles'])->name('usuarios.detalles');
 });
 
 

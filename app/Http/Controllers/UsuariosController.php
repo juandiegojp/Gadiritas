@@ -77,43 +77,14 @@ class UsuariosController extends Controller
         return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos')); // Devolver la vista con los resultados de la búsqueda
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function detalles(Destino $destino)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        //
+        $destinos = Destino::select('nombre', 'comarca')->get();
+        $comarcas = Destino::select('comarca')
+        ->groupBy('comarca')
+        ->orderBy('comarca')
+        ->get();
+        $ciudades = Destino::where('nombre', $destino)->get();
+        return view('gadiritas.detalles', compact('destino', 'comarcas', 'destinos'));
     }
 }
