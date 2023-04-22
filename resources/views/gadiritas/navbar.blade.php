@@ -2,7 +2,7 @@
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="{{ route('usuarios.index') }}" class="flex items-center">
             <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Flowbite Logo" />
-            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Gadirias</span>
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Gadiritas</span>
         </a>
         <button data-collapse-toggle="navbar-default" type="button"
             class="inline-flex items-center p-2 ml-3 text-sm rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -37,11 +37,27 @@
 
                 </div>
                 <li>
-                    <a href="#"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                        {{ auth()->user()->name }}</a>
+                    <button type="button" id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                    class="focus:underline hover:underline font-medium rounded-lg text-sm text-center inline-flex items-center">
+                        {{ auth()->user()->name }}
+                        <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
+
+<!-- Dropdown menu -->
+<div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+      <li>
+        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Perfil</a>
+      </li>
+      </li>
+      <li>
+        <a href="{{ route('logout') }}" class="block px-4 py-2 text-red-500 hover:bg-red-100 dark:hover:bg-red-600 dark:hover:text-white">Cerrar sesión</a>
+      </li>
+    </ul>
+</div>
