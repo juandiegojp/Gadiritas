@@ -152,15 +152,25 @@
 
 div .comarca-container {
     display: inline-block;
-    margin-left: 0.5rem;
+    margin-left: 0.5em;
+    margin-right: 1em;
 }
 
 .comarca {
+    height: 5em;
     display: none;
     position: absolute;
 }
 
-.comarca-container:hover .comarca {
+.comarca ul {
+    border-radius: 0.5rem;
+    width: 12em;
+    padding: 0.5em 0em;
+    border: 1px solid black;
+    background-color: rgba(85, 124, 62, 0.5);
+}
+
+.comarca:hover, .comarca-container:hover .comarca {
     display: block;
 }
 
