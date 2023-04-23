@@ -100,7 +100,7 @@ class UsuariosController extends Controller
             'personas' => $request->n_personas,
         ]);
 
-        return redirect('/index');
+        return redirect('/index')->with('success', '¡La reserva se ha creado correctamente!');;
     }
 
 }
