@@ -55,9 +55,12 @@
       <li>
         <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Perfil</a>
       </li>
+      <li>
+        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reservas</a>
       </li>
       <li>
-        <a href="{{ route('logout') }}" class="block px-4 py-2 text-red-500 hover:bg-red-100 dark:hover:bg-red-600 dark:hover:text-white">Cerrar sesión</a>
+        <a href="{{ route('logout') }}" class="block px-4 py-2 text-red-500 hover:bg-red-100 dark:hover:bg-red-600 dark:hover:text-white">
+            Cerrar sesión</a>
       </li>
     </ul>
 </div>

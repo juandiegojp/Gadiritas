@@ -7,11 +7,74 @@ use App\Models\Destino;
 use App\Models\Reserva;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Ramsey\Uuid\Type\Time;
+use Illuminate\Support\Facades\Hash;
 
 class UsuariosController extends Controller
 {
+    // Muestra todos los usuarios y sus datos en admin
+    public function usuarios()
+    {
+        $reservas = Reserva::all();
+        $users = User::all();
+        return view('admin.usuarios.index', [
+            'reservas' => $reservas,
+            'usuarios' => $users,
+        ]);
+    }
+
+    public function usuariosForm()
+    {
+        return view('admin.usuarios.create', []);
+    }
+
+    public function storeUsuarios(Request $request)
+    {
+        $n_usuario = User::create([
+            'name' => $request->name,
+            'apellidos' => $request->apellidos,
+            'email' => $request->email,
+            'telefono' => $request->tlf,
+            'password' => Hash::make($request->password1),
+            'is_admin' => $request->input('is_admin') ? "True" : "False"
+        ]);
+
+        return redirect('/usuarios/detalles/'. $n_usuario->id);
+    }
+
+    public function datellesUsuario(User $usuario)
+    {
+        return view('admin.usuarios.detalles', [
+            'usuario' => $usuario,
+        ]);
+    }
+
+    public function editarUsuario(User $usuario)
+    {
+        return view('admin.usuarios.editar', [
+            'usuario' => $usuario,
+        ]);
+    }
+
+    public function updateUsuario(Request $request, User $usuario)
+    {
+        $usuario->update([
+            'name' => $request->name,
+            'apellidos' => $request->apellidos,
+            'email' => $request->email,
+            'telefono' => $request->tlf,
+            'password' => Hash::make($request->password1),
+            'is_admin' => $request->input('is_admin') ? "True" : "False"
+        ]);
+
+        return redirect('/usuarios/detalles/'. $usuario->id);
+    }
+
+    public function borrarUsuario(User $usuario)
+    {
+        $usuario->delete();
+        return redirect('/usuarios');
+    }
+
     public function index()
     {
         $comarcas = Destino::select('comarca')
@@ -23,84 +86,6 @@ class UsuariosController extends Controller
             'comarcas' => $comarcas,
             'destinos' => $destinos,
         ]);
-    }
-
-    public function busquedaActividades(Request $request)
-    {
-        $comarcas = Destino::select('comarca')
-            ->groupBy('comarca')
-            ->orderBy('comarca')
-            ->get();
-        $destinos = Destino::select('nombre', 'comarca')->get();
-        $ciudades = Destino::whereRaw('LOWER(unaccent(nombre)) LIKE ?', ['%' . mb_strtolower(preg_replace('/[^\p{L}\p{N}\s]/u', '', $request->buscadorHome), 'UTF-8') . '%'])->get();
-        if ($ciudades->isNotEmpty()) {
-            $actividades = [];
-            foreach ($ciudades as $ciudad) {
-                foreach ($ciudad->actividad as $actividad) {
-                    $actividades[] = [
-                        'id' => $actividad->id,
-                        'titulo' => $actividad->titulo,
-                        'descripcion' => $actividad->descripcion,
-                        'precio' => $actividad->precio,
-                        'duracion' => $actividad->duracion,
-                        'max_personas' => $actividad->max_personas,
-                        'guia_id' => $actividad->guia_id,
-                    ];
-                }
-            }
-            return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos'));
-        } else {
-            return view('gadiritas.resultados', ['mensaje' => 'No se encontraron actividades para la ciudad buscada']);
-        }
-    }
-
-    public function actividades($destino)
-    {
-        $comarcas = Destino::select('comarca')
-            ->groupBy('comarca')
-            ->orderBy('comarca')
-            ->get();
-        $destinos = Destino::select('nombre', 'comarca')->get();
-        $ciudades = Destino::where('nombre', $destino)->get();
-        $actividades = [];
-        foreach ($ciudades as $ciudad) {
-            foreach ($ciudad->actividad as $actividad) {
-                $actividades[] = [
-                    'id' => $actividad->id,
-                    'titulo' => $actividad->titulo,
-                    'descripcion' => $actividad->descripcion,
-                    'precio' => $actividad->precio,
-                    'duracion' => $actividad->duracion,
-                    'max_personas' => $actividad->max_personas,
-                    'guia_id' => $actividad->guia_id,
-                ];
-            }
-        }
-        return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos')); // Devolver la vista con los resultados de la búsqueda
-    }
-
-    public function detalles($destino)
-    {
-        $actividad = Actividad::find($destino);
-        $destinos = Destino::select('nombre', 'comarca')->get();
-        $comarcas = Destino::select('comarca')
-        ->groupBy('comarca')
-        ->orderBy('comarca')
-        ->get();
-        return view('gadiritas.detalles', compact('actividad', 'comarcas', 'destinos'));
-    }
-
-    public function crear_reserva(Request $request) {
-        $hora = date('H:i:s', strtotime($request->hora));
-        $n_reserva = Reserva::create([
-            'actividad_id' => $request->act_id,
-            'user_id' => $request->user()->id,
-            'fecha' => $request->date,
-            'hora' => $hora,
-            'personas' => $request->n_personas,
-        ]);
-
-        return redirect('/index')->with('success', '¡La reserva se ha creado correctamente!');;
     }
 
 }
