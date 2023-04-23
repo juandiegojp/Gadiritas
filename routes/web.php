@@ -59,6 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/resultados', [UsuariosController::class, 'busquedaActividades'])->name('usuarios.busquedaActividades');
     Route::get('/resultados/{destino}', [UsuariosController::class, 'actividades'])->name('usuarios.actividades');
     Route::get('/detalles/{destino}', [UsuariosController::class, 'detalles'])->name('usuarios.detalles');
+    Route::post('/detalles/{destino}', [UsuariosController::class, 'crear_reserva'])->name('usuarios.crear_reserva');
 });
 
 

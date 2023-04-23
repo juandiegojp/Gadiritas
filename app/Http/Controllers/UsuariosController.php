@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Actividad;
 use App\Models\Destino;
+use App\Models\Reserva;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Ramsey\Uuid\Type\Time;
 
 class UsuariosController extends Controller
 {
@@ -77,14 +79,28 @@ class UsuariosController extends Controller
         return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos')); // Devolver la vista con los resultados de la búsqueda
     }
 
-    public function detalles(Destino $destino)
+    public function detalles($destino)
     {
+        $actividad = Actividad::find($destino);
         $destinos = Destino::select('nombre', 'comarca')->get();
         $comarcas = Destino::select('comarca')
         ->groupBy('comarca')
         ->orderBy('comarca')
         ->get();
-        $ciudades = Destino::where('nombre', $destino)->get();
-        return view('gadiritas.detalles', compact('destino', 'comarcas', 'destinos'));
+        return view('gadiritas.detalles', compact('actividad', 'comarcas', 'destinos'));
     }
+
+    public function crear_reserva(Request $request) {
+        $hora = date('H:i:s', strtotime($request->hora));
+        $n_reserva = Reserva::create([
+            'actividad_id' => $request->act_id,
+            'user_id' => $request->user()->id,
+            'fecha' => $request->date,
+            'hora' => $hora,
+            'personas' => $request->n_personas,
+        ]);
+
+        return redirect('/index');
+    }
+
 }
