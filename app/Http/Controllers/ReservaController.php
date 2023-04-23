@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Destino;
 use App\Models\Reserva;
 use Illuminate\Http\Request;
 
@@ -18,5 +19,15 @@ class ReservaController extends Controller
         ]);
 
         return redirect('/index')->with('success', '¡La reserva se ha creado correctamente!');;
+    }
+
+    public function reservaUsers(Request $request) {
+        $comarcas = Destino::select('comarca')
+            ->groupBy('comarca')
+            ->orderBy('comarca')
+            ->get();
+        $destinos = Destino::select('nombre', 'comarca')->get();
+        $reservas = Reserva::where('user_id', $request->user()->id)->get();
+        return view('gadiritas.reservas', compact('reservas', 'comarcas', 'destinos'));
     }
 }
