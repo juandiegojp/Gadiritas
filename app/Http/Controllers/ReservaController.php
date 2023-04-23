@@ -30,4 +30,11 @@ class ReservaController extends Controller
         $reservas = Reserva::where('user_id', $request->user()->id)->orderBy('id')->get();
         return view('gadiritas.reservas', compact('reservas', 'comarcas', 'destinos'));
     }
+
+    public function borrarReserva(Request $request)
+    {
+        $reserva = $request->input('id');
+        Reserva::where('id', $reserva)->delete();
+        return redirect('/reservas');
+    }
 }

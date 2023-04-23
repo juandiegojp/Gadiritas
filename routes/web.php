@@ -65,6 +65,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/detalles/{destino}', [ActividadController::class, 'detalles'])->name('usuarios.detalles');
     Route::post('/detalles/{destino}', [ReservaController::class, 'crear_reserva'])->name('usuarios.crear_reserva');
     Route::get('/reservas', [ReservaController::class, 'reservaUsers'])->name('usuarios.reservaUsers');
+    Route::delete('/reserva/delete', [ReservaController::class, 'borrarReserva'])->name('usuarios.borrarReserva');
 });
 
 
