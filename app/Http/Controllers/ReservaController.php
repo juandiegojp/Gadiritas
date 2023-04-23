@@ -27,7 +27,7 @@ class ReservaController extends Controller
             ->orderBy('comarca')
             ->get();
         $destinos = Destino::select('nombre', 'comarca')->get();
-        $reservas = Reserva::where('user_id', $request->user()->id)->get();
+        $reservas = Reserva::where('user_id', $request->user()->id)->orderBy('id')->get();
         return view('gadiritas.reservas', compact('reservas', 'comarcas', 'destinos'));
     }
 }
