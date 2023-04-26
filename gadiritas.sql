@@ -35,7 +35,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: actividads; Type: TABLE; Schema: public; Owner: tienda
+-- Name: actividads; Type: TABLE; Schema: public; Owner: gadiritas
 --
 
 CREATE TABLE public.actividads (
@@ -52,10 +52,10 @@ CREATE TABLE public.actividads (
 );
 
 
-ALTER TABLE public.actividads OWNER TO tienda;
+ALTER TABLE public.actividads OWNER TO gadiritas;
 
 --
--- Name: actividads_id_seq; Type: SEQUENCE; Schema: public; Owner: tienda
+-- Name: actividads_id_seq; Type: SEQUENCE; Schema: public; Owner: gadiritas
 --
 
 CREATE SEQUENCE public.actividads_id_seq
@@ -66,17 +66,17 @@ CREATE SEQUENCE public.actividads_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.actividads_id_seq OWNER TO tienda;
+ALTER TABLE public.actividads_id_seq OWNER TO gadiritas;
 
 --
--- Name: actividads_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tienda
+-- Name: actividads_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gadiritas
 --
 
 ALTER SEQUENCE public.actividads_id_seq OWNED BY public.actividads.id;
 
 
 --
--- Name: comentarios; Type: TABLE; Schema: public; Owner: tienda
+-- Name: comentarios; Type: TABLE; Schema: public; Owner: gadiritas
 --
 
 CREATE TABLE public.comentarios (
@@ -91,10 +91,10 @@ CREATE TABLE public.comentarios (
 );
 
 
-ALTER TABLE public.comentarios OWNER TO tienda;
+ALTER TABLE public.comentarios OWNER TO gadiritas;
 
 --
--- Name: comentarios_id_seq; Type: SEQUENCE; Schema: public; Owner: tienda
+-- Name: comentarios_id_seq; Type: SEQUENCE; Schema: public; Owner: gadiritas
 --
 
 CREATE SEQUENCE public.comentarios_id_seq
@@ -105,17 +105,17 @@ CREATE SEQUENCE public.comentarios_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.comentarios_id_seq OWNER TO tienda;
+ALTER TABLE public.comentarios_id_seq OWNER TO gadiritas;
 
 --
--- Name: comentarios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tienda
+-- Name: comentarios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gadiritas
 --
 
 ALTER SEQUENCE public.comentarios_id_seq OWNED BY public.comentarios.id;
 
 
 --
--- Name: destinos; Type: TABLE; Schema: public; Owner: tienda
+-- Name: destinos; Type: TABLE; Schema: public; Owner: gadiritas
 --
 
 CREATE TABLE public.destinos (
@@ -128,10 +128,10 @@ CREATE TABLE public.destinos (
 );
 
 
-ALTER TABLE public.destinos OWNER TO tienda;
+ALTER TABLE public.destinos OWNER TO gadiritas;
 
 --
--- Name: destinos_id_seq; Type: SEQUENCE; Schema: public; Owner: tienda
+-- Name: destinos_id_seq; Type: SEQUENCE; Schema: public; Owner: gadiritas
 --
 
 CREATE SEQUENCE public.destinos_id_seq
@@ -142,17 +142,17 @@ CREATE SEQUENCE public.destinos_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.destinos_id_seq OWNER TO tienda;
+ALTER TABLE public.destinos_id_seq OWNER TO gadiritas;
 
 --
--- Name: destinos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tienda
+-- Name: destinos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gadiritas
 --
 
 ALTER SEQUENCE public.destinos_id_seq OWNED BY public.destinos.id;
 
 
 --
--- Name: failed_jobs; Type: TABLE; Schema: public; Owner: tienda
+-- Name: failed_jobs; Type: TABLE; Schema: public; Owner: gadiritas
 --
 
 CREATE TABLE public.failed_jobs (
@@ -166,10 +166,10 @@ CREATE TABLE public.failed_jobs (
 );
 
 
-ALTER TABLE public.failed_jobs OWNER TO tienda;
+ALTER TABLE public.failed_jobs OWNER TO gadiritas;
 
 --
--- Name: failed_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: tienda
+-- Name: failed_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: gadiritas
 --
 
 CREATE SEQUENCE public.failed_jobs_id_seq
@@ -180,17 +180,17 @@ CREATE SEQUENCE public.failed_jobs_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.failed_jobs_id_seq OWNER TO tienda;
+ALTER TABLE public.failed_jobs_id_seq OWNER TO gadiritas;
 
 --
--- Name: failed_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tienda
+-- Name: failed_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gadiritas
 --
 
 ALTER SEQUENCE public.failed_jobs_id_seq OWNED BY public.failed_jobs.id;
 
 
 --
--- Name: guias; Type: TABLE; Schema: public; Owner: tienda
+-- Name: guias; Type: TABLE; Schema: public; Owner: gadiritas
 --
 
 CREATE TABLE public.guias (
@@ -207,10 +207,10 @@ CREATE TABLE public.guias (
 );
 
 
-ALTER TABLE public.guias OWNER TO tienda;
+ALTER TABLE public.guias OWNER TO gadiritas;
 
 --
--- Name: guias_id_seq; Type: SEQUENCE; Schema: public; Owner: tienda
+-- Name: guias_id_seq; Type: SEQUENCE; Schema: public; Owner: gadiritas
 --
 
 CREATE SEQUENCE public.guias_id_seq
@@ -221,17 +221,17 @@ CREATE SEQUENCE public.guias_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.guias_id_seq OWNER TO tienda;
+ALTER TABLE public.guias_id_seq OWNER TO gadiritas;
 
 --
--- Name: guias_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tienda
+-- Name: guias_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gadiritas
 --
 
 ALTER SEQUENCE public.guias_id_seq OWNED BY public.guias.id;
 
 
 --
--- Name: migrations; Type: TABLE; Schema: public; Owner: tienda
+-- Name: migrations; Type: TABLE; Schema: public; Owner: gadiritas
 --
 
 CREATE TABLE public.migrations (
@@ -241,10 +241,10 @@ CREATE TABLE public.migrations (
 );
 
 
-ALTER TABLE public.migrations OWNER TO tienda;
+ALTER TABLE public.migrations OWNER TO gadiritas;
 
 --
--- Name: migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: tienda
+-- Name: migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: gadiritas
 --
 
 CREATE SEQUENCE public.migrations_id_seq
@@ -256,17 +256,17 @@ CREATE SEQUENCE public.migrations_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.migrations_id_seq OWNER TO tienda;
+ALTER TABLE public.migrations_id_seq OWNER TO gadiritas;
 
 --
--- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tienda
+-- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gadiritas
 --
 
 ALTER SEQUENCE public.migrations_id_seq OWNED BY public.migrations.id;
 
 
 --
--- Name: password_reset_tokens; Type: TABLE; Schema: public; Owner: tienda
+-- Name: password_reset_tokens; Type: TABLE; Schema: public; Owner: gadiritas
 --
 
 CREATE TABLE public.password_reset_tokens (
@@ -276,10 +276,10 @@ CREATE TABLE public.password_reset_tokens (
 );
 
 
-ALTER TABLE public.password_reset_tokens OWNER TO tienda;
+ALTER TABLE public.password_reset_tokens OWNER TO gadiritas;
 
 --
--- Name: personal_access_tokens; Type: TABLE; Schema: public; Owner: tienda
+-- Name: personal_access_tokens; Type: TABLE; Schema: public; Owner: gadiritas
 --
 
 CREATE TABLE public.personal_access_tokens (
@@ -296,10 +296,10 @@ CREATE TABLE public.personal_access_tokens (
 );
 
 
-ALTER TABLE public.personal_access_tokens OWNER TO tienda;
+ALTER TABLE public.personal_access_tokens OWNER TO gadiritas;
 
 --
--- Name: personal_access_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: tienda
+-- Name: personal_access_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: gadiritas
 --
 
 CREATE SEQUENCE public.personal_access_tokens_id_seq
@@ -310,17 +310,17 @@ CREATE SEQUENCE public.personal_access_tokens_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.personal_access_tokens_id_seq OWNER TO tienda;
+ALTER TABLE public.personal_access_tokens_id_seq OWNER TO gadiritas;
 
 --
--- Name: personal_access_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tienda
+-- Name: personal_access_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gadiritas
 --
 
 ALTER SEQUENCE public.personal_access_tokens_id_seq OWNED BY public.personal_access_tokens.id;
 
 
 --
--- Name: reservas; Type: TABLE; Schema: public; Owner: tienda
+-- Name: reservas; Type: TABLE; Schema: public; Owner: gadiritas
 --
 
 CREATE TABLE public.reservas (
@@ -335,10 +335,10 @@ CREATE TABLE public.reservas (
 );
 
 
-ALTER TABLE public.reservas OWNER TO tienda;
+ALTER TABLE public.reservas OWNER TO gadiritas;
 
 --
--- Name: reservas_id_seq; Type: SEQUENCE; Schema: public; Owner: tienda
+-- Name: reservas_id_seq; Type: SEQUENCE; Schema: public; Owner: gadiritas
 --
 
 CREATE SEQUENCE public.reservas_id_seq
@@ -349,17 +349,17 @@ CREATE SEQUENCE public.reservas_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.reservas_id_seq OWNER TO tienda;
+ALTER TABLE public.reservas_id_seq OWNER TO gadiritas;
 
 --
--- Name: reservas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tienda
+-- Name: reservas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gadiritas
 --
 
 ALTER SEQUENCE public.reservas_id_seq OWNED BY public.reservas.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: tienda
+-- Name: users; Type: TABLE; Schema: public; Owner: gadiritas
 --
 
 CREATE TABLE public.users (
@@ -377,10 +377,10 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO tienda;
+ALTER TABLE public.users OWNER TO gadiritas;
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: tienda
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: gadiritas
 --
 
 CREATE SEQUENCE public.users_id_seq
@@ -391,80 +391,80 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO tienda;
+ALTER TABLE public.users_id_seq OWNER TO gadiritas;
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tienda
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gadiritas
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: actividads id; Type: DEFAULT; Schema: public; Owner: tienda
+-- Name: actividads id; Type: DEFAULT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.actividads ALTER COLUMN id SET DEFAULT nextval('public.actividads_id_seq'::regclass);
 
 
 --
--- Name: comentarios id; Type: DEFAULT; Schema: public; Owner: tienda
+-- Name: comentarios id; Type: DEFAULT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.comentarios ALTER COLUMN id SET DEFAULT nextval('public.comentarios_id_seq'::regclass);
 
 
 --
--- Name: destinos id; Type: DEFAULT; Schema: public; Owner: tienda
+-- Name: destinos id; Type: DEFAULT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.destinos ALTER COLUMN id SET DEFAULT nextval('public.destinos_id_seq'::regclass);
 
 
 --
--- Name: failed_jobs id; Type: DEFAULT; Schema: public; Owner: tienda
+-- Name: failed_jobs id; Type: DEFAULT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.failed_jobs ALTER COLUMN id SET DEFAULT nextval('public.failed_jobs_id_seq'::regclass);
 
 
 --
--- Name: guias id; Type: DEFAULT; Schema: public; Owner: tienda
+-- Name: guias id; Type: DEFAULT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.guias ALTER COLUMN id SET DEFAULT nextval('public.guias_id_seq'::regclass);
 
 
 --
--- Name: migrations id; Type: DEFAULT; Schema: public; Owner: tienda
+-- Name: migrations id; Type: DEFAULT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.migrations ALTER COLUMN id SET DEFAULT nextval('public.migrations_id_seq'::regclass);
 
 
 --
--- Name: personal_access_tokens id; Type: DEFAULT; Schema: public; Owner: tienda
+-- Name: personal_access_tokens id; Type: DEFAULT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.personal_access_tokens ALTER COLUMN id SET DEFAULT nextval('public.personal_access_tokens_id_seq'::regclass);
 
 
 --
--- Name: reservas id; Type: DEFAULT; Schema: public; Owner: tienda
+-- Name: reservas id; Type: DEFAULT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.reservas ALTER COLUMN id SET DEFAULT nextval('public.reservas_id_seq'::regclass);
 
 
 --
--- Name: users id; Type: DEFAULT; Schema: public; Owner: tienda
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
--- Data for Name: actividads; Type: TABLE DATA; Schema: public; Owner: tienda
+-- Data for Name: actividads; Type: TABLE DATA; Schema: public; Owner: gadiritas
 --
 
 COPY public.actividads (id, titulo, descripcion, precio, duracion, max_personas, created_at, updated_at, guia_id, destino_id) FROM stdin;
@@ -487,13 +487,13 @@ COPY public.actividads (id, titulo, descripcion, precio, duracion, max_personas,
 15	Palacio Ducal de Medina-Sidonia	El Palacio Ducal de Medina Sidonia, se ubica sobre la base de un alcázar andalusí del S.XII y contenido sobre muros medievales, en una situación privilegiada en el borde de la barranca natural que divide el Barrio Alto del Barrio Bajo de Sanlúcar de Barrameda.\r\n\r\nLa antigua residencia de los Duques de Medina Sidonia fue declarado monumento histórico artístico en 1978\r\n\r\nSus salones están decorados con bellas pinturas de artistas europeos y un elegante mobiliario barroco. Cuenta con unos amplios jardines que guardan la más profunda tradición de los diseños renacentistas y barrocos.\r\n\r\nSu fachada es sobria, a lo que contribuyen el blanco paramento, los frontones de sus balcones y la proporcionalidad clásica entre muro y vano. Acodada a ésta, la portada se anima con la inclusión, en el cuerpo superior, de dos vanos ajimezados. Con este exterior destaca aún más la rejería.\r\n\r\nLos jardines que rodean el Palacio fueron creados en el siglo XVI, transformando la “barranca”, hasta convertirla en un entramado exótico de terrazas y paseos ajardinados, que hoy conocemos bajo el nombre de Bosque de Acantos, y que en la actualidad sirve de lugar de remanso y de paz, donde se puede disfrutar del silencio y del suave cantar de los pájaros.	10.00	1	10	2023-04-17 01:47:34	2023-04-17 01:47:34	4	5
 21	Museo de Cádiz	El origen del Museo de Cádiz, comienza con la Desmortización de Mendizábal (ley de expropiación de los bienes del clero) en 1835 y el depósito, en la Academia de Bellas Artes de la ciudad, de una serie de pinturas de diversos secularizados conventos. Entre estas obras se encontraba la serie Zurbarán, procedente de la Cartuja de Jerez de la Frontera. Mientras tanto, en torno a la Academia de Bellas Artes, a lo largo del siglo XIX, se empezaron a recopilar una serie de obras de la floreciente escuela de pintura gaditana, con las últimas reminiscencias del neoclasicismo, el romanticismo, el costumbrismo y el marco de la historia.\r\n\r\nEl hallazgo accidental, en 1887, del sarcófago antropoide fenicio masculino en los terrenos del actual astillero gaditano, marcó el punto de partida de la colección arqueológica. La sección de Arqueología del museo está dividida en salas, en cuyo interior se exhibe la evolución de la provincia de Cádiz, desde la prehistoria, pasando por el Gadir fenicio-púnico, hasta las romanas de Gades y Baelo Claudia. En este tramo, además de los sugestivos sarcófagos antropoides fenicios, destacan por su uso los objetos funerarios y ajuares púnicos y fenicios recuperados en Cádiz y en el santuario de Melkart - Ercole en Sancti Petri y en la Villa de Doña Blanca importancia.en el Puerto de Santa María, así como los restos romanos originales de Cádiz, Medina Sidonia, Sancti Petri y Baelo Claudia,\r\n\r\nLa sección de Bellas Artes también se divide en salas e implica un recorrido por la pintura desde el siglo XVI hasta la actualidad. Entre ellas, cabe destacar las obras flamencas y españolas del siglo XVI, las obras realizadas por Zurbarán para la cartuja de Jerez entre 1637 y 1639, varios cuadros de Murillo y sus discípulos de la colección barroca o un cuadro de Joan. Miró en la sección de Arte Contemporáneo.\r\n\r\nCasa Pinillos es un edificio ubicado cerca del museo conectado a él. La adecuación de este edificio y su integración con el museo de Cádiz supone la adquisición de un nuevo y moderno espacio de uso cultural, con aproximadamente 1600 m2 de superficie. El museo de Cádiz abre al público las puertas de este nuevo edificio, gracias a la generosa donación de Doña Carmen Martínez de Pinillo y Toro, quien en 2004 donó su vivienda para la ampliación del museo. En 2009 se inició el trámite de rehabilitación de la casa, de gran valor histórico, para convertirla en un excelente ejemplo de casa burguesa de principios del siglo XVIII.	5.00	1	10	2023-04-17 02:56:41	2023-04-17 02:56:41	5	7
 2	Visita guiada por las Bodegas Barbadillo	La manzanilla de Sanlúcar es uno de los símbolos de la localidad gaditana. Disfruta de una cata de sus variedades con esta visita guiada por las conocidas Bodegas Barbadillo.\r\n\r\nUna vez nos reunamos frente a las instalaciones que la afamada compañía Barbadillo posee en la calle Sevilla de Sanlúcar, podréis comenzar el tour visitando a través de una audioguía el Museo de la Manzanilla. ¿Conocéis el origen de esta popular bebida, de gran arraigo en la provincia de Cádiz?\r\n\r\nContinuaremos el recorrido con una visita guiada por las Bodegas Barbadillo. Fundadas a principios del siglo XIX por el empresario Benigno Barbadillo y Ortigüela y el primo de este, su producción vitivinícola constituye uno de los principales motores económicos de Sanlúcar. Mientras visitamos las dependencias donde se almacenan los barriles, así como también otros destacados lugares de las bodegas, iremos conociendo cómo fue evolucionando este negocio familiar.\r\n\r\nComo broche final, disfrutaremos de una cata de cuatro vinos producidos en la casa. Aprenderemos a distinguir las diferentes variedades no solo a través de su color y su aroma, sino también por medio de los diferentes matices que nos sugieren estas bebidas en contacto con el paladar. ¡Una experiencia imprescindible para los amantes de la enología!\r\n\r\nAunque los menores de edad también podrán participar en esta visita guiada acompañados por un adulto, solo se servirá bebidas alcohólicas a las personas mayores de 18 años.	15.00	1	20	2023-04-09 20:46:41	2023-04-09 20:46:41	4	5
-17	Ruta por Sanlúcar de Barrameda	- Plaza del Cabildo: se encuentra en pleno Barrio Bajo y es el punto de encuentro para aquellas personas que buscan un lugar de recreo y paseo, rodeado de bares y tiendas, y presidida por una preciosa fuente. Esta plaza responde al arquetipo de la plaza más importante de cada municipio.\r\n\r\n- Arco de Rota: también conocido como Puerta de Rota, formaba parte de la antigua puerta de la Fuente, que era una de las que estaban abiertas en la muralla que rodeaba el municipio y que lo comunicaba con el exterior. Sobre esta puerta se formó el Arrabal de la Fuente en el siglo XV. Se le conoce como Arco o Puerta de Rota porque desde este lugar comenzaba el camino que unía la ciudad con la localidad roteña.\r\n\r\n- Jardín del Palacio Orleans-Borbón: el origen de estos jardines se remonta al siglo XIX, cuando los duques de Montpensier optan por Sanlúcar como lugar de residencia donde pasar la época estival. El duque de Montpensier contrató a Lecolant, quien trabajó en los jardines del Palacio de San Telmo de Sevilla, y utilizó un diseño paisajista para el trazado del jardín, en donde se utilizaron muchas y variadas especies de vegetales de todas partes del mundo.​\r\n\r\n- Las Covachas: se trata de diez arcos que recaen sobre pilastras de estilo gótico que presentan figuras mitológicas marinas aladas muy propias de la arquitectura del siglo XV. Conforman una galería interior comunicada con la Cuesta de Belén a través de diez pasadizos que está formada por arcos apuntados. Fueron construidas por don Enrique de Guzmán, el segundo duque de Medina-Sidonia a finales del siglo XV, aprovechando la próspera economía de la zona.\r\n\r\n- Monumento a la Circunnavegación: relieve de Jesús Guerrero García que fue inaugurado el 6 de septiembre de 2013. Es de gran altura y representa la primera vuelta al mundo, realizada por Fernando de Magallanes y Juan Sebastián Elcano. Se encuentra también un azulejo que conmemora la primera circunnavegación mundial, la expedición de Magallanes-Elcano, que zarpó desde Sanlúcar en septiembre de 1519.	5.00	2	10	2023-04-17 01:52:44	2023-04-17 01:52:44	4	5
+17	Ruta por Sanlúcar de Barrameda	- Plaza del Cabildo: se encuentra en pleno Barrio Bajo y es el punto de encuentro para aquellas personas que buscan un lugar de recreo y paseo, rodeado de bares y gadiritass, y presidida por una preciosa fuente. Esta plaza responde al arquetipo de la plaza más importante de cada municipio.\r\n\r\n- Arco de Rota: también conocido como Puerta de Rota, formaba parte de la antigua puerta de la Fuente, que era una de las que estaban abiertas en la muralla que rodeaba el municipio y que lo comunicaba con el exterior. Sobre esta puerta se formó el Arrabal de la Fuente en el siglo XV. Se le conoce como Arco o Puerta de Rota porque desde este lugar comenzaba el camino que unía la ciudad con la localidad roteña.\r\n\r\n- Jardín del Palacio Orleans-Borbón: el origen de estos jardines se remonta al siglo XIX, cuando los duques de Montpensier optan por Sanlúcar como lugar de residencia donde pasar la época estival. El duque de Montpensier contrató a Lecolant, quien trabajó en los jardines del Palacio de San Telmo de Sevilla, y utilizó un diseño paisajista para el trazado del jardín, en donde se utilizaron muchas y variadas especies de vegetales de todas partes del mundo.​\r\n\r\n- Las Covachas: se trata de diez arcos que recaen sobre pilastras de estilo gótico que presentan figuras mitológicas marinas aladas muy propias de la arquitectura del siglo XV. Conforman una galería interior comunicada con la Cuesta de Belén a través de diez pasadizos que está formada por arcos apuntados. Fueron construidas por don Enrique de Guzmán, el segundo duque de Medina-Sidonia a finales del siglo XV, aprovechando la próspera economía de la zona.\r\n\r\n- Monumento a la Circunnavegación: relieve de Jesús Guerrero García que fue inaugurado el 6 de septiembre de 2013. Es de gran altura y representa la primera vuelta al mundo, realizada por Fernando de Magallanes y Juan Sebastián Elcano. Se encuentra también un azulejo que conmemora la primera circunnavegación mundial, la expedición de Magallanes-Elcano, que zarpó desde Sanlúcar en septiembre de 1519.	5.00	2	10	2023-04-17 01:52:44	2023-04-17 01:52:44	4	5
 22	Oratorio de la Santa Cueva	Junto a la Parroquia del Rosario, se encuentra el Oratorio de la Santa Cueva, que perteneció a la Congregación del Retiro Espiritual, fundada en Cádiz hacia 1730. Entre sus miembros, se encontraban los personajes más eminentes de la sociedad gaditana del siglo XVIII. Uno de ellos, el marqués de Valde-Iñigo, utilizó gran parte de la fortuna familiar, derivada del comercio con México, en la construcción del actual oratorio.\r\n\r\nLa fachada del conjunto es muy sencilla, articulada por pilastras dóricas, entre las que se encuentra el retablo público con la pintura de la Virgen del Refugio de Franz Riedmayer.\r\n\r\nEl interior se divide en dos salas: un sótano dedicado a la pasión y muerte de Cristo, y el otro superior consagrado a la exaltación de la Eucaristía. La capilla inferior, construida en 1783, fue diseñada por Torcuato Cayón como un espacio austero apto para prácticas penitenciales, donde se encuentra la imagen del Calvario, de gran interés. En este lugar, cada Viernes Santo, se celebra la ceremonia del Sermón de las Siete Palabras, acompañada musicalmente por un cuarteto que interpreta la obra de Hadyn, compuesta a petición del Marqués de Valde-Iñigo.\r\n\r\nLa capilla alta o sacramental ofrece, por su riqueza decorativa, un refinado contraste con la zona penitencial, en la que el pequeño templo es de gran interés. Fue terminado en 1796 y es obra de Torcuato Bejumeda, quien concibió un espacio unitario de planta ovalada siguiendo la tradición manierista. En la zona superior de este espacio son de gran interés artístico los lienzos redondos, tres de los cuales son obra de Francisco Goya y que representan la multiplicación de los panes y los peces, la parábola del invitado a la boda y la Santa Cena; considerado como el grupo de obras de arte de temática religiosa más exitoso del artista aragonés.	8.00	1	10	2023-04-17 02:58:42	2023-04-17 02:58:42	5	7
 \.
 
 
 --
--- Data for Name: comentarios; Type: TABLE DATA; Schema: public; Owner: tienda
+-- Data for Name: comentarios; Type: TABLE DATA; Schema: public; Owner: gadiritas
 --
 
 COPY public.comentarios (id, contenido, positivo, negativo, created_at, updated_at, user_id, actividad_id) FROM stdin;
@@ -501,7 +501,7 @@ COPY public.comentarios (id, contenido, positivo, negativo, created_at, updated_
 
 
 --
--- Data for Name: destinos; Type: TABLE DATA; Schema: public; Owner: tienda
+-- Data for Name: destinos; Type: TABLE DATA; Schema: public; Owner: gadiritas
 --
 
 COPY public.destinos (id, nombre, comarca, codigo_postal, created_at, updated_at) FROM stdin;
@@ -519,7 +519,7 @@ COPY public.destinos (id, nombre, comarca, codigo_postal, created_at, updated_at
 
 
 --
--- Data for Name: failed_jobs; Type: TABLE DATA; Schema: public; Owner: tienda
+-- Data for Name: failed_jobs; Type: TABLE DATA; Schema: public; Owner: gadiritas
 --
 
 COPY public.failed_jobs (id, uuid, connection, queue, payload, exception, failed_at) FROM stdin;
@@ -527,7 +527,7 @@ COPY public.failed_jobs (id, uuid, connection, queue, payload, exception, failed
 
 
 --
--- Data for Name: guias; Type: TABLE DATA; Schema: public; Owner: tienda
+-- Data for Name: guias; Type: TABLE DATA; Schema: public; Owner: gadiritas
 --
 
 COPY public.guias (id, nombre, apellidos, tlf, email, email_verified_at, password, remember_token, created_at, updated_at) FROM stdin;
@@ -541,7 +541,7 @@ COPY public.guias (id, nombre, apellidos, tlf, email, email_verified_at, passwor
 
 
 --
--- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: tienda
+-- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: gadiritas
 --
 
 COPY public.migrations (id, migration, batch) FROM stdin;
@@ -558,7 +558,7 @@ COPY public.migrations (id, migration, batch) FROM stdin;
 
 
 --
--- Data for Name: password_reset_tokens; Type: TABLE DATA; Schema: public; Owner: tienda
+-- Data for Name: password_reset_tokens; Type: TABLE DATA; Schema: public; Owner: gadiritas
 --
 
 COPY public.password_reset_tokens (email, token, created_at) FROM stdin;
@@ -566,7 +566,7 @@ COPY public.password_reset_tokens (email, token, created_at) FROM stdin;
 
 
 --
--- Data for Name: personal_access_tokens; Type: TABLE DATA; Schema: public; Owner: tienda
+-- Data for Name: personal_access_tokens; Type: TABLE DATA; Schema: public; Owner: gadiritas
 --
 
 COPY public.personal_access_tokens (id, tokenable_type, tokenable_id, name, token, abilities, last_used_at, expires_at, created_at, updated_at) FROM stdin;
@@ -574,7 +574,7 @@ COPY public.personal_access_tokens (id, tokenable_type, tokenable_id, name, toke
 
 
 --
--- Data for Name: reservas; Type: TABLE DATA; Schema: public; Owner: tienda
+-- Data for Name: reservas; Type: TABLE DATA; Schema: public; Owner: gadiritas
 --
 
 COPY public.reservas (id, actividad_id, user_id, fecha, hora, personas, created_at, updated_at) FROM stdin;
@@ -588,7 +588,7 @@ COPY public.reservas (id, actividad_id, user_id, fecha, hora, personas, created_
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: tienda
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: gadiritas
 --
 
 COPY public.users (id, name, apellidos, email, email_verified_at, telefono, password, is_admin, remember_token, created_at, updated_at) FROM stdin;
@@ -601,70 +601,70 @@ COPY public.users (id, name, apellidos, email, email_verified_at, telefono, pass
 
 
 --
--- Name: actividads_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tienda
+-- Name: actividads_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gadiritas
 --
 
 SELECT pg_catalog.setval('public.actividads_id_seq', 22, true);
 
 
 --
--- Name: comentarios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tienda
+-- Name: comentarios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gadiritas
 --
 
 SELECT pg_catalog.setval('public.comentarios_id_seq', 1, false);
 
 
 --
--- Name: destinos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tienda
+-- Name: destinos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gadiritas
 --
 
 SELECT pg_catalog.setval('public.destinos_id_seq', 12, true);
 
 
 --
--- Name: failed_jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tienda
+-- Name: failed_jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gadiritas
 --
 
 SELECT pg_catalog.setval('public.failed_jobs_id_seq', 1, false);
 
 
 --
--- Name: guias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tienda
+-- Name: guias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gadiritas
 --
 
 SELECT pg_catalog.setval('public.guias_id_seq', 8, true);
 
 
 --
--- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tienda
+-- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gadiritas
 --
 
 SELECT pg_catalog.setval('public.migrations_id_seq', 126, true);
 
 
 --
--- Name: personal_access_tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tienda
+-- Name: personal_access_tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gadiritas
 --
 
 SELECT pg_catalog.setval('public.personal_access_tokens_id_seq', 1, false);
 
 
 --
--- Name: reservas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tienda
+-- Name: reservas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gadiritas
 --
 
 SELECT pg_catalog.setval('public.reservas_id_seq', 8, true);
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tienda
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gadiritas
 --
 
 SELECT pg_catalog.setval('public.users_id_seq', 14, true);
 
 
 --
--- Name: actividads actividads_pkey; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: actividads actividads_pkey; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.actividads
@@ -672,7 +672,7 @@ ALTER TABLE ONLY public.actividads
 
 
 --
--- Name: comentarios comentarios_pkey; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: comentarios comentarios_pkey; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.comentarios
@@ -680,7 +680,7 @@ ALTER TABLE ONLY public.comentarios
 
 
 --
--- Name: destinos destinos_codigo_postal_unique; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: destinos destinos_codigo_postal_unique; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.destinos
@@ -688,7 +688,7 @@ ALTER TABLE ONLY public.destinos
 
 
 --
--- Name: destinos destinos_nombre_unique; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: destinos destinos_nombre_unique; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.destinos
@@ -696,7 +696,7 @@ ALTER TABLE ONLY public.destinos
 
 
 --
--- Name: destinos destinos_pkey; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: destinos destinos_pkey; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.destinos
@@ -704,7 +704,7 @@ ALTER TABLE ONLY public.destinos
 
 
 --
--- Name: failed_jobs failed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: failed_jobs failed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.failed_jobs
@@ -712,7 +712,7 @@ ALTER TABLE ONLY public.failed_jobs
 
 
 --
--- Name: failed_jobs failed_jobs_uuid_unique; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: failed_jobs failed_jobs_uuid_unique; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.failed_jobs
@@ -720,7 +720,7 @@ ALTER TABLE ONLY public.failed_jobs
 
 
 --
--- Name: guias guias_email_unique; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: guias guias_email_unique; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.guias
@@ -728,7 +728,7 @@ ALTER TABLE ONLY public.guias
 
 
 --
--- Name: guias guias_pkey; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: guias guias_pkey; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.guias
@@ -736,7 +736,7 @@ ALTER TABLE ONLY public.guias
 
 
 --
--- Name: migrations migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: migrations migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.migrations
@@ -744,7 +744,7 @@ ALTER TABLE ONLY public.migrations
 
 
 --
--- Name: password_reset_tokens password_reset_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: password_reset_tokens password_reset_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.password_reset_tokens
@@ -752,7 +752,7 @@ ALTER TABLE ONLY public.password_reset_tokens
 
 
 --
--- Name: personal_access_tokens personal_access_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: personal_access_tokens personal_access_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.personal_access_tokens
@@ -760,7 +760,7 @@ ALTER TABLE ONLY public.personal_access_tokens
 
 
 --
--- Name: personal_access_tokens personal_access_tokens_token_unique; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: personal_access_tokens personal_access_tokens_token_unique; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.personal_access_tokens
@@ -768,7 +768,7 @@ ALTER TABLE ONLY public.personal_access_tokens
 
 
 --
--- Name: reservas reservas_pkey; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: reservas reservas_pkey; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.reservas
@@ -776,7 +776,7 @@ ALTER TABLE ONLY public.reservas
 
 
 --
--- Name: users users_email_unique; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: users users_email_unique; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.users
@@ -784,7 +784,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.users
@@ -792,7 +792,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: users users_telefono_unique; Type: CONSTRAINT; Schema: public; Owner: tienda
+-- Name: users users_telefono_unique; Type: CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.users
@@ -800,14 +800,14 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: personal_access_tokens_tokenable_type_tokenable_id_index; Type: INDEX; Schema: public; Owner: tienda
+-- Name: personal_access_tokens_tokenable_type_tokenable_id_index; Type: INDEX; Schema: public; Owner: gadiritas
 --
 
 CREATE INDEX personal_access_tokens_tokenable_type_tokenable_id_index ON public.personal_access_tokens USING btree (tokenable_type, tokenable_id);
 
 
 --
--- Name: actividads actividads_destino_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: tienda
+-- Name: actividads actividads_destino_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.actividads
@@ -815,7 +815,7 @@ ALTER TABLE ONLY public.actividads
 
 
 --
--- Name: actividads actividads_guia_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: tienda
+-- Name: actividads actividads_guia_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.actividads
@@ -823,7 +823,7 @@ ALTER TABLE ONLY public.actividads
 
 
 --
--- Name: comentarios comentarios_actividad_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: tienda
+-- Name: comentarios comentarios_actividad_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.comentarios
@@ -831,7 +831,7 @@ ALTER TABLE ONLY public.comentarios
 
 
 --
--- Name: comentarios comentarios_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: tienda
+-- Name: comentarios comentarios_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.comentarios
@@ -839,7 +839,7 @@ ALTER TABLE ONLY public.comentarios
 
 
 --
--- Name: reservas reservas_actividad_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: tienda
+-- Name: reservas reservas_actividad_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.reservas
@@ -847,7 +847,7 @@ ALTER TABLE ONLY public.reservas
 
 
 --
--- Name: reservas reservas_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: tienda
+-- Name: reservas reservas_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: gadiritas
 --
 
 ALTER TABLE ONLY public.reservas
@@ -858,35 +858,35 @@ ALTER TABLE ONLY public.reservas
 -- Name: SCHEMA public; Type: ACL; Schema: -; Owner: pg_database_owner
 --
 
-GRANT USAGE ON SCHEMA public TO tienda;
+GRANT USAGE ON SCHEMA public TO gadiritas;
 
 
 --
 -- Name: FUNCTION unaccent(text); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.unaccent(text) TO tienda;
+GRANT ALL ON FUNCTION public.unaccent(text) TO gadiritas;
 
 
 --
 -- Name: FUNCTION unaccent(regdictionary, text); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.unaccent(regdictionary, text) TO tienda;
+GRANT ALL ON FUNCTION public.unaccent(regdictionary, text) TO gadiritas;
 
 
 --
 -- Name: FUNCTION unaccent_init(internal); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.unaccent_init(internal) TO tienda;
+GRANT ALL ON FUNCTION public.unaccent_init(internal) TO gadiritas;
 
 
 --
 -- Name: FUNCTION unaccent_lexize(internal, internal, internal, internal); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.unaccent_lexize(internal, internal, internal, internal) TO tienda;
+GRANT ALL ON FUNCTION public.unaccent_lexize(internal, internal, internal, internal) TO gadiritas;
 
 
 --
