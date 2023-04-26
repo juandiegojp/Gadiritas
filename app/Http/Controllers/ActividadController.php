@@ -149,7 +149,7 @@ class ActividadController extends Controller
     public function actividadCheck(Request $request) {
         if ($request->ajax()) {
             $fecha = $request->input('date');
-            $fecha = $request->input('hora');
+            $hora = $request->input('hora');
             $actividad_id = $request->input('act_id');
 
             $parse_date = Carbon::createFromFormat('d-m-Y', $fecha);
