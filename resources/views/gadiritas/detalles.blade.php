@@ -3,7 +3,71 @@
     Gadiritas - detalles
 @endsection
 @section('content')
+<script>
+$(document).ready(function () {
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+            const cookies = document.cookie.split(";");
+            for (const element of cookies) {
+                const cookie = element.trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === name + "=") {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+                }
+            }
+        }
+        return cookieValue;
+    }
 
+    function disponibilidad() {
+        let date = datepickerOriginal.val().replaceAll("/","-");
+        let hora = $("#hora").val();
+
+        //$('#n_personas').empty();
+
+        $.ajax({
+            url: `/actividad/check`,
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify({
+                hora: hora,
+                date: date
+            }),
+            headers: {
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRF-TOKEN": getCookie("XSRF-TOKEN"),
+            },
+            success: (data) => {
+                console.log(data['personas']);
+            },
+            error: (error) => {
+            console.log(error);
+            }
+        });
+    }
+
+    $("#hora").change(function () {
+        console.log("hora cambiada.")
+        disponibilidad();
+    });
+
+
+    let datepickerOriginal = $("#date");
+    let divFecha = $("#divFecha");
+    let originalValue = datepickerOriginal[0].value;
+
+
+    divFecha[0].addEventListener("click", () => {
+        console.log("fecha cambiada.")
+        if (datepickerOriginal.value !== originalValue) {
+            disponibilidad();
+        }
+    });
+});
+
+</script>
 <div class="mx-6 mb-12">
     <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl">
         {{ $actividad->titulo }}</h1>
@@ -12,28 +76,28 @@
     <div class="grid grid-cols-2 gap-4">
         <div class="figure">
             <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad->id}4.jpg") }}"
+                <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad->id}-4.jpg") }}"
                     alt="image description">
                 <figcaption class="absolute px-4 text-lg text-white bottom-6">
-                    <p>Do you want to get notified when a new component is added to Flowbite?</p>
+                    <p>{{$actividad->titulo}}</p>
                 </figcaption>
             </figure>
         </div>
         <div class="figure">
             <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad->id}3.jpg") }}"
+                <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad->id}-3.jpg") }}"
                     alt="image description">
                 <figcaption class="absolute px-4 text-lg text-white bottom-6">
-                    <p>Do you want to get notified when a new component is added to Flowbite?</p>
+                    <p>{{$actividad->titulo}}</p>
                 </figcaption>
             </figure>
         </div>
         <div class="figure">
             <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad->id}2.jpg") }}"
+                <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad->id}-2.jpg") }}"
                     alt="image description">
                 <figcaption class="absolute px-4 text-lg text-white bottom-6">
-                    <p>Do you want to get notified when a new component is added to Flowbite?</p>
+                    <p>{{$actividad->titulo}}</p>
                 </figcaption>
             </figure>
         </div>
@@ -42,13 +106,13 @@
                 <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad->id}.jpg") }}"
                     alt="image description">
                 <figcaption class="absolute px-4 text-lg text-white bottom-6">
-                    <p>Do you want to get notified when a new component is added to Flowbite?</p>
+                    <p>{{$actividad->titulo}}</p>
                 </figcaption>
             </figure>
         </div>
     </div>
 
-    <div class="flex justify-center items-start my-6" id="bottom">
+    <div class="flex items-start justify-center my-6" id="bottom">
         <div class="w-1/2">
             <p class="mb-2 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl">Descripción</p>
             {!! nl2br(e($actividad->descripcion)) !!}

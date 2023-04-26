@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Actividad;
 use App\Models\Destino;
 use App\Models\Guia;
+use App\Models\Reserva;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ActividadController extends Controller
@@ -142,5 +144,36 @@ class ActividadController extends Controller
         ->orderBy('comarca')
         ->get();
         return view('gadiritas.detalles', compact('actividad', 'comarcas', 'destinos'));
+    }
+
+    public function actividadCheck(Request $request) {
+        if ($request->ajax()) {
+            $fecha = $request->input('date');
+            $fecha = $request->input('hora');
+            $actividad_id = $request->input('act_id');
+
+            $parse_date = Carbon::createFromFormat('d-m-Y', $fecha);
+
+            $actividad = Actividad::findOrFail($actividad_id);
+            $nPersonasMax = $actividad->max_personas;
+            $actividad_fecha = Reserva::where('actividad_id', $actividad->id)
+                                        ->where('fecha', $parse_date)
+                                        ->get();
+
+            // Suma el número de personas de todas las reservas en la fecha específica
+            $nPersonasReservadas = $actividad_fecha->sum('n_personas');
+
+            // Calcula la diferencia entre el número máximo de personas y el número de personas reservadas
+            $diferencia = $nPersonasMax - $nPersonasReservadas;
+            $personas = [];
+            for ($p = 1; $p <= $diferencia; $p++) {
+                if (!in_array($p, $personas)) {
+                    array_push($personas, $p);
+                }
+            }
+
+            return response()->json(['status' => $personas]);
+        }
+        return response()->json(['status' => 'Invalid request'], 400);
     }
 }
