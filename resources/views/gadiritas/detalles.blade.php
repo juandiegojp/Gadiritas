@@ -5,40 +5,38 @@
 @section('content')
     <script>
         $(document).ready(function() {
-            function getCookie(name) {
-                let cookieValue = null;
-                if (document.cookie && document.cookie !== "") {
-                    const cookies = document.cookie.split(";");
-                    for (const element of cookies) {
-                        const cookie = element.trim();
-                        // Does this cookie string begin with the name we want?
-                        if (cookie.substring(0, name.length + 1) === name + "=") {
-                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                            break;
-                        }
-                    }
-                }
-                return cookieValue;
-            }
-
             function disponibilidad() {
                 let date = datepickerOriginal.val().replaceAll("/", "-");
                 let hora = $("#hora").val();
+                let act_id = $("#act_id").val();
+
+                console.log(date);
+                console.log(hora);
+                console.log(act_id);
+
+                $('#n_personas').empty();
 
                 $.ajax({
-                    url: `/actividad/check`,
+                    url: "/actividad/check",
                     data: {
-                        "_token": $("meta[name='csrf-token']").attr("content"),
                         hora: hora,
-                        date: date
+                        date: date,
+                        act_id: act_id
                     },
                     type: "POST",
                     dataType: "json",
                     headers: {
                         "X-Requested-With": "XMLHttpRequest",
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: (data) => {
-                        console.log(data);
+                        console.log(data.status);
+                        let cont = data.status.length;
+                        const value = data.status;
+
+                        for (let index = 0; index < cont; index++) {
+                            $('#n_personas').append(`<option value=${value[index]}>${value[index]}</option>`);
+                }
                     },
                     error: (error) => {
                         console.log(error);
@@ -119,11 +117,10 @@
             <div class="w-1/2" id="reserva">
                 <form action="" method="post">
                     @csrf
-                    @method('POST')
-                    <input type="hidden" name="act_id" value="{{ $actividad->id }}">
+                    <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
                     @include('gadiritas.calendar')
                     <div>
-                        <label for="n_personas">Selecciona una hora:</label>
+                        <label for="hora">Selecciona una hora:</label>
                         <select name="hora" id="hora">
                             <option value="11:00">11:00</option>
                             <option value="12:00">12:00</option>
@@ -132,9 +129,7 @@
                     <div>
                         <label for="n_personas">Nº de personas:</label>
                         <select name="n_personas" id="n_personas">
-                            @for ($i = 1; $i < $actividad->max_personas + 1; $i++)
-                                <option value="{{ $i }}">{{ $i }}</option>
-                            @endfor
+
                         </select>
                     </div>
                     <button type="submit">Reservar</button>

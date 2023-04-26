@@ -135,6 +135,7 @@ class ActividadController extends Controller
         return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos')); // Devolver la vista con los resultados de la búsqueda
     }
 
+
     public function detalles($destino)
     {
         $actividad = Actividad::find($destino);
@@ -146,22 +147,28 @@ class ActividadController extends Controller
         return view('gadiritas.detalles', compact('actividad', 'comarcas', 'destinos'));
     }
 
+
     public function actividadCheck(Request $request) {
         if ($request->ajax()) {
             $fecha = $request->input('date');
             $hora = $request->input('hora');
             $actividad_id = $request->input('act_id');
 
-            $parse_date = Carbon::createFromFormat('d-m-Y', $fecha);
+
+            $parse_date = Carbon::createFromFormat('d-m-Y', $fecha)->setTimezone('Europe/Madrid');
+            $date_string = $parse_date->format('Y-m-d');
+            $parse_hora = Carbon::createFromFormat('H:i', $hora)->setTimezone('Europe/Madrid');
+            $hora_string = $parse_hora->format('H:i:s');
 
             $actividad = Actividad::findOrFail($actividad_id);
             $nPersonasMax = $actividad->max_personas;
             $actividad_fecha = Reserva::where('actividad_id', $actividad->id)
-                                        ->where('fecha', $parse_date)
+                                        ->where('fecha', $date_string)
+                                        ->where('hora', $hora_string)
                                         ->get();
 
             // Suma el número de personas de todas las reservas en la fecha específica
-            $nPersonasReservadas = $actividad_fecha->sum('n_personas');
+            $nPersonasReservadas = $actividad_fecha->sum('personas');
 
             // Calcula la diferencia entre el número máximo de personas y el número de personas reservadas
             $diferencia = $nPersonasMax - $nPersonasReservadas;
@@ -171,7 +178,6 @@ class ActividadController extends Controller
                     array_push($personas, $p);
                 }
             }
-
             return response()->json(['status' => $personas]);
         }
         return response()->json(['status' => 'Invalid request'], 400);
