@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="icon" type="image/x-icon" href="{{Vite::asset("resources/images/logoico.ico")}}" />
 
         <title>{{ config('app.name') }}</title>
 
@@ -18,7 +19,7 @@
         <div class="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0" id="img-mapa">
             <div>
                 <a href="/">
-                    <x-application-logo class="w-20 h-20 text-gray-500 fill-current" />
+                    <img src="{{Vite::asset("resources/images/logo.png")}}" alt="logo Gadiritas">
                 </a>
             </div>
 
