@@ -3,13 +3,12 @@
 @tailwind utilities;
 
 #img-mapa {
-    position: absolute;
-    z-index: -1;
-
-    height: 100%;
-    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(https://wallpaperaccess.com/full/2688263.jpg);
+    height: auto;
 }
 
 #register {
-    background-color: rgba(255, 255, 255, 0.304);
+    background-color: rgba(255, 255, 255, 0.256);
 }
