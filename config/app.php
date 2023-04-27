@@ -69,6 +69,7 @@ return [
     |
     */
 
+    'locale' => 'es',
     'timezone' => 'Europe/Madrid',
 
     /*
