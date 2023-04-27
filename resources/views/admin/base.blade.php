@@ -50,14 +50,27 @@
                             class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Actividades</a>
                     </li>
                     <li>
-                        <span>{{ Auth::user()->name }}</span>
-                        <a href="{{ route('logout') }}"
-                            class="block px-3 py-2 text-red-900 rounded hover:bg-red-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-red-700">Cerrar Sesión</a>
+                        <button type="button" id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                        class="inline-flex items-center text-sm font-medium text-center rounded-lg focus:underline hover:underline">
+                            {{ auth()->user()->name }}
+                            <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+          <li>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Perfil</a>
+          </li>
+          <li>
+            <a href="{{ route('logout') }}" class="block px-4 py-2 text-red-500 hover:bg-red-100 dark:hover:bg-red-600 dark:hover:text-white">
+                Cerrar sesión</a>
+          </li>
+        </ul>
+    </div>
     @yield('content')
 
 
