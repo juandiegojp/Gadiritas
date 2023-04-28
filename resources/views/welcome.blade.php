@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="{{Vite::asset("resources/images/logoico.ico")}}" />
     <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
@@ -34,7 +35,7 @@
         <div class="w-full max-w-screen-xl p-4 py-6 mx-auto lg:py-8">
             <div class="flex justify-around mx-4 md:flex md:justify-between">
                 <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
+                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Recursos</h2>
                     <ul class="font-medium text-gray-600 dark:text-gray-400">
                         <li class="mb-4">
                             <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
@@ -45,7 +46,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
+                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Sígueme</h2>
                     <ul class="font-medium text-gray-600 dark:text-gray-400">
                         <li class="mb-4">
                             <a href="https://github.com/juandiegojp/Gadiritas" class="hover:underline flex justify-center items-end space-x-1">
@@ -62,7 +63,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Contacto</h2>
                     <ul class="font-medium text-gray-600 dark:text-gray-400">
                         <li class="mb-4">
                             <a href="#" class="hover:underline">Privacy Policy</a>
