@@ -1,7 +1,7 @@
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
     <div class="flex flex-wrap items-center justify-between">
         <a href="{{ route('usuarios.index') }}" class="flex items-center">
-            <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="logo Gadiritas" id="navbarLogo">
+            <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="logo Gadiritas" id="navbarLogo" class="mr-4">
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Gadiritas</span>
         </a>
         <button data-collapse-toggle="navbar-default" type="button"
@@ -15,7 +15,7 @@
                     clip-rule="evenodd"></path>
             </svg>
         </button>
-        <div class="hidden w-full md:block md:w-auto justify-between" id="navbar-default">
+        <div class="w-full md:w-auto flex-grow-0" id="navbar-default">
             <div
                 class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white mx-auto">
                 @foreach ($comarcas as $comarca)
@@ -35,10 +35,8 @@
                         </div>
                     </div>
                 @endforeach
-            </div>
-            <div class="ml-auto">
                 <button type="button" id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                    class="focus:underline hover:underline font-medium rounded-lg text-sm text-center inline-flex items-center">
+                    class="pl-6 focus:underline hover:underline font-medium rounded-lg text-sm text-center inline-flex items-center">
                     {{ auth()->user()->name }}
                     <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -46,10 +44,10 @@
                     </svg>
                 </button>
             </div>
-
         </div>
     </div>
 </nav>
+
 
 
 <!-- Dropdown menu -->
