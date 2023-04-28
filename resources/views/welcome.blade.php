@@ -8,6 +8,12 @@
     <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
+    <style>
+        img {
+            width: 2em;
+            height: 2em;
+        }
+    </style>
 </head>
 
 <body>
@@ -42,10 +48,16 @@
                     <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
                     <ul class="font-medium text-gray-600 dark:text-gray-400">
                         <li class="mb-4">
-                            <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
+                            <a href="https://github.com/juandiegojp/Gadiritas" class="hover:underline flex justify-center items-end space-x-1">
+                                <img src="{{Vite::asset("resources/images/github.png")}}" alt="Repositorio del proyecto.">
+                                <p>Github</p>
+                            </a>
                         </li>
                         <li>
-                            <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
+                            <a href="https://github.com/juandiegojp/Gadiritas" class="hover:underline flex justify-center items-end space-x-1">
+                                <img src="{{Vite::asset("resources/images/github.png")}}" alt="Repositorio del proyecto.">
+                                <p>Github</p>
+                            </a>
                         </li>
                     </ul>
                 </div>
