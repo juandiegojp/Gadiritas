@@ -54,9 +54,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://github.com/juandiegojp/Gadiritas" class="hover:underline flex justify-center items-end space-x-1">
-                                <img src="{{Vite::asset("resources/images/github.png")}}" alt="Repositorio del proyecto.">
-                                <p>Github</p>
+                            <a href="https://linkedin.com/" class="hover:underline flex justify-center items-end space-x-1">
+                                <img src="{{Vite::asset("resources/images/linkedin.png")}}" alt="Repositorio del proyecto.">
+                                <p>LinkedId</p>
                             </a>
                         </li>
                     </ul>
