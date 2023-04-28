@@ -5,16 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="{{Vite::asset("resources/images/logoico.ico")}}" />
     <title>@yield('title')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
+    <style>
+        img {
+            width: 6em;
+            height: 6em;
+            margin-right: 0.5em;
+        }
+    </style>
 </head>
 
 <body class="dark:bg-black">
     <nav class="top-0 left-0 z-20 w-full bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-600">
         <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
             <a href=" {{ route('admin.index') }} " class="flex items-center">
-                <img src="https://art.pixilart.com/bf4b2a20978a01e.png" class="h-8 mr-3" alt="Flowbite Logo">
+                <img src="{{Vite::asset("resources/images/logo.png")}}" alt="logo Gadiritas">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Gadiritas</span>
             </a>
             <div class="flex md:order-2">
@@ -75,7 +83,7 @@
 
 
     <div data-dial-init class="fixed right-6 bottom-6 group">
-        <div id="speed-dial-menu-default" class="flex flex-col items-center hidden mb-4 space-y-2">
+        <div id="speed-dial-menu-default" class="flex-col items-center hidden mb-4 space-y-2">
             <a href="{{ route('admin.usuariosCreate') }}" data-tooltip-target="tooltip-users"
                 data-tooltip-placement="left"
                 class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
