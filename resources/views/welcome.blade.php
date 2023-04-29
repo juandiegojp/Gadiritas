@@ -9,34 +9,18 @@
     <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
-    <style>
-        img {
-            width: 2em;
-            height: 2em;
-        }
-
-        #welcomeDiv {
-            background-image:
-                linear-gradient(to bottom, rgba(245, 246, 252, 0.50), rgba(164, 95, 147, 0.75)),
-                url(https://static.eldiario.es/clip/f46f881a-a1ec-4d00-baea-ab5ae0eea674_16-9-aspect-ratio_default_0.jpg);
-            background-size: cover;
-        }
-    </style>
+    @vite(['resources/css/gadiritas.css'])
 </head>
 
 <body>
-    <div class="flex flex-col items-center justify-center w-full h-screen" id="welcomeDiv">
-        <p class="text-black dark:text-gray-400 text-2xl font-extrabold">Busca entre todas nuestras actividades tu
-            favorita ahora</p>
-        <a href=" {{ route('usuarios.index') }} "
-            class="mx-auto font-medium text-white dark:text-white hover:underline">
-            <svg aria-hidden="true" class="w-16 h-16 ml-1" fill="currentColor" viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clip-rule="evenodd"></path>
-            </svg>
-        </a>
+    <div class="w-full h-screen flex items-center" id="welcomeDiv">
+        <div>
+            <p class="text-2xl font-extrabold">Busca, encuentra y ¡DISFRUTA!</p>
+            <p class="text-sm font-extrabold w-2/3 pb-2">Las mejores actividades de la provicia de Cádiz te esperan</p>
+            <a href=" {{ route('usuarios.index') }} " class="py-2.5 px-5 text-sm font-medium focus:outline-none rounded-lg border focus:z-10 focus:ring-4 ring-gray-200 focus:ring-gray-700 bg-gray-800 text-white border-gray-600 hover:text-white hover:bg-gray-700">
+                Entrar
+            </a>
+        </div>
     </div>
     <footer class="bg-white dark:bg-gray-900">
         <div class="w-full max-w-screen-xl p-4 py-6 mx-auto lg:py-8">
