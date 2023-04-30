@@ -12,6 +12,11 @@ use Illuminate\Http\Request;
 class ActividadController extends Controller
 {
 
+    /**
+     * Dirige a la vista donde se muestran todas las actividades existentes. Panel Admin.
+     *
+     * @return void
+     */
     public function actividades()
     {
         $actividades = Actividad::all();
@@ -20,6 +25,11 @@ class ActividadController extends Controller
         ]);
     }
 
+    /**
+     * Formulario para la creación de actividades. Panel Admin.
+     *
+     * @return void
+     */
     public function actividadesForm()
     {
         $destinos = Destino::all();
@@ -31,6 +41,12 @@ class ActividadController extends Controller
         ]);
     }
 
+    /**
+     * Guardar una nueva actividad en la base de datos.
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function storeActividades(Request $request)
     {
         $n_actividad = Actividad::create([
@@ -46,6 +62,12 @@ class ActividadController extends Controller
         return redirect('/actividades/detalles/'. $n_actividad->id);
     }
 
+    /**
+     * Muestra en una vista los detalles de una actividad.
+     *
+     * @param  mixed $actividad
+     * @return void
+     */
     public function datellesActividad(Actividad $actividad)
     {
         return view('admin.actividades.detalles', [
@@ -53,6 +75,12 @@ class ActividadController extends Controller
         ]);
     }
 
+    /**
+     * Formulario para editar los datos de una actividad.
+     *
+     * @param  mixed $actividad
+     * @return void
+     */
     public function editarActividad(Actividad $actividad)
     {
         return view('admin.actividades.editar', [
@@ -60,6 +88,13 @@ class ActividadController extends Controller
         ]);
     }
 
+    /**
+     * Actualiza los datos en la base de datos de una actividad
+     *
+     * @param  mixed $request
+     * @param  mixed $actividad
+     * @return void
+     */
     public function updateActividad(Request $request, Actividad $actividad)
     {
         $actividad->update([
@@ -75,12 +110,28 @@ class ActividadController extends Controller
         return redirect('/actividad/detalles/'. $actividad->id);
     }
 
+    /**
+     * Borra una actividad.
+     *
+     * @param  mixed $actividad
+     * @return void
+     */
     public function borrarActividad(Actividad $actividad)
     {
         $actividad->delete();
         return redirect('/actividades');
     }
 
+    /**
+     * Busca la ciudad que se ha pasado por el input y en ese valor se buscará un resultado
+     * parecido y sin tildes al que se ha pasado. Se comprobará que el resultado que contenga
+     * un valor diferente de cero. Seguidamente se hará un bucle en el que se meterá todas las actividades
+     * dentro de un array para luego devolvermelo a la vista que será la que muestre todos los resultados
+     * encontrados en la base de datos.
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function busquedaActividades(Request $request)
     {
         $comarcas = Destino::select('comarca')
@@ -88,7 +139,8 @@ class ActividadController extends Controller
             ->orderBy('comarca')
             ->get();
         $destinos = Destino::select('nombre', 'comarca')->get();
-        $ciudades = Destino::whereRaw('LOWER(unaccent(nombre)) LIKE ?', ['%' . mb_strtolower(preg_replace('/[^\p{L}\p{N}\s]/u', '', $request->buscadorHome), 'UTF-8') . '%'])->get();
+        $ciudades = Destino::whereRaw('LOWER(unaccent(nombre)) LIKE ?',
+                    ['%' . mb_strtolower(preg_replace('/[^\p{L}\p{N}\s]/u', '', $request->buscadorHome), 'UTF-8') . '%'])->get();
         if ($ciudades->isNotEmpty()) {
             $actividades = [];
             foreach ($ciudades as $ciudad) {
@@ -110,6 +162,12 @@ class ActividadController extends Controller
         }
     }
 
+    /**
+     * Buscador de actividades usando el navbar. Hace lo mismo que la anterior función.
+     *
+     * @param  mixed $destino
+     * @return void
+     */
     public function actividadesResultados($destino)
     {
         $comarcas = Destino::select('comarca')
@@ -136,6 +194,12 @@ class ActividadController extends Controller
     }
 
 
+    /**
+     * Muestra en una vista los detalles de una actividad en concreto.
+     *
+     * @param  mixed $destino
+     * @return void
+     */
     public function detalles($destino)
     {
         $actividad = Actividad::find($destino);
@@ -148,7 +212,16 @@ class ActividadController extends Controller
     }
 
 
-    public function actividadCheck(Request $request) {
+    /**
+     * Comprueba la disponibilidad de una actividad en una fecha y hora
+     * en concreto. Devuelve un array con el nº de personas disponibles para
+     * las fechas seleccionadas.
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function actividadCheck(Request $request)
+    {
         if ($request->ajax()) {
             $fecha = $request->input('date');
             $hora = $request->input('hora');

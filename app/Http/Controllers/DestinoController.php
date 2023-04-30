@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class DestinoController extends Controller
 {
+    /**
+     * Muestra todos los destinos en el lado ADMIN.
+     *
+     * @return void
+     */
     public function destinos()
     {
         $destino = Destino::all();
@@ -15,11 +20,24 @@ class DestinoController extends Controller
         ]);
     }
 
+    /**
+     * Redirige al formulario para crear los destinos.
+     *
+     * @return void
+     */
     public function destinosForm()
     {
         return view('admin.destinos.create', []);
     }
 
+    /**
+     * Guarda los datos proporcionados en el formulario para
+     * añadirlos a la base de datos. Después de guardarlos,
+     * se redirige a la sección de destinos.
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function storeDestinos(Request $request)
     {
         $n_destino = Destino::create([
@@ -31,6 +49,13 @@ class DestinoController extends Controller
         return redirect('/destinos');
     }
 
+    /**
+     * Redirige a la vista donde se puede ver los detalles de un destino
+     * en concreto.
+     *
+     * @param  mixed $destino
+     * @return void
+     */
     public function datellesDestino(Destino $destino)
     {
         return view('admin.destinos.detalles', [
@@ -38,6 +63,12 @@ class DestinoController extends Controller
         ]);
     }
 
+    /**
+     * Redirige al formulario donde pasan los datos para editar un destino.
+     *
+     * @param  mixed $destino
+     * @return void
+     */
     public function editarDestino(Destino $destino)
     {
         return view('admin.destinos.editar', [
@@ -45,6 +76,13 @@ class DestinoController extends Controller
         ]);
     }
 
+    /**
+     * Actualizar en la base de datos los datos con los cambios en el destino.
+     *
+     * @param  mixed $request
+     * @param  mixed $destino
+     * @return void
+     */
     public function updateDestino(Request $request, Destino $destino)
     {
         $destino->update([
@@ -56,6 +94,12 @@ class DestinoController extends Controller
         return redirect('/destinos/detalles/'. $destino->id);
     }
 
+    /**
+     * Borrar destino.
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function borrarDestino(Request $request)
     {
         $idDestino = $request->input('id');

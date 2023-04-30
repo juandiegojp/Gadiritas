@@ -11,7 +11,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UsuariosController extends Controller
 {
-    // Muestra todos los usuarios y sus datos en admin
+    /**
+     * Muestra todos los usuarios. Panel de ADMIN.
+     *
+     * @return void
+     */
     public function usuarios()
     {
         $reservas = Reserva::all();
@@ -22,11 +26,23 @@ class UsuariosController extends Controller
         ]);
     }
 
+    /**
+     * Redirige a la vista del formulario para crear un usuario.
+     * Panel de ADMIN.
+     *
+     * @return void
+     */
     public function usuariosForm()
     {
         return view('admin.usuarios.create', []);
     }
 
+    /**
+     * Guardar los datos del nuevo usuario en la base de datos.
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function storeUsuarios(Request $request)
     {
         $n_usuario = User::create([
@@ -41,6 +57,12 @@ class UsuariosController extends Controller
         return redirect('/usuarios/detalles/'. $n_usuario->id);
     }
 
+    /**
+     * Muestra la vista de los detalles del usuario.
+     *
+     * @param  mixed $usuario
+     * @return void
+     */
     public function datellesUsuario(User $usuario)
     {
         return view('admin.usuarios.detalles', [
@@ -48,6 +70,12 @@ class UsuariosController extends Controller
         ]);
     }
 
+    /**
+     * Vista del formulario para editar los datos del usuario.
+     *
+     * @param  mixed $usuario
+     * @return void
+     */
     public function editarUsuario(User $usuario)
     {
         return view('admin.usuarios.editar', [
@@ -55,6 +83,13 @@ class UsuariosController extends Controller
         ]);
     }
 
+    /**
+     * Actualiza los datos en la base de datos.
+     *
+     * @param  mixed $request
+     * @param  mixed $usuario
+     * @return void
+     */
     public function updateUsuario(Request $request, User $usuario)
     {
         $usuario->update([
@@ -69,12 +104,25 @@ class UsuariosController extends Controller
         return redirect('/usuarios/detalles/'. $usuario->id);
     }
 
+    /**
+     * Borra un usuario.
+     *
+     * @param  mixed $usuario
+     * @return void
+     */
     public function borrarUsuario(User $usuario)
     {
         $usuario->delete();
         return redirect('/usuarios');
     }
 
+    /**
+     * Con esta función devuelve a la vista index de usuarios, las comarcas
+     * y todos los destinos que pertenecen a esas comarcas. Esto es útil para el
+     * navbar del index de Usuarios.
+     *
+     * @return void
+     */
     public function index()
     {
         $comarcas = Destino::select('comarca')

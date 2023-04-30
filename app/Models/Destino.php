@@ -14,6 +14,11 @@ class Destino extends Model
     ];
 
 
+    /**
+     * Relación del destino con la actividad.
+     *
+     * @return void
+     */
     public function actividad()
     {
         return $this->hasMany(Actividad::class, 'destino_id', 'id');

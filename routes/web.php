@@ -11,6 +11,11 @@ use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+// Vista inicial cuando arrancas la app.
+Route::get('/', function () {
+    return view('welcome');
+});
+
 // Administrador
 Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
@@ -50,11 +55,6 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('/actividades/{actividad}/edit', [ActividadController::class, 'editarActividad'])->name('admin.editarActividad');
     Route::put('/actividades/{actividad}/edit', [ActividadController::class, 'updateActividad'])->name('admin.updateActividad');
     Route::delete('/actividades/{actividad}/delete', [ActividadController::class, 'borrarActividad'])->name('admin.borrarActividad');
-});
-
-// Vista inicial cuando arrancas la app.
-Route::get('/', function () {
-    return view('welcome');
 });
 
 // Todas las rutas para los usuarios.

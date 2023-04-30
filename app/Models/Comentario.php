@@ -14,11 +14,21 @@ class Comentario extends Model
         'positivo', 'negativo'
     ];
 
+    /**
+     * Relación de los comentarios con los usuarios.
+     *
+     * @return void
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Relación de comentarios con actividad.
+     *
+     * @return void
+     */
     public function actividad()
     {
         return $this->belongsTo(Actividad::class);

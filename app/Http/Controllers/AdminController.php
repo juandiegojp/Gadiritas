@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    /**
+     * Mostrar todos los datos en el home de admin.
+     *
+     * @return void
+     */
     public function index()
     {
         $actividades = Actividad::all();
@@ -33,16 +38,5 @@ class AdminController extends Controller
             'usuarios' => $users,
         ]);
     }
-
-
-    // Creación y manipulación de los datos de usuarios
-
-    // Creación y manipulación de los datos de guias
-
-
-    // Creación y manipulación de los datos de destinos
-
-
-    // Creación y manipulación de los datos de actividades
 
 }

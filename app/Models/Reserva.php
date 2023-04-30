@@ -14,11 +14,21 @@ class Reserva extends Model
         'hora', 'personas'
     ];
 
+    /**
+     * Relación de la reserva con los usuarios.
+     *
+     * @return void
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Relación de la reserva con la actividad.
+     *
+     * @return void
+     */
     public function actividad()
     {
         return $this->belongsTo(Actividad::class);
