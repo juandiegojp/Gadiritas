@@ -18,7 +18,13 @@ class Guia extends Model
         'password'
     ];
 
-    public function actividad(){
+    /**
+     * Relación del guia con las actividades.
+     *
+     * @return void
+     */
+    public function actividad()
+    {
         return $this->belongsTo(Actividad::class);
     }
 }

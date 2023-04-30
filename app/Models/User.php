@@ -45,11 +45,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function reservas(){
+    /**
+     * Relación de los usuarios con las reservas.
+     *
+     * @return void
+     */
+    public function reservas()
+    {
         return $this->hasMany(Reserva::class);
     }
 
-    public function comentarios(){
+    /**
+     * Relación de los usuarios con los comentarios
+     *
+     * @return void
+     */
+    public function comentarios()
+    {
         return $this->hasMany(Comentario::class);
     }
 
