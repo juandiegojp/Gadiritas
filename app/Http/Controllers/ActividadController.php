@@ -186,7 +186,7 @@ class ActividadController extends Controller
                     'precio' => $actividad->precio,
                     'duracion' => $actividad->duracion,
                     'max_personas' => $actividad->max_personas,
-                    'guia_id' => $actividad->guia_id,
+                    'destino_id' => $actividad->destino_id,
                 ];
             }
         }
@@ -254,5 +254,35 @@ class ActividadController extends Controller
             return response()->json(['status' => $personas]);
         }
         return response()->json(['status' => 'Invalid request'], 400);
+    }
+
+    public function filtrar(Request $request)
+    {
+        $orden = $request->input('orden');
+        $destino_id = $request->input('destino_id');
+
+        $actividades = Actividad::where('destino_id', $destino_id);
+
+        switch ($orden) {
+            case 'barato':
+                $actividades->orderBy('precio', 'asc');
+                break;
+            case 'caro':
+                $actividades->orderBy('precio', 'desc');
+                break;
+            case 'relevancia':
+                // ordenar por defecto, no hacer nada
+                break;
+            case 'nuevas':
+                $actividades->orderBy('created_at', 'desc');
+                break;
+        }
+
+        $actividades = $actividades->get();
+
+        return response()->json([
+            'status' => 'success',
+            'actividades' => $actividades,
+        ]);
     }
 }
