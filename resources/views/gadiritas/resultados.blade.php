@@ -4,16 +4,24 @@
 @endsection
 @section('content')
     <div id="filtroResultados">
-        <form action="" method="POST">
+        <form action="" method="POST" class="flex justify-between items-center w-full">
             @csrf
             <input type="hidden" id="destino_id" value="{{ $actividades[0]['destino_id'] }}">
-            <label for="orden">Ordenar por:</label>
-            <select name="orden" id="orden">
-                <option value="barato">Más barato primero</option>
-                <option value="caro">Más caro primero</option>
-                <option value="relevancia" selected>Relevancia</option>
-                <option value="nuevas">Últimas añadidas</option>
-            </select>
+            <div>
+                <label for="freeTour" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Free Tour</label>
+                <input type="checkbox" name="freeTour" id="freeTour">
+            </div>
+            <div>
+                <label for="orden">Ordenar por:</label>
+                <select name="orden" id="orden">
+                    <option value="barato">Más barato primero</option>
+                    <option value="caro">Más caro primero</option>
+                    <option value="nombreASC">Títulos (A...Z)</option>
+                    <option value="nombreDESC">Títulos (Z...A)</option>
+                    <option value="relevancia" selected>Relevancia</option>
+                    <option value="nuevas">Últimas añadidas</option>
+                </select>
+            </div>
         </form>
     </div>
     <div class="grid grid-cols-4 gap-4 mx-4" id="actividades-contenedor">
@@ -31,20 +39,28 @@
             </figure>
         @endforeach
     </div>
+    @include('gadiritas.footer')
     <script>
         $(document).ready(function() {
             function filtrar() {
                 let orden = $("#orden").val();
                 let destino_id = $("#destino_id").val();
+                let freeTour = 0;
+
+                if ($("#freeTour").is(':checked')) {
+                    freeTour = 1;
+                }
 
                 console.log(orden);
                 console.log(destino_id);
+                console.log(freeTour);
 
                 $.ajax({
                     url: "/resultados/filtrar",
                     data: {
                         orden: orden,
-                        destino_id: destino_id
+                        destino_id: destino_id,
+                        freeTour: freeTour
                     },
                     type: "POST",
                     dataType: "json",
@@ -86,6 +102,10 @@
                 filtrar();
             });
 
+            $("#freeTour").change(function() {
+                filtrar();
+            });
         });
     </script>
+
 @endsection

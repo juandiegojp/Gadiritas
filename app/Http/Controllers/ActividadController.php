@@ -260,22 +260,33 @@ class ActividadController extends Controller
     {
         $orden = $request->input('orden');
         $destino_id = $request->input('destino_id');
+        $freeTour = $request->input('freeTour');
 
         $actividades = Actividad::where('destino_id', $destino_id);
 
-        switch ($orden) {
-            case 'barato':
-                $actividades->orderBy('precio', 'asc');
-                break;
-            case 'caro':
-                $actividades->orderBy('precio', 'desc');
-                break;
-            case 'relevancia':
-                // ordenar por defecto, no hacer nada
-                break;
-            case 'nuevas':
-                $actividades->orderBy('created_at', 'desc');
-                break;
+        if ($freeTour) {
+            $actividades->where('precio', 0);
+        } else {
+            switch ($orden) {
+                case 'barato':
+                    $actividades->orderBy('precio', 'asc');
+                    break;
+                case 'caro':
+                    $actividades->orderBy('precio', 'desc');
+                    break;
+                case 'relevancia':
+                    // ordenar por defecto, no hacer nada
+                    break;
+                case 'nuevas':
+                    $actividades->orderBy('created_at', 'desc');
+                    break;
+                case 'nombreASC':
+                    $actividades->orderBy('titulo', 'asc');
+                    break;
+                case 'nombreDESC':
+                    $actividades->orderBy('titulo', 'desc');
+                    break;
+            }
         }
 
         $actividades = $actividades->get();
