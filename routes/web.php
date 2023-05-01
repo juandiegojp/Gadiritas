@@ -61,6 +61,7 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/index', [UsuariosController::class, 'index'])->name('usuarios.index');
     Route::post('/resultados', [ActividadController::class, 'busquedaActividades'])->name('usuarios.busquedaActividades');
+    Route::post('/resultados/filtrar', [ActividadController::class, 'filtrar'])->name('actividades.filtrar');
     Route::get('/resultados/{destino}', [ActividadController::class, 'actividadesResultados'])->name('usuarios.actividades');
     Route::get('/detalles/{destino}', [ActividadController::class, 'detalles'])->name('usuarios.detalles');
     Route::post('/detalles/{destino}', [ReservaController::class, 'crear_reserva'])->name('usuarios.crear_reserva');
