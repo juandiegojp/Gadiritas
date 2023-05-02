@@ -10,12 +10,15 @@
         oculto.setAttribute('value', id);
     }
 </script>
-    <div class="relative overflow-x-auto mx-4">
+    <div class="relative mx-4 overflow-x-auto">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         Actividad
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Fecha
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Precio total
@@ -32,15 +35,28 @@
                             {{ $reserva->actividad->titulo }}
                         </td>
                         <td>
+                            {{ \Carbon\Carbon::parse($reserva->fecha)->format('d/m/y') }} - {{ \Carbon\Carbon::parse($reserva->hora)->format('H:i') }}
+                        </td>
+                        <td>
                             {{ $reserva->personas * $reserva->actividad->precio }}€
                         </td>
                         <td>
                             <form action=" {{ route('usuarios.borrarReserva') }} " method="POST" class="inline">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $reserva->id }}">
+                                @if(\Carbon\Carbon::parse($reserva->fecha . ' ' . $reserva->hora)->diffInHours(\Carbon\Carbon::now()->setTimezone('Europe/Madrid')) < 24)
                                 <button type="submit" onclick="cambiar(event, {{ $reserva->id }})"
-                                    class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                    class="px-4 py-2 text-sm font-medium text-white bg-red-700 rounded-lg cursor-not-allowed focus:outline-none hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                    data-modal-toggle="popup-modal" data-tooltip-target="tooltip-default" disabled>Cancelar</button>
+                                <div id="tooltip-default" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                    La reserva no puede ser cancelada con menos de 24 horas de antelación.
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                                @else
+                                <button type="submit" onclick="cambiar(event, {{ $reserva->id }})"
+                                    class="px-4 py-2 text-sm font-medium text-white bg-red-700 rounded-lg focus:outline-none hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                                     data-modal-toggle="popup-modal">Cancelar</button>
+                                @endif
                             </form>
                         </td>
                     </tr>

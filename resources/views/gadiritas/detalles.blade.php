@@ -35,8 +35,9 @@
                         const value = data.status;
 
                         for (let index = 0; index < cont; index++) {
-                            $('#n_personas').append(`<option value=${value[index]}>${value[index]}</option>`);
-                }
+                            $('#n_personas').append(
+                                `<option value=${value[index]}>${value[index]}</option>`);
+                        }
                     },
                     error: (error) => {
                         console.log(error);
