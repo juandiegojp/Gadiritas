@@ -137,6 +137,14 @@
                 </form>
             </div>
         </div>
+        <div>
+            {{$actividad->comentario->contenido}}
+            <form action="" method="post">
+                <label for="contenido">Comentario:</label>
+                <input type="text" name="contenido" id="contenido">
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
 
     </div>
 @endsection
