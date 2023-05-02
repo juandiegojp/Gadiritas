@@ -70,7 +70,7 @@
             {{ $actividad->titulo }}</h1>
 
 
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-4 gap-4">
             <div class="figure">
                 <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
                     <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad->id}-4.jpg") }}"

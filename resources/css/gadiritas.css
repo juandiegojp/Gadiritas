@@ -298,6 +298,11 @@ div .comarca-container {
     align-items: center;
 }
 
+.figure img {
+    height: 18em;
+    width: 24em;
+}
+
 #reserva {
     position: -webkit-sticky; /* Safari */
     position: sticky;
