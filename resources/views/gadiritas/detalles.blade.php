@@ -138,8 +138,19 @@
             </div>
         </div>
         <div>
-            {{$actividad}}
+            <div>
+                <h2>Comentarios</h2>
+                @foreach ($actividad->comentario as $comentario)
+                    <div>
+                        <p>{{ $comentario->contenido }}</p>
+                        <p>Escrito por: {{ $comentario->user->name }}</p>
+                    </div>
+                @endforeach
+            </div>
+
             <form action="{{ route('usuarios.crearComentario', $actividad->id) }}" method="post">
+                @csrf
+                <input type="hidden" name="act_id" id="act_id" value="{{$actividad->id}}">
                 <label for="contenido">Comentario:</label>
                 <input type="text" name="contenido" id="contenido">
                 <button type="submit">Enviar</button>

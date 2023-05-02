@@ -16,19 +16,17 @@ class ComentarioController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+        $comentario = Comentario::create([
+            'contenido' => $request->contenido,
+            'user_id' => $request->user()->id,
+            'actividad_id' => $request->act_id,
+        ]);
 
+        return redirect('/index')->with('success', '¡Comentario enviado correctamente!');;
     }
 
     /**
