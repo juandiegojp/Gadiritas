@@ -137,7 +137,14 @@
                 </form>
             </div>
         </div>
-        <div>
+        <div class="w-full">
+            <form action="{{ route('usuarios.crearComentario', $actividad->id) }}" method="post">
+                @csrf
+                <input type="hidden" name="act_id" id="act_id" value="{{$actividad->id}}">
+                <label for="contenido">Comentario:</label>
+                <input type="text" name="contenido" id="contenido">
+                <button type="submit">Enviar</button>
+            </form>
             <div>
                 <h2>Comentarios</h2>
                 @foreach ($actividad->comentario as $comentario)
@@ -147,14 +154,6 @@
                     </div>
                 @endforeach
             </div>
-
-            <form action="{{ route('usuarios.crearComentario', $actividad->id) }}" method="post">
-                @csrf
-                <input type="hidden" name="act_id" id="act_id" value="{{$actividad->id}}">
-                <label for="contenido">Comentario:</label>
-                <input type="text" name="contenido" id="contenido">
-                <button type="submit">Enviar</button>
-            </form>
         </div>
 
     </div>

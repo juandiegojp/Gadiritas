@@ -26,7 +26,7 @@ class ComentarioController extends Controller
             'actividad_id' => $request->act_id,
         ]);
 
-        return redirect('/index')->with('success', '¡Comentario enviado correctamente!');;
+        return redirect('/detalles/'.$request->act_id);
     }
 
     /**
