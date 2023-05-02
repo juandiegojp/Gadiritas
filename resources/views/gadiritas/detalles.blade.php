@@ -138,8 +138,8 @@
             </div>
         </div>
         <div>
-            {{$actividad->comentario->contenido}}
-            <form action="" method="post">
+            {{$actividad}}
+            <form action="{{ route('usuarios.crearComentario', $actividad->id) }}" method="post">
                 <label for="contenido">Comentario:</label>
                 <input type="text" name="contenido" id="contenido">
                 <button type="submit">Enviar</button>
