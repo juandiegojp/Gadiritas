@@ -303,10 +303,21 @@ div .comarca-container {
     width: 24em;
 }
 
+/* DIV QUE CONTIENE EL FORMULARIO PARA LA RESERVA */
 #reserva {
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
-    background-color: green;
+
     border: 2px solid #4caf50;
+}
+
+/* SECCIÓN DE COMENTARIOS */
+#secComments {
+    width: 100%;
+}
+
+#comments-container p {
+    text-decoration: underline;
+    font-size: x-large;
 }

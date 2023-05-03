@@ -137,21 +137,34 @@
                 </form>
             </div>
         </div>
-        <div class="w-full">
+        <div id="secComments">
             <form action="{{ route('usuarios.crearComentario', $actividad->id) }}" method="post">
                 @csrf
                 <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
-                <label for="contenido">Comentario:</label>
-                <input type="text" name="contenido" id="contenido">
-                <button type="submit">Enviar</button>
+                <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50">
+                    <div class="px-4 py-2 bg-white rounded-t-lg">
+                        <label for="contenido">Comentario:</label>
+                        <textarea name="contenido" id="contenido" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="¿Qué te ha parecido la experincia?" required></textarea>
+                    </div>
+                    <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+                        <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                            Enviar
+                        </button>
+                    </div>
+                </div>
             </form>
-            <div class="container">
-                <h1 class="underline text-xl">Comentarios</h1>
+            <div id="comments-container">
+                <p>Comentarios de otros usuarios:</p>
                 <div id="comentarios">
                     @foreach ($actividad->comentario as $comentario)
-                        <div class="comentario mb-4" data-comentario-id="{{ $comentario->id }}">
+                        <div class="mb-4 comentario" data-comentario-id="{{ $comentario->id }}">
                             <div class="contenido">{{ $comentario->contenido }}</div>
-                            <div class="autor">{{ $comentario->user->name }}</div>
+                            <figcaption class="flex items-center mt-2 space-x-3 autor">
+                                <div class="flex items-center divide-x-2 divide-gray-300 dark:divide-gray-700">
+                                    <cite class="pr-3 font-medium text-gray-900 dark:text-white">{{ $comentario->user->name }} {{ $comentario->user->apellidos }}</cite>
+                                    <cite class="pl-3 text-sm text-gray-500 dark:text-gray-400"></cite>
+                                </div>
+                            </figcaption>
                             @if ($comentario->user_id == Auth::id())
                                 <button class="editar">Editar</button>
                             @endif
@@ -166,10 +179,10 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary">Guardar cambios</button>
                             </form>
-                            <form action="{{ route('usuarios.borrarComentario') }}" method="POST"
-                                class="formComentario" hidden>
+                            <form action="{{ route('usuarios.borrarComentario') }}" method="POST" class="formComentario"
+                                hidden>
                                 @csrf
-                                <input type="hidden" name="comentarioID" id="comentarioID" value="{{$comentario->id}}">
+                                <input type="hidden" name="comentarioID" id="comentarioID" value="{{ $comentario->id }}">
                                 <button type="submit">Borrar comentario</button>
                             </form>
                         </div>
