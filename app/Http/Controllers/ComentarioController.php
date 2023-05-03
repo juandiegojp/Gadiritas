@@ -17,7 +17,7 @@ class ComentarioController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Crear un comentario nuevo.
      */
     public function store(Request $request)
     {
@@ -31,23 +31,7 @@ class ComentarioController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Comentario $comentario)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Comentario $comentario)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Actualiza un comentario de la base de datos.
      */
     public function update(Request $request, $id)
     {
@@ -61,10 +45,18 @@ class ComentarioController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Borra un comentario en concreto de la base de datos.
      */
-    public function destroy(Comentario $comentario)
+    public function destroy(Request $request)
     {
-        //
+        if (!$request->isMethod('post')) {
+            return redirect()
+                ->back()
+                ->with('error', 'Solicitud no permitida');
+        }
+
+        $idComentario = $request->input('comentarioID');
+        Comentario::where('id', $idComentario)->delete();
+        return redirect()->back();
     }
 }

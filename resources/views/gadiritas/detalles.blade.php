@@ -156,7 +156,7 @@
                                 <button class="editar">Editar</button>
                             @endif
                             <form action="{{ route('usuarios.editarComentario', $comentario->id) }}" method="POST"
-                                id="formComentario" hidden>
+                                class="formComentario" hidden>
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
@@ -165,6 +165,12 @@
                                         value="{{ $comentario->contenido }}">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                            </form>
+                            <form action="{{ route('usuarios.borrarComentario') }}" method="POST"
+                                class="formComentario" hidden>
+                                @csrf
+                                <input type="hidden" name="comentarioID" id="comentarioID" value="{{$comentario->id}}">
+                                <button type="submit">Borrar comentario</button>
                             </form>
                         </div>
                     @endforeach
@@ -190,7 +196,7 @@
                 $(this).siblings('.autor').hide();
                 $('.editar').hide();
 
-                $('#formComentario').removeAttr('hidden');
+                $(this).siblings('.formComentario').removeAttr('hidden');
             });
         });
     </script>
