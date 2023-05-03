@@ -64,6 +64,36 @@
                 }
             });
         });
+
+        $(function() {
+            // Cuando se hace clic en el botón "Editar"
+            $('#comentarios').on('click', '.editar', function() {
+                // Obtener el ID del comentario que se está editando
+                var comentarioID = $(this).closest('.comentario').data('comentario-id');
+                console.log(comentarioID);
+
+                // Obtener el contenido actual del comentario
+                var contenidoActual = $(this).siblings('.contenido').text();
+                console.log(contenidoActual);
+
+                // Reemplazar el contenido actual del comentario con un formulario de edición
+                $(this).siblings('.contenido').hide();
+                $(this).siblings('.autor').hide();
+                $('.editar').hide();
+
+                $(this).siblings('.formComentario').removeAttr('hidden');
+                $('body').on('click', function(e) {
+                    // Si el clic no ocurrió dentro del área de comentarios
+                    if (!$(e.target).closest('#comentarios').length) {
+                        // Volver a mostrar el contenido del comentario y ocultar el formulario de edición
+                        $('.contenido').show();
+                        $('.autor').show();
+                        $('.editar').show();
+                        $('.formComentario').attr('hidden', '');
+                    }
+                });
+            });
+        });
     </script>
     <div class="mx-6 mb-12">
         <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl">
@@ -177,12 +207,12 @@
                                     <textarea name="contenido" id="contenido" rows="4" class="form-control">{{ $comentario->contenido }}</textarea>
                                 </div>
                                 <button type="submit">Guardar cambios</button>
-                            </form>
-                            <form action="{{ route('usuarios.borrarComentario') }}" method="POST" class="formComentario"
-                                hidden>
-                                @csrf
-                                <input type="hidden" name="comentarioID" id="comentarioID" value="{{ $comentario->id }}">
-                                <button type="submit">Borrar comentario</button>
+                                <form action="{{ route('usuarios.borrarComentario') }}" method="POST" class="formComentario"
+                                    hidden>
+                                    @csrf
+                                    <input type="hidden" name="comentarioID" id="comentarioID" value="{{ $comentario->id }}">
+                                    <button type="submit" id="borrarComentario">Borrar comentario</button>
+                                </form>
                             </form>
                         </div>
                     @endforeach
@@ -191,25 +221,4 @@
 
         </div>
     </div>
-    <script>
-        $(function() {
-            // Cuando se hace clic en el botón "Editar"
-            $('#comentarios').on('click', '.editar', function() {
-                // Obtener el ID del comentario que se está editando
-                var comentarioID = $(this).closest('.comentario').data('comentario-id');
-                console.log(comentarioID);
-
-                // Obtener el contenido actual del comentario
-                var contenidoActual = $(this).siblings('.contenido').text();
-                console.log(contenidoActual);
-
-                // Reemplazar el contenido actual del comentario con un formulario de edición
-                $(this).siblings('.contenido').hide();
-                $(this).siblings('.autor').hide();
-                $('.editar').hide();
-
-                $(this).siblings('.formComentario').removeAttr('hidden');
-            });
-        });
-    </script>
 @endsection

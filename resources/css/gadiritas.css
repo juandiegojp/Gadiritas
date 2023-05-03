@@ -418,9 +418,9 @@ div .comarca-container {
     border-color: rgb(209 213 219 / var(--tw-divide-opacity));
 }
 
-.comentario form:last-child button {
+#borrarComentario {
     display: inline-block;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     align-items: center;
     padding: 0.625rem 1rem;
     font-size: 0.75rem;
