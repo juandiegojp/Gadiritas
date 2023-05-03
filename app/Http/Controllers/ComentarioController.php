@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comentario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ComentarioController extends Controller
 {
@@ -26,7 +27,7 @@ class ComentarioController extends Controller
             'actividad_id' => $request->act_id,
         ]);
 
-        return redirect('/detalles/'.$request->act_id);
+        return redirect('/detalles/' . $request->act_id);
     }
 
     /**
@@ -48,9 +49,15 @@ class ComentarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comentario $comentario)
+    public function update(Request $request, $id)
     {
-        //
+        $comentario = Comentario::findOrFail($id); // Obtener el comentario por su id
+
+        $comentario->contenido = $request->input('contenido'); // Actualizar el contenido del comentario con el valor del campo 'contenido' enviado por la petición
+
+        $comentario->save(); // Guardar los cambios en la base de datos
+
+        return redirect('/detalles/' . $comentario->actividad->id); // Redirigir a la página de detalles de la actividad a la que pertenece el comentario
     }
 
     /**

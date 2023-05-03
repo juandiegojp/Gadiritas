@@ -66,6 +66,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/resultados/{destino}', [ActividadController::class, 'actividadesResultados'])->name('usuarios.actividades');
     Route::get('/detalles/{destino}', [ActividadController::class, 'detalles'])->name('usuarios.detalles');
     Route::post('/detalles/{destino}/comment', [ComentarioController::class, 'store'])->name('usuarios.crearComentario');
+    Route::put('/comentarios/{comentarioID}', [ComentarioController::class, 'update'])->name('usuarios.editarComentario');
     Route::post('/detalles/{destino}', [ReservaController::class, 'crear_reserva'])->name('usuarios.crear_reserva');
     Route::post('/actividad/check', [ActividadController::class, 'actividadCheck'])->name('usuarios.actividadCheck');
     Route::get('/reservas', [ReservaController::class, 'reservaUsers'])->name('usuarios.reservaUsers');

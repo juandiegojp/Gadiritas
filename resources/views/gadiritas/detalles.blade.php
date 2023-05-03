@@ -140,21 +140,58 @@
         <div class="w-full">
             <form action="{{ route('usuarios.crearComentario', $actividad->id) }}" method="post">
                 @csrf
-                <input type="hidden" name="act_id" id="act_id" value="{{$actividad->id}}">
+                <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
                 <label for="contenido">Comentario:</label>
                 <input type="text" name="contenido" id="contenido">
                 <button type="submit">Enviar</button>
             </form>
-            <div>
-                <h2>Comentarios</h2>
-                @foreach ($actividad->comentario as $comentario)
-                    <div>
-                        <p>{{ $comentario->contenido }}</p>
-                        <p>Escrito por: {{ $comentario->user->name }}</p>
-                    </div>
-                @endforeach
+            <div class="container">
+                <h1 class="underline text-xl">Comentarios</h1>
+                <div id="comentarios">
+                    @foreach ($actividad->comentario as $comentario)
+                        <div class="comentario mb-4" data-comentario-id="{{ $comentario->id }}">
+                            <div class="contenido">{{ $comentario->contenido }}</div>
+                            <div class="autor">{{ $comentario->user->name }}</div>
+                            @if ($comentario->user_id == Auth::id())
+                                <button class="editar">Editar</button>
+                            @endif
+                            <form action="{{ route('usuarios.editarComentario', $comentario->id) }}" method="POST"
+                                id="formComentario" hidden>
+                                @csrf
+                                @method('PUT')
+                                <div class="form-group">
+                                    <label for="contenido">Contenido:</label>
+                                    <input type="text" class="form-control" id="contenido" name="contenido"
+                                        value="{{ $comentario->contenido }}">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                            </form>
+                        </div>
+                    @endforeach
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
+    <script>
+        $(function() {
+            // Cuando se hace clic en el botón "Editar"
+            $('#comentarios').on('click', '.editar', function() {
+                // Obtener el ID del comentario que se está editando
+                var comentarioID = $(this).closest('.comentario').data('comentario-id');
+                console.log(comentarioID);
+
+                // Obtener el contenido actual del comentario
+                var contenidoActual = $(this).siblings('.contenido').text();
+                console.log(contenidoActual);
+
+                // Reemplazar el contenido actual del comentario con un formulario de edición
+                $(this).siblings('.contenido').hide();
+                $(this).siblings('.autor').hide();
+                $('.editar').hide();
+
+                $('#formComentario').removeAttr('hidden');
+            });
+        });
+    </script>
 @endsection
