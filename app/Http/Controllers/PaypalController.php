@@ -20,8 +20,8 @@ use PayPal\Api\Transaction;
 class PaypalController extends Controller
 {
     private $apiContext;
-    private $clientId = 'ATzsn3_sJY03A-LYnS3jP3Aa4zKsq6E0KCVrF4iUoiXuHpVk4BXhGQQk7A-ilRelSPj_8vbHHERi7ioA';
-    private $clientSecret = 'EAkKhwi-DjG0DH1hAZ4d2DskObHGukpMqsZWJpmmm0mvy9F5cJLmIPnKXfwQqHM1RN77Z4iYnsgWE1F5';
+    private $clientId = 'AYtrdrOPDgbeTcq0_WtTeMEeIrZK_ZUohON-OKuBWs3zeEmcb2RDOWm4YxGQrRfwzjBOCGVHml2HUiY9';
+    private $clientSecret = 'EJUXmawST1zgv_SQIjuCCaG2lyCVk4-rkYdZtea_4bcGs0FC-XBJLxdNgkW1C7ndifgYZDCgUFveeeGZ';
 
     public function __construct()
     {
@@ -47,7 +47,7 @@ class PaypalController extends Controller
     public function checkout(Request $request)
     {
         $amount = new Amount();
-        $amount->setCurrency('USD')
+        $amount->setCurrency('EUR')
             ->setTotal($request->input('amount'));
 
         $payer = new Payer();
@@ -93,7 +93,7 @@ class PaypalController extends Controller
 
             if ($result->getState() == 'approved') {
                 // El pago ha sido aprobado, realiza las acciones necesarias aquí
-                return view('paypal.success');
+                return view('welcome')->with('success', '¡La reserva se ha creado correctamente!');
             } else {
                 return redirect()->route('paypal.error');
             }
@@ -106,11 +106,11 @@ class PaypalController extends Controller
 
     public function cancel()
     {
-        return view('gadiritas.detalles');
+        return view('welcome');
     }
 
     public function error()
     {
-        return view('gadiritas.index');
+        return view('welcome');
     }
 }
