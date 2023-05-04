@@ -23,7 +23,7 @@ class Actividad extends Model
      */
     public function comentario()
     {
-        return $this->hasMany(Comentario::class, 'comentario_id', 'id');
+        return $this->hasMany(Comentario::class);
     }
 
     /**

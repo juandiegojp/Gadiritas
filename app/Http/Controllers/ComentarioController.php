@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comentario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ComentarioController extends Controller
 {
@@ -16,50 +17,46 @@ class ComentarioController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Crear un comentario nuevo.
      */
     public function store(Request $request)
     {
-        //
+        $comentario = Comentario::create([
+            'contenido' => $request->contenido,
+            'user_id' => $request->user()->id,
+            'actividad_id' => $request->act_id,
+        ]);
+
+        return redirect('/detalles/' . $request->act_id);
     }
 
     /**
-     * Display the specified resource.
+     * Actualiza un comentario de la base de datos.
      */
-    public function show(Comentario $comentario)
+    public function update(Request $request, $id)
     {
-        //
+        $comentario = Comentario::findOrFail($id); // Obtener el comentario por su id
+
+        $comentario->contenido = $request->input('contenido'); // Actualizar el contenido del comentario con el valor del campo 'contenido' enviado por la petición
+
+        $comentario->save(); // Guardar los cambios en la base de datos
+
+        return redirect('/detalles/' . $comentario->actividad->id); // Redirigir a la página de detalles de la actividad a la que pertenece el comentario
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Borra un comentario en concreto de la base de datos.
      */
-    public function edit(Comentario $comentario)
+    public function destroy(Request $request)
     {
-        //
-    }
+        if (!$request->isMethod('post')) {
+            return redirect()
+                ->back()
+                ->with('error', 'Solicitud no permitida');
+        }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Comentario $comentario)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Comentario $comentario)
-    {
-        //
+        $idComentario = $request->input('comentarioID');
+        Comentario::where('id', $idComentario)->delete();
+        return redirect()->back();
     }
 }

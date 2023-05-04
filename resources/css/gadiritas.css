@@ -8,8 +8,11 @@ footer img {
 }
 
 #welcomeDiv {
-    background-image:
-        linear-gradient(to bottom, rgba(249, 249, 113, 0.25), rgba(203, 243, 240, 0.75)),
+    background-image: linear-gradient(
+            to bottom,
+            rgba(249, 249, 113, 0.25),
+            rgba(203, 243, 240, 0.75)
+        ),
         url(https://static.eldiario.es/clip/f46f881a-a1ec-4d00-baea-ab5ae0eea674_16-9-aspect-ratio_default_0.jpg);
     background-size: cover;
 }
@@ -20,7 +23,7 @@ footer img {
     right: 25%;
     left: 25%;
     width: 50%;
-    background-color:rgba(245, 184, 119, 0.5);
+    background-color: rgba(245, 184, 119, 0.5);
     border-radius: 50%;
     height: 50%;
     display: flex;
@@ -36,12 +39,13 @@ footer img {
     background-color: #476098;
 
     /* Create the gradient. */
-     background-image: linear-gradient(
-          45deg,
-          #476098 25%,
-          #0087BC 25%,
-          #0087BC 75%,
-          #00ACC2 75%);
+    background-image: linear-gradient(
+        45deg,
+        #476098 25%,
+        #0087bc 25%,
+        #0087bc 75%,
+        #00acc2 75%
+    );
 
     /* Set the background size and repeat properties. */
     background-size: 100%;
@@ -53,43 +57,41 @@ footer img {
     -webkit-text-fill-color: transparent;
 
     /* Animate the text when loading the element. */
-      /* This animates it on page load and when hovering out. */
-      animation: rainbow-text-simple-animation-rev 0.75s ease forwards;
+    /* This animates it on page load and when hovering out. */
+    animation: rainbow-text-simple-animation-rev 0.75s ease forwards;
+}
 
-  }
+#welcomeDiv p:hover {
+    animation: rainbow-text-simple-animation 0.5s ease-in forwards;
+}
 
-  #welcomeDiv p:hover {
-      animation: rainbow-text-simple-animation 0.5s ease-in forwards;
-  }
+/* Move the background and make it smaller. */
+/* Animation shown when entering the page and after the hover animation. */
+@keyframes rainbow-text-simple-animation-rev {
+    0% {
+        background-size: 650%;
+    }
+    40% {
+        background-size: 650%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
 
-
-  /* Move the background and make it smaller. */
-  /* Animation shown when entering the page and after the hover animation. */
-  @keyframes rainbow-text-simple-animation-rev {
-      0% {
-          background-size: 650%;
-      }
-      40% {
-          background-size: 650%;
-      }
-      100% {
-          background-size: 100%;
-      }
-  }
-
-  /* Move the background and make it larger. */
-  /* Animation shown when hovering over the text. */
-  @keyframes rainbow-text-simple-animation {
-      0% {
-          background-size: 100%;
-      }
-      80% {
-          background-size: 650%;
-      }
-      100% {
-          background-size: 650%;
-      }
-  }
+/* Move the background and make it larger. */
+/* Animation shown when hovering over the text. */
+@keyframes rainbow-text-simple-animation {
+    0% {
+        background-size: 100%;
+    }
+    80% {
+        background-size: 650%;
+    }
+    100% {
+        background-size: 650%;
+    }
+}
 
 #welcomeDiv a {
     margin-top: 1em;
@@ -107,7 +109,7 @@ footer img {
     align-items: center;
     justify-content: center;
     margin: auto;
-  }
+}
 
 #contenedor_home {
     background-size: cover;
@@ -298,10 +300,196 @@ div .comarca-container {
     align-items: center;
 }
 
+.figure img {
+    height: 18em;
+    width: 24em;
+}
+
+/* DIV QUE CONTIENE EL FORMULARIO PARA LA RESERVA */
 #reserva {
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
-    background-color: green;
+
     border: 2px solid #4caf50;
+}
+
+/* SECCIÓN DE COMENTARIOS */
+#secComments {
+    width: 100%;
+}
+
+#comentario,
+.form-group {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(229 231 235 / var(--tw-border-opacity));
+    border-radius: 0.5rem;
+    --tw-bg-opacity: 1;
+    background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+#comentario div:nth-child(1) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+    padding: 1rem 0.5rem;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+#comentario label,
+.form-group label {
+    font-size: large;
+}
+
+.formComentario {
+    width: 100%;
+}
+
+#comentario textarea,
+.formComentario textarea {
+    width: 100%;
+    padding-left: 0rem;
+    padding-right: 0rem;
+    font-size: small;
+    color: #000;
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+    border-width: 0px;
+    resize: none;
+}
+
+#comentario textarea:focus,
+.formComentario textarea:focus {
+    outline: none !important;
+    box-shadow: 0 0 5px #719ece;
+}
+
+#comentario div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0.5rem;
+    border-top-width: 1px;
+}
+
+#comentario button,
+.form-group + button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.625rem 1rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-size: medium;
+    text-align: center;
+    color: white;
+    background-color: rgb(0, 145, 255);
+    border-radius: 0.5rem;
+}
+
+#comentario button:hover,
+.form-group + button {
+    background-color: rgb(0, 64, 255);
+}
+
+#comments-container p:first-child {
+    margin-bottom: 1rem;
+    text-decoration: underline;
+    font-size: x-large;
+}
+
+#comentarios {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#comentarios .comentario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0rem;
+    height: auto;
+    margin-bottom: 1rem;
+    box-shadow: 6px 4px 14px -4px rgba(0, 0, 0, 0.75);
+    background-color: rgba(237, 236, 236, 0.227);
+}
+
+.autor div {
+    font-size: x-large;
+    margin-left: 1rem;
+    color: #3995eb;
+}
+
+.autor {
+    display: flex;
+    align-items: center;
+}
+
+.editar {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 0.5rem;
+
+    padding: 0.625rem 1rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-size: medium;
+    text-align: center;
+    color: white;
+    background-color: rgb(105, 54, 224);
+    border-radius: 0.5rem;
+}
+
+.editar-texto:not(svg) {
+    margin-right: 0.5rem;
+}
+
+.editar-texto:not(svg):hover {
+    text-decoration: underline;
+}
+
+/*CONTENEDOR DEL COMENTARIO POSTEADO*/
+.contenido {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#comentarios .contenido figcaption {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    --tw-space-x-reverse: 0;
+    margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+    margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.contenido figcaption div {
+    display: flex;
+    align-items: center;
+    --tw-divide-x-reverse: 0;
+    border-right-width: calc(2px * var(--tw-divide-x-reverse));
+    border-left-width: calc(2px * calc(1 - var(--tw-divide-x-reverse)));
+    --tw-divide-opacity: 1;
+    border-color: rgb(209 213 219 / var(--tw-divide-opacity));
+}
+
+#borrarComentario {
+    display: inline-block;
+    margin-top: 0.5rem;
+    align-items: center;
+    padding: 0.625rem 1rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-size: medium;
+    text-align: center;
+    color: white;
+    background-color: rgb(255, 0, 0);
+    border-radius: 0.5rem;
 }
