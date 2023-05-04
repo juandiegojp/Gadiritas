@@ -93,6 +93,8 @@ class PaypalController extends Controller
 
             if ($result->getState() == 'approved') {
                 // El pago ha sido aprobado, realiza las acciones necesarias aquí
+                $reserva = new ReservaController();
+                $reserva->crear_reserva($request);
                 return view('welcome')->with('success', '¡La reserva se ha creado correctamente!');
             } else {
                 return redirect()->route('paypal.error');

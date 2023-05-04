@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Vista inicial cuando arrancas la app.
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 

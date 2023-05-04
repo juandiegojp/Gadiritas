@@ -5,14 +5,28 @@
 @section('content')
     <script>
         $(document).ready(function() {
+            var precioActividad;
+            var numPersonas;
+            var precioTotal;
+
+            let datepickerOriginal = $("#date");
+            let divFecha = $("#divFecha");
+            let originalValue = datepickerOriginal[0].value;
+
+            disponibilidad();
+
+            function showPrecioTotal() {
+                precioTotal.innerText = numPersonas * precioActividad;
+            }
+
             function disponibilidad() {
                 let date = datepickerOriginal.val().replaceAll("/", "-");
                 let hora = $("#hora").val();
                 let act_id = $("#act_id").val();
 
-                console.log(date);
-                console.log(hora);
-                console.log(act_id);
+                //console.log(date);
+                //console.log(hora);
+                //console.log(act_id);
 
                 $('#n_personas').empty();
 
@@ -30,14 +44,27 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: (data) => {
-                        console.log(data.status);
+                        //console.log(data.status);
                         let cont = data.status.length;
                         const value = data.status;
 
                         for (let index = 0; index < cont; index++) {
-                            $('#n_personas').append(
-                                `<option value=${value[index]}>${value[index]}</option>`);
+                            if (index == 0) {
+                                $('#n_personas').append(
+                                    `<option value=${value[index]} selected>${value[index]}</option>`
+                                );
+                            } else {
+                                $('#n_personas').append(
+                                    `<option value=${value[index]}>${value[index]}</option>`);
+                            }
                         }
+                        precioActividad = document.getElementById("precioAct").value;
+                        numPersonas = document.getElementById("n_personas").value;
+                        precioTotal = document.getElementById("precioTotal");
+                        console.log(precioActividad+"€");
+                        console.log(numPersonas+" personas");
+                        console.log(precioTotal);
+                        showPrecioTotal()
                     },
                     error: (error) => {
                         console.log(error);
@@ -45,17 +72,16 @@
                 });
             }
 
-
             $("#hora").change(function() {
                 console.log("hora cambiada.")
                 disponibilidad();
             });
 
-
-            let datepickerOriginal = $("#date");
-            let divFecha = $("#divFecha");
-            let originalValue = datepickerOriginal[0].value;
-
+            $("#n_personas").change(function() {
+                console.log("Personas console.log");
+                numPersonas = document.getElementById("n_personas").value;
+                showPrecioTotal();
+            });
 
             divFecha[0].addEventListener("click", () => {
                 console.log("fecha cambiada.")
@@ -146,7 +172,7 @@
                 {!! nl2br(e($actividad->descripcion)) !!}
             </div>
             <div class="w-1/2" id="reserva">
-                <form action="" method="post">
+                <form action="{{ route('paypal.checkout') }}" method="post">
                     @csrf
                     <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
                     @include('gadiritas.calendar')
@@ -159,27 +185,18 @@
                     </div>
                     <div>
                         <label for="n_personas">Nº de personas:</label>
-                        <select name="n_personas" id="n_personas">
-
-                        </select>
+                        <select name="n_personas" id="n_personas"></select>
                     </div>
+
+                    <div>
+                        <label for="precioTotal">Precio total:</label>
+                        <input type="hidden" name="precioAct" id="precioAct" value="{{ $actividad->precio }}">
+                        <p id="precioTotal" name="precioTotal"></p>
+                    </div>
+
                     <button type="submit">Reservar</button>
                 </form>
             </div>
-        </div>
-        <div>
-            <form action="{{ route('paypal.checkout') }}" method="POST">
-                @csrf
-                <input type="hidden" name="amount" value="10">
-                <button type="submit">Pagar $10 con PayPal</button>
-            </form>
-        </div>
-
-        <div>
-            <form action="{{ route('paypal.cancel') }}" method="POST">
-                @csrf
-                <button type="submit">Cancelar pago</button>
-            </form>
         </div>
 
         <div id="secComments">
