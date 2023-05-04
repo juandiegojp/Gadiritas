@@ -7,6 +7,8 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\DestinoController;
 use App\Http\Controllers\GuiaController;
+use App\Http\Controllers\PaypalController;
+
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Auth;
@@ -72,6 +74,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/actividad/check', [ActividadController::class, 'actividadCheck'])->name('usuarios.actividadCheck');
     Route::get('/reservas', [ReservaController::class, 'reservaUsers'])->name('usuarios.reservaUsers');
     Route::delete('/reserva/delete', [ReservaController::class, 'borrarReserva'])->name('usuarios.borrarReserva');
+    Route::get('/paypal/success', [PaypalController::class, 'success'])->name('paypal.success');
+    Route::get('/paypal/error', [PaypalController::class, 'error'])->name('paypal.error');
+    Route::post('/paypal/checkout', [PaypalController::class, 'checkout'])->name('paypal.checkout');
+    Route::post('/paypal/cancel', [PaypalController::class, 'cancel'])->name('paypal.cancel');
 });
 
 
@@ -81,5 +87,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 require __DIR__ . '/auth.php';

@@ -7,11 +7,14 @@
     "require": {
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.2",
+        "illuminate/routing": "*",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^10.1",
         "laravel/tinker": "^2.8",
-        "nesbot/carbon": "^2.66"
+        "nesbot/carbon": "^2.66",
+        "paypal/rest-api-sdk-php": "^1.6",
+        "srmklive/paypal": "^1.11.0"
     },
     "require-dev": {
         "beyondcode/laravel-er-diagram-generator": "^2.0",
@@ -28,7 +31,8 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "PayPal\\": "vendor/paypal/rest-api-sdk-php/src/"
         }
     },
     "autoload-dev": {

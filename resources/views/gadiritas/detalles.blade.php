@@ -167,6 +167,21 @@
                 </form>
             </div>
         </div>
+        <div>
+            <form action="{{ route('paypal.checkout') }}" method="POST">
+                @csrf
+                <input type="hidden" name="amount" value="10">
+                <button type="submit">Pagar $10 con PayPal</button>
+            </form>
+        </div>
+
+        <div>
+            <form action="{{ route('paypal.cancel') }}" method="POST">
+                @csrf
+                <button type="submit">Cancelar pago</button>
+            </form>
+        </div>
+
         <div id="secComments">
             <form action="{{ route('usuarios.crearComentario', $actividad->id) }}" method="post">
                 @csrf
