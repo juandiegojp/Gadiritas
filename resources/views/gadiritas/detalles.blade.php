@@ -17,7 +17,7 @@
 
             function showPrecioTotal() {
                 let precioCalculado = numPersonas * precioActividad;
-                precioTotal.innerText = precioCalculado;
+                precioTotal.innerText = precioCalculado+"€";
                 let amountInput = document.querySelector('input[name="amount"]');
                 amountInput.setAttribute('value', precioCalculado);
             }
@@ -124,7 +124,7 @@
             });
         });
     </script>
-    <div class="mx-6 mb-12">
+    <div class="mx-6 mb-12 mt-4">
         <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl">
             {{ $actividad->titulo }}</h1>
 
@@ -174,28 +174,30 @@
                     Descripción</p>
                 {!! nl2br(e($actividad->descripcion)) !!}
             </div>
-            <div class="w-1/2" id="reserva">
+            <div class="w-1/2 ml-4" id="reserva">
                 <form action="{{ route('paypal.checkout') }}" method="post">
                     @csrf
                     <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
                     @include('gadiritas.calendar')
-                    <div>
-                        <label for="hora">Selecciona una hora:</label>
-                        <select name="hora" id="hora">
-                            <option value="11:00">11:00</option>
-                            <option value="12:00">12:00</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="n_personas">Nº de personas:</label>
-                        <select name="n_personas" id="n_personas"></select>
-                    </div>
+                    <div id="formContainerReserva">
+                        <div class="formReserva">
+                            <label for="hora">Selecciona una hora:</label>
+                            <select name="hora" id="hora">
+                                <option value="11:00">11:00</option>
+                                <option value="12:00">12:00</option>
+                            </select>
+                        </div>
+                        <div class="formReserva">
+                            <label for="n_personas">Nº de personas:</label>
+                            <select name="n_personas" id="n_personas"></select>
+                        </div>
 
-                    <div>
-                        <label for="precioTotal">Precio total:</label>
-                        <input type="hidden" name="precioAct" id="precioAct" value="{{ $actividad->precio }}">
-                        <input type="hidden" name="amount">
-                        <p id="precioTotal" name="precioTotal"></p>
+                        <div class="formReserva">
+                            <label for="precioTotal">Precio total:</label>
+                            <input type="hidden" name="precioAct" id="precioAct" value="{{ $actividad->precio }}">
+                            <input type="hidden" name="amount">
+                            <p id="precioTotal" name="precioTotal"></p>
+                        </div>
                     </div>
 
                     <button type="submit">Reservar</button>

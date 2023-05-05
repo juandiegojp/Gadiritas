@@ -78,7 +78,7 @@ class PaypalController extends Controller
         } catch (Exception $ex) {
             Log::error($ex);
 
-            return redirect()->route('paypal.error');
+            return redirect()->route('usuarios.index')->with('error', '¡Oh, no! Algo ha salido mal en el proceso...');
         }
     }
 
@@ -96,24 +96,24 @@ class PaypalController extends Controller
 
             if ($result->getState() == 'approved') {
                 // El pago ha sido aprobado, realiza las acciones necesarias aquí
-                return view('welcome')->with('success', '¡La reserva se ha creado correctamente!');
+                return redirect()->route('usuarios.index')->with('success', '¡La reserva se ha creado correctamente!');
             } else {
-                return redirect()->route('paypal.error');
+                return redirect()->route('usuarios.index')->with('error', '¡Oh, no! Algo ha salido mal en el proceso...');
             }
         } catch (Exception $ex) {
             Log::error($ex);
 
-            return redirect()->route('paypal.error');
+            return redirect()->route('usuarios.index')->with('error', '¡Oh, no! Algo ha salido mal en el proceso...');
         }
     }
 
     public function cancel()
     {
-        return view('welcome');
+        redirect()->back();
     }
 
     public function error()
     {
-        return view('welcome');
+        redirect()->back();
     }
 }

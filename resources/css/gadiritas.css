@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #e4ceb7;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ce7b68' fill-opacity='0.31' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
 footer img {
     width: 2em;
     height: 2em;
@@ -294,10 +299,18 @@ div .comarca-container {
     z-index: 9999;
 }
 
+figure {
+    text-align: center;
+}
+
 .figure {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#filtroResultados {
+    margin: 1rem 0rem;
 }
 
 .figure img {
@@ -310,10 +323,68 @@ div .comarca-container {
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
-
-    border: 2px solid #4caf50;
 }
 
+#reserva form {
+    margin: auto;
+    width: 80%;
+    border-radius: 10%;
+    background-color: #ff896276;
+    padding-bottom: 1rem;
+}
+
+#reserva div+button:hover {
+    border: 1px solid black;
+
+}
+
+#reserva div+button {
+    font-weight:lighter;
+    display: flex;
+    align-items: center;
+    margin: 1rem auto;
+    padding: 0.5rem;
+    background-color: #DFE0DF;
+    border-radius: 5%;
+}
+
+#formContainerReserva {
+    width: 100%;
+}
+
+.formReserva {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.formReserva label {
+    display: block;
+    margin: 0.5rem auto;
+    font-size: large;
+    color: #ffee8b;
+    font-weight: bold;
+}
+
+.formReserva select {
+    background-color: rgb(249 250 251);
+    border-width: 1px;
+    border-color: rgb(209 213 219);
+    color: rgb(17 24 39);
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25rem; /* 20px */
+    border-radius: 0.5rem; /* 8px */
+    display: block;
+    width: 25%;
+    padding: 0.75rem;
+}
+
+.formReserva select:focus {
+    --tw-ring-color: rgb(59 130 246);
+    border-color: rgb(59 130 246);
+}
 /* SECCIÓN DE COMENTARIOS */
 #secComments {
     width: 100%;
