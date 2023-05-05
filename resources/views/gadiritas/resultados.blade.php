@@ -24,7 +24,7 @@
             </div>
         </form>
     </div>
-    <div class="grid grid-cols-4 gap-4 mx-4" id="actividades-contenedor">
+    <div class="grid grid-cols-4 gap-4 mx-4 h-screen" id="actividades-contenedor">
         @foreach ($actividades as $actividad)
             <figure class="max-w-lg">
                 <div class="image-wrapper">
@@ -51,9 +51,9 @@
                     freeTour = 1;
                 }
 
-                console.log(orden);
-                console.log(destino_id);
-                console.log(freeTour);
+                console.log("Orden:" + orden);
+                console.log("DestinoID:"+destino_id);
+                console.log("Free tout: "+freeTour);
 
                 $.ajax({
                     url: "/resultados/filtrar",

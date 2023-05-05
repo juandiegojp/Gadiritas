@@ -152,7 +152,7 @@ class ActividadController extends Controller
                         'precio' => $actividad->precio,
                         'duracion' => $actividad->duracion,
                         'max_personas' => $actividad->max_personas,
-                        'guia_id' => $actividad->guia_id,
+                        'destino_id' => $actividad->destino_id,
                     ];
                 }
             }
