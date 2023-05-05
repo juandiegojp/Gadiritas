@@ -17,7 +17,7 @@
 
             function showPrecioTotal() {
                 let precioCalculado = numPersonas * precioActividad;
-                precioTotal.innerText = precioCalculado+"€";
+                precioTotal.innerText = precioCalculado + "€";
                 let amountInput = document.querySelector('input[name="amount"]');
                 amountInput.setAttribute('value', precioCalculado);
             }
@@ -124,7 +124,7 @@
             });
         });
     </script>
-    <div class="mx-6 mb-12 mt-4">
+    <div class="mx-6 mt-4 mb-12">
         <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl">
             {{ $actividad->titulo }}</h1>
 
@@ -266,7 +266,34 @@
                     @endforeach
                 </div>
             </div>
-
         </div>
     </div>
+    <div class="divMap"><div id='map'></div></div>
+    <script>
+        mapboxgl.accessToken =
+            'pk.eyJ1IjoianVhbmRpZXdlIiwiYSI6ImNsaGFzejN5dTBreWYzZXFmcDJ5Mjk2bGEifQ.KT0AykAW457TNuwVGeLFSg';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [-99.1687, 19.4136],
+            zoom: 24
+        });
+        map.on('load', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var lngLat = [position.coords.longitude, position.coords.latitude];
+                    var accuracy = position.coords.accuracy;
+                    var marker = new mapboxgl.Marker()
+                        .setLngLat(lngLat)
+                        .addTo(map);
+                    map.flyTo({
+                        center: lngLat,
+                        zoom: 12
+                    });
+                });
+            } else {
+                alert('Tu navegador no soporta geolocalización.');
+            }
+        });
+    </script>
 @endsection
