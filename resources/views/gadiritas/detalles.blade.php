@@ -16,7 +16,10 @@
             disponibilidad();
 
             function showPrecioTotal() {
-                precioTotal.innerText = numPersonas * precioActividad;
+                let precioCalculado = numPersonas * precioActividad;
+                precioTotal.innerText = precioCalculado;
+                let amountInput = document.querySelector('input[name="amount"]');
+                amountInput.setAttribute('value', precioCalculado);
             }
 
             function disponibilidad() {
@@ -61,8 +64,8 @@
                         precioActividad = document.getElementById("precioAct").value;
                         numPersonas = document.getElementById("n_personas").value;
                         precioTotal = document.getElementById("precioTotal");
-                        console.log(precioActividad+"€");
-                        console.log(numPersonas+" personas");
+                        console.log(precioActividad + "€");
+                        console.log(numPersonas + " personas");
                         console.log(precioTotal);
                         showPrecioTotal()
                     },
@@ -191,6 +194,7 @@
                     <div>
                         <label for="precioTotal">Precio total:</label>
                         <input type="hidden" name="precioAct" id="precioAct" value="{{ $actividad->precio }}">
+                        <input type="hidden" name="amount">
                         <p id="precioTotal" name="precioTotal"></p>
                     </div>
 
