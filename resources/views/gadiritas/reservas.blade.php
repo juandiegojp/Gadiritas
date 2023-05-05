@@ -10,7 +10,7 @@
         oculto.setAttribute('value', id);
     }
 </script>
-    <div class="relative mx-4 overflow-x-auto">
+    <div class="relative mx-4 overflow-x-auto h-screen">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -44,17 +44,18 @@
                             <form action=" {{ route('usuarios.borrarReserva') }} " method="POST" class="inline">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $reserva->id }}">
-                                @if(\Carbon\Carbon::parse($reserva->fecha . ' ' . $reserva->hora)->diffInHours(\Carbon\Carbon::now()->setTimezone('Europe/Madrid')) < 24)
-                                <button type="submit" onclick="cambiar(event, {{ $reserva->id }})"
-                                    class="px-4 py-2 text-sm font-medium text-white bg-red-700 rounded-lg cursor-not-allowed focus:outline-none hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                                    data-modal-toggle="popup-modal" data-tooltip-target="tooltip-default" disabled>Cancelar</button>
-                                <div id="tooltip-default" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                    La reserva no puede ser cancelada con menos de 24 horas de antelación.
+                                @if(\Carbon\Carbon::parse($reserva->fecha . ' ' . $reserva->hora)->diffInHours(\Carbon\Carbon::now()->setTimezone('Europe/Madrid')) < 24
+                                    || \Carbon\Carbon::parse($reserva->fecha . ' ' . $reserva->hora)->isPast())
+                                <div id="tooltip-default" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip w-1/4">
+                                    La reserva no puede ser cancelada con menos de 24 horas de antelación ni tampoco cuando la fecha de la actividad ha pasado.
                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
+                                <button data-modal-toggle="popup-modal" data-tooltip-target="tooltip-default" type="button" onclick="cambiar(event, {{ $reserva->id }})"
+                                class="px-4 py-2 text-sm font-medium text-white bg-red-700 rounded-lg cursor-not-allowed focus:outline-none hover:bg-red-800 focus:ring-4
+                                focus:ring-red-300">Cancelar</button>
                                 @else
                                 <button type="submit" onclick="cambiar(event, {{ $reserva->id }})"
-                                    class="px-4 py-2 text-sm font-medium text-white bg-red-700 rounded-lg focus:outline-none hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                    class="px-4 py-2 text-sm font-medium text-white bg-red-700 rounded-lg focus:outline-none hover:bg-red-800 focus:ring-4 focus:ring-red-300"
                                     data-modal-toggle="popup-modal">Cancelar</button>
                                 @endif
                             </form>
@@ -64,7 +65,6 @@
             </tbody>
         </table>
     </div>
-
     <!-- Modal -->
     <div id="popup-modal" tabindex="-1"
         class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
