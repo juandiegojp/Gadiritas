@@ -173,6 +173,11 @@
                 <p class="mb-2 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl">
                     Descripción</p>
                 {!! nl2br(e($actividad->descripcion)) !!}
+
+                <p class="mb-2 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl">Punto de
+                    encuentro</p>
+                <p>{{ $actividad->direccion }}</p>
+                <input type="hidden" name="direccion" id="direccion" value="{{ $actividad->direccion }}">
             </div>
             <div class="w-1/2 ml-4" id="reserva">
                 <form action="{{ route('paypal.checkout') }}" method="post">
@@ -268,32 +273,55 @@
             </div>
         </div>
     </div>
-    <div class="divMap"><div id='map'></div></div>
+    <div class="divMap">
+        <div id='map'></div>
+    </div>
     <script>
         mapboxgl.accessToken =
             'pk.eyJ1IjoianVhbmRpZXdlIiwiYSI6ImNsaGFzejN5dTBreWYzZXFmcDJ5Mjk2bGEifQ.KT0AykAW457TNuwVGeLFSg';
+
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [-99.1687, 19.4136],
-            zoom: 24
+            zoom: 12
         });
-        map.on('load', function() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var lngLat = [position.coords.longitude, position.coords.latitude];
-                    var accuracy = position.coords.accuracy;
-                    var marker = new mapboxgl.Marker()
-                        .setLngLat(lngLat)
-                        .addTo(map);
-                    map.flyTo({
-                        center: lngLat,
-                        zoom: 12
-                    });
+
+        // Use the Mapbox geocoding API to get the coordinates of the address
+        var address = document.getElementById("direccion").value;
+        fetch('https://api.mapbox.com/geocoding/v5/mapbox.places/' + address + '.json?access_token=' + mapboxgl.accessToken)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                var coordinates = data.features[0].center;
+                // Add marker for the activity location
+                var marker = new mapboxgl.Marker()
+                    .setLngLat(coordinates)
+                    .setPopup(new mapboxgl.Popup().setHTML("<h3 style='font-weight: bold;'>Punto de encuentro</h3>"))
+                    .addTo(map);
+                // Fly to the activity location
+                map.flyTo({
+                    center: coordinates,
+                    zoom: 14
                 });
-            } else {
-                alert('Tu navegador no soporta geolocalización.');
-            }
-        });
+            })
+            .catch(function(error) {
+                console.log('Error:', error);
+            });
+
+        // Add marker for user location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var lngLat = [position.coords.longitude, position.coords.latitude];
+                var accuracy = position.coords.accuracy;
+                var marker = new mapboxgl.Marker()
+                    .setLngLat(lngLat)
+                    .setPopup(new mapboxgl.Popup().setHTML("<h3 style='font-weight: bold;'>Ubicación actual</h3>"))
+                    .addTo(map);
+            });
+        } else {
+            alert('Tu navegador no soporta geolocalización.');
+        }
     </script>
 @endsection

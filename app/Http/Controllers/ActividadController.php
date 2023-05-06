@@ -19,7 +19,7 @@ class ActividadController extends Controller
      */
     public function actividades()
     {
-        $actividades = Actividad::all();
+        $actividades = Actividad::all()->sortBy('destino_id');
         return view('admin.actividades.index', [
             'actividades' => $actividades,
         ]);
@@ -57,6 +57,7 @@ class ActividadController extends Controller
             'max_personas' => $request->max_personas,
             'guia_id' => $request->guia_id,
             'destino_id' => $request->destino_id,
+            'direccion' => $request->direccion,
         ]);
 
         return redirect('/actividades/detalles/'. $n_actividad->id);
@@ -83,7 +84,12 @@ class ActividadController extends Controller
      */
     public function editarActividad(Actividad $actividad)
     {
+        $destinos = Destino::all();
+        $guias = Guia::all();
+
         return view('admin.actividades.editar', [
+            'destinos' => $destinos,
+            'guias' => $guias,
             'actividad' => $actividad,
         ]);
     }
@@ -105,9 +111,10 @@ class ActividadController extends Controller
             'max_personas' => $request->max_personas,
             'guia_id' => $request->guia_id,
             'destino_id' => $request->destino_id,
+            'direccion' => $request->direccion,
         ]);
 
-        return redirect('/actividad/detalles/'. $actividad->id);
+        return redirect('actividades/detalles/'. $actividad->id);
     }
 
     /**

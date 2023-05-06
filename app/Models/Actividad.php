@@ -12,7 +12,7 @@ class Actividad extends Model
 
     protected $fillable = [
         'titulo', 'descripcion', 'precio', 'duracion',
-        'max_personas', 'guia_id', 'destino_id'
+        'max_personas', 'guia_id', 'destino_id', 'direccion'
     ];
 
 
