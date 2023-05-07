@@ -131,10 +131,10 @@
 
         <div class="grid grid-cols-4 gap-4">
             <div class="figure">
-                <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad->id}-4.jpg") }}"
+                <figure>
+                    <img src="{{ Vite::asset("resources/images/{$actividad->id}-4.jpg") }}"
                         alt="image description">
-                    <figcaption class="absolute px-4 text-lg text-white bottom-6">
+                    <figcaption>
                         <p>{{ $actividad->titulo }}</p>
                     </figcaption>
                 </figure>
@@ -282,7 +282,6 @@
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [-99.1687, 19.4136],
-            zoom: 12
         });
 
         // Use the Mapbox geocoding API to get the coordinates of the address
@@ -301,7 +300,7 @@
                 // Fly to the activity location
                 map.flyTo({
                     center: coordinates,
-                    zoom: 14
+                    zoom: 19
                 });
             })
             .catch(function(error) {

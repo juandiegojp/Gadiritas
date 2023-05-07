@@ -299,24 +299,48 @@ div .comarca-container {
     z-index: 9999;
 }
 
+/* IMAGENES DE LA SECCIÓN DETALLES DE LA ACTIVIDAD */
+
 figure {
     text-align: center;
 }
 
 .figure {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+    cursor: pointer;
+    filter: grayscale(100%);
 }
+
+.figure:hover {
+    filter: grayscale(0%);
+ }
+
+ .figure figcaption {
+    position: absolute;
+    font-size: large;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    bottom: 1.5rem;
+    width: 100%;
+ }
+
+ .figure img {
+     object-fit: contain;
+     height: 18em;
+     width: 24em;
+
+ }
+ .figure img:hover {
+     object-fit:cover;
+ }
 
 #filtroResultados {
     margin: 1rem 0rem;
 }
 
-.figure img {
-    height: 18em;
-    width: 24em;
-}
 
 /* DIV QUE CONTIENE EL FORMULARIO PARA LA RESERVA */
 #reserva {
