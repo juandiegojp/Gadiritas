@@ -168,16 +168,17 @@
             </div>
         </div>
 
-        <div class="flex items-start justify-center my-6" id="bottom">
-            <div class="w-1/2">
+        <div class="flex items-start justify-center my-6">
+            <div class="w-1/2" id="descMap">
                 <p class="mb-2 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl">
                     Descripción</p>
                 {!! nl2br(e($actividad->descripcion)) !!}
-
-                <p class="mb-2 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl">Punto de
-                    encuentro</p>
-                <p>{{ $actividad->direccion }}</p>
-                <input type="hidden" name="direccion" id="direccion" value="{{ $actividad->direccion }}">
+                <div id="mapaEncuentro">
+                    <p class="mb-2 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl">Punto de
+                        encuentro</p>
+                    <input type="hidden" name="direccion" id="direccion" value="{{ $actividad->direccion }}">
+                    <div id='map'></div>
+                </div>
             </div>
             <div class="w-1/2 ml-4" id="reserva">
                 <form action="{{ route('paypal.checkout') }}" method="post">
@@ -272,9 +273,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="divMap">
-        <div id='map'></div>
     </div>
     <script>
         mapboxgl.accessToken =
