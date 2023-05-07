@@ -23,6 +23,9 @@
                         Nº Personas (Max)
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Dirección
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Destino
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -46,6 +49,9 @@
                     </td>
                     <td class="px-6 py-4">
                         {{ $actividad->max_personas }} personas
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $actividad->direccion }}
                     </td>
                     <td class="px-6 py-4">
                         {{ $actividad->destino->nombre }}

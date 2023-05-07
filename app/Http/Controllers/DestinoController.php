@@ -91,7 +91,7 @@ class DestinoController extends Controller
             'codigo_postal' => $request->codigo_postal,
         ]);
 
-        return redirect('/destinos/detalles/'. $destino->id);
+        return redirect('/destinos');
     }
 
     /**

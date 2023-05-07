@@ -17,7 +17,7 @@
 
             function showPrecioTotal() {
                 let precioCalculado = numPersonas * precioActividad;
-                precioTotal.innerText = precioCalculado+"€";
+                precioTotal.innerText = precioCalculado + "€";
                 let amountInput = document.querySelector('input[name="amount"]');
                 amountInput.setAttribute('value', precioCalculado);
             }
@@ -124,17 +124,17 @@
             });
         });
     </script>
-    <div class="mx-6 mb-12 mt-4">
+    <div class="mx-6 mt-4 mb-12">
         <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl">
             {{ $actividad->titulo }}</h1>
 
 
         <div class="grid grid-cols-4 gap-4">
             <div class="figure">
-                <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad->id}-4.jpg") }}"
+                <figure>
+                    <img src="{{ Vite::asset("resources/images/{$actividad->id}-4.jpg") }}"
                         alt="image description">
-                    <figcaption class="absolute px-4 text-lg text-white bottom-6">
+                    <figcaption>
                         <p>{{ $actividad->titulo }}</p>
                     </figcaption>
                 </figure>
@@ -168,11 +168,17 @@
             </div>
         </div>
 
-        <div class="flex items-start justify-center my-6" id="bottom">
-            <div class="w-1/2">
+        <div class="flex items-start justify-center my-6">
+            <div class="w-1/2" id="descMap">
                 <p class="mb-2 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl">
                     Descripción</p>
                 {!! nl2br(e($actividad->descripcion)) !!}
+                <div id="mapaEncuentro">
+                    <p class="mb-2 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl">Punto de
+                        encuentro</p>
+                    <input type="hidden" name="direccion" id="direccion" value="{{ $actividad->direccion }}">
+                    <div id='map'></div>
+                </div>
             </div>
             <div class="w-1/2 ml-4" id="reserva">
                 <form action="{{ route('paypal.checkout') }}" method="post">
@@ -266,7 +272,53 @@
                     @endforeach
                 </div>
             </div>
-
         </div>
     </div>
+    <script>
+        mapboxgl.accessToken =
+            'pk.eyJ1IjoianVhbmRpZXdlIiwiYSI6ImNsaGFzejN5dTBreWYzZXFmcDJ5Mjk2bGEifQ.KT0AykAW457TNuwVGeLFSg';
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [-99.1687, 19.4136],
+        });
+
+        // Use the Mapbox geocoding API to get the coordinates of the address
+        var address = document.getElementById("direccion").value;
+        fetch('https://api.mapbox.com/geocoding/v5/mapbox.places/' + address + '.json?access_token=' + mapboxgl.accessToken)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                var coordinates = data.features[0].center;
+                // Add marker for the activity location
+                var marker = new mapboxgl.Marker()
+                    .setLngLat(coordinates)
+                    .setPopup(new mapboxgl.Popup().setHTML("<h3 style='font-weight: bold;'>Punto de encuentro</h3>"))
+                    .addTo(map);
+                // Fly to the activity location
+                map.flyTo({
+                    center: coordinates,
+                    zoom: 19
+                });
+            })
+            .catch(function(error) {
+                console.log('Error:', error);
+            });
+
+        // Add marker for user location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var lngLat = [position.coords.longitude, position.coords.latitude];
+                var accuracy = position.coords.accuracy;
+                var marker = new mapboxgl.Marker()
+                    .setLngLat(lngLat)
+                    .setPopup(new mapboxgl.Popup().setHTML("<h3 style='font-weight: bold;'>Ubicación actual</h3>"))
+                    .addTo(map);
+            });
+        } else {
+            alert('Tu navegador no soporta geolocalización.');
+        }
+    </script>
 @endsection

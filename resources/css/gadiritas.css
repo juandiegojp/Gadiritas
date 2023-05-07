@@ -299,24 +299,48 @@ div .comarca-container {
     z-index: 9999;
 }
 
+/* IMAGENES DE LA SECCIÓN DETALLES DE LA ACTIVIDAD */
+
 figure {
     text-align: center;
 }
 
 .figure {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+    cursor: pointer;
+    filter: grayscale(100%);
 }
+
+.figure:hover {
+    filter: grayscale(0%);
+ }
+
+ .figure figcaption {
+    position: absolute;
+    font-size: large;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    bottom: 1.5rem;
+    width: 100%;
+ }
+
+ .figure img {
+     object-fit: contain;
+     height: 18em;
+     width: 24em;
+
+ }
+ .figure img:hover {
+     object-fit:cover;
+ }
 
 #filtroResultados {
     margin: 1rem 0rem;
 }
 
-.figure img {
-    height: 18em;
-    width: 24em;
-}
 
 /* DIV QUE CONTIENE EL FORMULARIO PARA LA RESERVA */
 #reserva {
@@ -333,18 +357,17 @@ figure {
     padding-bottom: 1rem;
 }
 
-#reserva div+button:hover {
+#reserva div + button:hover {
     border: 1px solid black;
-
 }
 
-#reserva div+button {
-    font-weight:lighter;
+#reserva div + button {
+    font-weight: lighter;
     display: flex;
     align-items: center;
     margin: 1rem auto;
     padding: 0.5rem;
-    background-color: #DFE0DF;
+    background-color: #dfe0df;
     border-radius: 5%;
 }
 
@@ -563,4 +586,18 @@ figure {
     color: white;
     background-color: rgb(255, 0, 0);
     border-radius: 0.5rem;
+}
+
+#mapaEncuentro {
+    margin-top: 4rem;
+}
+
+#descMap{
+    padding: 0rem 0.5rem;
+    background-color: rgba(220, 220, 220, 0.65);
+}
+
+#map {
+    height: 20rem;
+    width: 100%;
 }
