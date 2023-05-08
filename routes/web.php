@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 // Vista inicial cuando arrancas la app.
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->name('home');
 });
 
 // Administrador

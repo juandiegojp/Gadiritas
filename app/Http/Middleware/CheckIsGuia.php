@@ -18,6 +18,6 @@ class CheckIsGuia
         if (auth()->check() && auth()->user()->is_guia) {
             return $next($request);
         }
-        abort(403, 'No autorizado');
+        return redirect('home');
     }
 }
