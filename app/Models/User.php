@@ -24,6 +24,7 @@ class User extends Authenticatable
         'telefono',
         'password',
         'is_admin',
+        'is_guia',
     ];
 
     /**
@@ -64,5 +65,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comentario::class);
     }
-
 }

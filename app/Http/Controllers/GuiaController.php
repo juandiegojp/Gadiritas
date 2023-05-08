@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guia;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,7 +17,7 @@ class GuiaController extends Controller
      */
     public function guias()
     {
-        $guia = Guia::all();
+        $guia = User::where('is_guia', true)->get();
         return view('admin.guias.index', [
             'guias' => $guia,
         ]);

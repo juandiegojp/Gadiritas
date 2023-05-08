@@ -1,6 +1,6 @@
 @extends('admin.base')
 @section('title')
-    Admin | Usuarios
+    Admin | Guias
 @endsection
 @section('content')
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -29,14 +29,14 @@
                 @forelse($guias as $u)
                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $u->nombre }}
+                            {{ $u->name }}
                         </th>
                         <td class="px-6 py-4">
                             {{ $u->email }}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="{{ route('admin.datellesGuia', $u->id) }}"
-                                class="md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 font-medium text-gray-600 dark:text-gray-500 hover:underline">Ver
+                            <a href="{{ route('admin.datellesUsuario', $u->id) }}"
+                                class="font-medium text-gray-600 md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-gray-500 hover:underline">Ver
                                 detalles</a>
                         </td>
                     </tr>
