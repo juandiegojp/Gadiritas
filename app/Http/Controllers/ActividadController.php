@@ -6,6 +6,7 @@ use App\Models\Actividad;
 use App\Models\Destino;
 use App\Models\Guia;
 use App\Models\Reserva;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,7 @@ class ActividadController extends Controller
     public function actividadesForm()
     {
         $destinos = Destino::all();
-        $guias = Guia::all();
+        $guias = User::where('is_guia', true)->get();
 
         return view('admin.actividades.create', [
             'destinos' => $destinos,
@@ -85,7 +86,7 @@ class ActividadController extends Controller
     public function editarActividad(Actividad $actividad)
     {
         $destinos = Destino::all();
-        $guias = Guia::all();
+        $guias = User::where('is_guia', true)->get();
 
         return view('admin.actividades.editar', [
             'destinos' => $destinos,
