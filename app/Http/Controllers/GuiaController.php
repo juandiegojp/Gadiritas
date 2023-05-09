@@ -30,12 +30,12 @@ class GuiaController extends Controller
         $user = auth()->user();
         $userId = $user->id;
 
-$reservas = Reserva::select('actividad_id', DB::raw('MAX(hora) AS ultima_hora'))
+        $reservas = Reserva::select('actividad_id', 'hora', DB::raw('CAST(fecha AS date) AS fecha'), DB::raw('SUM(personas) AS personas'))
             ->with('actividad')
             ->whereHas('actividad', function ($query) use ($userId) {
                 $query->where('user_id', $userId);
             })
-            ->groupBy('actividad_id')
+            ->groupBy('actividad_id', 'fecha', 'hora')
             ->orderBy('actividad_id')
             ->get();
 
