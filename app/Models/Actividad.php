@@ -12,7 +12,7 @@ class Actividad extends Model
 
     protected $fillable = [
         'titulo', 'descripcion', 'precio', 'duracion',
-        'max_personas', 'guia_id', 'destino_id', 'direccion'
+        'max_personas', 'user_id', 'destino_id', 'direccion'
     ];
 
 
@@ -43,7 +43,7 @@ class Actividad extends Model
      */
     public function guia()
     {
-        return $this->belongsTo(Guia::class, 'guia_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     /**

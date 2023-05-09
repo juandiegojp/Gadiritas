@@ -56,7 +56,7 @@ class ActividadController extends Controller
             'precio' => $request->precio,
             'duracion' => $request->duracion,
             'max_personas' => $request->max_personas,
-            'guia_id' => $request->guia_id,
+            'user_id' => $request->user_id,
             'destino_id' => $request->destino_id,
             'direccion' => $request->direccion,
         ]);
@@ -110,7 +110,7 @@ class ActividadController extends Controller
             'precio' => $request->precio,
             'duracion' => $request->duracion,
             'max_personas' => $request->max_personas,
-            'guia_id' => $request->guia_id,
+            'user_id' => $request->user_id,
             'destino_id' => $request->destino_id,
             'direccion' => $request->direccion,
         ]);

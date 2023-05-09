@@ -18,6 +18,6 @@ class Admin
         if (auth()->user()->is_admin == 1) {
             return $next($request);
         }
-        return redirect('home')->with('error', 'No tienes permisos de administrador.');
+        return redirect('/index')->with('error', 'No tienes permisos de administrador.');
     }
 }
