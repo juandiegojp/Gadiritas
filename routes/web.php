@@ -81,7 +81,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::group(['middleware' => ['CheckIsGuia','auth']], function () {
-    Route::get('/indexGuia', [UsuariosController::class, 'index'])->name('usuarios.index');
+    Route::get('/indexGuia', [GuiaController::class, 'index'])->name('guias.index');
 });
 
 

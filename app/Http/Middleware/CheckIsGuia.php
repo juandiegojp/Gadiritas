@@ -18,6 +18,6 @@ class CheckIsGuia
         if (auth()->check() && auth()->user()->is_guia) {
             return $next($request);
         }
-        return redirect('/index');
+        return redirect('/index')->with('error', 'No tienes permisos para acceder a este sitio web.');
     }
 }

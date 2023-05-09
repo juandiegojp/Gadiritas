@@ -25,8 +25,6 @@ class ReservaController extends Controller
             'hora' => $hora,
             'personas' => $request->n_personas,
         ]);
-
-        return redirect('/index')->with('success', '¡La reserva se ha creado correctamente!');;
     }
 
     /**
