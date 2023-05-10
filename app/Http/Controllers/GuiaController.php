@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\App;
 use App\Models\Guia;
 use App\Models\Reserva;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class GuiaController extends Controller
 {
@@ -30,17 +32,32 @@ class GuiaController extends Controller
         $user = auth()->user();
         $userId = $user->id;
 
-        $reservas = Reserva::select('actividad_id', 'hora', DB::raw('CAST(fecha AS date) AS fecha'), DB::raw('SUM(personas) AS personas'))
+        $fechaActual = Carbon::now()->toDateString();
+
+        $reservasHoy = Reserva::select('actividad_id', 'hora', DB::raw('CAST(fecha AS date) AS fecha'), DB::raw('SUM(personas) AS personas'))
             ->with('actividad')
             ->whereHas('actividad', function ($query) use ($userId) {
                 $query->where('user_id', $userId);
             })
+            ->whereDate('fecha', '=', $fechaActual)
             ->groupBy('actividad_id', 'fecha', 'hora')
             ->orderBy('actividad_id')
             ->get();
 
+        $reservas = Reserva::select('actividad_id', DB::raw('CAST(fecha AS date) AS fecha'), DB::raw('SUM(personas) AS personas'))
+            ->with('actividad')
+            ->whereHas('actividad', function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })
+            ->whereDate('fecha', '>', $fechaActual)
+            ->groupBy('actividad_id', 'fecha')
+            ->orderBy('actividad_id')
+            ->paginate(1); // Especifica la cantidad de elementos por página que deseas mostrar
+
+
         return view('guias.index', [
             'reservas' => $reservas,
+            'reservasHoy' => $reservasHoy,
         ]);
     }
 }
