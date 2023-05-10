@@ -57,7 +57,7 @@
         </div>
     @endif
 
-    <div class="flex flex-wrap justify-around w-full gap-4">
+    <div class="flex flex-wrap justify-around w-full gap-4 mt-4">
         @foreach ($reservas as $reserva)
             <a href="#"
                 class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100">
