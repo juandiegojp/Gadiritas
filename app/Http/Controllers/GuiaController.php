@@ -51,8 +51,8 @@ class GuiaController extends Controller
             })
             ->whereDate('fecha', '>', $fechaActual)
             ->groupBy('actividad_id', 'fecha')
-            ->orderBy('actividad_id')
-            ->paginate(1); // Especifica la cantidad de elementos por página que deseas mostrar
+            ->orderBy('fecha')
+            ->paginate(4); // Especifica la cantidad de elementos por página que deseas mostrar
 
 
         return view('guias.index', [
