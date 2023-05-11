@@ -27,6 +27,12 @@ class GuiaController extends Controller
         ]);
     }
 
+    /**
+     * Devuelve a la vista index de los usuarios GUIAS todas las guias que tienen pendiente
+     * del día actual. También devuelven las futuras.
+     *
+     * @return void
+     */
     public function index()
     {
         $user = auth()->user();
@@ -41,8 +47,8 @@ class GuiaController extends Controller
             })
             ->whereDate('fecha', '=', $fechaActual)
             ->groupBy('actividad_id', 'fecha', 'hora')
-            ->orderBy('actividad_id')
-            ->get();
+            ->orderBy('hora')
+            ->paginate(4);
 
         $reservas = Reserva::select('actividad_id', DB::raw('CAST(fecha AS date) AS fecha'), DB::raw('SUM(personas) AS personas'))
             ->with('actividad')
@@ -52,12 +58,43 @@ class GuiaController extends Controller
             ->whereDate('fecha', '>', $fechaActual)
             ->groupBy('actividad_id', 'fecha')
             ->orderBy('fecha')
-            ->paginate(4); // Especifica la cantidad de elementos por página que deseas mostrar
+            ->paginate(4);
 
 
         return view('guias.index', [
             'reservas' => $reservas,
             'reservasHoy' => $reservasHoy,
+        ]);
+    }
+
+    /**
+     * Devuelve los trabajos que ha compleado el usuario guia.
+     * Muestra los trabajos pasasdos y, si es el día actual, también si su hora ha sido cumplida.
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function historialTrabajo()
+    {
+        $user = auth()->user();
+        $userId = $user->id;
+
+        $fechaActual = Carbon::now()->toDateString();
+        $horaActual = Carbon::now()->toTimeString();
+
+        $reservas = Reserva::select('actividad_id', 'hora', DB::raw('CAST(fecha AS date) AS fecha'))
+            ->with('actividad')
+            ->whereHas('actividad', function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })
+            ->whereRaw("CONCAT(fecha, ' ', hora) < '{$fechaActual} {$horaActual}'")
+            ->groupBy('actividad_id', 'fecha', 'hora')
+            ->orderBy('fecha')
+            ->orderBy('hora')
+            ->paginate(12);
+
+        return view('guias.historial', [
+            'reservas' => $reservas,
         ]);
     }
 }

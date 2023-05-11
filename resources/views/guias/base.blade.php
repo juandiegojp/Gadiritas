@@ -21,11 +21,11 @@
 <body>
     <nav class="top-0 left-0 z-20 w-full bg-white border-b border-gray-200">
         <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
-            <a href=" {{ route('admin.index') }} " class="flex items-center">
+            <a href=" {{ route('guias.index') }} " class="flex items-center">
                 <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="logo Gadiritas" id="logoGuia">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap">Gadiritas</span>
             </a>
-            {{-- Añadir order-2 --}}
+            {{--TODO: Añadir order-2 --}}
             <div class="flex ">
                 <button data-collapse-toggle="navbar-sticky" type="button"
                     class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
@@ -62,6 +62,10 @@
             <li>
                 <a href="/profile"
                     class="block px-4 py-2 hover:bg-gray-100">Perfil</a>
+            </li>
+            <li>
+                <a href="{{route('guias.historial')}}"
+                    class="block px-4 py-2 hover:bg-gray-100">Historial</a>
             </li>
             <li>
                 <a href="{{ route('logout') }}"
