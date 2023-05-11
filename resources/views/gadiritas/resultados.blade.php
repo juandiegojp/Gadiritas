@@ -40,6 +40,7 @@
         @endforeach
     </div>
     @include('gadiritas.footer')
+    {{-- <script src="{{ Vite::asset('resources/js/gadiritas.js') }}"></script> --}}
     <script>
         $(document).ready(function() {
             function filtrar() {
@@ -52,8 +53,8 @@
                 }
 
                 console.log("Orden:" + orden);
-                console.log("DestinoID:"+destino_id);
-                console.log("Free tout: "+freeTour);
+                console.log("DestinoID:" + destino_id);
+                console.log("Free tout: " + freeTour);
 
                 $.ajax({
                     url: "/resultados/filtrar",
@@ -97,7 +98,6 @@
                 });
             }
 
-
             $("#orden").change(function() {
                 filtrar();
             });
@@ -107,5 +107,4 @@
             });
         });
     </script>
-
 @endsection
