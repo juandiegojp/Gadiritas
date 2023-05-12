@@ -3,79 +3,27 @@
     Guias - Dashboard
 @endsection
 @section('content')
-    @if (session('success'))
-        <div id="toast-success" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow"
-            role="alert">
-            <div
-                class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg">
-                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"></path>
-                </svg>
-                <span class="sr-only">Check icon</span>
-            </div>
-            <div class="ml-3 text-sm font-normal">{{ session('success') }}</div>
-            <button type="button"
-                class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8"
-                data-dismiss-target="#toast-success" aria-label="Close">
-                <span class="sr-only">Close</span>
-                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                        clip-rule="evenodd"></path>
-                </svg>
-            </button>
-        </div>
-    @elseif (session('error'))
-        <div id="toast-success" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow"
-            role="alert">
-            <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg">
-                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"></path>
-                </svg>
-                <span class="sr-only">Check icon</span>
-            </div>
-            <div class="ml-3 text-sm font-normal">{{ session('error') }}</div>
-            <button type="button"
-                class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8"
-                data-dismiss-target="#toast-success" aria-label="Close">
-                <span class="sr-only">Close</span>
-                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                        clip-rule="evenodd"></path>
-                </svg>
-            </button>
-        </div>
-    @endif
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var reservasHoy = document.getElementById('reservasHoy');
+        var h1Element = reservasHoy.querySelector('span');
+        var links = reservasHoy.getElementsByTagName('a');
+        var count = links.length;
+
+        h1Element.innerHTML = count;
+    });
+</script>
+
+
     <div class="flex justify-between mx-2">
-        <div class="w-1/2 mt-4">
-            <p class="inline-block">TODAY</p>
+        <div class="w-1/2 mt-4" id="reservasHoy">
+            <h1 class="flex items-center text-2xl font-extrabold">Hoy<span
+                    class="bg-blue-100 text-blue-800 text-xl font-semibold mr-2 px-2.5 py-0.5 rounded ml-2">
+                    {{ count($reservasHoy) }}</span>
+            </h1>
             @foreach ($reservasHoy as $reserva)
-                @if (\Carbon\Carbon::parse($reserva->hora)->isPast())
-                    <a href="#" class="hidden">
-                        <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                            src="{{ Vite::asset("resources/images/{$reserva->actividad->id}.jpg") }}" alt="img">
-                        <div class="flex flex-col justify-between p-4 leading-normal">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                                {{ $reserva->actividad->titulo }}</h5>
-                            <p class="mb-3 font-normal text-gray-700 ">Fecha:
-                                {{ \Carbon\Carbon::parse($reserva->fecha)->format('d/m/Y') }}</p>
-                            <p class="mb-3 font-normal text-gray-700 ">Inicio:
-                                {{ \Carbon\Carbon::parse($reserva->hora)->format('h:i') }}</p>
-                            <p class="mb-3 font-normal text-gray-700 ">Nº de personas: {{ $reserva->personas }}
-                            </p>
-                        </div>
-                    </a>
-                @else
-                    <a href="#"
+                @if (!\Carbon\Carbon::parse($reserva->hora)->isPast())
+                    <a href="#" data-modal-target="defaultModal" data-modal-toggle="defaultModal"
                         class="flex flex-col items-center my-2 bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100">
                         <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
                             src="{{ Vite::asset("resources/images/{$reserva->actividad->id}.jpg") }}" alt="img">
@@ -86,30 +34,25 @@
                                 {{ \Carbon\Carbon::parse($reserva->fecha)->format('d/m/Y') }}</p>
                             <p class="mb-3 font-normal text-gray-700 ">Inicio:
                                 {{ \Carbon\Carbon::parse($reserva->hora)->format('h:i') }}</p>
-                            <p class="mb-3 font-normal text-gray-700 ">Nº de personas: {{ $reserva->personas }}
-                            </p>
+                            <p class="mb-3 font-normal text-gray-700 ">Nº de personas: {{ $reserva->personas }}</p>
                         </div>
                     </a>
                 @endif
             @endforeach
-
         </div>
         <div class="w-1/2 mt-4">
-            <p>OTRAS FECHAS</p>
+            <h1 class="flex items-center text-xl font-extrabold">Próximamente</h1>
             <div class="grid grid-cols-2">
                 @foreach ($reservas as $reserva)
-                    <a href="#"
+                    <a href="#" data-modal-target="defaultModal" data-modal-toggle="defaultModal"
                         class="flex flex-col items-center w-3/4 my-2 bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100">
                         <div class="flex flex-col justify-between p-4 leading-normal">
                             <h5 class="mb-2 text-sm font-bold tracking-tight text-gray-900">
                                 {{ $reserva->actividad->titulo }}</h5>
                             <p class="mb-3 text-xs text-gray-700 ">Fecha de la reserva:
                                 {{ \Carbon\Carbon::parse($reserva->fecha)->format('d/m/Y') }}</p>
-                            </p>
                             @if ($reserva->personas == $reserva->actividad->max_personas)
-                                <p class="text-md text-gray-700 bg-yellow-100 text-center">
-                                    ¡COMPLETOS!
-                                </p>
+                                <p class="text-md text-gray-700 bg-yellow-100 text-center">¡COMPLETOS!</p>
                             @else
                                 <p class="text-xs text-gray-700 ">Nº de personas: {{ $reserva->personas }}
                             @endif
@@ -120,5 +63,44 @@
             {{ $reservas->links() }}
         </div>
     </div>
+
+
+    <!-- Main modal -->
+    <div id="defaultModal" tabindex="-1" aria-hidden="true"
+        class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative w-full max-w-2xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Detalles
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="defaultModal">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-6 space-y-6">
+                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                        With less than a month to go before the European Union enacts new consumer privacy laws for its
+                        citizens, companies around the world are updating their terms of service agreements to comply.
+                    </p>
+                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                        The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is
+                        meant to ensure a common set of data rights in the European Union. It requires organizations to
+                        notify users as soon as possible of high-risk data breaches that could personally affect them.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
