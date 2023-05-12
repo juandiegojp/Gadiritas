@@ -57,7 +57,7 @@
                         {{ $actividad->destino->nombre }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $actividad->guia->nombre }}
+                        {{ $actividad->guia->name }}
                     </td>
                     <td class="px-6 py-4 flex justify-between items-center">
                         <a href=" {{ route('admin.editarActividad', $actividad->id) }} "

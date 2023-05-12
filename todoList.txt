@@ -1,0 +1,2 @@
+- Solucionar pagos con 0€. Esto se solucionará creando una reserva sin necesidad de paypal.
+- Solucionar problema de diseño con el footer.

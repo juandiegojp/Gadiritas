@@ -11,7 +11,7 @@
         <style>
             body {
                 background: rgb(255,236,203);
-                background: radial-gradient(circle, rgba(255,236,203,1) 0%, rgba(0,82,72,1) 100%);
+                background: radial-gradient(circle, rgba(255,236,203,1) 0%, rgb(100, 187, 211) 100%);
             }
         </style>
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -27,7 +27,7 @@
             <!-- Page Heading -->
             @if (isset($header))
                 <header>
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>

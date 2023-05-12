@@ -34,12 +34,12 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
 
     // Guias
     Route::get('/guias', [GuiaController::class, 'guias'])->name('admin.guias');
-    Route::get('/guias/create', [GuiaController::class, 'guiasForm'])->name('admin.guiasCreate');
-    Route::post('/guias/create', [GuiaController::class, 'storeGuias'])->name('admin.storeGuias');
-    Route::get('/guias/detalles/{guia}', [GuiaController::class, 'datellesGuia'])->name('admin.datellesGuia');
-    Route::get('/guias/{guia}/edit', [GuiaController::class, 'editarGuia'])->name('admin.editarGuia');
-    Route::put('/guias/{guia}/edit', [GuiaController::class, 'updateGuia'])->name('admin.updateGuia');
-    Route::delete('/guias/{guia}/delete', [GuiaController::class, 'borrarGuia'])->name('admin.borrarGuia');
+    //Route::get('/guias/create', [GuiaController::class, 'guiasForm'])->name('admin.guiasCreate');
+    //Route::post('/guias/create', [GuiaController::class, 'storeGuias'])->name('admin.storeGuias');
+    //Route::get('/guias/detalles/{guia}', [GuiaController::class, 'datellesGuia'])->name('admin.datellesGuia');
+    //Route::get('/guias/{guia}/edit', [GuiaController::class, 'editarGuia'])->name('admin.editarGuia');
+    //Route::put('/guias/{guia}/edit', [GuiaController::class, 'updateGuia'])->name('admin.updateGuia');
+    //Route::delete('/guias/{guia}/delete', [GuiaController::class, 'borrarGuia'])->name('admin.borrarGuia');
 
     // Destinos
     Route::get('/destinos', [DestinoController::class, 'destinos'])->name('admin.destinos');
@@ -78,6 +78,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/paypal/error', [PaypalController::class, 'error'])->name('paypal.error');
     Route::post('/paypal/checkout', [PaypalController::class, 'checkout'])->name('paypal.checkout');
     Route::post('/paypal/cancel', [PaypalController::class, 'cancel'])->name('paypal.cancel');
+});
+
+Route::group(['middleware' => ['CheckIsGuia','auth']], function () {
+    Route::get('/indexGuia', [GuiaController::class, 'index'])->name('guias.index');
+    Route::get('/guia/historial', [GuiaController::class, 'historialTrabajo'])->name('guias.historial');
 });
 
 

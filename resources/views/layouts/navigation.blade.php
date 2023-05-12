@@ -5,7 +5,13 @@
             <div class="flex mb-4">
                 <!-- Logo -->
                 <div class="flex items-center">
+                    @if (Auth::user()->is_admin)
+                    <a href="{{ route('admin.index') }}">
+                    @elseif (Auth::user()->is_guia)
+                    <a href="{{ route('guias.index') }}">
+                    @else
                     <a href="{{ route('usuarios.index') }}">
+                    @endif
                         <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="logo Gadiritas" id="navbarLogo" class="block w-auto h-24 text-gray-800 dark:text-gray-200">
                     </a>
                 </div>

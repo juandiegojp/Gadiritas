@@ -3,7 +3,7 @@
     Gadiritas - Home
 @endsection
 @section('content')
-    <div id="contenedor_home">
+    <div id="contenedorHome">
         @if (session('success'))
             <div id="toast-success"
                 class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
@@ -59,7 +59,7 @@
                 </button>
             </div>
         @endif
-        <div id="headings_home">
+        <div>
             <h2 class="text-xl font-extrabold dark:text-white uppercase">Encuentra tu actividad ideal</h2>
             <h2 class="text-2xl font-extrabold dark:text-white">Experiencias inolvidables por todo Cádiz</h2>
         </div>
@@ -149,4 +149,5 @@
                 </div>
             </div>
         </div>
+    </div>
     @endsection

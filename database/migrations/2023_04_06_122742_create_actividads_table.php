@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('duracion');
             $table->integer('max_personas')->nullable();
             $table->timestamps();
-            $table->foreignId('guia_id')->constrained('guias')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('destino_id')->constrained('destinos')->onDelete('cascade');
         });
     }

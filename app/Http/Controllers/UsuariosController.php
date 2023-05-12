@@ -19,7 +19,10 @@ class UsuariosController extends Controller
     public function usuarios()
     {
         $reservas = Reserva::all();
-        $users = User::all();
+        $users = User::where('is_guia', false)
+            ->orderBy('is_admin')
+            ->get();
+
         return view('admin.usuarios.index', [
             'reservas' => $reservas,
             'usuarios' => $users,
@@ -51,7 +54,8 @@ class UsuariosController extends Controller
             'email' => $request->email,
             'telefono' => $request->tlf,
             'password' => Hash::make($request->password1),
-            'is_admin' => $request->input('is_admin') ? "True" : "False"
+            'is_admin' => $request->input('is_admin') ? "True" : "False",
+            'is_guia' => $request->input('is_guia') ? "True" : "False"
         ]);
 
         return redirect('/usuarios/detalles/'. $n_usuario->id);
@@ -98,7 +102,8 @@ class UsuariosController extends Controller
             'email' => $request->email,
             'telefono' => $request->tlf,
             'password' => Hash::make($request->password1),
-            'is_admin' => $request->input('is_admin') ? "True" : "False"
+            'is_admin' => $request->input('is_admin') ? "True" : "False",
+            'is_guia' => $request->input('is_guia') ? "True" : "False"
         ]);
 
         return redirect('/usuarios/detalles/'. $usuario->id);
