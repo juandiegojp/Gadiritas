@@ -106,6 +106,13 @@
                             <p class="mb-3 text-xs text-gray-700 ">Fecha de la reserva:
                                 {{ \Carbon\Carbon::parse($reserva->fecha)->format('d/m/Y') }}</p>
                             </p>
+                            @if ($reserva->personas == $reserva->actividad->max_personas)
+                                <p class="text-md text-gray-700 bg-yellow-100 text-center">
+                                    ¡COMPLETOS!
+                                </p>
+                            @else
+                                <p class="text-xs text-gray-700 ">Nº de personas: {{ $reserva->personas }}
+                            @endif
                         </div>
                     </a>
                 @endforeach

@@ -50,13 +50,13 @@ class GuiaController extends Controller
             ->orderBy('hora')
             ->paginate(4);
 
-        $reservas = Reserva::select('actividad_id', DB::raw('CAST(fecha AS date) AS fecha'), DB::raw('SUM(personas) AS personas'))
+        $reservas = Reserva::select('actividad_id', 'hora', DB::raw('CAST(fecha AS date) AS fecha'), DB::raw('SUM(personas) AS personas'))
             ->with('actividad')
             ->whereHas('actividad', function ($query) use ($userId) {
                 $query->where('user_id', $userId);
             })
             ->whereDate('fecha', '>', $fechaActual)
-            ->groupBy('actividad_id', 'fecha')
+            ->groupBy('actividad_id', 'fecha', 'hora')
             ->orderBy('fecha')
             ->paginate(4);
 
@@ -89,8 +89,8 @@ class GuiaController extends Controller
             })
             ->whereRaw("CONCAT(fecha, ' ', hora) < '{$fechaActual} {$horaActual}'")
             ->groupBy('actividad_id', 'fecha', 'hora')
-            ->orderBy('fecha')
-            ->orderBy('hora')
+            ->orderBy('fecha', 'DESC')
+            ->orderBy('hora', 'DESC')
             ->paginate(12);
 
         return view('guias.historial', [
