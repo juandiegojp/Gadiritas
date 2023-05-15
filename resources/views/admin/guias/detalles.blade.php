@@ -25,6 +25,9 @@
                     <th scope="col" class="px-6 py-3">
                         Teléfono
                     </th>
+                    <th scope="col" class="px-6 py-3">
+                        ¿Ban?
+                    </th>
                     <th scope="col" class="px-6 py-3 col-span-2 text-center">
                         Acciones
                     </th>
@@ -47,15 +50,28 @@
                     <td class="px-6 py-4">
                         {{ $guia->tlf }}
                     </td>
+                    <td class="px-6 py-4">
+                        <p>{{ $usuario->isBanned() ? 'Sí' : 'No' }}</p>
+                        @if ($usuario->bans && $usuario->bans->last())
+                            <p>{{ $usuario->bans->last()->expired_at }}</p>
+                        @endif
+                    </td>
                     <td class="px-6 py-4 flex justify-between items-center">
                         <a href=" {{ route('admin.editarGuia', $guia->id) }} "
                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
+                        @if (!$usuario->isBanned())
+                            <a data-modal-target="banhammer" data-modal-toggle="banhammer" href="#"
+                                class="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                Banear
+                            </a>
+                        @else
+                            <a data-modal-target="banhammer" data-modal-toggle="banhammer" href="#"
+                                class="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                Desbanear
+                            </a>
+                        @endif
                         <a data-modal-target="popup-modal" data-modal-toggle="popup-modal" href="#"
                             class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                            Borrar
-                        </a>
-                        <a data-modal-target="popup-modal" data-modal-toggle="popup-modal" href="#"
-                            class="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Borrar
                         </a>
                     </td>
@@ -124,17 +140,16 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
-                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">¿Estás seguro de banear a este
-                        usuario?</h3>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">¿Estás seguro?</h3>
                     <form action="{{ route('admin.banearUsuario', $usuario->id) }}" method="post">
                         @csrf
                         <button data-modal-hide="popup-modal" type="submit"
                             class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-                            Ban
+                            Sí
                         </button>
+                        <button type="button" data-modal-hide="banhammer"
+                            class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancelar</button>
                     </form>
-                    <button data-modal-hide="popup-modal" type="button"
-                        class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancelar</button>
                 </div>
             </div>
         </div>

@@ -81,7 +81,7 @@ Route::middleware(['logout.banned', 'auth'])->group(function () {
     Route::post('/paypal/cancel', [PaypalController::class, 'cancel'])->name('paypal.cancel');
 });
 
-Route::group(['middleware' => ['CheckIsGuia','auth']], function () {
+Route::group(['middleware' => ['logout.banned','auth','CheckIsGuia']], function () {
     Route::get('/indexGuia', [GuiaController::class, 'index'])->name('guias.index');
     Route::get('/guia/historial', [GuiaController::class, 'historialTrabajo'])->name('guias.historial');
 });
