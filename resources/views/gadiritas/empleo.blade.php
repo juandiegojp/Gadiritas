@@ -11,7 +11,9 @@
 </head>
 
 <body>
-    <form action="" method="POST" class="flex flex-col items-center justify-center mt-4" enctype="multipart/form-data">
+    <h1>TRABAJA CON NOSOTROS</h1>
+    <form action="" method="POST" class="flex flex-col items-center justify-center mt-4"
+        enctype="multipart/form-data">
         @csrf
         <div class="w-1/2 mb-6">
             <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900">Nombre completo</label>
@@ -32,7 +34,8 @@
                 placeholder="" required>
         </div>
         <div class="w-1/2 mb-6">
-            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Carta de presentación</label>
+            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Carta de
+                presentación</label>
             <textarea id="message" rows="4" name="message"
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 resize-none"
                 placeholder="Breve descripción sobre ti..." required></textarea>

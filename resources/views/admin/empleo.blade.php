@@ -56,26 +56,52 @@
             </button>
         </div>
     @endif
-    <h1>List of CVs</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($cvs as $cv)
+    <div class="relative overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <td>{{ $cv->nombre }}</td>
-                    <td>{{ $cv->correo }}</td>
-                    <td>
-                        <a href="{{ route('admin.cvs.download', $cv->id) }}">Descargar CV</a>
-                    </td>
+                    <th scope="col" class="px-6 py-3">
+                        Nombre
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Correo
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Teléfono
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Mensaje
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Acciones
+                    </th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                </tr>
+                @foreach ($cvs as $cv)
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{ $cv->nombre }}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{ $cv->correo }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $cv->telefono }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $cv->mensaje }}
+                        </td>
+                        <td class="px-6 py-4">
+                            <a href="{{ route('admin.cvs.download', $cv->id) }}"
+                                class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">Descargar
+                                CV</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection
