@@ -31,6 +31,7 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('/usuarios/{usuario}/edit', [UsuariosController::class, 'editarUsuario'])->name('admin.editarUsuario');
     Route::put('/usuarios/{usuario}/edit', [UsuariosController::class, 'updateUsuario'])->name('admin.updateUsuario');
     Route::delete('/usuarios/{usuario}/delete', [UsuariosController::class, 'borrarUsuario'])->name('admin.borrarUsuario');
+    Route::post('/banear-usuario/{id}', [UsuariosController::class, 'banearUsuario'])->name('admin.banearUsuario');
 
     // Guias
     Route::get('/guias', [GuiaController::class, 'guias'])->name('admin.guias');
@@ -61,7 +62,7 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
 });
 
 // Todas las rutas para los usuarios.
-Route::group(['middleware' => ['auth']], function () {
+Route::middleware(['logout.banned', 'auth'])->group(function () {
     Route::get('/index', [UsuariosController::class, 'index'])->name('usuarios.index');
     Route::post('/resultados', [ActividadController::class, 'busquedaActividades'])->name('usuarios.busquedaActividades');
     Route::post('/resultados/filtrar', [ActividadController::class, 'filtrar'])->name('actividades.filtrar');
@@ -80,7 +81,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/paypal/cancel', [PaypalController::class, 'cancel'])->name('paypal.cancel');
 });
 
-Route::group(['middleware' => ['CheckIsGuia','auth']], function () {
+Route::group(['middleware' => ['logout.banned','auth','CheckIsGuia']], function () {
     Route::get('/indexGuia', [GuiaController::class, 'index'])->name('guias.index');
     Route::get('/guia/historial', [GuiaController::class, 'historialTrabajo'])->name('guias.historial');
 });

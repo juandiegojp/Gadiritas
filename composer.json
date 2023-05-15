@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^10.1",
         "laravel/tinker": "^2.8",
+        "mchev/banhammer": "^1.2",
         "nesbot/carbon": "^2.66",
         "paypal/rest-api-sdk-php": "^1.6",
         "srmklive/paypal": "^1.11.0"
