@@ -31,7 +31,7 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('/usuarios/{usuario}/edit', [UsuariosController::class, 'editarUsuario'])->name('admin.editarUsuario');
     Route::put('/usuarios/{usuario}/edit', [UsuariosController::class, 'updateUsuario'])->name('admin.updateUsuario');
     Route::delete('/usuarios/{usuario}/delete', [UsuariosController::class, 'borrarUsuario'])->name('admin.borrarUsuario');
-    Route::post('/banear-usuario/{id}', [UsuariosController::class, 'banearUsuario'])->name('admin.banearUsuario');
+    Route::post('/banear-usuario/{id}', [AdminController::class, 'banearUsuario'])->name('admin.banearUsuario');
 
     // Guias
     Route::get('/guias', [GuiaController::class, 'guias'])->name('admin.guias');
@@ -59,6 +59,9 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('/actividades/{actividad}/edit', [ActividadController::class, 'editarActividad'])->name('admin.editarActividad');
     Route::put('/actividades/{actividad}/edit', [ActividadController::class, 'updateActividad'])->name('admin.updateActividad');
     Route::delete('/actividades/{actividad}/delete', [ActividadController::class, 'borrarActividad'])->name('admin.borrarActividad');
+
+    Route::get('/admin/cvs', [AdminController::class, 'showCVs'])->name('admin.cvs');
+    Route::get('/admin/cvs/{id}/download', [AdminController::class, 'downloadCV'])->name('admin.cvs.download');
 });
 
 // Todas las rutas para los usuarios.
@@ -79,9 +82,11 @@ Route::middleware(['logout.banned', 'auth'])->group(function () {
     Route::get('/paypal/error', [PaypalController::class, 'error'])->name('paypal.error');
     Route::post('/paypal/checkout', [PaypalController::class, 'checkout'])->name('paypal.checkout');
     Route::post('/paypal/cancel', [PaypalController::class, 'cancel'])->name('paypal.cancel');
+    Route::get('/empleo', [UsuariosController::class, 'ShowEmpleoForm'])->name('usuarios.empleo');
+    Route::post('/empleo', [UsuariosController::class, 'empleoStore'])->name('usuarios.enviarCV');
 });
 
-Route::group(['middleware' => ['logout.banned','auth','CheckIsGuia']], function () {
+Route::group(['middleware' => ['logout.banned', 'auth', 'CheckIsGuia']], function () {
     Route::get('/indexGuia', [GuiaController::class, 'index'])->name('guias.index');
     Route::get('/guia/historial', [GuiaController::class, 'historialTrabajo'])->name('guias.historial');
 });
