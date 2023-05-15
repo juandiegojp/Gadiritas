@@ -6,6 +6,7 @@ use App\Models\Actividad;
 use App\Models\Destino;
 use App\Models\Reserva;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -54,11 +55,11 @@ class UsuariosController extends Controller
             'email' => $request->email,
             'telefono' => $request->tlf,
             'password' => Hash::make($request->password1),
-            'is_admin' => $request->input('is_admin') ? "True" : "False",
-            'is_guia' => $request->input('is_guia') ? "True" : "False"
+            'is_admin' => $request->input('is_admin') ? 'True' : 'False',
+            'is_guia' => $request->input('is_guia') ? 'True' : 'False',
         ]);
 
-        return redirect('/usuarios/detalles/'. $n_usuario->id);
+        return redirect('/usuarios/detalles/' . $n_usuario->id);
     }
 
     /**
@@ -102,11 +103,11 @@ class UsuariosController extends Controller
             'email' => $request->email,
             'telefono' => $request->tlf,
             'password' => Hash::make($request->password1),
-            'is_admin' => $request->input('is_admin') ? "True" : "False",
-            'is_guia' => $request->input('is_guia') ? "True" : "False"
+            'is_admin' => $request->input('is_admin') ? 'True' : 'False',
+            'is_guia' => $request->input('is_guia') ? 'True' : 'False',
         ]);
 
-        return redirect('/usuarios/detalles/'. $usuario->id);
+        return redirect('/usuarios/detalles/' . $usuario->id);
     }
 
     /**
@@ -141,4 +142,21 @@ class UsuariosController extends Controller
         ]);
     }
 
+    public function banearUsuario($id)
+    {
+        $usuario = User::findOrFail($id);
+
+        if ($usuario->isBanned()) {
+            // El usuario ya está baneado, realizar acción de desbaneo
+            $usuario->unban();
+            $message = 'Usuario desbaneado exitosamente.';
+
+        } else {
+            // El usuario no está baneado, realizar acción de baneo
+            $usuario->banUntil('7 days');
+            $message = 'Usuario baneado exitosamente.';
+        }
+
+        return redirect()->route('admin.datellesUsuario', $usuario)->with('message', $message);
+    }
 }
