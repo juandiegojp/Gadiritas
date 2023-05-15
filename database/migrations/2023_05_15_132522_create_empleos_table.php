@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('empleos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('correo')->unique();
-            $table->string('telefono')->unique();
+            $table->string('correo');
+            $table->string('telefono');
             $table->text('mensaje');
             $table->string('cv_path');
             $table->timestamps();

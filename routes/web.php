@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/empleo', [UsuariosController::class, 'ShowEmpleoForm'])->name('usuarios.empleo');
+Route::post('/empleo', [UsuariosController::class, 'empleoStore'])->name('usuarios.enviarCV');
 
 // Administrador
 Route::group(['middleware' => ['admin', 'auth']], function () {
@@ -82,8 +84,6 @@ Route::middleware(['logout.banned', 'auth'])->group(function () {
     Route::get('/paypal/error', [PaypalController::class, 'error'])->name('paypal.error');
     Route::post('/paypal/checkout', [PaypalController::class, 'checkout'])->name('paypal.checkout');
     Route::post('/paypal/cancel', [PaypalController::class, 'cancel'])->name('paypal.cancel');
-    Route::get('/empleo', [UsuariosController::class, 'ShowEmpleoForm'])->name('usuarios.empleo');
-    Route::post('/empleo', [UsuariosController::class, 'empleoStore'])->name('usuarios.enviarCV');
 });
 
 Route::group(['middleware' => ['logout.banned', 'auth', 'CheckIsGuia']], function () {

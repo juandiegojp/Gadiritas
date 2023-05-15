@@ -11,28 +11,29 @@
 </head>
 
 <body>
-    <form action="" method="POST" class="flex flex-col items-center justify-center mt-4">
+    <form action="" method="POST" class="flex flex-col items-center justify-center mt-4" enctype="multipart/form-data">
+        @csrf
         <div class="w-1/2 mb-6">
             <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900">Nombre completo</label>
-            <input type="text" id="nombre"
+            <input type="text" id="nombre" name="nombre"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Juan José Valladares del Olmo" required>
         </div>
         <div class="w-1/2 mb-6">
             <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-            <input type="email" id="email"
+            <input type="email" id="email" name="email"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="tu@email.com" required>
         </div>
         <div class="w-1/2 mb-6">
             <label for="tlf" class="block mb-2 text-sm font-medium text-gray-900">Teléfono</label>
-            <input type="tel" id="tlf"
+            <input type="tel" id="tlf" name="tlf"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="" required>
         </div>
         <div class="w-1/2 mb-6">
             <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Carta de presentación</label>
-            <textarea id="message" rows="4"
+            <textarea id="message" rows="4" name="message"
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 resize-none"
                 placeholder="Breve descripción sobre ti..." required></textarea>
         </div>

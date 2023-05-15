@@ -151,14 +151,6 @@ class UsuariosController extends Controller
 
     public function empleoStore(Request $request)
     {
-        // Validar los datos del formulario
-        $validatedData = $request->validate([
-            'nombre' => 'required',
-            'email' => 'required',
-            'tlf' => 'required',
-            'message' => 'required',
-            'cv' => 'required|mimes:pdf|max:2048', // Valida que el archivo sea PDF y no exceda los 2MB
-        ]);
 
         // Obtener el archivo adjunto
         $cv = $request->file('cv');
@@ -166,17 +158,16 @@ class UsuariosController extends Controller
         // Guardar el archivo adjunto en una ubicación específica
         $cvPath = $cv->store('cvs');
 
+
         // Crear un nuevo registro en la base de datos
-        $empleo = new Empleo();
-        $empleo->nombre = $validatedData['nombre'];
-        $empleo->correo = $validatedData['email'];
-        $empleo->telefono = $validatedData['tlf'];
-        $empleo->mensaje = $validatedData['message'];
-        $empleo->cv_path = $cvPath;
-        $empleo->save();
+        $empleo = Empleo::create([
+            'nombre' => $request->nombre,
+            'correo' => $request->email,
+            'telefono' => $request->tlf,
+            'mensaje' => $request->message,
+            'cv_path' => $cvPath,
+        ]);
 
-
-        // Redireccionar o mostrar un mensaje de éxito
-        return redirect()->back()->with('success', 'El formulario ha sido enviado correctamente.');
+        return redirect()->route('usuarios.empleo')->with('success', 'El formulario ha sido enviado correctamente.');
     }
 }

@@ -62,7 +62,7 @@ class AdminController extends Controller
         // Obtener todos los registros de CV de la base de datos
         $cvs = Empleo::all();
 
-        return view('admin.cvs', compact('cvs'));
+        return view('admin.empleo', compact('cvs'));
     }
 
     public function downloadCV($id)
