@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mail\newReserva;
+use App\Models\Reserva;
 use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
@@ -13,14 +14,18 @@ class MailController extends Controller
      *
      * @return response()
      */
-    public function index(Request $request)
+    public function index(Reserva $reserva)
     {
         $mailData = [
-            'title' => 'Correo de prueba. Reserva de actividad.',
-            'body' => 'This is for testing email using smtp.'
+            'title' => '¡Gracias por reservas con nosotros!',
+            'body' => 'Aquí abajo encontrará toda la información detallada de su reserva:',
+            'titulo' => $reserva->actividad->titulo,
+            'fecha' => $reserva->fecha,
+            'hora' => $reserva->hora,
+            'ubicación' => $reserva->actividad->direccion
         ];
 
-        Mail::to("juandiego.jurado@iesdonana.org")->send(new newReserva($mailData));
+        Mail::to($reserva->user->email)->send(new newReserva($mailData));
 
         dd("Email is sent successfully.");
     }

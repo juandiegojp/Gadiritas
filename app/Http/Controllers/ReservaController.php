@@ -27,7 +27,7 @@ class ReservaController extends Controller
         ]);
 
         $mail = new MailController();
-        $mail->index($request);
+        $mail->index($n_reserva);
     }
 
     /**
