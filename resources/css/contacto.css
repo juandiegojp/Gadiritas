@@ -4,27 +4,36 @@ body {
     background-repeat: no-repeat;
 }
 
+img {
+    margin: 1rem 0rem;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    border:5px solid #666;
+}
 
 #trabajaNosotros {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 #trabajaNosotros div {
-    width: 50%;
-    margin-bottom: 1.5rem;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 #trabajaNosotros label {
+    text-transform: uppercase;
     text-align: center;
+    text-decoration: underline;
     display: block;
     margin-bottom: 0.5rem;
     font-size: 0.875rem;
+    font-weight: bold;
     line-height: 1.25rem;
-    font-weight: 500;
     color: black;
 }
 
@@ -64,6 +73,7 @@ body {
     padding-top: 0.625rem /* 10px */;
     padding-bottom: 0.625rem /* 10px */;
     text-align: center;
+    margin-bottom: 1rem;
 }
 
 #trabajaNosotros button:hover {
@@ -86,15 +96,10 @@ body {
 
 #left-div {
     width: 50%;
-    float: left;
-    height: 100vh;
-    margin-bottom: 2rem;
-    position: fixed;
 }
 
 #semi-transparent-div {
-    background-color: rgba(255, 255, 255, 0.5);
-    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.40);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,22 +107,16 @@ body {
 }
 
 #semi-transparent-div p {
-    background-color: rgba(0, 0, 0, 0.345);
+    background-color: rgba(71, 128, 145, 0.3);
     font-size: xx-large;
     margin-bottom: 1rem;
     font-family: "Times New Roman", Times, serif;
 }
 
 #semi-transparent-div h2 {
-    background-color: rgba(0, 0, 0, 0.345);
+    background-color: rgba(71, 128, 145, 0.3);
     width: 80%;
     font-family: "Times New Roman", Times, serif;
     text-align: center;
     font-size: large;
-}
-
-#right-div {
-    width: 50%;
-    float: right;
-    margin-bottom: 2rem;
 }
