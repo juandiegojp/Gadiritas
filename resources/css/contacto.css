@@ -1,0 +1,122 @@
+body {
+    background-image: url(https://rare-gallery.com/uploads/posts/372698-4k-wallpaper.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+img {
+    margin: 1rem 0rem;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    border:5px solid #666;
+}
+
+#trabajaNosotros {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+#trabajaNosotros div {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#trabajaNosotros label {
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: underline;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: bold;
+    line-height: 1.25rem;
+    color: black;
+}
+
+.inputTrabajo {
+    --tw-bg-opacity: 1;
+    background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+    border-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(209 213 219 / var(--tw-border-opacity));
+    color: black;
+    font-size: 0.875rem /* 14px */;
+    line-height: 1.25rem /* 20px */;
+    border-radius: 0.5rem /* 8px */;
+    display: block;
+    width: 100%;
+    padding: 0.625rem /* 10px */;
+}
+
+.inputTrabajo:focus {
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
+    --tw-border-opacity: 1;
+    border-color: rgb(59 130 246 / var(--tw-border-opacity));
+}
+
+#trabajaNosotros button {
+    color: white;
+    --tw-bg-opacity: 1;
+    background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+    font-weight: 500;
+    border-radius: 0.5rem /* 8px */;
+    font-size: 0.875rem /* 14px */;
+    line-height: 1.25rem /* 20px */;
+    width: 25%;
+    padding-left: 1.25rem /* 20px */;
+    padding-right: 1.25rem /* 20px */;
+    padding-top: 0.625rem /* 10px */;
+    padding-bottom: 0.625rem /* 10px */;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+#trabajaNosotros button:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(30 64 175 / var(--tw-bg-opacity));
+}
+
+#trabajaNosotros button:focus {
+    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0
+        var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0
+        calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
+        var(--tw-shadow, 0 0 #0000);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgb(147 197 253 / var(--tw-ring-opacity));
+}
+
+#left-div {
+    width: 50%;
+}
+
+#semi-transparent-div {
+    background-color: rgba(255, 255, 255, 0.40);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#semi-transparent-div p {
+    background-color: rgba(71, 128, 145, 0.3);
+    font-size: xx-large;
+    margin-bottom: 1rem;
+    font-family: "Times New Roman", Times, serif;
+}
+
+#semi-transparent-div h2 {
+    background-color: rgba(71, 128, 145, 0.3);
+    width: 80%;
+    font-family: "Times New Roman", Times, serif;
+    text-align: center;
+    font-size: large;
+}

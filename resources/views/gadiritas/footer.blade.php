@@ -21,7 +21,7 @@
                         </a>
                     </li>
                     <li class="mb-4">
-                        <a href="#" class="hover:underline">
+                        <a href="{{ route('usuarios.empleo') }}" class="hover:underline">
                             <p>Trabaja con nosotros</p>
                         </a>
                     </li>

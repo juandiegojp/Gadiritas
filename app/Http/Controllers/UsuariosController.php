@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Actividad;
 use App\Models\Destino;
+use App\Models\Empleo;
 use App\Models\Reserva;
 use App\Models\User;
 use Carbon\Carbon;
@@ -142,21 +143,31 @@ class UsuariosController extends Controller
         ]);
     }
 
-    public function banearUsuario($id)
+
+    public function ShowEmpleoForm()
     {
-        $usuario = User::findOrFail($id);
+        return view('gadiritas.empleo');
+    }
 
-        if ($usuario->isBanned()) {
-            // El usuario ya está baneado, realizar acción de desbaneo
-            $usuario->unban();
-            $message = 'Usuario desbaneado exitosamente.';
+    public function empleoStore(Request $request)
+    {
 
-        } else {
-            // El usuario no está baneado, realizar acción de baneo
-            $usuario->banUntil('7 days');
-            $message = 'Usuario baneado exitosamente.';
-        }
+        // Obtener el archivo adjunto
+        $cv = $request->file('cv');
 
-        return redirect()->route('admin.datellesUsuario', $usuario)->with('message', $message);
+        // Guardar el archivo adjunto en una ubicación específica
+        $cvPath = $cv->store('cvs');
+
+
+        // Crear un nuevo registro en la base de datos
+        $empleo = Empleo::create([
+            'nombre' => $request->nombre,
+            'correo' => $request->email,
+            'telefono' => $request->tlf,
+            'mensaje' => $request->message,
+            'cv_path' => $cvPath,
+        ]);
+
+        return redirect()->route('usuarios.empleo')->with('success', 'El formulario ha sido enviado correctamente.');
     }
 }
