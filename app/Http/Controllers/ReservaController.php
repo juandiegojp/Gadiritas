@@ -25,6 +25,9 @@ class ReservaController extends Controller
             'hora' => $hora,
             'personas' => $request->n_personas,
         ]);
+
+        $mail = new MailController();
+        $mail->index($request);
     }
 
     /**
