@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\DestinoController;
 use App\Http\Controllers\GuiaController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\PaypalController;
 
 use App\Http\Controllers\ReservaController;
@@ -15,9 +16,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Vista inicial cuando arrancas la app.
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return view('welcome'); });
+
+// Sección de empleo (trabaja con nosotros)
 Route::get('/empleo', [UsuariosController::class, 'ShowEmpleoForm'])->name('usuarios.empleo');
 Route::post('/empleo', [UsuariosController::class, 'empleoStore'])->name('usuarios.enviarCV');
 

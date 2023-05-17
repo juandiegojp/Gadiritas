@@ -25,6 +25,9 @@ class ReservaController extends Controller
             'hora' => $hora,
             'personas' => $request->n_personas,
         ]);
+
+        $mail = new MailController();
+        $mail->index($n_reserva);
     }
 
     /**
@@ -41,7 +44,7 @@ class ReservaController extends Controller
             ->get();
         $destinos = Destino::select('nombre', 'comarca')->get();
         $reservas = Reserva::where('user_id', $request->user()->id)
-            ->orderBy('fecha')
+            ->orderBy('fecha', 'DESC')
             ->paginate(5);
 
         return view('gadiritas.reservas', compact('reservas', 'comarcas', 'destinos'));
@@ -57,6 +60,8 @@ class ReservaController extends Controller
     {
         $reserva = $request->input('id');
         Reserva::where('id', $reserva)->delete();
+        $mail = new MailController();
+        $mail->cancelar();
         return redirect('/reservas');
     }
 }
