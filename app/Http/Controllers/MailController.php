@@ -22,11 +22,11 @@ class MailController extends Controller
             'titulo' => $reserva->actividad->titulo,
             'fecha' => $reserva->fecha,
             'hora' => $reserva->hora,
-            'ubicación' => $reserva->actividad->direccion
+            'ubicación' => $reserva->actividad->direccion,
+            'nPersonas' => $reserva->personas,
+            'precio' => ($reserva->personas * $reserva->actividad->precio)
         ];
 
-        Mail::to($reserva->user->email)->send(new newReserva($mailData));
-
-        dd("Email is sent successfully.");
+        Mail::to('juandiego.jurado@iesdonana.org')->send(new newReserva($mailData));
     }
 }
