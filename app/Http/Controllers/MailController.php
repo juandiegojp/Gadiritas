@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\altaGuia;
 use Illuminate\Http\Request;
 use App\Mail\newReserva;
 use App\Mail\cancelarReserva;
 use App\Models\Reserva;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
@@ -39,5 +41,18 @@ class MailController extends Controller
         ];
 
         Mail::to('juandiego.jurado@iesdonana.org')->send(new cancelarReserva($mailData));
+    }
+
+    public function altaGuia(User $usuario)
+    {
+        $mailData = [
+            'title' => 'Has sido seleccionado y dado de alta en nuestro equipo de guias de Gadiritas.',
+            'body' => 'Después de revisar su curriculum y ponernos en contacto con usted, has sido el candidato elegido para trabajar con nosotros
+            y por ello le damos la bienvenida a nuestro equipo de guias.',
+            'nombre' => $usuario->name,
+            'email' => $usuario->email,
+        ];
+
+        Mail::to('juandiego.jurado@iesdonana.org')->send(new altaGuia($mailData));
     }
 }

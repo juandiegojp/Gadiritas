@@ -60,6 +60,11 @@ class UsuariosController extends Controller
             'is_guia' => $request->input('is_guia') ? 'True' : 'False',
         ]);
 
+        if ($n_usuario->is_guia) {
+            $mail = new MailController();
+            $mail->altaGuia($n_usuario);
+        }
+
         return redirect('/usuarios/detalles/' . $n_usuario->id);
     }
 
