@@ -7,6 +7,7 @@ use App\Models\Destino;
 use App\Models\Guia;
 use App\Models\Reserva;
 use App\Models\User;
+use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -264,6 +265,13 @@ class ActividadController extends Controller
         return response()->json(['status' => 'Invalid request'], 400);
     }
 
+
+    /**
+     * Filtra los resultados en función de la opción que se haya seleccionado.
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function filtrar(Request $request)
     {
         $orden = $request->input('orden');
@@ -303,5 +311,19 @@ class ActividadController extends Controller
             'status' => 'success',
             'actividades' => $actividades,
         ]);
+    }
+
+    public function generatePDF($id)
+    {
+        $actividad = Actividad::findOrFail($id);
+
+        $data = [
+            'actividad' => $actividad
+        ];
+
+        $pdf = PDF::loadView('itinerario', $data);
+
+        return $pdf->download($actividad->titulo . '.pdf');
+
     }
 }
