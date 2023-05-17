@@ -60,6 +60,8 @@ class ReservaController extends Controller
     {
         $reserva = $request->input('id');
         Reserva::where('id', $reserva)->delete();
+        $mail = new MailController();
+        $mail->cancelar();
         return redirect('/reservas');
     }
 }

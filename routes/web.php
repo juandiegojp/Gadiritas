@@ -16,13 +16,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Vista inicial cuando arrancas la app.
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return view('welcome'); });
+
+// Sección de empleo (trabaja con nosotros)
 Route::get('/empleo', [UsuariosController::class, 'ShowEmpleoForm'])->name('usuarios.empleo');
 Route::post('/empleo', [UsuariosController::class, 'empleoStore'])->name('usuarios.enviarCV');
-
-Route::get('send-mail', [MailController::class, 'index']);
 
 // Administrador
 Route::group(['middleware' => ['admin', 'auth']], function () {

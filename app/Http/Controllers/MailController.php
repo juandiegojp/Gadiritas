@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mail\newReserva;
+use App\Mail\cancelarReserva;
 use App\Models\Reserva;
 use Illuminate\Support\Facades\Mail;
 
@@ -24,9 +25,19 @@ class MailController extends Controller
             'hora' => $reserva->hora,
             'ubicación' => $reserva->actividad->direccion,
             'nPersonas' => $reserva->personas,
-            'precio' => ($reserva->personas * $reserva->actividad->precio)
+            'precio' => $reserva->personas * $reserva->actividad->precio,
         ];
 
         Mail::to('juandiego.jurado@iesdonana.org')->send(new newReserva($mailData));
+    }
+
+    public function cancelar()
+    {
+        $mailData = [
+            'title' => 'Su reserva ha sido cancelada con éxito.',
+            'body' => 'Lamentamos que no pueda asistir a nuestra actividad, esperamos volver a verle pronto.',
+        ];
+
+        Mail::to('juandiego.jurado@iesdonana.org')->send(new cancelarReserva($mailData));
     }
 }
