@@ -7,7 +7,7 @@ use App\Models\Destino;
 use App\Models\Guia;
 use App\Models\Reserva;
 use App\Models\User;
-use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -321,9 +321,8 @@ class ActividadController extends Controller
             'actividad' => $actividad
         ];
 
-        $pdf = PDF::loadView('itinerario', $data);
+        $pdf = PDF::loadView('gadiritas.itinerario', $data);
 
         return $pdf->download($actividad->titulo . '.pdf');
-
     }
 }
