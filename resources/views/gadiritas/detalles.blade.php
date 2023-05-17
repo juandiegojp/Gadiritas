@@ -4,16 +4,19 @@
 @endsection
 @section('content')
     <script src="{{ Vite::asset('resources/js/gadiritas.js') }}"></script>
+
     <div class="mx-6 mt-4 mb-12">
         <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl">
             {{ $actividad->titulo }}</h1>
-
+        <a id="pdf-link"
+            onclick="window.open('{{ route('generar.pdf', ['id' => $actividad->id]) }}', '_blank', 'width=800, height=800');">
+            <img src="https://culturalcala.es/wp-content/uploads/2020/03/pdf-download.jpg" alt="PDF-img">
+            Generar PDF</a>
 
         <div class="grid grid-cols-4 gap-4">
             <div class="figure">
                 <figure>
-                    <img src="{{ Vite::asset("resources/images/{$actividad->id}-4.jpg") }}"
-                        alt="image description">
+                    <img src="{{ Vite::asset("resources/images/{$actividad->id}-4.jpg") }}" alt="image description">
                     <figcaption>
                         <p>{{ $actividad->titulo }}</p>
                     </figcaption>
@@ -54,7 +57,8 @@
                     Descripción</p>
                 {!! nl2br(e($actividad->descripcion)) !!}
                 <div id="mapaEncuentro">
-                    <p class="mb-2 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl">Punto de
+                    <p class="mb-2 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl">
+                        Punto de
                         encuentro</p>
                     <input type="hidden" name="direccion" id="direccion" value="{{ $actividad->direccion }}">
                     <div id='map'></div>

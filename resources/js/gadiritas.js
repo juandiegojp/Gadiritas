@@ -59,9 +59,9 @@ $(document).ready(function () {
                 precioActividad = document.getElementById("precioAct").value;
                 numPersonas = document.getElementById("n_personas").value;
                 precioTotal = document.getElementById("precioTotal");
-                console.log(precioActividad + "€");
-                console.log(numPersonas + " personas");
-                console.log(precioTotal);
+                //console.log(precioActividad + "€");
+                //console.log(numPersonas + " personas");
+                //console.log(precioTotal);
                 showPrecioTotal();
             },
             error: (error) => {
@@ -71,18 +71,18 @@ $(document).ready(function () {
     }
 
     $("#hora").change(function () {
-        console.log("hora cambiada.");
+        //console.log("hora cambiada.");
         disponibilidad();
     });
 
     $("#n_personas").change(function () {
-        console.log("Personas console.log");
+        //console.log("Personas console.log");
         numPersonas = document.getElementById("n_personas").value;
         showPrecioTotal();
     });
 
     divFecha[0].addEventListener("click", () => {
-        console.log("fecha cambiada.");
+        //console.log("fecha cambiada.");
         if (datepickerOriginal.value !== originalValue) {
             disponibilidad();
         }
@@ -94,11 +94,11 @@ $(function () {
     $("#comentarios").on("click", ".editar", function () {
         // Obtener el ID del comentario que se está editando
         var comentarioID = $(this).closest(".comentario").data("comentario-id");
-        console.log(comentarioID);
+        //console.log(comentarioID);
 
         // Obtener el contenido actual del comentario
         var contenidoActual = $(this).siblings(".contenido").text();
-        console.log(contenidoActual);
+        //console.log(contenidoActual);
 
         // Reemplazar el contenido actual del comentario con un formulario de edición
         $(this).siblings(".contenido").hide();

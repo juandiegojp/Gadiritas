@@ -7,6 +7,7 @@ use App\Models\Destino;
 use App\Models\Guia;
 use App\Models\Reserva;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -61,7 +62,7 @@ class ActividadController extends Controller
             'direccion' => $request->direccion,
         ]);
 
-        return redirect('/actividades/detalles/'. $n_actividad->id);
+        return redirect('/actividades/detalles/' . $n_actividad->id);
     }
 
     /**
@@ -115,7 +116,7 @@ class ActividadController extends Controller
             'direccion' => $request->direccion,
         ]);
 
-        return redirect('actividades/detalles/'. $actividad->id);
+        return redirect('actividades/detalles/' . $actividad->id);
     }
 
     /**
@@ -147,8 +148,10 @@ class ActividadController extends Controller
             ->orderBy('comarca')
             ->get();
         $destinos = Destino::select('nombre', 'comarca')->get();
-        $ciudades = Destino::whereRaw('LOWER(unaccent(nombre)) LIKE ?',
-                    ['%' . mb_strtolower(preg_replace('/[^\p{L}\p{N}\s]/u', '', $request->buscadorHome), 'UTF-8') . '%'])->get();
+        $ciudades = Destino::whereRaw(
+            'LOWER(unaccent(nombre)) LIKE ?',
+            ['%' . mb_strtolower(preg_replace('/[^\p{L}\p{N}\s]/u', '', $request->buscadorHome), 'UTF-8') . '%']
+        )->get();
         if ($ciudades->isNotEmpty()) {
             $actividades = [];
             foreach ($ciudades as $ciudad) {
@@ -213,9 +216,9 @@ class ActividadController extends Controller
         $actividad = Actividad::find($destino);
         $destinos = Destino::select('nombre', 'comarca')->get();
         $comarcas = Destino::select('comarca')
-        ->groupBy('comarca')
-        ->orderBy('comarca')
-        ->get();
+            ->groupBy('comarca')
+            ->orderBy('comarca')
+            ->get();
         return view('gadiritas.detalles', compact('actividad', 'comarcas', 'destinos'));
     }
 
@@ -244,9 +247,9 @@ class ActividadController extends Controller
             $actividad = Actividad::findOrFail($actividad_id);
             $nPersonasMax = $actividad->max_personas;
             $actividad_fecha = Reserva::where('actividad_id', $actividad->id)
-                                        ->where('fecha', $date_string)
-                                        ->where('hora', $hora_string)
-                                        ->get();
+                ->where('fecha', $date_string)
+                ->where('hora', $hora_string)
+                ->get();
 
             // Suma el número de personas de todas las reservas en la fecha específica
             $nPersonasReservadas = $actividad_fecha->sum('personas');
@@ -264,6 +267,13 @@ class ActividadController extends Controller
         return response()->json(['status' => 'Invalid request'], 400);
     }
 
+
+    /**
+     * Filtra los resultados en función de la opción que se haya seleccionado.
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function filtrar(Request $request)
     {
         $orden = $request->input('orden');
@@ -303,5 +313,18 @@ class ActividadController extends Controller
             'status' => 'success',
             'actividades' => $actividades,
         ]);
+    }
+
+    public function generatePDF($id)
+    {
+        $actividad = Actividad::findOrFail($id);
+
+        $data = [
+            'actividad' => $actividad
+        ];
+
+        $pdf = PDF::loadView('gadiritas.itinerario', $data);
+
+        return $pdf->stream($actividad->titulo . '.pdf');
     }
 }
