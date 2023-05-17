@@ -8,7 +8,10 @@
     <div class="mx-6 mt-4 mb-12">
         <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl">
             {{ $actividad->titulo }}</h1>
-            <a href="{{ route('generar.pdf', ['id' => $actividad->id]) }}" id="pdf-link">Generar PDF</a>
+        <a id="pdf-link"
+            onclick="window.open('{{ route('generar.pdf', ['id' => $actividad->id]) }}', '_blank', 'width=800, height=800');">
+            <img src="https://culturalcala.es/wp-content/uploads/2020/03/pdf-download.jpg" alt="PDF-img">
+            Generar PDF</a>
 
         <div class="grid grid-cols-4 gap-4">
             <div class="figure">
@@ -156,13 +159,6 @@
         </div>
     </div>
     <script>
-        document.getElementById("pdf-link").addEventListener("click", function(event) {
-            event.preventDefault(); // Evitar que el enlace se abra automáticamente
-
-            var url = this.getAttribute("href");
-            window.open(url, "ventana1");
-        });
-
         mapboxgl.accessToken =
             'pk.eyJ1IjoianVhbmRpZXdlIiwiYSI6ImNsaGFzejN5dTBreWYzZXFmcDJ5Mjk2bGEifQ.KT0AykAW457TNuwVGeLFSg';
 
