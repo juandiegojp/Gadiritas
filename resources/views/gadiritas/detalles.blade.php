@@ -102,7 +102,7 @@
                 <div id="comentario">
                     <div>
                         <label for="contenido">Deja aquí tu comentario:</label>
-                        <textarea name="contenido" id="contenido" rows="4" placeholder="¿Qué te ha parecido la experincia?" required></textarea>
+                        <textarea name="contenido" id="contenido" rows="4" placeholder="¿Qué te ha parecido la experiencia?" required></textarea>
                     </div>
                     <div>
                         <button type="submit">

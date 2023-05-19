@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <h1 class="my-2 text-xl font-extrabold text-center text-gray-600 underline uppercase md:text-3xl lg:text-4xl">Historial</h1>
-    <div class="relative flex items-center justify-center overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative flex items-center justify-center overflow-x-auto sm:rounded-lg">
         <table class="w-3/4 mx-4 text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-600 uppercase bg-blue-100">
                 <tr>
@@ -42,6 +42,6 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $reservas->links() }}
     </div>
+    <div class="mb-4">{{ $reservas->links() }}</div>
 @endsection

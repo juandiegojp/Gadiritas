@@ -16,7 +16,7 @@
     <div class="w-full h-screen flex items-center" id="welcomeDiv">
         <div>
             <p class="text-2xl font-extrabold">Busca, encuentra y ¡DISFRUTA!</p>
-            <p class="text-sm font-extrabold w-2/3 pb-2">Las mejores actividades de la provicia de Cádiz te esperan</p>
+            <p class="text-sm font-extrabold w-2/3 pb-2">Las mejores actividades de la provincia de Cádiz te esperan</p>
             <a href=" {{ auth()->check() ? route('usuarios.index') : route('login') }} " class="py-2.5 px-5 text-sm font-medium focus:outline-none rounded-lg border focus:z-10 focus:ring-4 ring-gray-200 focus:ring-gray-700 bg-gray-800 text-white border-gray-600 hover:text-white hover:bg-gray-700">
                 Entrar
             </a>
