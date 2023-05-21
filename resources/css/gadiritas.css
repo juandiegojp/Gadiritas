@@ -110,6 +110,27 @@ body {
     --tw-ring-color: rgb(55 65 81 / var(--tw-ring-opacity));
 }
 
+/* REGISTRO LOGIN */
+#img-mapa {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(https://wallpaperaccess.com/full/2688263.jpg);
+    height: auto;
+}
+
+#register {
+    background-color: rgba(255, 255, 255, 0.256);
+    width: 40%;
+}
+
+#logoRegistro img {
+    margin-top: 0.5em;
+    width: 15em;
+    height: 15em;
+    border-radius:160px;
+    border:5px solid #666;
+}
+
 /* ESTILOS PARA EL NAVBAR DE USUARIOS */
 #navbarLogo {
     width: 6em;
