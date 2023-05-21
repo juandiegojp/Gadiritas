@@ -4,34 +4,15 @@
 
 html,
 body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
-
-body::after {
-  content: "";
-  border-top-left-radius: 50% 100%;
-  border-top-right-radius: 50% 100%;
-  position: fixed;
-  bottom: 0;
-  z-index: -1;
-  width: 100%;
-  background-color: #5cfffc88;
-  height: 100%;
-}
-
 
 /* Tamaño del logo para el navbar de los guias */
 #logoGuia {
     width: 6rem;
     height: 6rem;
-}
-
-/* Tamaño para los iconos del footer */
-footer img {
-    width: 2em;
-    height: 2em;
 }
 
 /* PLANTILLA WELCOME */
@@ -43,6 +24,10 @@ footer img {
         ),
         url(https://static.eldiario.es/clip/f46f881a-a1ec-4d00-baea-ab5ae0eea674_16-9-aspect-ratio_default_0.jpg);
     background-size: cover;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
 #welcomeDiv div {
@@ -51,29 +36,28 @@ footer img {
     right: 25%;
     left: 25%;
     width: 50%;
-    background-color: rgba(245, 184, 119, 0.5);
+    background-color: #d9d9d9ab;
     border-radius: 50%;
     height: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    zoom: 1;
 }
 
 #welcomeDiv p {
-    font-size: x-large;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 800;
     margin-bottom: 0.25em;
+    width: 85%;
+    padding-bottom: 0.5rem;
     /* Fallback: Set a background color. */
     background-color: #476098;
 
     /* Create the gradient. */
-    background-image: linear-gradient(
-        45deg,
-        #476098 25%,
-        #0087bc 25%,
-        #0087bc 75%,
-        #00acc2 75%
-    );
+    background-image: linear-gradient(45deg, #476098, #0693ca);
 
     /* Set the background size and repeat properties. */
     background-size: 100%;
@@ -83,46 +67,47 @@ footer img {
     /* This will show the gradient as a text color rather than element bg. */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-
-    /* Animate the text when loading the element. */
-    /* This animates it on page load and when hovering out. */
-    animation: rainbow-text-simple-animation-rev 0.75s ease forwards;
-}
-
-#welcomeDiv p:hover {
-    animation: rainbow-text-simple-animation 0.5s ease-in forwards;
-}
-
-/* Move the background and make it smaller. */
-/* Animation shown when entering the page and after the hover animation. */
-@keyframes rainbow-text-simple-animation-rev {
-    0% {
-        background-size: 650%;
-    }
-    40% {
-        background-size: 650%;
-    }
-    100% {
-        background-size: 100%;
-    }
-}
-
-/* Move the background and make it larger. */
-/* Animation shown when hovering over the text. */
-@keyframes rainbow-text-simple-animation {
-    0% {
-        background-size: 100%;
-    }
-    80% {
-        background-size: 650%;
-    }
-    100% {
-        background-size: 650%;
-    }
 }
 
 #welcomeDiv a {
     margin-top: 1em;
+    padding-top: 0.625rem /* 10px */;
+    padding-bottom: 0.625rem /* 10px */;
+    padding-left: 1.25rem /* 20px */;
+    padding-right: 1.25rem /* 20px */;
+    font-size: 0.875rem /* 14px */;
+    line-height: 1.25rem /* 20px */;
+    font-weight: 500;
+    border-radius: 0.5rem /* 8px */;
+    border-width: 1px;
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgb(229 231 235 / var(--tw-ring-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+    color: white;
+    --tw-border-opacity: 1;
+    border-color: rgb(75 85 99 / var(--tw-border-opacity));
+}
+
+#welcomeDiv a:hover {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
+#welcomeDiv a:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    z-index: 10;
+    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0
+        var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0
+        calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
+        var(--tw-shadow, 0 0 #0000);
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgb(55 65 81 / var(--tw-ring-opacity));
 }
 
 /* ESTILOS PARA EL NAVBAR DE USUARIOS */
