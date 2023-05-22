@@ -3,7 +3,7 @@
     Admin | Detalles actividad
 @endsection
 @section('content')
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg m-2">
+    <div class="relative m-2 overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                 Detalles de la actividad
@@ -31,7 +31,7 @@
                     <th scope="col" class="px-6 py-3">
                         Guia
                     </th>
-                    <th scope="col" class="px-6 py-3 col-span-2 text-center">
+                    <th scope="col" class="col-span-2 px-6 py-3 text-center">
                         Acciones
                     </th>
                 </tr>
@@ -59,7 +59,7 @@
                     <td class="px-6 py-4">
                         {{ $actividad->guia->name }}
                     </td>
-                    <td class="px-6 py-4 flex justify-between items-center">
+                    <td class="flex flex-col items-center px-6 py-4">
                         <a href=" {{ route('admin.editarActividad', $actividad->id) }} "
                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
                         <a data-modal-target="popup-modal" data-modal-toggle="popup-modal" href="#"
@@ -70,8 +70,8 @@
                 </tr>
             </tbody>
         </table>
-        <div class="mt-4 flex flex-col space-y-4 w-5/6">
-            <h2 class="text-4xl font-extrabold dark:text-white underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">Descripción: </h2>
+        <div class="flex flex-col w-5/6 mt-4 space-y-4">
+            <h2 class="text-4xl font-extrabold underline dark:text-white underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">Descripción: </h2>
             <p class="text-lg font-medium text-gray-900 dark:text-white">{!! nl2br(e($actividad->descripcion)) !!}</p>
         </div>
     </div>
