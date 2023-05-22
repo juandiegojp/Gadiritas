@@ -15,14 +15,14 @@
             height: 6em;
             margin-right: 0.5em;
         }
-        nav {
-            background: linear-gradient(270deg, #0A3E42, rgba(255, 0, 0, 0) 70.71%);
+        #navbarAdmin {
+            background: linear-gradient(270deg, #0a3e4295, rgba(255, 0, 0, 0) 70.71%);
         }
     </style>
 </head>
 
 <body>
-    <nav class="top-0 left-0 z-20 w-full bg-white border-b border-gray-200">
+    <nav class="top-0 left-0 z-20 w-full bg-white border-b border-gray-200" id="navbarAdmin">
         <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
             <a href=" {{ route('admin.index') }} " class="flex items-center">
                 <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="logo Gadiritas">
@@ -43,26 +43,26 @@
             </div>
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul
-                    class="flex items-center justify-center p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 md:flex-row md:space-x-8 md:mt-0 md:border-0">
+                    class="flex items-center justify-center p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 md:flex-row md:space-x-8 md:mt-0 md:border-0 max-[600px]:grid max-[600px]:grid-cols-3">
                     <li>
                         <a href="{{ route('admin.usuarios') }}"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Usuarios</a>
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">Usuarios</a>
                     </li>
                     <li>
                         <a href="{{ route('admin.guias') }}"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Guias</a>
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">Guias</a>
                     </li>
                     <li>
                         <a href="{{ route('admin.destinos') }}"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Destinos</a>
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">Destinos</a>
                     </li>
                     <li>
                         <a href="{{ route('admin.actividades') }}"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Actividades</a>
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">Actividades</a>
                     </li>
                     <li>
                         <a href="{{ route('admin.cvs') }}"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Empleo</a>
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">Empleo</a>
                     </li>
                     <li>
                         <button type="button" id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
