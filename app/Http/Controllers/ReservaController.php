@@ -5,9 +5,36 @@ namespace App\Http\Controllers;
 use App\Models\Destino;
 use App\Models\Reserva;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservaController extends Controller
 {
+    /**
+     * Dirige a la vista donde se muestran todas las reservas existentes. Panel Admin.
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $reservas = Reserva::all()->sortBy('created_at');
+        return view('admin.reservas.index', [
+            'reservas' => $reservas,
+        ]);
+    }
+
+    /**
+     * Muestra en una vista los detalles de una reserva.
+     *
+     * @param  mixed $reserva
+     * @return void
+     */
+    public function detallesReserva(Reserva $reserva)
+    {
+        return view('admin.reservas.detalles', [
+            'reserva' => $reserva,
+        ]);
+    }
+
     /**
      * Crea una reserva nueva con el usuario actualmente logeado, obtiene los datos de la reserva por
      * método POST.
@@ -58,10 +85,15 @@ class ReservaController extends Controller
      */
     public function borrarReserva(Request $request)
     {
-        $reserva = $request->input('id');
-        Reserva::where('id', $reserva)->delete();
-        $mail = new MailController();
-        $mail->cancelar();
-        return redirect('/reservas');
+        if (Auth::user()) {
+            $reserva = $request->input('id');
+            Reserva::where('id', $reserva)->delete();
+            $mail = new MailController();
+            $mail->cancelar();
+            if (Auth::user()->is_admin) {
+                return redirect('/reservas');
+            }
+            return redirect('/user/reservas');
+        }
     }
 }
