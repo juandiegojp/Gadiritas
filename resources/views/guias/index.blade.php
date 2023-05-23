@@ -13,16 +13,16 @@
             h1Element.innerHTML = count;
         });
     </script>
-    <div class="flex justify-between mx-2">
-        <div class="w-1/2 mt-4" id="reservasHoy">
-            <h1 class="flex items-center text-2xl font-extrabold">Hoy<span
+    <div class="flex justify-between mx-2 max-[900px]:flex-col max-[900px]:justify-center max-[900px]:items-center">
+        <div class="w-1/2 mt-4 max-[900px]:w-4/5" id="reservasHoy">
+            <h1 class="flex items-center justify-center mb-4 text-2xl font-extrabold">Nº de reservas hoy<span
                     class="bg-blue-100 text-blue-800 text-xl font-semibold mr-2 px-2.5 py-0.5 rounded ml-2"></span>
             </h1>
             @if (count($reservasHoy) > 0)
                 @foreach ($reservasHoy as $reserva)
                     @if (!\Carbon\Carbon::parse($reserva->hora)->isPast())
                         <a href="#"
-                            class="flex flex-col items-center my-2 bg-white border border-gray-200 rounded-lg shadow pointer-events-none md:flex-row md:max-w-xl hover:bg-gray-100">
+                            class="flex flex-col items-center my-2 border rounded-lg shadow pointer-events-none bg-sky-100 border-cyan-200 md:flex-row md:max-w-xl hover:bg-sky-200">
                             <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
                                 src="{{ Vite::asset("resources/images/{$reserva->actividad->id}.jpg") }}" alt="img">
                             <div class="flex flex-col justify-between p-4 leading-normal">
@@ -43,14 +43,14 @@
                 <p>No hay reservas para hoy.</p>
             @endif
         </div>
-        <div class="w-1/2 mt-4">
-            <h1 class="flex items-center text-xl font-extrabold">Próximamente</h1>
-            <div class="grid grid-cols-2" id="reservas">
+        <div class="w-1/2 mt-4 max-[900px]:w-full">
+            <h1 class="flex items-center justify-center mb-4 text-xl font-extrabold">Próximas reservas</h1>
+            <div class="grid grid-cols-2 max-[900px]:grid-cols-4" id="reservas">
                 @if (count($reservasHoy) > 0)
                     @for ($i = 0; $i < count($reservas); $i++)
                         <a href="#" data-modal-target="modal{{ $i }}"
                             data-modal-toggle="modal{{ $i }}"
-                            class="flex flex-col items-center w-3/4 my-2 bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100">
+                            class="flex flex-col items-center w-3/4 my-2 border rounded-lg shadow bg-sky-100 border-cyan-200 md:flex-row md:max-w-xl hover:bg-sky-200">
                             <div class="flex flex-col justify-between p-4 leading-normal">
                                 <h5 class="mb-2 text-sm font-bold tracking-tight text-gray-900">
                                     {{ $reservas[$i]->actividad->titulo }}</h5>
@@ -76,7 +76,7 @@
                                             {{ $reservas[$i]->actividad->titulo }}
                                         </h3>
                                         <button type="button"
-                                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                                             data-modal-hide="modal{{ $i }}">
                                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                                 xmlns="http://www.w3.org/2000/svg">

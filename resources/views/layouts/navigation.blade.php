@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="border-b border-gray-100 bg-gradient-to-r from-white from-25% @if (Auth::user()->is_admin) to-teal-800 @else to-cyan-800 @endif">
+<nav x-data="{ open: false }" class="border-b border-gray-100 bg-gradient-to-r from-white from-25% @if (Auth::user()->is_admin) to-teal-800 @else to-sky-300 @endif">
     <!-- Primary Navigation Menu -->
     <div class="px-2 mx-auto max-w-7xl sm:px-4 lg:px-6">
         <div class="flex justify-between">
