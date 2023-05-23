@@ -165,7 +165,11 @@ div .comarca-container {
     width: 12em;
     padding: 0.5em 0em;
     border: 1px solid black;
-    background-color: rgba(110, 110, 110, 0.5);
+    background-color: #397d827e;
+}
+
+.comarca li:hover {
+    text-decoration: underline;
 }
 
 .comarca:hover,

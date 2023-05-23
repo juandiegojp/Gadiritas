@@ -1,4 +1,4 @@
-@media (max-width: 1000px) and (min-width: 743px){
+@media (max-width: 1000px) and (min-width: 743px) {
     #welcomeDiv div
     {
         inline-size: 60%;
@@ -49,5 +49,18 @@
         line-height: 0.5rem;
         font-weight: 600;
         padding: 0.5rem 1rem;
+    }
+
+    .comarca ul {
+        background-color: #397d82;
+    }
+
+    #buscador input {
+        width: 100%;
+    }
+
+    #busqueda {
+        margin: 0rem;
+        width: 80%;
     }
 }

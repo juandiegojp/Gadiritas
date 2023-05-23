@@ -17,7 +17,7 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
 
-    @vite(['resources/css/gadiritas.css'])
+    @vite(['resources/css/gadiritas.css', 'resources/css/footer.css', 'resources/css/responsive.css'])
 </head>
 
 <body>
@@ -56,6 +56,7 @@
     @include('gadiritas.navbar')
 
     @yield('content')
+    @include('gadiritas.footer')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 </body>
 
