@@ -201,7 +201,7 @@ class ActividadController extends Controller
                 ];
             }
         }
-        return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos')); // Devolver la vista con los resultados de la búsqueda
+        return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos', 'ciudades')); // Devolver la vista con los resultados de la búsqueda
     }
 
 

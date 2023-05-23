@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <p>{{$ciudades[0]->nombre}}</p>
-    <div class="flex justify-between w-full">
+    <div id="resultadosContainer">
         <div id="filtroResultados">
             <form action="" method="POST">
                 @csrf
@@ -26,7 +26,7 @@
                 </div>
             </form>
         </div>
-        <div class="grid grid-cols-4 gap-4 mx-4 mb-4" id="actividades-contenedor">
+        <div id="actividades-contenedor">
             @foreach ($actividades as $actividad)
                 <figure class="max-w-lg">
                     <div class="image-wrapper">

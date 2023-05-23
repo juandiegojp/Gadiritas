@@ -1,6 +1,5 @@
 @media (max-width: 1000px) and (min-width: 743px) {
-    #welcomeDiv div
-    {
+    #welcomeDiv div {
         inline-size: 60%;
     }
     #welcomeDiv p {
@@ -22,12 +21,33 @@
         margin-top: 0.5em;
         width: 10em;
         height: 10em;
-        border-radius:160px;
+        border-radius: 160px;
         border: 3px solid #666;
     }
 
     #register {
         width: 80%;
+    }
+
+    #resultadosContainer {
+        display: block;
+        padding: 0.5rem 0.5rem;
+    }
+
+    #filtroResultados {
+        padding: 0rem;
+        background-color: #fff;
+        margin-bottom: 1rem;
+    }
+
+    #filtroResultados form {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+
+    #filtroResultados form select {
+        margin-bottom: 0rem;
+        width: auto;
     }
 }
 
@@ -36,7 +56,7 @@
         word-wrap: break-word;
     }
     #welcomeDiv p {
-        font-size:small;
+        font-size: small;
         font-weight: 800;
         margin-bottom: 0.5rem;
         padding-bottom: 0rem;
@@ -62,5 +82,62 @@
     #busqueda {
         margin: 0rem;
         width: 80%;
+    }
+
+    #resultadosContainer {
+        display: block;
+        padding: 0.5rem 0.5rem;
+    }
+
+    #filtroResultados {
+        padding: 0rem;
+        background-color: #fff;
+        margin-bottom: 1rem;
+    }
+
+    #filtroResultados form {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+
+    #filtroResultados form select {
+        margin-bottom: 0rem;
+        width: auto;
+    }
+
+    .image-wrapper img {
+        object-fit: cover;
+    }
+
+    #actividades-contenedor {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    #actividades-contenedor figure {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    #actividades-contenedor figcaption {
+        text-align: center;
+        font-size: 12px;
+        width: 100%;
+    }
+
+    .overlay {
+        margin: 0rem;
+        padding: 0rem;
+        opacity: 1;
+        position: static;
+        background-color: #fff;
+    }
+
+    .overlay a{
+        text-decoration: underline;
+        font-size: small;
+    }
+
+    .overlay h3 {
+        display: none;
     }
 }

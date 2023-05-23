@@ -335,6 +335,11 @@ div .comarca-container {
 }
 
 /* ESTILO AL FILTRO DE LOS DETALLES DE LOS RESULTADOS */
+#resultadosContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
 #filtroResultados {
     padding: 1rem;
     width: auto;
@@ -350,6 +355,15 @@ div .comarca-container {
 #filtroResultados form select {
     margin-bottom: 1rem;
     width: 80%;
+}
+
+#actividades-contenedor {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-left: 1rem/* 16px */;
+    margin-right: 1rem/* 16px */;
+    margin-bottom: 1rem/* 16px */;
 }
 
 /* IMAGENES DE LA SECCIÓN DETALLES DE LA ACTIVIDAD */
