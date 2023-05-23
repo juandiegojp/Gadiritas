@@ -6,7 +6,7 @@
 <h1 class="my-2 text-xl font-extrabold text-center text-gray-600 underline uppercase md:text-3xl lg:text-4xl">Historial</h1>
     <div class="relative flex items-center justify-center overflow-x-auto sm:rounded-lg">
         <table class="w-3/4 mx-4 text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-600 uppercase bg-blue-100">
+            <thead class="text-xs text-gray-600 uppercase bg-sky-300">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         #
@@ -25,11 +25,11 @@
             <tbody>
                 @foreach ($reservas as $reserva)
                     <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        class="bg-blue-100 border-b hover:bg-blue-200">
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             {{ $loop->iteration }}
                         </td>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             {{ $reserva->actividad->titulo }}
                         </th>
                         <td class="px-6 py-4">
