@@ -167,7 +167,7 @@ class ActividadController extends Controller
                     ];
                 }
             }
-            return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos'));
+            return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos', 'ciudades'));
         } else {
             return view('gadiritas.resultados', ['mensaje' => 'No se encontraron actividades para la ciudad buscada']);
         }

@@ -336,7 +336,20 @@ div .comarca-container {
 
 /* ESTILO AL FILTRO DE LOS DETALLES DE LOS RESULTADOS */
 #filtroResultados {
-    margin: 1rem 0rem;
+    padding: 1rem;
+    width: auto;
+    background-color: rgba(128, 128, 128, 0.1);
+}
+
+#filtroResultados form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+#filtroResultados form select {
+    margin-bottom: 1rem;
+    width: 80%;
 }
 
 /* IMAGENES DE LA SECCIÓN DETALLES DE LA ACTIVIDAD */

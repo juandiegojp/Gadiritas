@@ -3,43 +3,45 @@
     Gadiritas - Búsqueda
 @endsection
 @section('content')
-    <div id="filtroResultados">
-        <form action="" method="POST" class="flex justify-between items-center w-full">
-            @csrf
-            <input type="hidden" id="destino_id" value="{{ $actividades[0]['destino_id'] }}">
-            <div>
-                <label for="freeTour" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Free Tour</label>
-                <input type="checkbox" name="freeTour" id="freeTour">
-            </div>
-            <div>
-                <label for="orden">Ordenar por:</label>
-                <select name="orden" id="orden">
-                    <option value="barato">Más barato primero</option>
-                    <option value="caro">Más caro primero</option>
-                    <option value="nombreASC">Títulos (A...Z)</option>
-                    <option value="nombreDESC">Títulos (Z...A)</option>
-                    <option value="relevancia" selected>Relevancia</option>
-                    <option value="nuevas">Últimas añadidas</option>
-                </select>
-            </div>
-        </form>
-    </div>
-    <div class="grid grid-cols-4 gap-4 mx-4 h-screen" id="actividades-contenedor">
-        @foreach ($actividades as $actividad)
-            <figure class="max-w-lg">
-                <div class="image-wrapper">
-                    <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad['id']}.jpg") }}"
-                        alt="{{ $actividad['titulo'] }}">
-                    <div class="overlay">
-                        <h3>{{ $actividad['titulo'] }}</h3>
-                        <a href="{{ route('usuarios.detalles', $actividad['id']) }}">Ver detalles</a>
-                    </div>
+<p>{{$ciudades[0]->nombre}}</p>
+    <div class="flex justify-between w-full">
+        <div id="filtroResultados">
+            <form action="" method="POST">
+                @csrf
+                <input type="hidden" id="destino_id" value="{{ $actividades[0]['destino_id'] }}">
+                <div>
+                    <label for="orden">Ordenar por:</label>
+                    <select name="orden" id="orden">
+                        <option value="barato">Más barato primero</option>
+                        <option value="caro">Más caro primero</option>
+                        <option value="nombreASC">Títulos (A...Z)</option>
+                        <option value="nombreDESC">Títulos (Z...A)</option>
+                        <option value="relevancia" selected>Relevancia</option>
+                        <option value="nuevas">Últimas añadidas</option>
+                    </select>
                 </div>
-                <figcaption class="mt-2 text-sm text-center text-gray-500">{{ $actividad['titulo'] }}</figcaption>
-            </figure>
-        @endforeach
+                <div>
+                    <label for="freeTour">Free Tour</label>
+                    <input type="checkbox" name="freeTour" id="freeTour">
+                </div>
+            </form>
+        </div>
+        <div class="grid grid-cols-4 gap-4 mx-4 mb-4" id="actividades-contenedor">
+            @foreach ($actividades as $actividad)
+                <figure class="max-w-lg">
+                    <div class="image-wrapper">
+                        <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad['id']}.jpg") }}"
+                            alt="{{ $actividad['titulo'] }}">
+                        <div class="overlay">
+                            <h3>{{ $actividad['titulo'] }}</h3>
+                            <a href="{{ route('usuarios.detalles', $actividad['id']) }}">Ver detalles</a>
+                        </div>
+                    </div>
+                    <figcaption class="mt-2 text-sm text-center text-gray-500">{{ $actividad['titulo'] }}</figcaption>
+                </figure>
+            @endforeach
+        </div>
     </div>
-    @include('gadiritas.footer')
     {{-- <script src="{{ Vite::asset('resources/js/gadiritas.js') }}"></script> --}}
     <script>
         $(document).ready(function() {
