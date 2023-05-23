@@ -1,9 +1,14 @@
-@media (max-width: 1000px) {
+@media (max-width: 1000px) and (min-width: 743px){
+    #welcomeDiv div
+    {
+        inline-size: 60%;
+    }
     #welcomeDiv p {
         font-size: large;
         font-weight: 700;
         margin-bottom: 0em;
         padding-bottom: 0rem;
+        width: 90%;
     }
 
     #welcomeDiv a {
@@ -23,5 +28,26 @@
 
     #register {
         width: 80%;
+    }
+}
+
+@media (max-width: 742px) {
+    #welcomeDiv div {
+        word-wrap: break-word;
+    }
+    #welcomeDiv p {
+        font-size:small;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        padding-bottom: 0rem;
+        line-height: 1rem;
+        width: auto;
+    }
+
+    #welcomeDiv a {
+        font-size: 12px;
+        line-height: 0.5rem;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
     }
 }
