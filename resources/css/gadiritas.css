@@ -285,6 +285,44 @@ div .comarca-container {
 }
 
 /* Resultados de búsquedas */
+#hero {
+    position: relative;
+    width: 100%;
+    height: 25vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 30%;
+    opacity: 0.75;
+}
+
+#Breadcrumb {
+    position: absolute; /* Posiciona el nav de forma absoluta dentro del contenedor */
+    top: 0; /* Coloca el nav en la parte superior */
+    left: 0; /* Coloca el nav en el extremo izquierdo */
+    z-index: 1; /* Asegura que el nav esté por encima de la imagen */
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.25);
+    padding: 0.25rem;
+    width: auto; /* Ajusta el ancho del nav al 100% del contenedor */
+}
+
+#Breadcrumb a {
+    font-size: large;
+    font-weight: bold;
+}
+
+#Breadcrumb span {
+    font-size: medium;
+    font-weight: 500;
+}
+
 
 .image-wrapper {
     position: relative;
