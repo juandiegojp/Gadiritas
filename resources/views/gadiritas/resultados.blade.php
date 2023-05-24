@@ -9,7 +9,7 @@
                 <li>
                     <div class="flex items-center">
                         <a href="{{ route('usuarios.actividades', $ciudades[0]->comarca) }}"
-                            class="ml-1 pr-1 md:ml-2">{{ $ciudades[0]->comarca }}</a>
+                            class="pr-1 ml-1 md:ml-2">{{ $ciudades[0]->comarca }}</a>
                     </div>
                 </li>
                 @if (count($ciudades) <= 1)
@@ -33,7 +33,6 @@
         <img src="{{ Vite::asset("resources/images/{$ciudades[0]->nombre}.jpg") }}" alt="{{ $ciudades[0]->nombre }}">
         @endif
     </div>
-    {{ count($ciudades) }}
     <div id="resultadosContainer">
         <div id="filtroResultados">
             <form action="" method="POST">

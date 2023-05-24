@@ -127,8 +127,8 @@ body {
     margin-top: 0.5em;
     width: 15em;
     height: 15em;
-    border-radius:160px;
-    border:5px solid #666;
+    border-radius: 160px;
+    border: 5px solid #666;
 }
 
 /* ESTILOS PARA EL NAVBAR DE USUARIOS */
@@ -323,7 +323,6 @@ div .comarca-container {
     font-weight: 500;
 }
 
-
 .image-wrapper {
     position: relative;
     display: inline-block;
@@ -376,6 +375,7 @@ div .comarca-container {
 #resultadosContainer {
     display: flex;
     justify-content: space-between;
+    margin-top: 1.5rem;
 }
 
 #filtroResultados {
@@ -399,9 +399,9 @@ div .comarca-container {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem;
-    margin-left: 1rem/* 16px */;
-    margin-right: 1rem/* 16px */;
-    margin-bottom: 1rem/* 16px */;
+    margin-left: 1rem /* 16px */;
+    margin-right: 1rem /* 16px */;
+    margin-bottom: 1rem /* 16px */;
 }
 
 /* IMAGENES DE LA SECCIÓN DETALLES DE LA ACTIVIDAD */
@@ -449,24 +449,27 @@ figure {
 
 #reserva form {
     margin: auto;
-    width: 80%;
-    border-radius: 10%;
-    background-color: #ff896276;
+    padding-top: 1.5rem;
     padding-bottom: 1rem;
-}
-
-#reserva div + button:hover {
-    border: 1px solid black;
+    width: 80%;
+    border-radius: 5%;
+    background: rgba(255, 145, 0, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(135, 31, 31, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 145, 0, 0.8);
 }
 
 #reserva div + button {
-    font-weight: lighter;
+    font-weight: bold;
+    font-size: large;
     display: flex;
     align-items: center;
     margin: 1rem auto;
     padding: 0.5rem;
-    background-color: #dfe0df;
+    background-color: #c2c2c2;
     border-radius: 5%;
+    border: 0.5px solid black;
 }
 
 #formContainerReserva {
@@ -485,7 +488,7 @@ figure {
     display: block;
     margin: 0.5rem auto;
     font-size: large;
-    color: #ffee8b;
+    color: #000;
     font-weight: bold;
 }
 
@@ -509,19 +512,19 @@ figure {
 
 /* SECCIÓN DE COMENTARIOS */
 #secComments {
+    margin: 5rem 0rem;
     width: 100%;
 }
 
-#comentario,
-.form-group {
+#comentario {
     width: 100%;
     margin-bottom: 1rem;
-    border-width: 1px;
-    --tw-border-opacity: 1;
-    border-color: rgb(229 231 235 / var(--tw-border-opacity));
-    border-radius: 0.5rem;
-    --tw-bg-opacity: 1;
-    background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+    background: rgba(10, 62, 66, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 #comentario div:nth-child(1) {
@@ -557,7 +560,7 @@ figure {
 #comentario textarea:focus,
 .formComentario textarea:focus {
     outline: none !important;
-    box-shadow: 0 0 5px #719ece;
+    box-shadow: 0 0 0px #719ece;
 }
 
 #comentario div:nth-child(2) {
@@ -578,13 +581,13 @@ figure {
     font-size: medium;
     text-align: center;
     color: white;
-    background-color: rgb(0, 145, 255);
+    background-color: #0A3E42;
     border-radius: 0.5rem;
 }
 
 #comentario button:hover,
 .form-group + button {
-    background-color: rgb(0, 64, 255);
+    background-color: #06282a;
 }
 
 #comments-container p:first-child {
@@ -605,14 +608,19 @@ figure {
     padding: 1rem 0rem;
     height: auto;
     margin-bottom: 1rem;
-    box-shadow: 6px 4px 14px -4px rgba(0, 0, 0, 0.75);
-    background-color: rgba(237, 236, 236, 0.227);
+    background: rgba( 10, 62, 66, 0.35 );
+    box-shadow: 0 8px 32px 0 rgba( 10, 62, 66, 0.45);
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .autor div {
+    font-weight: bold;
     font-size: x-large;
     margin-left: 1rem;
-    color: #3995eb;
+    color: #fff;
 }
 
 .autor {
@@ -621,14 +629,13 @@ figure {
 }
 
 .editar {
+    margin-left: 1rem;
     width: auto;
+    height: auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-top: 0.5rem;
-
-    padding: 0.625rem 1rem;
+    justify-content: start;
+    align-items: start;
+    padding: 0.65rem 1rem;
     font-size: 0.75rem;
     line-height: 1rem;
     font-size: medium;
@@ -648,10 +655,15 @@ figure {
 
 /*CONTENEDOR DEL COMENTARIO POSTEADO*/
 .contenido {
+    margin-top: 1.5rem;
     height: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+#contenido {
+    background-color: rgb(0, 0, 0, 0);
 }
 
 #comentarios .contenido figcaption {
@@ -693,8 +705,19 @@ figure {
 }
 
 #descMap {
-    padding: 0rem 0.5rem;
-    background-color: rgba(220, 220, 220, 0.65);
+    padding: 1rem 0.5rem;
+    border-radius: 5%;
+    background: rgba(10, 62, 66, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(31, 76, 135, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgb(10, 62, 66, 0.8);
+    border-radius: 2.5%;
+}
+
+#descMap p {
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
 #map {
@@ -703,15 +726,17 @@ figure {
 }
 
 #pdf-link {
+    margin-top: 1.5rem;
     display: flex;
     justify-content: start;
     align-items: center;
     cursor: pointer;
-    width: min-content;
+    width: max-content;
 }
 
 #pdf-link img {
-    width: 4rem;
-    height: 4rem;
+    width: 3.5rem;
+    height: 3.5rem;
     margin-right: 0.5rem;
+    border-radius: 25%;
 }

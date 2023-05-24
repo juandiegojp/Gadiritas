@@ -4,15 +4,43 @@
 @endsection
 @section('content')
     <script src="{{ Vite::asset('resources/js/gadiritas.js') }}"></script>
-
+    <div id="hero">
+        <nav class="flex" aria-label="Breadcrumb" id="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li>
+                    <div class="flex items-center">
+                        <a href="{{ route('usuarios.actividades', $actividad->destino->comarca) }}"
+                            class="pr-1 ml-1 md:ml-2">{{ $actividad->destino->comarca }}</a>
+                    </div>
+                </li>
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg aria-hidden="true" class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <a href="{{ route('usuarios.actividades', $actividad->destino->nombre) }}"
+                            class="pr-1 ml-1 md:ml-2">{{ $actividad->destino->nombre }}</a>
+                    </div>
+                </li>
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg aria-hidden="true" class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="ml-1 mr-4 md:ml-2">{{ $actividad->titulo }}</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+        <img src="{{ Vite::asset("resources/images/{$actividad->id}.jpg") }}" alt="{{ $actividad->destino->nombre }}">
+    </div>
     <div class="mx-6 mt-4 mb-12">
-        <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl">
-            {{ $actividad->titulo }}</h1>
-        <a id="pdf-link"
-            onclick="window.open('{{ route('generar.pdf', ['id' => $actividad->id]) }}', '_blank', 'width=800, height=800');">
-            <img src="https://culturalcala.es/wp-content/uploads/2020/03/pdf-download.jpg" alt="PDF-img">
-            Generar PDF</a>
-
         <div class="grid grid-cols-4 gap-4">
             <div class="figure">
                 <figure>
@@ -53,15 +81,19 @@
 
         <div class="flex items-start justify-center my-6">
             <div class="w-1/2" id="descMap">
-                <p class="mb-2 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl">
+                <p class="text-xl font-bold leading-none tracking-tight text-white underline md:text-2xl lg:text-3xl">
                     Descripción</p>
                 {!! nl2br(e($actividad->descripcion)) !!}
                 <div id="mapaEncuentro">
-                    <p class="mb-2 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl">
-                        Punto de
-                        encuentro</p>
+                    <p class="text-xl font-bold leading-none tracking-tight text-white underline md:text-2xl lg:text-2xl">
+                        Punto de encuentro</p>
                     <input type="hidden" name="direccion" id="direccion" value="{{ $actividad->direccion }}">
-                    <div id='map'></div>
+                </div>
+                <div class="flex items-center justify-center w-full">
+                    <a id="pdf-link"
+                        onclick="window.open('{{ route('generar.pdf', ['id' => $actividad->id]) }}', '_blank', 'width=800, height=800');">
+                        <img src="{{ Vite::asset('resources/images/pdf.png') }}" alt="PDF-img">
+                        Generar PDF</a>
                 </div>
             </div>
             <div class="w-1/2 ml-4" id="reserva">
