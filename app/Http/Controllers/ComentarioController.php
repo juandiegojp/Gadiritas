@@ -53,14 +53,14 @@ class ComentarioController extends Controller
      */
     public function destroy(Request $request)
     {
-        if (!$request->isMethod('post')) {
+        if (!$request->ajax()) {
             return redirect()
                 ->back()
                 ->with('error', 'Solicitud no permitida');
         }
 
-        $idComentario = $request->input('comentarioID');
+        $idComentario = $request->input('comentarioId');
         Comentario::where('id', $idComentario)->delete();
-        return redirect()->back();
+        return response()->json(['status' => 'Borrado']);
     }
 }

@@ -176,3 +176,39 @@ $(function () {
         });
     });
 });
+
+$(function () {
+    $(".comentario").submit(function (e) {
+        e.preventDefault(); // Evitar el envío tradicional del formulario
+
+        // Obtener los datos del formulario
+        var comentarioId = $("#comentarioID").val();
+        console.log(comentarioId);
+
+        // Crear el objeto de datos para enviar a través de AJAX
+        var data = {
+            comentarioId: comentarioId,
+        };
+
+        // Realizar la solicitud AJAX
+        $.ajax({
+            url: `/comentarios/delete`,
+            type: "POST",
+            data: data,
+            dataType: "json",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (response) {
+                // Manejar la respuesta del servidor
+                console.log(response);
+                $(this).closest(".comentario").hide();
+            },
+            error: function (xhr, status, error) {
+                // Manejar los errores de la solicitud AJAX
+                console.log(error);
+            },
+        });
+    });
+});
