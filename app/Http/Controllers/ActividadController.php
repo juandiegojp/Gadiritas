@@ -188,6 +188,9 @@ class ActividadController extends Controller
         $destinos = Destino::select('nombre', 'comarca')->get();
         $ciudades = Destino::where('nombre', $destino)->get();
         $actividades = [];
+        if (!$ciudades->isNotEmpty()) {
+            $ciudades = Destino::where('comarca', $destino)->get();
+        }
         foreach ($ciudades as $ciudad) {
             foreach ($ciudad->actividad as $actividad) {
                 $actividades[] = [
