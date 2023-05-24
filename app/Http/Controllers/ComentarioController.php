@@ -21,13 +21,17 @@ class ComentarioController extends Controller
      */
     public function store(Request $request)
     {
-        $comentario = Comentario::create([
-            'contenido' => $request->contenido,
-            'user_id' => $request->user()->id,
-            'actividad_id' => $request->act_id,
-        ]);
-
-        return redirect('/detalles/' . $request->act_id);
+        if ($request->ajax()) {
+            $comentario = Comentario::create([
+                'contenido' => $request->input('contenido'),
+                'user_id' => $request->user()->id,
+                'actividad_id' => $request->input('actividadId'),
+            ]);
+            $nombre = $comentario->user->name;
+            $apellidos = $comentario->user->apellidos;
+            return response()->json(['status' => $comentario, 'nombre' => $nombre, 'apellidos' => $apellidos]);
+        }
+        return response()->json(['status' => 'Invalid request'], 400);
     }
 
     /**

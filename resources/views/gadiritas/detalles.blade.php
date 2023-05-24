@@ -128,7 +128,7 @@
         </div>
 
         <div id="secComments">
-            <form action="{{ route('usuarios.crearComentario', $actividad->id) }}" method="post">
+            <form action="{{ route('usuarios.crearComentario', $actividad->id) }}" method="post" id="comentarioForm">
                 @csrf
                 <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
                 <div id="comentario">
@@ -137,7 +137,7 @@
                         <textarea name="contenido" id="contenido" rows="4" placeholder="¿Qué te ha parecido la experiencia?" required></textarea>
                     </div>
                     <div>
-                        <button type="submit">
+                        <button type="submit" class="enviar-button">
                             Enviar
                         </button>
                     </div>
@@ -151,7 +151,6 @@
                             <figcaption class="autor">
                                 <div>
                                     <cite>{{ $comentario->user->name }} {{ $comentario->user->apellidos }}</cite>
-                                    <cite></cite>
                                 </div>
                             </figcaption>
                             @if ($comentario->user_id == Auth::id())
@@ -176,13 +175,13 @@
                                     <textarea name="contenido" id="contenido" rows="4" class="form-control">{{ $comentario->contenido }}</textarea>
                                 </div>
                                 <button type="submit">Guardar cambios</button>
-                                <form action="{{ route('usuarios.borrarComentario') }}" method="POST"
-                                    class="formComentario" hidden>
-                                    @csrf
-                                    <input type="hidden" name="comentarioID" id="comentarioID"
-                                        value="{{ $comentario->id }}">
-                                    <button type="submit" id="borrarComentario">Borrar comentario</button>
-                                </form>
+                            </form>
+                            <form action="{{ route('usuarios.borrarComentario') }}" method="POST"
+                                class="formComentario" hidden>
+                                @csrf
+                                <input type="hidden" name="comentarioID" id="comentarioID"
+                                    value="{{ $comentario->id }}">
+                                <button type="submit" id="borrarComentario">Borrar comentario</button>
                             </form>
                         </div>
                     @endforeach

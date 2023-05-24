@@ -118,3 +118,61 @@ $(function () {
         });
     });
 });
+
+$(function () {
+    $("#comentarioForm").submit(function (e) {
+        e.preventDefault(); // Evitar el envío tradicional del formulario
+
+        // Obtener los datos del formulario
+        var actividadId = $("#act_id").val();
+        var contenido = $("#contenido").val();
+        console.log(actividadId);
+        console.log(contenido);
+
+        // Crear el objeto de datos para enviar a través de AJAX
+        var data = {
+            actividadId: actividadId,
+            contenido: contenido,
+        };
+
+        // Realizar la solicitud AJAX
+        $.ajax({
+            url: `/detalles/${actividadId}/comment`,
+            type: "POST",
+            data: data,
+            dataType: "json",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (response) {
+                // Manejar la respuesta del servidor
+                console.log(response);
+
+                // Crear el HTML para el nuevo comentario
+                var nuevoComentarioHTML = `
+                <div class="comentario" data-comentario-id="">
+                    <figcaption class="autor">
+                        <div>
+                            <cite>${response.nombre} ${response.apellidos}</cite>
+                        </div>
+                    </figcaption>
+                    <p class="contenido">${response.status.contenido}</p>
+                </div>
+                `;
+
+                // Agregar el nuevo comentario al contenedor de comentarios
+                $("#comentarios").append(nuevoComentarioHTML);
+
+                // Restablecer el formulario
+                $("#contenido").val(""); // Limpiar el campo de contenido
+
+                // Aquí puedes realizar cualquier otra acción adicional, como mostrar un mensaje de éxito, actualizar la cantidad de comentarios, etc.
+            },
+            error: function (xhr, status, error) {
+                // Manejar los errores de la solicitud AJAX
+                console.log(error);
+            },
+        });
+    });
+});

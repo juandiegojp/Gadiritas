@@ -46,7 +46,7 @@
         <div class="w-1/2 mt-4 max-[900px]:w-full">
             <h1 class="flex items-center justify-center mb-4 text-xl font-extrabold">Próximas reservas</h1>
             <div class="grid grid-cols-2 max-[900px]:grid-cols-4" id="reservas">
-                @if (count($reservasHoy) > 0)
+                @if (count($reservas) > 0)
                     @for ($i = 0; $i < count($reservas); $i++)
                         <a href="#" data-modal-target="modal{{ $i }}"
                             data-modal-toggle="modal{{ $i }}"
@@ -113,7 +113,6 @@
                 @else
                     <p>No hay actividades próximamente.</p>
                 @endif
-
             </div>
             {{ $reservas->links() }}
         </div>
