@@ -175,13 +175,13 @@
                                     <textarea name="contenido" id="contenido" rows="4" class="form-control">{{ $comentario->contenido }}</textarea>
                                 </div>
                                 <button type="submit">Guardar cambios</button>
-                            </form>
-                            <form action="{{ route('usuarios.borrarComentario') }}" method="POST"
-                                class="formComentario" hidden>
-                                @csrf
-                                <input type="hidden" name="comentarioID" id="comentarioID"
-                                    value="{{ $comentario->id }}">
-                                <button type="submit" id="borrarComentario">Borrar comentario</button>
+                                <form action="{{ route('usuarios.borrarComentario') }}" method="POST"
+                                    class="formComentario" hidden>
+                                    @csrf
+                                    <input type="hidden" name="comentarioID" id="comentarioID"
+                                        value="{{ $comentario->id }}">
+                                    <button type="submit" id="borrarComentario">Borrar comentario</button>
+                                </form>
                             </form>
                         </div>
                     @endforeach

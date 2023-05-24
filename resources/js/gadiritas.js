@@ -181,9 +181,11 @@ $(function () {
     $(".comentario").submit(function (e) {
         e.preventDefault(); // Evitar el envío tradicional del formulario
 
+        var formulario = this; // Guardar el valor de this en una variable
+
         // Obtener los datos del formulario
         var comentarioId = $("#comentarioID").val();
-        console.log(comentarioId);
+        console.log("Comentario id: " + comentarioId);
 
         // Crear el objeto de datos para enviar a través de AJAX
         var data = {
@@ -203,7 +205,9 @@ $(function () {
             success: function (response) {
                 // Manejar la respuesta del servidor
                 console.log(response);
-                $(this).closest(".comentario").hide();
+                console.log("Valor del data:")
+                console.log(formulario.getAttribute("data-comentario-id"));
+                $("[data-comentario-id='" + formulario.getAttribute("data-comentario-id") + "']").remove();
             },
             error: function (xhr, status, error) {
                 // Manejar los errores de la solicitud AJAX
