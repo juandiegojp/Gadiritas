@@ -435,9 +435,16 @@ figure {
     object-fit: contain;
     height: 18em;
     width: 24em;
+    border-radius: 1.25rem;
 }
 .figure img:hover {
     object-fit: cover;
+}
+
+#fotosActividad {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
 }
 
 /* DIV QUE CONTIENE EL FORMULARIO PARA LA RESERVA */
@@ -598,7 +605,7 @@ figure {
 
 #comentarios {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 #comentarios .comentario {
@@ -606,6 +613,7 @@ figure {
     flex-direction: column;
     align-items: center;
     padding: 1rem 0rem;
+    margin: 0rem 1rem;
     height: auto;
     margin-bottom: 1rem;
     background: rgba( 10, 62, 66, 0.35 );
@@ -624,8 +632,7 @@ figure {
 }
 
 .autor {
-    display: flex;
-    align-items: center;
+    text-align: center;
 }
 
 .editar {

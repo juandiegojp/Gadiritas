@@ -49,6 +49,10 @@
         margin-bottom: 0rem;
         width: auto;
     }
+
+    .autor div {
+        font-size: large;
+    }
 }
 
 @media (max-width: 742px) {
@@ -139,5 +143,40 @@
 
     .overlay h3 {
         display: none;
+    }
+
+    #fotosActividad {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #comentarios {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .autor div {
+        font-size: medium;
+    }
+
+    figure {
+        text-align: center;
+    }
+
+    .figure {
+        transition: none;
+        filter: grayscale(0%);
+    }
+
+    .figure figcaption {
+        font-size: medium;
+    }
+
+    .figure img {
+        height: 12em;
+        width: 18em;
+        object-fit: cover;
+    }
+
+    #descMap {
+        border-radius: 0rem;
     }
 }

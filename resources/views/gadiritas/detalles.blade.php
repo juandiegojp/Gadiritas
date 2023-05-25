@@ -41,7 +41,7 @@
         <img src="{{ Vite::asset("resources/images/{$actividad->id}.jpg") }}" alt="{{ $actividad->destino->nombre }}">
     </div>
     <div class="mx-6 mt-4 mb-12">
-        <div class="grid grid-cols-4 gap-4">
+        <div id="fotosActividad">
             <div class="figure">
                 <figure>
                     <img src="{{ Vite::asset("resources/images/{$actividad->id}-4.jpg") }}" alt="image description">
@@ -51,8 +51,8 @@
                 </figure>
             </div>
             <div class="figure">
-                <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad->id}-3.jpg") }}"
+                <figure>
+                    <img src="{{ Vite::asset("resources/images/{$actividad->id}-3.jpg") }}"
                         alt="image description">
                     <figcaption class="absolute px-4 text-lg text-white bottom-6">
                         <p>{{ $actividad->titulo }}</p>
@@ -60,8 +60,8 @@
                 </figure>
             </div>
             <div class="figure">
-                <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad->id}-2.jpg") }}"
+                <figure>
+                    <img src="{{ Vite::asset("resources/images/{$actividad->id}-2.jpg") }}"
                         alt="image description">
                     <figcaption class="absolute px-4 text-lg text-white bottom-6">
                         <p>{{ $actividad->titulo }}</p>
@@ -69,8 +69,8 @@
                 </figure>
             </div>
             <div class="figure">
-                <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad->id}.jpg") }}"
+                <figure>
+                    <img src="{{ Vite::asset("resources/images/{$actividad->id}.jpg") }}"
                         alt="image description">
                     <figcaption class="absolute px-4 text-lg text-white bottom-6">
                         <p>{{ $actividad->titulo }}</p>
