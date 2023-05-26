@@ -1,4 +1,4 @@
 - Solucionar pagos con 0€. Esto se solucionará creando una reserva sin necesidad de paypal.
-- Solucionar problema de diseño con el footer.
+- Modificar los detalles por un modal.
 - Validar TODOS los formularios.
 - Añadir el localStorage para las últimas actividades vistas.

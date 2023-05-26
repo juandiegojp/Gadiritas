@@ -19,7 +19,7 @@
         </div>
         <div class="items-center justify-between hidden w-full md:flex md:flex-col md:w-auto md:order-1" id="navbar-sticky">
             <div
-                class="flex flex-col p-4 mx-auto mt-4 font-medium border border-gray-900 rounded-lg md:p-0 md:flex-row md:space-x-8 md:mt-0 md:border-0 max-[767px]:grid max-[767px]:grid-cols-3">
+                class="flex flex-col p-4 mx-auto mt-4 font-medium border border-gray-900 rounded-lg md:p-0 md:flex-row md:space-x-8 md:mt-0 md:border-0 max-[767px]:grid max-[767px]:grid-cols-3 max-[500px]:grid max-[500px]:grid-cols-2">
                 @foreach ($comarcas as $comarca)
                     <div class="comarca-container max-[767px]:mb-8">
                         <button>{{ $comarca->comarca }}</button>

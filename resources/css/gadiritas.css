@@ -399,9 +399,9 @@ div .comarca-container {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem;
-    margin-left: 1rem /* 16px */;
-    margin-right: 1rem /* 16px */;
-    margin-bottom: 1rem /* 16px */;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
 }
 
 /* IMAGENES DE LA SECCIÓN DETALLES DE LA ACTIVIDAD */
