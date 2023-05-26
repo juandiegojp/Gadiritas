@@ -50,8 +50,20 @@
         width: auto;
     }
 
+    .figure figcaption {
+        font-size: medium;
+    }
+
     .autor div {
         font-size: large;
+    }
+
+    .formReserva select {
+        width: 35%;
+    }
+
+    #inputFecha {
+        width: 16rem;
     }
 }
 
@@ -172,11 +184,18 @@
 
     .figure img {
         height: 12em;
-        width: 18em;
         object-fit: cover;
     }
 
     #descMap {
         border-radius: 0rem;
+    }
+
+    .formReserva select {
+        width: 50%;
+    }
+
+    #inputFecha {
+        width: auto;
     }
 }

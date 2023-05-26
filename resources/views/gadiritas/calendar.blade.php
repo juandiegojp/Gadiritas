@@ -10,7 +10,7 @@
     <div class="antialiased sans-serif">
         <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
             <div class="container px-4 mx-auto">
-                <div class="w-64 mb-5">
+                <div id="inputFecha">
                     <label for="datepicker" class="block mb-1 font-bold text-center" style="color: #000;">Selecciona una fecha</label>
                     <div class="relative">
                         <input type="hidden" name="date" id="date" x-ref="date" x-model="datepickerValue">

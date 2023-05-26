@@ -433,7 +433,7 @@ figure {
 
 .figure img {
     object-fit: contain;
-    height: 18em;
+    height: 14em;
     width: 24em;
     border-radius: 1.25rem;
 }
@@ -483,6 +483,11 @@ figure {
     width: 100%;
 }
 
+#inputFecha {
+    margin-bottom: 0.8rem;
+    width: 18rem;
+}
+
 .formReserva {
     display: flex;
     justify-content: center;
@@ -500,6 +505,7 @@ figure {
 }
 
 .formReserva select {
+    margin-bottom: 0.8rem;
     background-color: rgb(249 250 251);
     border-width: 1px;
     border-color: rgb(209 213 219);

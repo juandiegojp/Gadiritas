@@ -15,7 +15,7 @@
                 </li>
                 <li aria-current="page">
                     <div class="flex items-center">
-                        <svg aria-hidden="true" class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20"
+                        <svg aria-hidden="true" class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -27,7 +27,7 @@
                 </li>
                 <li aria-current="page">
                     <div class="flex items-center">
-                        <svg aria-hidden="true" class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20"
+                        <svg aria-hidden="true" class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -54,7 +54,7 @@
                 <figure>
                     <img src="{{ Vite::asset("resources/images/{$actividad->id}-3.jpg") }}"
                         alt="image description">
-                    <figcaption class="absolute px-4 text-lg text-white bottom-6">
+                    <figcaption>
                         <p>{{ $actividad->titulo }}</p>
                     </figcaption>
                 </figure>
@@ -63,7 +63,7 @@
                 <figure>
                     <img src="{{ Vite::asset("resources/images/{$actividad->id}-2.jpg") }}"
                         alt="image description">
-                    <figcaption class="absolute px-4 text-lg text-white bottom-6">
+                    <figcaption>
                         <p>{{ $actividad->titulo }}</p>
                     </figcaption>
                 </figure>
@@ -72,7 +72,7 @@
                 <figure>
                     <img src="{{ Vite::asset("resources/images/{$actividad->id}.jpg") }}"
                         alt="image description">
-                    <figcaption class="absolute px-4 text-lg text-white bottom-6">
+                    <figcaption>
                         <p>{{ $actividad->titulo }}</p>
                     </figcaption>
                 </figure>
