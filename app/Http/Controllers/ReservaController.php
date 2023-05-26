@@ -55,6 +55,10 @@ class ReservaController extends Controller
 
         $mail = new MailController();
         $mail->index($n_reserva);
+
+        if ($request->precioAct == 0) {
+            return redirect()->route('usuarios.index')->with('success', '¡La reserva se ha creado correctamente!');
+        }
     }
 
     /**

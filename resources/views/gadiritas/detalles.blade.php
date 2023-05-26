@@ -52,8 +52,7 @@
             </div>
             <div class="figure">
                 <figure>
-                    <img src="{{ Vite::asset("resources/images/{$actividad->id}-3.jpg") }}"
-                        alt="image description">
+                    <img src="{{ Vite::asset("resources/images/{$actividad->id}-3.jpg") }}" alt="image description">
                     <figcaption>
                         <p>{{ $actividad->titulo }}</p>
                     </figcaption>
@@ -61,8 +60,7 @@
             </div>
             <div class="figure">
                 <figure>
-                    <img src="{{ Vite::asset("resources/images/{$actividad->id}-2.jpg") }}"
-                        alt="image description">
+                    <img src="{{ Vite::asset("resources/images/{$actividad->id}-2.jpg") }}" alt="image description">
                     <figcaption>
                         <p>{{ $actividad->titulo }}</p>
                     </figcaption>
@@ -70,8 +68,7 @@
             </div>
             <div class="figure">
                 <figure>
-                    <img src="{{ Vite::asset("resources/images/{$actividad->id}.jpg") }}"
-                        alt="image description">
+                    <img src="{{ Vite::asset("resources/images/{$actividad->id}.jpg") }}" alt="image description">
                     <figcaption>
                         <p>{{ $actividad->titulo }}</p>
                     </figcaption>
@@ -97,6 +94,9 @@
                 </div>
             </div>
             <div class="w-1/2 ml-4" id="reserva">
+                @if ($actividad->precio == 0)
+                    <form action="{{ route('usuarios.crear_reserva') }}" method="post">
+                @endif
                 <form action="{{ route('paypal.checkout') }}" method="post">
                     @csrf
                     <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
