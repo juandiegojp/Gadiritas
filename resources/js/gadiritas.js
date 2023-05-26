@@ -178,41 +178,84 @@ $(function () {
 });
 
 $(function () {
-    $(".comentario").submit(function (e) {
+    $(".comentario").on("submit", function (e) {
         e.preventDefault(); // Evitar el envío tradicional del formulario
 
-        var formulario = this; // Guardar el valor de this en una variable
+        var formulario = $(this); // Obtener el formulario actual
 
-        // Obtener los datos del formulario
-        var comentarioId = $("#comentarioID").val();
-        console.log("Comentario id: " + comentarioId);
+        // Verificar si el formulario se envió desde el botón "borrarComentario"
+        if (formulario.find("#borrarComentario:focus").length > 0) {
+            // Obtener los datos del formulario
+            var comentarioId = formulario.find("#comentarioID").val();
 
-        // Crear el objeto de datos para enviar a través de AJAX
-        var data = {
-            comentarioId: comentarioId,
-        };
+            // Crear el objeto de datos para enviar a través de AJAX
+            var data = {
+                comentarioId: comentarioId,
+            };
 
-        // Realizar la solicitud AJAX
-        $.ajax({
-            url: `/comentarios/delete`,
-            type: "POST",
-            data: data,
-            dataType: "json",
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-            success: function (response) {
-                // Manejar la respuesta del servidor
-                console.log(response);
-                console.log("Valor del data:")
-                console.log(formulario.getAttribute("data-comentario-id"));
-                $("[data-comentario-id='" + formulario.getAttribute("data-comentario-id") + "']").remove();
-            },
-            error: function (xhr, status, error) {
-                // Manejar los errores de la solicitud AJAX
-                console.log(error);
-            },
-        });
+            // Realizar la solicitud AJAX
+            $.ajax({
+                url: "/comentarios/delete",
+                type: "POST",
+                data: data,
+                dataType: "json",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
+                },
+                success: function (response) {
+                    // Manejar la respuesta del servidor
+                    console.log(response);
+                    formulario.closest(".comentario").remove();
+                },
+                error: function (xhr, status, error) {
+                    // Manejar los errores de la solicitud AJAX
+                    console.log(error);
+                },
+            });
+        }
+
+        // Verificar si el formulario se envió desde el botón "editarComentario"
+        if (formulario.find("#editarComentario:focus").length > 0) {
+            // Obtener los datos del formulario
+            var comentarioId = formulario.find("#comentarioID").val();
+            var comentarioData = formulario.find("#contenido").val();
+
+            // Crear el objeto de datos para enviar a través de AJAX
+            var data = {
+                comentarioId: comentarioId,
+                comentarioData: comentarioData,
+            };
+
+            // Realizar la solicitud AJAX
+            $.ajax({
+                url: `/comentarios/${comentarioId}`,
+                type: "PUT",
+                data: data,
+                dataType: "json",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
+                },
+                success: function (response) {
+                    // Manejar la respuesta del servidor
+                    //console.log(response);
+                    formulario.find(".contenido").text(response.status.contenido);
+
+                    $(".contenido").show();
+                    $(".autor").show();
+                    $(".editar").show();
+                    $(".formComentario").attr("hidden", "");
+                },
+                error: function (xhr, status, error) {
+                    // Manejar los errores de la solicitud AJAX
+                    console.log(error);
+                },
+            });
+        }
     });
 });

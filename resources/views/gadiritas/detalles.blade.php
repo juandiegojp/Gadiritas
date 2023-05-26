@@ -174,7 +174,7 @@
                                     <label for="contenido">Editar comentario:</label>
                                     <textarea name="contenido" id="contenido" rows="4" class="form-control">{{ $comentario->contenido }}</textarea>
                                 </div>
-                                <button type="submit">Guardar cambios</button>
+                                <button type="submit" id="editarComentario">Guardar cambios</button>
                                 <form action="{{ route('usuarios.borrarComentario') }}" method="POST"
                                     class="formComentario" hidden>
                                     @csrf

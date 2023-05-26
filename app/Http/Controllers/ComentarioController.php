@@ -39,13 +39,17 @@ class ComentarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $comentario = Comentario::findOrFail($id); // Obtener el comentario por su id
+        if ($request->ajax()) {
+            $comentario = Comentario::findOrFail($request->input('comentarioId')); // Obtener el comentario por su id
 
-        $comentario->contenido = $request->input('contenido'); // Actualizar el contenido del comentario con el valor del campo 'contenido' enviado por la petición
+            $comentario->contenido = $request->input('comentarioData'); // Actualizar el contenido del comentario con el valor del campo 'contenido' enviado por la petición
 
-        $comentario->save(); // Guardar los cambios en la base de datos
+            $comentario->save(); // Guardar los cambios en la base de datos
 
-        return redirect('/detalles/' . $comentario->actividad->id); // Redirigir a la página de detalles de la actividad a la que pertenece el comentario
+            return response()->json(['status' => $comentario]);
+        } else {
+            return response()->json(['status' => 'Invalid request'], 400);
+        }
     }
 
     /**
