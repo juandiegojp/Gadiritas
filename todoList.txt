@@ -1,4 +1,5 @@
-- Solucionar pagos con 0€. Esto se solucionará creando una reserva sin necesidad de paypal.
 - Modificar los detalles por un modal.
 - Validar TODOS los formularios.
 - Añadir el localStorage para las últimas actividades vistas.
+- Cambiar BD de reservas (añadir Cancelado).
+- Refund de las reservas.
