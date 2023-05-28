@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="flex items-center justify-center w-full">
-        <form action="" method="POST" class="w-3/4 mt-4">
+        <form action="" method="POST" class="w-3/4 mt-4" id="register-form">
             @csrf
             <div class="relative z-0 w-full mb-6 group">
                 <input type="text" name="nombre" id="nombre"
@@ -34,4 +34,95 @@
                 Añadir destino</button>
         </form>
     </div>
+    <script>
+        // VALIDACIÓN DEL FORMULARIO DE REGISTRO
+        const registerForm = document.getElementById('register-form');
+        registerForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevenir el envío del formulario
+
+            const nameInput = document.getElementById('nombre');
+            const comarcaInput = document.getElementById('comarca');
+            const cpInput = document.getElementById('codigo_postal');
+
+            let errors = false;
+
+            if (nameInput.value.length < 3 || !nameInput.value) {
+                showError(nameInput, 'Destino no válido. Introduce un destino válido.');
+                errors = true;
+            } else if (!validarInput(nameInput.value)) {
+                showError(nameInput,
+                    'Ni números ni símbolos especiales son válidos en este campo. Introduce un valor válido, por favor.'
+                );
+                errors = true;
+            } else {
+                hideError(nameInput);
+            }
+
+            if (comarcaInput.value.length < 5 || !comarcaInput.value) {
+                showError(comarcaInput, 'Comarca introducida válida. Introduce una comarca válida.');
+                errors = true;
+            } else if (!validarInput(comarcaInput.value)) {
+                showError(comarcaInput,
+                    'Ni números ni símbolos especiales son válidos en este campo. Introduce un valor válido, por favor.'
+                );
+                errors = true;
+            } else {
+                hideError(comarcaInput);
+            }
+
+            if (!cpInput.value || !validarCP(cpInput.value)) {
+                showError(cpInput, 'Por favor, introduce un código postal válido.');
+                errors = true;
+            } else {
+                hideError(cpInput);
+            }
+
+            if (!errors) {
+                registerForm.submit(); // Enviar el formulario si no hay errores
+            }
+        });
+
+        function showError(input, message) {
+            // Eliminar mensaje de error anterior si existe
+            const previousError = input.parentNode.querySelector('.help-block');
+            if (previousError) {
+                previousError.parentNode.removeChild(previousError);
+            }
+
+            const errorSpan = document.createElement('span');
+            errorSpan.classList.add('help-block');
+            errorSpan.innerText = message;
+
+            if (input.parentNode.classList.contains('input-group')) {
+                input.parentNode.parentNode.insertBefore(errorSpan, input.parentNode.nextSibling);
+            } else {
+                input.parentNode.insertBefore(errorSpan, input.nextSibling);
+            }
+
+            input.classList.add('is-invalid');
+        }
+
+
+        function hideError(input) {
+            const errorSpan = input.nextSibling;
+
+            if (errorSpan && errorSpan.classList && errorSpan.classList.contains('help-block')) {
+                errorSpan.parentNode.removeChild(errorSpan);
+            }
+
+            input.classList.remove('is-invalid');
+        }
+
+        function validarInput(input) {
+            const regex = /^[a-zA-Z\s]+$/;
+            return regex.test(input);
+        }
+
+        function validarCP(telefono) {
+
+            const regex = /^\d{5,}$/;
+
+            return regex.test(telefono);
+        }
+    </script>
 @endsection
