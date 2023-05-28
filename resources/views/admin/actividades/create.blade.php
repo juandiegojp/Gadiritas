@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <div class="flex justify-center w-full">
-    <form action="" method="POST" class="w-3/4">
+    <form action="" method="POST" class="w-3/4" id="register-form">
         @csrf
         <div class="relative z-0 w-full mb-6 group">
             <input type="text" name="titulo" id="titulo"
@@ -79,4 +79,121 @@
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Añadir actividad</button>
     </form>
 </div>
+<script>
+    // VALIDACIÓN DEL FORMULARIO DE REGISTRO
+    const registerForm = document.getElementById('register-form');
+    registerForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevenir el envío del formulario
+
+        const tituloInput = document.getElementById('titulo');
+        const descInput = document.getElementById('descripcion');
+        const dirInput = document.getElementById('direccion');
+        const precioInput = document.getElementById('precio');
+        const duracionInput = document.getElementById('duracion');
+        const maxPersonasInput = document.getElementById('max_personas');
+
+        let errors = false;
+
+        if (tituloInput.value.length < 3 || !tituloInput.value) {
+            showError(tituloInput, 'Nombre no válido. Introduce un nombre válido.');
+            errors = true;
+        } else if (!validarInput(tituloInput.value)) {
+            showError(tituloInput,
+                'Ni números ni símbolos especiales son válidos en este campo. Introduce un nombre válido, por favor.'
+            );
+            errors = true;
+        } else {
+            hideError(tituloInput);
+        }
+
+        if (descInput.value.length < 25 || !descInput.value) {
+            showError(descInput, 'Añade una descripción válida.');
+            errors = true;
+        } else {
+            hideError(descInput);
+        }
+
+        if (!dirInput.value) {
+            showError(dirInput, 'Por favor, introduce una dirección válida');
+            errors = true;
+        } else {
+            hideError(dirInput);
+        }
+
+        if (!duracionInput.value) {
+            showError(duracionInput, 'Por favor, introduce una contraseña');
+            errors = true;
+        } else if (!validarPrecio(duracionInput.value)) {
+            showError(duracionInput,
+                'La duración introducida no es válida.'
+            );
+            errors = true;
+        } else {
+            hideError(duracionInput);
+        }
+
+        if (!maxPersonasInput.value) {
+            showError(maxPersonasInput, 'Introduce un número de personas máximo');
+            errors = true;
+        } else if (validarPrecio(duracionInput.value)) {
+            showError(maxPersonasInput, 'El número de personas no permite otro valor que no sea numérico, por favor, introduce un valor válido.');
+            errors = true;
+        } else {
+            hideError(maxPersonasInput);
+        }
+
+        if (!validarPrecio(precioInput.value)) {
+            showError(precioInput,
+                'Introduce un precio en este campo, por favor.');
+            errors = true;
+        } else {
+            hideError(precioInput);
+        }
+
+        if (!errors) {
+            registerForm.submit(); // Enviar el formulario si no hay errores
+        }
+    });
+
+    function showError(input, message) {
+        // Eliminar mensaje de error anterior si existe
+        const previousError = input.parentNode.querySelector('.help-block');
+        if (previousError) {
+            previousError.parentNode.removeChild(previousError);
+        }
+
+        const errorSpan = document.createElement('span');
+        errorSpan.classList.add('help-block');
+        errorSpan.innerText = message;
+
+        if (input.parentNode.classList.contains('input-group')) {
+            input.parentNode.parentNode.insertBefore(errorSpan, input.parentNode.nextSibling);
+        } else {
+            input.parentNode.insertBefore(errorSpan, input.nextSibling);
+        }
+
+        input.classList.add('is-invalid');
+    }
+
+
+    function hideError(input) {
+        const errorSpan = input.nextSibling;
+
+        if (errorSpan && errorSpan.classList && errorSpan.classList.contains('help-block')) {
+            errorSpan.parentNode.removeChild(errorSpan);
+        }
+
+        input.classList.remove('is-invalid');
+    }
+
+    function validarInput(input) {
+        const regex = /^[a-zA-Z\s]+$/;
+        return regex.test(input);
+    }
+
+    function validarPrecio(precio) {
+        const regex = /^\d+(\,\d{1,2})?$/;
+        return regex.test(precio);
+    }
+</script>
 @endsection
