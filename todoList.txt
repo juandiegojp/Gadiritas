@@ -3,3 +3,8 @@
 - Añadir el localStorage para las últimas actividades vistas.
 - Cambiar BD de reservas (añadir Cancelado).
 - Refund de las reservas.
+- Mostrar en el admin toda la información en el dashboard (hoy/últimos 7 días/mes/todo)
+- Buscador en el admin para encontrar datos a tiempo real.
+- Añadir sección de comentarios.
+- El admin debe de poder borrar los comentarios de los usuarios.
+- Reportar comentario.

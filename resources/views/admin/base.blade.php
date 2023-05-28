@@ -117,31 +117,6 @@
                 Usuarios
                 <div class="tooltip-arrow" data-popper-arrow></div>
             </div>
-            <a href="{{ route('admin.usuariosCreate') }}" data-tooltip-target="tooltip-guia"
-                data-tooltip-placement="left"
-                class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-                    <rect width="256" height="256" fill="none" />
-                    <circle cx="128" cy="140" r="40" fill="none" stroke="#636363"
-                        stroke-linecap="round" stroke-linejoin="round" stroke-width="8" />
-                    <path d="M196,116a59.8,59.8,0,0,1,48,24" fill="none" stroke="#636363" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="8" />
-                    <path d="M12,140a59.8,59.8,0,0,1,48-24" fill="none" stroke="#636363" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="8" />
-                    <path d="M70.4,216a64.1,64.1,0,0,1,115.2,0" fill="none" stroke="#636363"
-                        stroke-linecap="round" stroke-linejoin="round" stroke-width="8" />
-                    <path d="M60,116A32,32,0,1,1,91.4,78" fill="none" stroke="#636363" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="8" />
-                    <path d="M164.6,78A32,32,0,1,1,196,116" fill="none" stroke="#636363" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="8" />
-                </svg>
-                <span class="sr-only">Guías</span>
-            </a>
-            <div id="tooltip-guia" role="tooltip"
-                class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
-                Guías
-                <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
             <a href="{{ route('admin.destinosCreate') }}" data-tooltip-target="tooltip-download"
                 data-tooltip-placement="left"
                 class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 shadow-sm hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 focus:outline-none">
