@@ -44,7 +44,7 @@
                         <td class="py-2 text-center">
                             <button type="submit"
                                 class="px-4 py-2 text-sm font-medium text-gray-500 rounded-lg focus:outline-none focus:ring-4"
-                                data-modal-toggle="mostrarDetalles">Ver detalles</button>
+                                data-modal-toggle="mostrarDetalles-{{$reserva->id}}">Ver detalles</button>
                             <form action=" {{ route('usuarios.borrarReserva') }} " method="POST">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $reserva->id }}">
@@ -69,7 +69,7 @@
                         </td>
                     </tr>
                     <!-- Modal -->
-                    <div id="mostrarDetalles" tabindex="-1"
+                    <div id="mostrarDetalles-{{$reserva->id}}" tabindex="-1"
                         class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
                         <div class="relative w-full h-full max-w-md">
                             <div class="relative rounded-lg shadow bg-teal-50">
@@ -123,7 +123,7 @@
                                 </div>
                                 <button type="button"
                                     class="w-full px-4 py-2 text-center text-black bg-sky-200"
-                                    data-modal-hide="mostrarDetalles">Cerrar</button>
+                                    data-modal-hide="mostrarDetalles-{{$reserva->id}}">Cerrar</button>
                             </div>
                         </div>
                     </div>

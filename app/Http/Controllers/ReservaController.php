@@ -75,7 +75,7 @@ class ReservaController extends Controller
             ->get();
         $destinos = Destino::select('nombre', 'comarca')->get();
         $reservas = Reserva::where('user_id', $request->user()->id)
-            ->orderBy('fecha', 'DESC')
+            ->orderBy('created_at', 'DESC')
             ->paginate(5);
 
         return view('gadiritas.reservas', compact('reservas', 'comarcas', 'destinos'));
