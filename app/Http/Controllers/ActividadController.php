@@ -147,6 +147,10 @@ class ActividadController extends Controller
             ->groupBy('comarca')
             ->orderBy('comarca')
             ->get();
+        $destino = Destino::whereRaw(
+            'LOWER(unaccent(nombre)) LIKE ?',
+            ['%' . mb_strtolower(preg_replace('/[^\p{L}\p{N}\s]/u', '', $request->buscadorHome), 'UTF-8') . '%']
+        )->pluck('nombre')->first();
         $destinos = Destino::select('nombre', 'comarca')->get();
         $ciudades = Destino::whereRaw(
             'LOWER(unaccent(nombre)) LIKE ?',
@@ -167,7 +171,7 @@ class ActividadController extends Controller
                     ];
                 }
             }
-            return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos', 'ciudades'));
+            return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos', 'destino', 'ciudades'));
         } else {
             return view('gadiritas.resultados', ['mensaje' => 'No se encontraron actividades para la ciudad buscada']);
         }
@@ -204,7 +208,7 @@ class ActividadController extends Controller
                 ];
             }
         }
-        return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos', 'ciudades')); // Devolver la vista con los resultados de la búsqueda
+        return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos', 'ciudades', 'destino')); // Devolver la vista con los resultados de la búsqueda
     }
 
 
@@ -283,7 +287,12 @@ class ActividadController extends Controller
         $destino_id = $request->input('destino_id');
         $freeTour = $request->input('freeTour');
 
-        $actividades = Actividad::where('destino_id', $destino_id);
+        $actividades = Destino::join('actividads', 'destinos.id', '=', 'actividads.destino_id')
+            ->where('destinos.nombre', $destino_id);
+        if ($actividades->get()->isEmpty()) {
+            $actividades = Destino::join('actividads', 'destinos.id', '=', 'actividads.destino_id')
+                ->where('destinos.comarca', $destino_id);
+        }
 
         if ($freeTour) {
             $actividades->where('precio', 0);

@@ -35,9 +35,10 @@
     </div>
     <div id="resultadosContainer">
         <div id="filtroResultados">
+            <strong>{{$destino}}</strong>
             <form action="" method="POST">
                 @csrf
-                <input type="hidden" id="destino_id" value="{{ $actividades[0]['destino_id'] }}">
+                <input type="hidden" id="destino_id" value="{{$destino}}">
                 <div>
                     <label for="orden">Ordenar por:</label>
                     <select name="orden" id="orden">
@@ -50,8 +51,8 @@
                     </select>
                 </div>
                 <div>
-                    <label for="freeTour">Free Tour</label>
                     <input type="checkbox" name="freeTour" id="freeTour">
+                    <label for="freeTour">Free Tour</label>
                 </div>
             </form>
         </div>
