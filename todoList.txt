@@ -1,10 +1,12 @@
 - Modificar los detalles por un modal.
-- Validar TODOS los formularios.
 - Añadir el localStorage para las últimas actividades vistas.
 - Cambiar BD de reservas (añadir Cancelado).
 - Refund de las reservas.
 - Mostrar en el admin toda la información en el dashboard (hoy/últimos 7 días/mes/todo)
 - Buscador en el admin para encontrar datos a tiempo real.
-- Añadir sección de comentarios.
+- Añadir sección de comentarios (admin).
 - El admin debe de poder borrar los comentarios de los usuarios.
 - Reportar comentario.
+- Cambio de idioma
+- Logros
+- Valorar actividad
