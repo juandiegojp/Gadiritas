@@ -50,20 +50,26 @@ class GuiaController extends Controller
             ->orderBy('hora')
             ->paginate(4);
 
-        $reservas = Reserva::select( 'actividad_id', 'hora', DB::raw('CAST(fecha AS date) AS fecha'), DB::raw('SUM(personas) AS personas'))
+        $reservas = Reserva::select('actividad_id', 'hora', DB::raw('CAST(fecha AS date) AS fecha'), DB::raw('SUM(personas) AS personas'))
             ->with('actividad')
             ->whereHas('actividad', function ($query) use ($userId) {
                 $query->where('user_id', $userId);
             })
             ->whereDate('fecha', '>', $fechaActual)
-            ->groupBy('actividad_id', 'fecha', 'hora' )
+            ->groupBy('actividad_id', 'fecha', 'hora')
             ->orderBy('fecha')
             ->paginate(4);
 
+        $nReservas = Reserva::select('actividad_id')
+            ->with('actividad')
+            ->whereHas('actividad', function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })->get();
 
         return view('guias.index', [
             'reservas' => $reservas,
             'reservasHoy' => $reservasHoy,
+            'nReservas' => $nReservas,
         ]);
     }
 
@@ -93,8 +99,15 @@ class GuiaController extends Controller
             ->orderBy('hora', 'DESC')
             ->paginate(12);
 
+        $nReservas = Reserva::select('actividad_id')
+            ->with('actividad')
+            ->whereHas('actividad', function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })->get();
+
         return view('guias.historial', [
             'reservas' => $reservas,
+            'nReservas' => $nReservas,
         ]);
     }
 }
