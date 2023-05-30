@@ -5,8 +5,8 @@
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Nombre')" />
-            <x-text-input id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')"
-                autofocus autocomplete="name" />
+            <x-text-input id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')" autofocus
+                autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
         <!-- Name -->
@@ -20,7 +20,7 @@
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')"
-                 autocomplete="username" />
+                autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -69,15 +69,25 @@
 
             let errors = false;
 
-            if (!nameInput.value) {
-                showError(nameInput, 'Por favor, introduce tu nombre');
+            if (nameInput.value.length < 3 || !nameInput.value) {
+                showError(nameInput, 'Nombre no válido. Introduce un nombre válido.');
+                errors = true;
+            } else if (!validarInput(nameInput.value)) {
+                showError(nameInput,
+                    'Ni números ni símbolos especiales son válidos en este campo. Introduce un nombre válido, por favor.'
+                    );
                 errors = true;
             } else {
                 hideError(nameInput);
             }
 
-            if (!apellidosInput.value) {
-                showError(apellidosInput, 'Por favor, introduce tus apellidos');
+            if (apellidosInput.value.length < 5 || !apellidosInput.value) {
+                showError(apellidosInput, 'Apellidos no válidos. Introduce tus apellidos.');
+                errors = true;
+            } else if (!validarInput(apellidosInput.value)) {
+                showError(apellidosInput,
+                    'Ni números ni símbolos especiales son válidos en este campo. Introduce tus apellidos, por favor.'
+                    );
                 errors = true;
             } else {
                 hideError(apellidosInput);
@@ -96,8 +106,8 @@
             if (!passwordInput.value) {
                 showError(passwordInput, 'Por favor, introduce una contraseña');
                 errors = true;
-            } else if (passwordInput.value.length < 6) {
-                showError(passwordInput, 'La contraseña debe tener al menos 6 caracteres');
+            } else if (!validarContraseña(passwordInput.value)) {
+                showError(passwordInput, 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número.');
                 errors = true;
             } else {
                 hideError(passwordInput);
@@ -105,9 +115,6 @@
 
             if (!passwordConfirmInput.value) {
                 showError(passwordConfirmInput, 'Por favor, confirma tu contraseña');
-                errors = true;
-            } else if (passwordConfirmInput.value.length < 6) {
-                showError(passwordConfirmInput, 'La contraseña debe tener al menos 6 caracteres');
                 errors = true;
             } else if (passwordInput.value !== passwordConfirmInput.value) {
                 showError(passwordConfirmInput, 'Las contraseñas no coinciden');
@@ -155,8 +162,26 @@
 
         function isValidEmail(email) {
             // Expresión regular para validar email
-            const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
+            const emailRegex = /^[^\s@]{5,}@[^.\s@]{4,}\.[^.\s@]{2,}$/;
             return emailRegex.test(email);
+        }
+
+        function validarInput(input) {
+            const regex = /^[a-zA-Z\s]+$/;
+            return regex.test(input);
+        }
+
+        function validarContraseña(contraseña) {
+            /* Requisitos de la contraseña:
+            Al menos 8 caracteres
+            Al menos una letra mayúscula
+            Al menos una letra minúscula
+            Al menos un número
+            Puede contener caracteres especiales */
+
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+            return regex.test(contraseña);
         }
     </script>
 </x-guest-layout>

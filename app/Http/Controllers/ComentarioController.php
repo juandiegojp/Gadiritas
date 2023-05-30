@@ -21,13 +21,17 @@ class ComentarioController extends Controller
      */
     public function store(Request $request)
     {
-        $comentario = Comentario::create([
-            'contenido' => $request->contenido,
-            'user_id' => $request->user()->id,
-            'actividad_id' => $request->act_id,
-        ]);
-
-        return redirect('/detalles/' . $request->act_id);
+        if ($request->ajax()) {
+            $comentario = Comentario::create([
+                'contenido' => $request->input('contenido'),
+                'user_id' => $request->user()->id,
+                'actividad_id' => $request->input('actividadId'),
+            ]);
+            $nombre = $comentario->user->name;
+            $apellidos = $comentario->user->apellidos;
+            return response()->json(['status' => $comentario, 'nombre' => $nombre, 'apellidos' => $apellidos]);
+        }
+        return response()->json(['status' => 'Invalid request'], 400);
     }
 
     /**
@@ -35,13 +39,17 @@ class ComentarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $comentario = Comentario::findOrFail($id); // Obtener el comentario por su id
+        if ($request->ajax()) {
+            $comentario = Comentario::findOrFail($request->input('comentarioId')); // Obtener el comentario por su id
 
-        $comentario->contenido = $request->input('contenido'); // Actualizar el contenido del comentario con el valor del campo 'contenido' enviado por la petición
+            $comentario->contenido = $request->input('comentarioData'); // Actualizar el contenido del comentario con el valor del campo 'contenido' enviado por la petición
 
-        $comentario->save(); // Guardar los cambios en la base de datos
+            $comentario->save(); // Guardar los cambios en la base de datos
 
-        return redirect('/detalles/' . $comentario->actividad->id); // Redirigir a la página de detalles de la actividad a la que pertenece el comentario
+            return response()->json(['status' => $comentario]);
+        } else {
+            return response()->json(['status' => 'Invalid request'], 400);
+        }
     }
 
     /**
@@ -49,14 +57,14 @@ class ComentarioController extends Controller
      */
     public function destroy(Request $request)
     {
-        if (!$request->isMethod('post')) {
+        if (!$request->ajax()) {
             return redirect()
                 ->back()
                 ->with('error', 'Solicitud no permitida');
         }
 
-        $idComentario = $request->input('comentarioID');
+        $idComentario = $request->input('comentarioId');
         Comentario::where('id', $idComentario)->delete();
-        return redirect()->back();
+        return response()->json(['status' => 'Borrado']);
     }
 }

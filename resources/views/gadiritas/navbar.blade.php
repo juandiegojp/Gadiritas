@@ -1,25 +1,27 @@
-<nav class="bg-white border-gray-200 dark:bg-gray-900">
+<nav class="bg-gradient-to-r from-white from-25% to-teal-200 border-b border-gray-200">
     <div class="flex flex-wrap items-center justify-between">
         <a href="{{ route('usuarios.index') }}" class="flex items-center">
             <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="logo Gadiritas" id="navbarLogo" class="mr-4">
         </a>
         @if (auth()->check())
-        <button data-collapse-toggle="navbar-default" type="button"
-            class="inline-flex items-center p-2 ml-3 text-sm rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-default" aria-expanded="false">
-            <span class="sr-only">Open main menu</span>
-            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                    clip-rule="evenodd"></path>
-            </svg>
-        </button>
-        <div class="w-full md:w-auto flex-grow-0" id="navbar-default">
+        <div class="flex md:order-2">
+            <button data-collapse-toggle="navbar-sticky" type="button"
+                class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                aria-controls="navbar-sticky" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="items-center justify-between hidden w-full md:flex md:flex-col md:w-auto md:order-1" id="navbar-sticky">
             <div
-                class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white mx-auto">
+                class="flex flex-col p-4 mx-auto mt-4 font-medium border border-gray-900 rounded-lg md:p-0 md:flex-row md:space-x-8 md:mt-0 md:border-0 max-[767px]:grid max-[767px]:grid-cols-3 max-[500px]:grid max-[500px]:grid-cols-2">
                 @foreach ($comarcas as $comarca)
-                    <div class="comarca-container">
+                    <div class="comarca-container max-[767px]:mb-8">
                         <button>{{ $comarca->comarca }}</button>
                         <!-- Dropdown menu -->
                         <div class="comarca">
@@ -36,7 +38,7 @@
                     </div>
                 @endforeach
                 <button type="button" id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                    class="pl-6 focus:underline hover:underline font-medium rounded-lg text-sm text-center inline-flex items-center">
+                    class="inline-flex items-center pl-6 text-sm font-medium text-center rounded-lg focus:underline hover:underline max-[767px]:mt-8">
                     {{ auth()->user()->name }}
                     <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +54,7 @@
 
 
 <!-- Dropdown menu -->
-<div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+<div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
         <li>
             <a href="{{route("profile.edit")}}"

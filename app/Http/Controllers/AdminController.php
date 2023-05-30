@@ -23,12 +23,12 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $actividades = Actividad::all();
-        $comentarios = Comentario::all();
-        $destinos = Destino::all();
-        $guias = Guia::all();
-        $reservas = Reserva::all();
-        $users = User::all();
+        $actividades = Actividad::orderBy('created_at', 'desc')->get();
+        $comentarios = Comentario::orderBy('created_at', 'desc')->get();
+        $destinos = Destino::orderBy('created_at', 'desc')->get();
+        $guias = Guia::orderBy('created_at', 'desc')->get();
+        $reservas = Reserva::orderBy('created_at', 'desc')->paginate(10);
+        $users = User::orderBy('created_at', 'desc')->paginate(10);
 
         return view('admin.index', [
             'actividades' => $actividades,

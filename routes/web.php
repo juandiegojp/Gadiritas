@@ -63,6 +63,10 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::put('/actividades/{actividad}/edit', [ActividadController::class, 'updateActividad'])->name('admin.updateActividad');
     Route::delete('/actividades/{actividad}/delete', [ActividadController::class, 'borrarActividad'])->name('admin.borrarActividad');
 
+    // Reservas
+    Route::get('/reservas', [ReservaController::class, 'index'])->name('admin.reservas');
+    Route::get('/reservas/detalles/{reserva}', [ReservaController::class, 'detallesReserva'])->name('admin.reserva.detalles');
+
     Route::get('/admin/cvs', [AdminController::class, 'showCVs'])->name('admin.cvs');
     Route::get('/admin/cvs/{id}/download', [AdminController::class, 'downloadCV'])->name('admin.cvs.download');
 });
@@ -74,12 +78,12 @@ Route::middleware(['logout.banned', 'auth'])->group(function () {
     Route::post('/resultados/filtrar', [ActividadController::class, 'filtrar'])->name('actividades.filtrar');
     Route::get('/resultados/{destino}', [ActividadController::class, 'actividadesResultados'])->name('usuarios.actividades');
     Route::get('/detalles/{destino}', [ActividadController::class, 'detalles'])->name('usuarios.detalles');
-    Route::post('/detalles/{destino}', [ReservaController::class, 'crear_reserva'])->name('usuarios.crear_reserva');
+    Route::post('/detalles/reserva/create', [ReservaController::class, 'crear_reserva'])->name('usuarios.crear_reserva');
     Route::post('/actividad/check', [ActividadController::class, 'actividadCheck'])->name('usuarios.actividadCheck');
     Route::post('/detalles/{destino}/comment', [ComentarioController::class, 'store'])->name('usuarios.crearComentario');
     Route::put('/comentarios/{comentarioID}', [ComentarioController::class, 'update'])->name('usuarios.editarComentario');
     Route::post('/comentarios/delete', [ComentarioController::class, 'destroy'])->name('usuarios.borrarComentario');
-    Route::get('/reservas', [ReservaController::class, 'reservaUsers'])->name('usuarios.reservaUsers');
+    Route::get('/user/reservas', [ReservaController::class, 'reservaUsers'])->name('usuarios.reservaUsers');
     Route::delete('/reserva/delete', [ReservaController::class, 'borrarReserva'])->name('usuarios.borrarReserva');
     Route::get('/paypal/success', [PaypalController::class, 'success'])->name('paypal.success');
     Route::get('/paypal/error', [PaypalController::class, 'error'])->name('paypal.error');

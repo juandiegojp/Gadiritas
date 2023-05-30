@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+<nav x-data="{ open: false }" class="border-b border-gray-100 bg-gradient-to-r from-white from-25% @if (Auth::user()->is_admin) to-teal-800 @else to-sky-300 @endif">
     <!-- Primary Navigation Menu -->
     <div class="px-2 mx-auto max-w-7xl sm:px-4 lg:px-6">
         <div class="flex justify-between">
@@ -21,7 +21,7 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none">
+                        <button class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-black transition duration-150 ease-in-out border border-transparent rounded-md hover:text-white hover:underline focus:outline-none">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ml-1">
@@ -36,10 +36,11 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Perfil') }}
                         </x-dropdown-link>
-
+                        @if (!Auth::user()->is_admin)
                         <x-dropdown-link :href="route('usuarios.reservaUsers')">
                             {{ __('Reservas') }}
                         </x-dropdown-link>
+                        @endif
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">

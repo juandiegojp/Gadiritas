@@ -3,13 +3,13 @@
     Admin | Guias
 @endsection
 @section('content')
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <div class="flex items-center justify-center">
+        <table class="w-11/12 text-sm text-left text-gray-500">
             <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                Usuarios
+                Guias
                 <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
-                    Aquí se muestran algunos de los datos de los usuarios. Puedes ver más información de un usuario haciendo click en
-                    "Ver detalles".
+                    Aquí se muestran algunos de los datos de los Guias. Puedes ver más información de un usuario haciendo
+                    click en "Ver detalles".
                 </p>
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-700/25 dark:bg-gray-700 dark:text-gray-400">

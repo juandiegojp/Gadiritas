@@ -1,0 +1,41 @@
+footer {
+    background-color: #0e8c7549;
+}
+
+/* Tamaño para los iconos del footer */
+footer img {
+    width: 2em;
+    height: 2em;
+}
+
+footer div {
+    width: 100%;
+    padding-top: 0.5rem;
+}
+
+#divLVL2,#divLVL2 a {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 0.8rem;
+}
+
+#divLVL2 a:hover {
+    text-decoration: underline;
+}
+
+#divLVL2 h2 {
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: black;
+    text-transform: uppercase;
+}
+
+#divLVL2 ul {
+    font-size: medium;
+    --tw-text-opacity: 1;
+    color: rgb(75 85 99 / var(--tw-text-opacity));
+}

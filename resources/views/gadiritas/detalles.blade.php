@@ -4,16 +4,44 @@
 @endsection
 @section('content')
     <script src="{{ Vite::asset('resources/js/gadiritas.js') }}"></script>
-
+    <div id="hero">
+        <nav class="flex" aria-label="Breadcrumb" id="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li>
+                    <div class="flex items-center">
+                        <a href="{{ route('usuarios.actividades', $actividad->destino->comarca) }}"
+                            class="pr-1 ml-1 md:ml-2">{{ $actividad->destino->comarca }}</a>
+                    </div>
+                </li>
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg aria-hidden="true" class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <a href="{{ route('usuarios.actividades', $actividad->destino->nombre) }}"
+                            class="pr-1 ml-1 md:ml-2">{{ $actividad->destino->nombre }}</a>
+                    </div>
+                </li>
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg aria-hidden="true" class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="ml-1 mr-4 md:ml-2">{{ $actividad->titulo }}</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+        <img src="{{ Vite::asset("resources/images/{$actividad->id}.jpg") }}" alt="{{ $actividad->destino->nombre }}">
+    </div>
     <div class="mx-6 mt-4 mb-12">
-        <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl">
-            {{ $actividad->titulo }}</h1>
-        <a id="pdf-link"
-            onclick="window.open('{{ route('generar.pdf', ['id' => $actividad->id]) }}', '_blank', 'width=800, height=800');">
-            <img src="https://culturalcala.es/wp-content/uploads/2020/03/pdf-download.jpg" alt="PDF-img">
-            Generar PDF</a>
-
-        <div class="grid grid-cols-4 gap-4">
+        <div id="fotosActividad">
             <div class="figure">
                 <figure>
                     <img src="{{ Vite::asset("resources/images/{$actividad->id}-4.jpg") }}" alt="image description">
@@ -23,28 +51,25 @@
                 </figure>
             </div>
             <div class="figure">
-                <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad->id}-3.jpg") }}"
-                        alt="image description">
-                    <figcaption class="absolute px-4 text-lg text-white bottom-6">
+                <figure>
+                    <img src="{{ Vite::asset("resources/images/{$actividad->id}-3.jpg") }}" alt="image description">
+                    <figcaption>
                         <p>{{ $actividad->titulo }}</p>
                     </figcaption>
                 </figure>
             </div>
             <div class="figure">
-                <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad->id}-2.jpg") }}"
-                        alt="image description">
-                    <figcaption class="absolute px-4 text-lg text-white bottom-6">
+                <figure>
+                    <img src="{{ Vite::asset("resources/images/{$actividad->id}-2.jpg") }}" alt="image description">
+                    <figcaption>
                         <p>{{ $actividad->titulo }}</p>
                     </figcaption>
                 </figure>
             </div>
             <div class="figure">
-                <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <img class="rounded-lg" src="{{ Vite::asset("resources/images/{$actividad->id}.jpg") }}"
-                        alt="image description">
-                    <figcaption class="absolute px-4 text-lg text-white bottom-6">
+                <figure>
+                    <img src="{{ Vite::asset("resources/images/{$actividad->id}.jpg") }}" alt="image description">
+                    <figcaption>
                         <p>{{ $actividad->titulo }}</p>
                     </figcaption>
                 </figure>
@@ -53,18 +78,25 @@
 
         <div class="flex items-start justify-center my-6">
             <div class="w-1/2" id="descMap">
-                <p class="mb-2 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl">
+                <p class="text-xl font-bold leading-none tracking-tight text-white underline md:text-2xl lg:text-3xl">
                     Descripción</p>
                 {!! nl2br(e($actividad->descripcion)) !!}
                 <div id="mapaEncuentro">
-                    <p class="mb-2 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl">
-                        Punto de
-                        encuentro</p>
+                    <p class="text-xl font-bold leading-none tracking-tight text-white underline md:text-2xl lg:text-2xl">
+                        Punto de encuentro</p>
                     <input type="hidden" name="direccion" id="direccion" value="{{ $actividad->direccion }}">
-                    <div id='map'></div>
+                </div>
+                <div class="flex items-center justify-center w-full">
+                    <a id="pdf-link"
+                        onclick="window.open('{{ route('generar.pdf', ['id' => $actividad->id]) }}', '_blank', 'width=800, height=800');">
+                        <img src="{{ Vite::asset('resources/images/pdf.png') }}" alt="PDF-img">
+                        Generar PDF</a>
                 </div>
             </div>
             <div class="w-1/2 ml-4" id="reserva">
+                @if ($actividad->precio == 0)
+                    <form action="{{ route('usuarios.crear_reserva') }}" method="post">
+                @endif
                 <form action="{{ route('paypal.checkout') }}" method="post">
                     @csrf
                     <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
@@ -96,16 +128,16 @@
         </div>
 
         <div id="secComments">
-            <form action="{{ route('usuarios.crearComentario', $actividad->id) }}" method="post">
+            <form action="{{ route('usuarios.crearComentario', $actividad->id) }}" method="post" id="comentarioForm">
                 @csrf
                 <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
                 <div id="comentario">
                     <div>
                         <label for="contenido">Deja aquí tu comentario:</label>
-                        <textarea name="contenido" id="contenido" rows="4" placeholder="¿Qué te ha parecido la experincia?" required></textarea>
+                        <textarea name="contenido" id="contenido" rows="4" placeholder="¿Qué te ha parecido la experiencia?" required></textarea>
                     </div>
                     <div>
-                        <button type="submit">
+                        <button type="submit" class="enviar-button">
                             Enviar
                         </button>
                     </div>
@@ -119,7 +151,6 @@
                             <figcaption class="autor">
                                 <div>
                                     <cite>{{ $comentario->user->name }} {{ $comentario->user->apellidos }}</cite>
-                                    <cite></cite>
                                 </div>
                             </figcaption>
                             @if ($comentario->user_id == Auth::id())
@@ -143,7 +174,7 @@
                                     <label for="contenido">Editar comentario:</label>
                                     <textarea name="contenido" id="contenido" rows="4" class="form-control">{{ $comentario->contenido }}</textarea>
                                 </div>
-                                <button type="submit">Guardar cambios</button>
+                                <button type="submit" id="editarComentario">Guardar cambios</button>
                                 <form action="{{ route('usuarios.borrarComentario') }}" method="POST"
                                     class="formComentario" hidden>
                                     @csrf

@@ -56,6 +56,115 @@
             </form>
         </div>
     </div>
+    <script>
+        // VALIDACIÓN DEL FORMULARIO DE REGISTRO
+        const registerForm = document.getElementById('trabajaNosotros');
+        registerForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevenir el envío del formulario
+
+            const nameInput = document.getElementById('nombre');
+            const emailInput = document.getElementById('email');
+            const tlfInput = document.getElementById('tlf');
+            const messageInput = document.getElementById('message');
+
+            let errors = false;
+
+            if (nameInput.value.length < 10 || !nameInput.value) {
+                showError(nameInput, 'Nombre no válido. Introduce un nombre válido.');
+                errors = true;
+            } else if (!validarInput(nameInput.value)) {
+                showError(nameInput,
+                    'Ni números ni símbolos especiales son válidos en este campo. Introduce un nombre válido, por favor.'
+                );
+                errors = true;
+            } else {
+                hideError(nameInput);
+            }
+
+            if (!emailInput.value || !isValidEmail(emailInput.value)) {
+                showError(emailInput, 'Por favor, introduce una dirección de correo electrónico válida');
+                errors = true;
+            } else if (emailInput.value.length < 10) {
+                showError(emailInput, 'Dirección de correo electrónico no válida');
+                errors = true;
+            } else {
+                hideError(emailInput);
+            }
+
+            if (messageInput.value.length < 10 || !messageInput.value) {
+                showError(messageInput, 'Requisito: Escribe tu carta de presentación.');
+                errors = true;
+            } else {
+                hideError(messageInput);
+            }
+
+            if (!validarTelefonoMovil(tlfInput.value)) {
+                showError(tlfInput,
+                    'El número de teléfono móvil no es válido. Introduce un número válido, por favor.');
+                errors = true;
+            } else {
+                hideError(tlfInput);
+            }
+
+            if (!errors) {
+                registerForm.submit(); // Enviar el formulario si no hay errores
+            }
+        });
+
+        function showError(input, message) {
+            // Eliminar mensaje de error anterior si existe
+            const previousError = input.parentNode.querySelector('.help-block');
+            if (previousError) {
+                previousError.parentNode.removeChild(previousError);
+            }
+
+            const errorSpan = document.createElement('span');
+            errorSpan.classList.add('help-block');
+            errorSpan.innerText = message;
+
+            if (input.parentNode.classList.contains('input-group')) {
+                input.parentNode.parentNode.insertBefore(errorSpan, input.parentNode.nextSibling);
+            } else {
+                input.parentNode.insertBefore(errorSpan, input.nextSibling);
+            }
+
+            input.classList.add('is-invalid');
+        }
+
+
+        function hideError(input) {
+            const errorSpan = input.nextSibling;
+
+            if (errorSpan && errorSpan.classList && errorSpan.classList.contains('help-block')) {
+                errorSpan.parentNode.removeChild(errorSpan);
+            }
+
+            input.classList.remove('is-invalid');
+        }
+
+
+        function isValidEmail(email) {
+            // Expresión regular para validar email
+            const emailRegex = /^[^\s@]{5,}@[^.\s@]{4,}\.[^.\s@]{2,}$/;
+            return emailRegex.test(email);
+        }
+
+        function validarInput(input) {
+            const regex = /^[a-zA-Z\s]+$/;
+            return regex.test(input);
+        }
+
+        function validarTelefonoMovil(telefono) {
+            /* Requisitos del número de teléfono móvil:
+            Debe comenzar con el código de país opcional (puede estar precedido de un signo +)
+            Seguido de un guión opcional
+            Seguido de al menos 7 dígitos */
+
+            const regex = /^(\+\d{1,3} ?)?\d{7,}$/;
+
+            return regex.test(telefono);
+        }
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 </body>
 

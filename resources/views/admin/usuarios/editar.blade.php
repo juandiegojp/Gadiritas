@@ -3,7 +3,8 @@
     Admin | Editar usuario
 @endsection
 @section('content')
-    <form action="" method="POST">
+<div class="flex justify-center w-full mt-4">
+    <form action="" method="POST" class="w-3/4">
         @method('PUT')
         @csrf
         <div class="relative z-0 w-full mb-6 group">

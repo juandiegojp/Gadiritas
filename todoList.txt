@@ -1,11 +1,12 @@
-- Solucionar pagos con 0€. Esto se solucionará creando una reserva sin necesidad de paypal.
-- Solucionar problema de diseño con el footer.
-
-MAIL_MAILER=smtp
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=465
-MAIL_USERNAME=juandiego.jurado@iesdonana.org
-MAIL_PASSWORD=
-MAIL_ENCRYPTION=tls
-MAIL_FROM_ADDRESS=juandiego.jurado@iesdonana.org
-MAIL_FROM_NAME="${APP_NAME}"
+- Modificar los detalles por un modal.
+- Añadir el localStorage para las últimas actividades vistas.
+- Cambiar BD de reservas (añadir Cancelado).
+- Refund de las reservas.
+- Mostrar en el admin toda la información en el dashboard (hoy/últimos 7 días/mes/todo)
+- Buscador en el admin para encontrar datos a tiempo real.
+- Añadir sección de comentarios (admin).
+- El admin debe de poder borrar los comentarios de los usuarios.
+- Reportar comentario.
+- Cambio de idioma
+- Logros
+- Valorar actividad

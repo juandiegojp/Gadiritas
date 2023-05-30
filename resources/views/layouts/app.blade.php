@@ -11,7 +11,7 @@
         <style>
             body {
                 background: rgb(255,236,203);
-                background: radial-gradient(circle, rgba(255,236,203,1) 0%, rgb(100, 187, 211) 100%);
+                background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 10%, rgba(100, 187, 211, 0.5) 100%);
             }
         </style>
         <link rel="preconnect" href="https://fonts.bunny.net">
