@@ -126,6 +126,8 @@ $(function () {
         // Obtener los datos del formulario
         var actividadId = $("#act_id").val();
         var contenido = $("#contenido").val();
+        var positivo = $("#positivo").val();
+        var negativo = $("#negativo").val();
         console.log(actividadId);
         console.log(contenido);
 
@@ -133,6 +135,8 @@ $(function () {
         var data = {
             actividadId: actividadId,
             contenido: contenido,
+            positivo:positivo,
+            negativo:negativo,
         };
 
         // Realizar la solicitud AJAX
@@ -244,7 +248,9 @@ $(function () {
                 success: function (response) {
                     // Manejar la respuesta del servidor
                     //console.log(response);
-                    formulario.find(".contenido").text(response.status.contenido);
+                    formulario
+                        .find(".contenido")
+                        .text(response.status.contenido);
 
                     $(".contenido").show();
                     $(".autor").show();
@@ -259,3 +265,22 @@ $(function () {
         }
     });
 });
+
+function valorar(opcion) {
+    var btnPositivo = document.getElementById("btnPositivo");
+    var btnNegativo = document.getElementById("btnNegativo");
+    var valoracionPInput = document.getElementById("positivo");
+    var valoracionNInput = document.getElementById("negativo");
+
+    if (opcion === "positivo") {
+      btnPositivo.style.backgroundColor = "green";
+      btnNegativo.style.backgroundColor = "";
+      valoracionPInput.value = "1"; // Asignar el string "true"
+      valoracionNInput.value = "0"; // Restaurar el valor vacío
+    } else if (opcion === "negativo") {
+      btnPositivo.style.backgroundColor = "";
+      btnNegativo.style.backgroundColor = "red";
+      valoracionPInput.value = "0"; // Restaurar el valor vacío
+      valoracionNInput.value = "1"; // Asignar el string "true"
+    }
+  }

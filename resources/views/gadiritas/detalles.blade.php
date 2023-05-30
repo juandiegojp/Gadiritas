@@ -131,6 +131,8 @@
             <form action="{{ route('usuarios.crearComentario', $actividad->id) }}" method="post" id="comentarioForm">
                 @csrf
                 <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
+                <input type="hidden" id="positivo" name="positivo" value="">
+                <input type="hidden" id="negativo" name="negativo" value="">
                 <div id="comentario">
                     <div>
                         <label for="contenido">Deja aquí tu comentario:</label>
@@ -140,6 +142,8 @@
                         <button type="submit" class="enviar-button">
                             Enviar
                         </button>
+                        <button onclick="valorar('positivo')" id="btnPositivo" type="button">Me gusta</button>
+                        <button onclick="valorar('negativo')" id="btnNegativo" type="button">No me gusta</button>
                     </div>
                 </div>
             </form>

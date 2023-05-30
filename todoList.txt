@@ -8,5 +8,5 @@
 - El admin debe de poder borrar los comentarios de los usuarios.
 - Reportar comentario.
 - Cambio de idioma
-- Logros
+- Logros*
 - Valorar actividad
