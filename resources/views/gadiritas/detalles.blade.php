@@ -150,7 +150,7 @@
             <div id="comments-container">
                 <p>Comentarios de otros usuarios:</p>
                 <div id="comentarios">
-                    @foreach ($actividad->comentario as $comentario)
+                    @foreach ($comentarios as $comentario)
                         <div class="comentario" data-comentario-id="{{ $comentario->id }}">
                             <figcaption class="autor">
                                 <div>
@@ -190,6 +190,7 @@
                         </div>
                     @endforeach
                 </div>
+                {{ $comentarios->links() }}
             </div>
         </div>
     </div>

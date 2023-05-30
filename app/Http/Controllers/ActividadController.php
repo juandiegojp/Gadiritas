@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Actividad;
+use App\Models\Comentario;
 use App\Models\Destino;
 use App\Models\Guia;
 use App\Models\Reserva;
@@ -10,6 +11,7 @@ use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ActividadController extends Controller
 {
@@ -221,12 +223,13 @@ class ActividadController extends Controller
     public function detalles($destino)
     {
         $actividad = Actividad::find($destino);
+        $comentarios = Comentario::where('actividad_id', $actividad->id)->orderBy('created_at', 'DESC')->simplePaginate(6);
         $destinos = Destino::select('nombre', 'comarca')->get();
         $comarcas = Destino::select('comarca')
             ->groupBy('comarca')
             ->orderBy('comarca')
             ->get();
-        return view('gadiritas.detalles', compact('actividad', 'comarcas', 'destinos'));
+        return view('gadiritas.detalles', compact('actividad', 'comarcas', 'destinos', 'comentarios'));
     }
 
 

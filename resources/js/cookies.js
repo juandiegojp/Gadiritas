@@ -18,7 +18,7 @@ function getCookie(cname) {
             return c.substring(name.length, c.length);
         }
     }
-    return null; // return null instead of an empty string if the cookie doesn't exist
+    return null;
 }
 
 $(document).ready(function() {
@@ -28,7 +28,6 @@ $(document).ready(function() {
         if ((user != "") & (user != null)) {
             d.classList.add("hidden");
         } else {
-            // check if the cookie exists and its value is "true" before showing the div
             if (getCookie("cookieAccepted") === "true") {
                 d.classList.add("hidden");
             } else {
@@ -37,7 +36,7 @@ $(document).ready(function() {
         }
     }
 
-    checkCookie(); // call the function when the page loads
+    checkCookie();
 });
 
 function acceptCookies() {

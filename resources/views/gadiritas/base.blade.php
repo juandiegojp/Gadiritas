@@ -24,7 +24,7 @@
     <script src="{{Vite::asset('resources/js/cookies.js')}}"></script>
 
     <div id="sticky-banner" tabindex="-1"
-        class="fixed top-0 left-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+        class="fixed top-0 left-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 hidden">
         <div class="flex items-center mx-auto space-x-1">
             <div class="flex items-center justify-center w-full text-sm font-normal text-gray-500 dark:text-gray-400">
                 <span class="inline-flex p-1 mr-3 bg-gray-200 rounded-full dark:bg-gray-600">
