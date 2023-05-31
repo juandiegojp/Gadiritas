@@ -100,6 +100,7 @@
                 <form action="{{ route('paypal.checkout') }}" method="post" id="reservarActividad">
                     @csrf
                     <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
+                    <input type="hidden" name="act_name" id="act_name" value="{{ $actividad->titulo }}">
                     @include('gadiritas.calendar')
                     <div id="formContainerReserva">
                         <div class="formReserva">
@@ -199,12 +200,14 @@
     </div>
     <script defer>
         $(document).ready(function() {
+            var actividadName = document.querySelector('#act_name').value;
             var actividadID = document.querySelector('#act_id').value;
-            console.log(actividadID);
+            console.log(actividadID, actividadName);
             const d = new Date();
             d.setTime(d.getTime() + 30 * 24 * 60 * 60 * 1000);
             let expires = "expires=" + d.toUTCString();
-            document.cookie = "actividad" + "=" + actividadID + ";" + expires + ";path=/";
+            document.cookie = "actividadID=" + actividadID + ";" + expires + ";path=/";
+            document.cookie = "actividad=" + actividadName + ";" + expires + ";path=/";
 
             // Borrar la cookie
             document.querySelector('#reservarActividad').addEventListener('submit', function() {

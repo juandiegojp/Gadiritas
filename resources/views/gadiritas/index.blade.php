@@ -96,16 +96,16 @@
         }
 
         // Obtener el valor de la cookie 'actividad'
-        var actividadID = getCookieValue('actividad');
-
+        var actividadName = getCookieValue('actividad');
+        var actividadID = getCookieValue('actividadID');
 
         // Mostrar los datos de la cookie en la etiqueta <div>
         var datosCookieDiv = document.getElementById('datosCookie');
-        if (actividadID) {
-            datosCookieDiv.textContent = "Sigue por donde lo has dejado: " + actividadID;
+        if (actividadID && actividadName) {
+            datosCookieDiv.textContent = "Sigue por donde lo has dejado: ";
 
             var enlaceDetalles = document.createElement('a');
-            enlaceDetalles.textContent = 'Detalles';
+            enlaceDetalles.textContent = actividadName;
             enlaceDetalles.href = "/detalles/" + actividadID;
 
             // Agregar el enlace a la etiqueta <div>

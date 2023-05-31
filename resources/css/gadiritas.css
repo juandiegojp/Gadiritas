@@ -788,3 +788,20 @@ figure {
 #btnNegativo {
     color: red;
 }
+
+#datosCookie {
+    padding: 1.25rem 1rem;
+    background-color: rgb(10, 118, 126, 0.8);
+    color: #fff;
+    border: 1.5px solid rgb(14, 82, 87);
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#datosCookie a {
+    text-decoration: underline;
+    font-weight: 700;
+}
