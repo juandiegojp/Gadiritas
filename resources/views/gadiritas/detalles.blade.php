@@ -131,6 +131,8 @@
             <form action="{{ route('usuarios.crearComentario', $actividad->id) }}" method="post" id="comentarioForm">
                 @csrf
                 <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
+                <input type="hidden" id="positivo" name="positivo" value="">
+                <input type="hidden" id="negativo" name="negativo" value="">
                 <div id="comentario">
                     <div>
                         <label for="contenido">Deja aquí tu comentario:</label>
@@ -140,13 +142,19 @@
                         <button type="submit" class="enviar-button">
                             Enviar
                         </button>
+                        <div>
+                            <button onclick="valorar('positivo')" id="btnPositivo" type="button"><i
+                                    class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></button>
+                            <button onclick="valorar('negativo')" id="btnNegativo" type="button"><i
+                                    class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></button>
+                        </div>
                     </div>
                 </div>
             </form>
             <div id="comments-container">
                 <p>Comentarios de otros usuarios:</p>
                 <div id="comentarios">
-                    @foreach ($actividad->comentario as $comentario)
+                    @foreach ($comentarios as $comentario)
                         <div class="comentario" data-comentario-id="{{ $comentario->id }}">
                             <figcaption class="autor">
                                 <div>
@@ -186,6 +194,7 @@
                         </div>
                     @endforeach
                 </div>
+                {{ $comentarios->links() }}
             </div>
         </div>
     </div>
@@ -235,5 +244,22 @@
         } else {
             alert('Tu navegador no soporta geolocalización.');
         }
+
+        var btn1 = document.querySelector("#btnPositivo");
+        var btn2 = document.querySelector("#btnNegativo");
+
+        btn1.addEventListener("click", function() {
+            if (btn2.classList.contains("red")) {
+                btn2.classList.remove("red");
+            }
+            this.classList.toggle("green");
+        });
+
+        btn2.addEventListener("click", function() {
+            if (btn1.classList.contains("green")) {
+                btn1.classList.remove("green");
+            }
+            this.classList.toggle("red");
+        });
     </script>
 @endsection

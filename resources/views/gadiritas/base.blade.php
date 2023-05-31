@@ -16,6 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://use.fontawesome.com/fe459689b4.js"></script>
 
     @vite(['resources/css/gadiritas.css', 'resources/css/footer.css', 'resources/css/responsive.css'])
 </head>
@@ -24,7 +25,7 @@
     <script src="{{Vite::asset('resources/js/cookies.js')}}"></script>
 
     <div id="sticky-banner" tabindex="-1"
-        class="fixed top-0 left-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+        class="fixed top-0 left-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 hidden">
         <div class="flex items-center mx-auto space-x-1">
             <div class="flex items-center justify-center w-full text-sm font-normal text-gray-500 dark:text-gray-400">
                 <span class="inline-flex p-1 mr-3 bg-gray-200 rounded-full dark:bg-gray-600">

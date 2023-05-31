@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comentario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ComentarioController extends Controller
 {
@@ -21,11 +22,14 @@ class ComentarioController extends Controller
      */
     public function store(Request $request)
     {
+        Log::info($request);
         if ($request->ajax()) {
             $comentario = Comentario::create([
                 'contenido' => $request->input('contenido'),
                 'user_id' => $request->user()->id,
                 'actividad_id' => $request->input('actividadId'),
+                'positivo' => intval($request->input('positivo')),
+                'negativo' => intval($request->input('negativo')),
             ]);
             $nombre = $comentario->user->name;
             $apellidos = $comentario->user->apellidos;

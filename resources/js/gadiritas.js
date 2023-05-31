@@ -1,3 +1,7 @@
+/**
+ * Esta función es para comprobar la disponibilidad del nº de personas
+ * según el día y hora seleccionado.
+ */
 $(document).ready(function () {
     var precioActividad;
     var numPersonas;
@@ -89,6 +93,9 @@ $(document).ready(function () {
     });
 });
 
+/**
+ * Muestra el editar el comentario y borrar.
+ */
 $(function () {
     // Cuando se hace clic en el botón "Editar"
     $("#comentarios").on("click", ".editar", function () {
@@ -119,6 +126,9 @@ $(function () {
     });
 });
 
+/**
+ * Creación del comentario por AJAX.
+ */
 $(function () {
     $("#comentarioForm").submit(function (e) {
         e.preventDefault(); // Evitar el envío tradicional del formulario
@@ -126,6 +136,8 @@ $(function () {
         // Obtener los datos del formulario
         var actividadId = $("#act_id").val();
         var contenido = $("#contenido").val();
+        var positivo = $("#positivo").val();
+        var negativo = $("#negativo").val();
         console.log(actividadId);
         console.log(contenido);
 
@@ -133,6 +145,8 @@ $(function () {
         var data = {
             actividadId: actividadId,
             contenido: contenido,
+            positivo: positivo,
+            negativo: negativo,
         };
 
         // Realizar la solicitud AJAX
@@ -162,12 +176,15 @@ $(function () {
                 `;
 
                 // Agregar el nuevo comentario al contenedor de comentarios
-                $("#comentarios").append(nuevoComentarioHTML);
+                $("#comentarios").prepend(nuevoComentarioHTML);
 
                 // Restablecer el formulario
                 $("#contenido").val(""); // Limpiar el campo de contenido
 
-                // Aquí puedes realizar cualquier otra acción adicional, como mostrar un mensaje de éxito, actualizar la cantidad de comentarios, etc.
+                var btnPositivo = document.getElementById("btnPositivo");
+                var btnNegativo = document.getElementById("btnNegativo");
+                btnPositivo.style.backgroundColor = "";
+                btnNegativo.style.backgroundColor = "";
             },
             error: function (xhr, status, error) {
                 // Manejar los errores de la solicitud AJAX
@@ -177,6 +194,10 @@ $(function () {
     });
 });
 
+/**
+ * Esta función hace el borrado o editar el comentario mediante
+ * AJAX.
+ */
 $(function () {
     $(".comentario").on("submit", function (e) {
         e.preventDefault(); // Evitar el envío tradicional del formulario
@@ -244,7 +265,9 @@ $(function () {
                 success: function (response) {
                     // Manejar la respuesta del servidor
                     //console.log(response);
-                    formulario.find(".contenido").text(response.status.contenido);
+                    formulario
+                        .find(".contenido")
+                        .text(response.status.contenido);
 
                     $(".contenido").show();
                     $(".autor").show();
@@ -259,3 +282,27 @@ $(function () {
         }
     });
 });
+
+/**
+ * Añade el valor en el input hidden si el comentario es positivo
+ * o negativo.
+ * @param {*} opcion
+ */
+function valorar(opcion) {
+    var btnPositivo = document.getElementById("btnPositivo");
+    var btnNegativo = document.getElementById("btnNegativo");
+    var valoracionPInput = document.getElementById("positivo");
+    var valoracionNInput = document.getElementById("negativo");
+
+    if (opcion === "positivo") {
+        btnPositivo.style.backgroundColor = "green";
+        btnNegativo.style.backgroundColor = "";
+        valoracionPInput.value = "1"; // Asignar el string "true"
+        valoracionNInput.value = "0"; // Restaurar el valor vacío
+    } else if (opcion === "negativo") {
+        btnPositivo.style.backgroundColor = "";
+        btnNegativo.style.backgroundColor = "red";
+        valoracionPInput.value = "0"; // Restaurar el valor vacío
+        valoracionNInput.value = "1"; // Asignar el string "true"
+    }
+}
