@@ -9,4 +9,3 @@
 - Reportar comentario.
 - Cambio de idioma
 - Logros*
-- Valorar actividad

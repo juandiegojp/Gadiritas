@@ -97,9 +97,10 @@
                 @if ($actividad->precio == 0)
                     <form action="{{ route('usuarios.crear_reserva') }}" method="post">
                 @endif
-                <form action="{{ route('paypal.checkout') }}" method="post">
+                <form action="{{ route('paypal.checkout') }}" method="post" id="reservarActividad">
                     @csrf
                     <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
+                    <input type="hidden" name="act_name" id="act_name" value="{{ $actividad->titulo }}">
                     @include('gadiritas.calendar')
                     <div id="formContainerReserva">
                         <div class="formReserva">
@@ -121,7 +122,6 @@
                             <p id="precioTotal" name="precioTotal"></p>
                         </div>
                     </div>
-
                     <button type="submit">Reservar</button>
                 </form>
             </div>
@@ -198,7 +198,23 @@
             </div>
         </div>
     </div>
-    <script>
+    <script defer>
+        $(document).ready(function() {
+            var actividadName = document.querySelector('#act_name').value;
+            var actividadID = document.querySelector('#act_id').value;
+            console.log(actividadID, actividadName);
+            const d = new Date();
+            d.setTime(d.getTime() + 30 * 24 * 60 * 60 * 1000);
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = "actividadID=" + actividadID + ";" + expires + ";path=/";
+            document.cookie = "actividad=" + actividadName + ";" + expires + ";path=/";
+
+            // Borrar la cookie
+            document.querySelector('#reservarActividad').addEventListener('submit', function() {
+                document.cookie = "actividad=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            });
+        });
+
         mapboxgl.accessToken =
             'pk.eyJ1IjoianVhbmRpZXdlIiwiYSI6ImNsaGFzejN5dTBreWYzZXFmcDJ5Mjk2bGEifQ.KT0AykAW457TNuwVGeLFSg';
 

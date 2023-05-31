@@ -33,8 +33,7 @@
             </div>
         @elseif (session('error'))
             <div id="toast-success"
-                class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow"
-                role="alert">
+                class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow" role="alert">
                 <div
                     class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg">
                     <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -81,5 +80,36 @@
                 </div>
             </form>
         </div>
+        <div id="datosCookie"></div>
     </div>
-    @endsection
+    <script>
+        // Función para obtener el valor de la cookie
+        function getCookieValue(name) {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                if (cookie.startsWith(name + '=')) {
+                    return cookie.substring(name.length + 1);
+                }
+            }
+            return null;
+        }
+
+        // Obtener el valor de la cookie 'actividad'
+        var actividadName = getCookieValue('actividad');
+        var actividadID = getCookieValue('actividadID');
+
+        // Mostrar los datos de la cookie en la etiqueta <div>
+        var datosCookieDiv = document.getElementById('datosCookie');
+        if (actividadID && actividadName) {
+            datosCookieDiv.textContent = "Sigue por donde lo has dejado: ";
+
+            var enlaceDetalles = document.createElement('a');
+            enlaceDetalles.textContent = actividadName;
+            enlaceDetalles.href = "/detalles/" + actividadID;
+
+            // Agregar el enlace a la etiqueta <div>
+            datosCookieDiv.appendChild(enlaceDetalles);
+        }
+    </script>
+@endsection
