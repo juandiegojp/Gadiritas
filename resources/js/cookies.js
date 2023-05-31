@@ -42,8 +42,6 @@ $(document).ready(function() {
 function acceptCookies() {
     let user = document.getElementById("user").value;
     let d = document.getElementById("sticky-banner");
-    console.log(d);
     setCookie("Gadiritas", user, 30);
-    setCookie("cookieAccepted", true, 30);
     d.classList.add("hidden");
 }
