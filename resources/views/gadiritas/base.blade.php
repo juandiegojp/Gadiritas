@@ -16,6 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://use.fontawesome.com/fe459689b4.js"></script>
 
     @vite(['resources/css/gadiritas.css', 'resources/css/footer.css', 'resources/css/responsive.css'])
 </head>

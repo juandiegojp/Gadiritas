@@ -142,8 +142,12 @@
                         <button type="submit" class="enviar-button">
                             Enviar
                         </button>
-                        <button onclick="valorar('positivo')" id="btnPositivo" type="button">Me gusta</button>
-                        <button onclick="valorar('negativo')" id="btnNegativo" type="button">No me gusta</button>
+                        <div>
+                            <button onclick="valorar('positivo')" id="btnPositivo" type="button"><i
+                                    class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></button>
+                            <button onclick="valorar('negativo')" id="btnNegativo" type="button"><i
+                                    class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></button>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -240,5 +244,22 @@
         } else {
             alert('Tu navegador no soporta geolocalización.');
         }
+
+        var btn1 = document.querySelector("#btnPositivo");
+        var btn2 = document.querySelector("#btnNegativo");
+
+        btn1.addEventListener("click", function() {
+            if (btn2.classList.contains("red")) {
+                btn2.classList.remove("red");
+            }
+            this.classList.toggle("green");
+        });
+
+        btn2.addEventListener("click", function() {
+            if (btn1.classList.contains("green")) {
+                btn1.classList.remove("green");
+            }
+            this.classList.toggle("red");
+        });
     </script>
 @endsection
