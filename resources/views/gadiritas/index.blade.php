@@ -102,6 +102,7 @@
         // Mostrar los datos de la cookie en la etiqueta <div>
         var datosCookieDiv = document.getElementById('datosCookie');
         if (actividadID && actividadName) {
+            datosCookieDiv.style.visibility = 'visible';
             datosCookieDiv.textContent = "Sigue por donde lo has dejado: ";
 
             var enlaceDetalles = document.createElement('a');

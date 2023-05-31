@@ -95,7 +95,7 @@
             </div>
             <div class="w-1/2 ml-4" id="reserva">
                 @if ($actividad->precio == 0)
-                    <form action="{{ route('usuarios.crear_reserva') }}" method="post">
+                    <form action="{{ route('usuarios.crear_reserva') }}" method="post" id="reservarActividad">
                 @endif
                 <form action="{{ route('paypal.checkout') }}" method="post" id="reservarActividad">
                     @csrf
