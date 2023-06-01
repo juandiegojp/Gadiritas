@@ -6,7 +6,6 @@ use App\Models\Actividad;
 use App\Models\Comentario;
 use App\Models\Destino;
 use App\Models\Empleo;
-use App\Models\Guia;
 use App\Models\Reserva;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -25,19 +24,15 @@ class AdminController extends Controller
     {
         $fechaActual = Carbon::now()->toDateString();
 
-        $actividades = Actividad::orderBy('created_at', 'desc')->get();
         $comentarios = Comentario::orderBy('created_at', 'desc')->get();
-        $destinos = Destino::orderBy('created_at', 'desc')->get();
-        $guias = Guia::orderBy('created_at', 'desc')->get();
         $reservas = Reserva::whereDate('fecha', '=', $fechaActual)->orderBy('created_at', 'desc')->paginate(10);
+        $reservasCanceladas = Reserva::whereDate('updated_at', '=', $fechaActual)->where('cancelado', true)->orderBy('created_at', 'desc')->paginate(10);
         $users = User::whereDate('created_at', '=', $fechaActual)->orderBy('created_at', 'desc')->paginate(10);
 
         return view('admin.index', [
-            'actividades' => $actividades,
             'comentarios' => $comentarios,
-            'destinos' => $destinos,
-            'guias' => $guias,
             'reservas' => $reservas,
+            'reservasCanceladas' => $reservasCanceladas,
             'usuarios' => $users,
         ]);
     }

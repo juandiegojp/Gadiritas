@@ -72,7 +72,7 @@
         </div>
         <div class="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50">
             <h2 class="mb-4 text-2xl font-semibold text-center underline">Reservas canceladas</h2>
-            @forelse($reservas as $reserva)
+            @forelse($reservasCanceladas as $reserva)
                 <time
                     class="text-lg font-semibold text-gray-900">{{ Carbon\Carbon::parse($reserva->created_at)->isSameAs('d', Carbon\Carbon::now()) ? 'Hoy' : Carbon\Carbon::parse($reserva->created_at)->diffForHumans(['parts' => 1]) }}</time>
                 <ol class="mt-3 divide-y divider-gray-200">
@@ -91,7 +91,7 @@
                 <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900">
                     No se ha creado hoy ninguna reserva nueva.</h1>
             @endforelse
-            {{ $reservas->links() }}
+            {{ $reservasCanceladas->links() }}
         </div>
     </div>
 @endsection
