@@ -91,7 +91,7 @@
             const tlfInput = document.getElementById('tlf');
             const passwordInput = document.getElementById('password1');
             const passwordConfirmInput = document.getElementById('password2');
-            var fechaNacimientoInput = document.getElementById('fecha_nacimiento');
+            const fechaNacimientoInput = document.getElementById('fecha_nacimiento');
 
             var fechaNacimiento = new Date(fechaNacimientoInput.value);
             var hoy = new Date();
@@ -105,7 +105,7 @@
                 showError(fechaNacimientoInput, 'El usuario debe de ser mayor de edad para darse de alta en la aplicación.');
                 errors = true;
             } else {
-                hideError(nameInput);
+                hideError(fechaNacimientoInput);
             }
 
             if (nameInput.value.length < 3 || !nameInput.value) {

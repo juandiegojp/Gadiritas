@@ -9,8 +9,8 @@
                 autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
-        <!-- Name -->
-        <div>
+        <!-- Apellidos -->
+        <div class="mt-4">
             <x-input-label for="apellidos" :value="__('Apellidos')" />
             <x-text-input id="apellidos" class="block w-full mt-1" type="text" name="apellidos" :value="old('apellidos')"
                 autofocus autocomplete="apellidos" />
@@ -21,6 +21,14 @@
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')"
                 autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+
+        <!-- Fecha de nacimiento -->
+        <div class="mt-4">
+            <x-input-label for="fecha_nacimiento" :value="__('Fecha de nacimiento')" />
+            <x-text-input id="fecha_nacimiento" class="block w-full mt-1" type="date" name="fecha_nacimiento"
+                :value="old('fecha_nacimiento')" autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -66,8 +74,23 @@
             const emailInput = document.getElementById('email');
             const passwordInput = document.getElementById('password');
             const passwordConfirmInput = document.getElementById('password_confirmation');
+            const fechaNacimientoInput = document.getElementById('fecha_nacimiento');
+
+            var fechaNacimiento = new Date(fechaNacimientoInput.value);
+            var hoy = new Date();
+            var minEdad = 18;
+            var edadMilisegundos = hoy - fechaNacimiento;
+            var edadAnios = Math.floor(edadMilisegundos / 1000 / 60 / 60 / 24 / 365);
 
             let errors = false;
+
+            if (edadAnios < minEdad) {
+                showError(fechaNacimientoInput,
+                    'El usuario debe de ser mayor de edad para darse de alta en la aplicación.');
+                errors = true;
+            } else {
+                hideError(fechaNacimientoInput);
+            }
 
             if (nameInput.value.length < 3 || !nameInput.value) {
                 showError(nameInput, 'Nombre no válido. Introduce un nombre válido.');
@@ -75,7 +98,7 @@
             } else if (!validarInput(nameInput.value)) {
                 showError(nameInput,
                     'Ni números ni símbolos especiales son válidos en este campo. Introduce un nombre válido, por favor.'
-                    );
+                );
                 errors = true;
             } else {
                 hideError(nameInput);
@@ -87,7 +110,7 @@
             } else if (!validarInput(apellidosInput.value)) {
                 showError(apellidosInput,
                     'Ni números ni símbolos especiales son válidos en este campo. Introduce tus apellidos, por favor.'
-                    );
+                );
                 errors = true;
             } else {
                 hideError(apellidosInput);
@@ -107,7 +130,9 @@
                 showError(passwordInput, 'Por favor, introduce una contraseña');
                 errors = true;
             } else if (!validarContraseña(passwordInput.value)) {
-                showError(passwordInput, 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número.');
+                showError(passwordInput,
+                    'La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número.'
+                    );
                 errors = true;
             } else {
                 hideError(passwordInput);
