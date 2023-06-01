@@ -67,6 +67,9 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('/reservas', [ReservaController::class, 'index'])->name('admin.reservas');
     Route::get('/reservas/detalles/{reserva}', [ReservaController::class, 'detallesReserva'])->name('admin.reserva.detalles');
 
+    // Comentarios
+    Route::get('/comentarios', [ComentarioController::class, 'index'])->name('admin.comentarios');
+    //empleo
     Route::get('/admin/cvs', [AdminController::class, 'showCVs'])->name('admin.cvs');
     Route::get('/admin/cvs/{id}/download', [AdminController::class, 'downloadCV'])->name('admin.cvs.download');
 });

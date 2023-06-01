@@ -23,12 +23,14 @@ class AdminController extends Controller
      */
     public function index()
     {
+        $fechaActual = Carbon::now()->toDateString();
+
         $actividades = Actividad::orderBy('created_at', 'desc')->get();
         $comentarios = Comentario::orderBy('created_at', 'desc')->get();
         $destinos = Destino::orderBy('created_at', 'desc')->get();
         $guias = Guia::orderBy('created_at', 'desc')->get();
-        $reservas = Reserva::orderBy('created_at', 'desc')->paginate(10);
-        $users = User::orderBy('created_at', 'desc')->paginate(10);
+        $reservas = Reserva::whereDate('fecha', '=', $fechaActual)->orderBy('created_at', 'desc')->paginate(10);
+        $users = User::whereDate('created_at', '=', $fechaActual)->orderBy('created_at', 'desc')->paginate(10);
 
         return view('admin.index', [
             'actividades' => $actividades,

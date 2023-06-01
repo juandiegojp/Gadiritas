@@ -65,6 +65,10 @@
                             class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">Reservas</a>
                     </li>
                     <li>
+                        <a href="{{ route('admin.comentarios') }}"
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">Comentarios</a>
+                    </li>
+                    <li>
                         <a href="{{ route('admin.cvs') }}"
                             class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">Empleo</a>
                     </li>
