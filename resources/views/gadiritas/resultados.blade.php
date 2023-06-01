@@ -35,7 +35,6 @@
     </div>
     <div id="resultadosContainer">
         <div id="filtroResultados">
-            <strong>{{$destino}}</strong>
             <form action="" method="POST">
                 @csrf
                 <input type="hidden" id="destino_id" value="{{$destino}}">

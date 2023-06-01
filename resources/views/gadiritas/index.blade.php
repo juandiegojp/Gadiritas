@@ -101,8 +101,9 @@
 
         // Mostrar los datos de la cookie en la etiqueta <div>
         var datosCookieDiv = document.getElementById('datosCookie');
-        if (actividadID && actividadName) {
-            datosCookieDiv.style.visibility = 'visible';
+        if (getCookieValue('Gadiritas')) {
+            if (actividadID && actividadName) {
+                datosCookieDiv.style.visibility = 'visible';
             datosCookieDiv.textContent = "Sigue por donde lo has dejado: ";
 
             var enlaceDetalles = document.createElement('a');
@@ -110,7 +111,8 @@
             enlaceDetalles.href = "/detalles/" + actividadID;
 
             // Agregar el enlace a la etiqueta <div>
-            datosCookieDiv.appendChild(enlaceDetalles);
+                datosCookieDiv.appendChild(enlaceDetalles);
+            }
         }
     </script>
 @endsection
