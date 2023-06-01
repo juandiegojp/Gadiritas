@@ -55,6 +55,7 @@ class UsuariosController extends Controller
             'apellidos' => $request->apellidos,
             'email' => $request->email,
             'telefono' => $request->tlf,
+            'fecha_nacimiento' => $request->fecha_nacimiento,
             'password' => Hash::make($request->password1),
             'is_admin' => $request->input('is_admin') ? 'True' : 'False',
             'is_guia' => $request->input('is_guia') ? 'True' : 'False',

@@ -20,6 +20,14 @@
                 <label for="apellidos"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Apellidos</label>
             </div>
+            <div class="relative z-0 w-full mb-6 group">
+                <label for="fecha_nacimiento"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Fecha
+                    de nacimiento:</label>
+                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    required>
+            </div>
             <div class="grid md:grid-cols-2 md:gap-6">
                 <div class="relative z-0 w-full mb-6 group">
                     <input type="text" name="tlf" id="tlf"
@@ -30,7 +38,7 @@
                         Teléfono</label>
                 </div>
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="text" name="password1" id="password1"
+                    <input type="password" name="password1" id="password1"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=" " required />
                     <label for="password1"
@@ -47,7 +55,7 @@
                         Electrónico</label>
                 </div>
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="text" name="password2" id="password2"
+                    <input type="password" name="password2" id="password2"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=" " required />
                     <label for="password2"
@@ -83,8 +91,22 @@
             const tlfInput = document.getElementById('tlf');
             const passwordInput = document.getElementById('password1');
             const passwordConfirmInput = document.getElementById('password2');
+            var fechaNacimientoInput = document.getElementById('fecha_nacimiento');
+
+            var fechaNacimiento = new Date(fechaNacimientoInput.value);
+            var hoy = new Date();
+            var minEdad = 18;
+            var edadMilisegundos = hoy - fechaNacimiento;
+            var edadAnios = Math.floor(edadMilisegundos / 1000 / 60 / 60 / 24 / 365);
 
             let errors = false;
+
+            if (edadAnios < minEdad) {
+                showError(fechaNacimientoInput, 'El usuario debe de ser mayor de edad para darse de alta en la aplicación.');
+                errors = true;
+            } else {
+                hideError(nameInput);
+            }
 
             if (nameInput.value.length < 3 || !nameInput.value) {
                 showError(nameInput, 'Nombre no válido. Introduce un nombre válido.');

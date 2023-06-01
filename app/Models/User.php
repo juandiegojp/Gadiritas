@@ -23,6 +23,7 @@ class User extends Authenticatable
         'apellidos',
         'email',
         'telefono',
+        'fecha_nacimiento',
         'password',
         'is_admin',
         'is_guia',
