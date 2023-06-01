@@ -22,7 +22,7 @@ class UsuariosController extends Controller
     {
         $reservas = Reserva::all();
         $users = User::where('is_guia', false)
-            ->orderBy('is_admin')
+            ->orderBy('is_admin', 'DESC')
             ->get();
 
         return view('admin.usuarios.index', [
