@@ -74,8 +74,8 @@ class ReservaController extends Controller
             ->orderBy('comarca')
             ->get();
         $destinos = Destino::select('nombre', 'comarca')->get();
-        $reservas = Reserva::where('user_id', $request->user()->id)
-            ->orderBy('created_at', 'DESC')
+        $reservas = Reserva::where('user_id', $request->user()->id)->where('cancelado', false)
+            ->orderBy('fecha', 'DESC')
             ->paginate(5);
 
         return view('gadiritas.reservas', compact('reservas', 'comarcas', 'destinos'));
@@ -89,9 +89,9 @@ class ReservaController extends Controller
      */
     public function borrarReserva(Request $request)
     {
-        if (Auth::user()) {
+        if (Auth::user() || Auth::user()->is_admin) {
             $reserva = $request->input('id');
-            Reserva::where('id', $reserva)->delete();
+            Reserva::where('id', $reserva)->update(['cancelado' => true]);
             $mail = new MailController();
             $mail->cancelar();
             if (Auth::user()->is_admin) {

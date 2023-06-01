@@ -49,7 +49,7 @@
             {{ $reservas->links() }}
         </div>
         <div class="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50">
-            <h2 class="mb-4 text-2xl font-semibold text-center underline">Reportes</h2>
+            <h2 class="mb-4 text-2xl font-semibold text-center underline">Comentarios denunciados</h2>
             @forelse($usuarios as $usuario)
                 <time
                     class="text-lg font-semibold text-gray-900">{{ Carbon\Carbon::parse($usuario->created_at)->isSameAs('d', Carbon\Carbon::now()) ? 'Hoy' : Carbon\Carbon::parse($usuario->created_at)->diffForHumans(['parts' => 1]) }}</time>
@@ -71,7 +71,7 @@
             {{ $usuarios->links() }}
         </div>
         <div class="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50">
-            <h2 class="mb-4 text-2xl font-semibold text-center underline">Cancelaciones</h2>
+            <h2 class="mb-4 text-2xl font-semibold text-center underline">Reservas canceladas</h2>
             @forelse($reservas as $reserva)
                 <time
                     class="text-lg font-semibold text-gray-900">{{ Carbon\Carbon::parse($reserva->created_at)->isSameAs('d', Carbon\Carbon::now()) ? 'Hoy' : Carbon\Carbon::parse($reserva->created_at)->diffForHumans(['parts' => 1]) }}</time>

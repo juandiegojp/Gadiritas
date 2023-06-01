@@ -11,3 +11,6 @@
 
 - Cambio de idioma
 - Logros*
+
+
+tailwind.blade para cambiar el paginate.

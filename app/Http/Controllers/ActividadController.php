@@ -223,7 +223,7 @@ class ActividadController extends Controller
     public function detalles($destino)
     {
         $actividad = Actividad::find($destino);
-        $comentarios = Comentario::where('actividad_id', $actividad->id)->orderBy('created_at', 'DESC')->simplePaginate(6);
+        $comentarios = Comentario::where('actividad_id', $actividad->id)->orderBy('created_at', 'DESC')->paginate(6);
         $destinos = Destino::select('nombre', 'comarca')->get();
         $comarcas = Destino::select('comarca')
             ->groupBy('comarca')
