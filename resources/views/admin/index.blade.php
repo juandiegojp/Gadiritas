@@ -68,7 +68,7 @@
                 <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900">
                     No se ha registrado hoy ningún usuario nuevo.</h1>
             @endforelse
-            {{ $usuarios->links() }}
+
         </div>
         <div class="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50">
             <h2 class="mb-4 text-2xl font-semibold text-center underline">Reservas canceladas</h2>
@@ -89,7 +89,7 @@
                 </ol>
             @empty
                 <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900">
-                    No se ha creado hoy ninguna reserva nueva.</h1>
+                    No se ha cancelado ninguna reserva hoy.</h1>
             @endforelse
             {{ $reservasCanceladas->links() }}
         </div>
