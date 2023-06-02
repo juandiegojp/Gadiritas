@@ -141,6 +141,16 @@ $(function () {
         console.log(actividadId);
         console.log(contenido);
 
+        var valoracionPositiva = document.getElementById("positivo").value;
+        var valoracionNegativa = document.getElementById("negativo").value;
+
+        if (valoracionPositiva === "" && valoracionNegativa === "") {
+            alert(
+                "Debes seleccionar una valoración (positiva o negativa) antes de enviar el comentario."
+            );
+            return false;
+        }
+
         // Crear el objeto de datos para enviar a través de AJAX
         var data = {
             actividadId: actividadId,
@@ -185,6 +195,11 @@ $(function () {
                 var btnNegativo = document.getElementById("btnNegativo");
                 btnPositivo.style.backgroundColor = "";
                 btnNegativo.style.backgroundColor = "";
+
+                var valoracionPositiva = document.getElementById("positivo");
+                var valoracionNegativa = document.getElementById("negativo");
+                valoracionPositiva.value = "";
+                valoracionNegativa.value = "";
             },
             error: function (xhr, status, error) {
                 // Manejar los errores de la solicitud AJAX
