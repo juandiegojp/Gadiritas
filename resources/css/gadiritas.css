@@ -323,6 +323,7 @@ div .comarca-container {
     flex-direction: column;
     font-size: large;
     background-color: rgba(0, 0, 0, 0.45);
+    border-radius: 0.5rem;
 }
 
 .valoracion button {
@@ -350,6 +351,7 @@ div .comarca-container {
     background-color: rgba(0, 0, 0, 0.25);
     padding: 0.25rem;
     width: auto; /* Ajusta el ancho del nav al 100% del contenedor */
+    border-radius: 0.5rem;
 }
 
 #Breadcrumb a {
