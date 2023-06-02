@@ -38,6 +38,30 @@
                 </li>
             </ol>
         </nav>
+        <div class="valoracion">
+            @php
+                $porcentajePositivos = round((count($comentariosPositivos) / count($comentarios)) * 100, 2);
+                $valoracion = ceil($porcentajePositivos / 20);
+            @endphp
+            <div>
+                <p>El {{ $porcentajePositivos }}% usuarios han valorado positivamente esta actividad.</p>
+            </div>
+            <div>
+                @if ($valoracion >= 1 && $valoracion <= 5)
+                    @for ($i = 1; $i <= 5; $i++)
+                        <button>
+                            @if ($i <= $valoracion)
+                                <i class="fas fa-star"></i>
+                            @else
+                                <i class="far fa-star"></i>
+                            @endif
+                        </button>
+                    @endfor
+                    ({{count($comentarios)}} valoraciones)
+                @endif
+            </div>
+
+        </div>
         <img src="{{ Vite::asset("resources/images/{$actividad->id}.jpg") }}" alt="{{ $actividad->destino->nombre }}">
     </div>
     <div class="mx-6 mt-4 mb-12">

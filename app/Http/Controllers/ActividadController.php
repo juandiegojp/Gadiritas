@@ -224,12 +224,13 @@ class ActividadController extends Controller
     {
         $actividad = Actividad::find($destino);
         $comentarios = Comentario::where('actividad_id', $actividad->id)->orderBy('created_at', 'DESC')->paginate(6);
+        $comentariosPositivos = Comentario::where('actividad_id', $actividad->id)->where('positivo', 1)->get();
         $destinos = Destino::select('nombre', 'comarca')->get();
         $comarcas = Destino::select('comarca')
             ->groupBy('comarca')
             ->orderBy('comarca')
             ->get();
-        return view('gadiritas.detalles', compact('actividad', 'comarcas', 'destinos', 'comentarios'));
+        return view('gadiritas.detalles', compact('actividad', 'comarcas', 'destinos', 'comentarios', 'comentariosPositivos'));
     }
 
 

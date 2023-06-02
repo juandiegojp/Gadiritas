@@ -304,6 +304,35 @@ div .comarca-container {
     overflow: hidden;
 }
 
+:root {
+    --color-inactivo: #5f5050;
+    --color-hover: #ffa400;
+}
+
+.valoracion {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    color: rgb(255, 255, 255);
+    padding: 0.5rem 0.3rem;
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    font-size: large;
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+.valoracion button {
+    background-color: initial;
+    border: 0;
+    color: var(--color-hover);
+}
+
+
+
 #hero img {
     width: 100%;
     height: 100%;

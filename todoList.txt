@@ -9,5 +9,6 @@
 - Cambio de idioma
 - Logros*
 
+- Valoraciones. Reportes.
 
 tailwind.blade para cambiar el paginate.
