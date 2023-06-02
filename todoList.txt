@@ -1,9 +1,7 @@
 - Refund de las reservas.
 
 - Mostrar en el admin toda la información en el dashboard (hoy/últimos 7 días/mes/todo)
-- Añadir sección de comentarios (admin).
 - El admin debe de poder borrar los comentarios de los usuarios.
-- Buscador en el admin para encontrar datos a tiempo real.
 - Modificar los detalles por un modal.
 
 - Reportar comentario.
