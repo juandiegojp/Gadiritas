@@ -40,9 +40,18 @@
         </nav>
         <div class="valoracion">
             @php
-                $porcentajePositivos = round((count($comentariosPositivos) / count($comentariosTotal)) * 100, 2);
-                $valoracion = ceil($porcentajePositivos / 20);
+                $totalComentarios = $comentariosTotal->count();
+                $totalComentariosPositivos = $comentariosPositivos->count();
+
+                if ($totalComentarios > 0) {
+                    $porcentajePositivos = round(($totalComentariosPositivos / $totalComentarios) * 100, 2);
+                    $valoracion = ceil($porcentajePositivos / 20);
+                } else {
+                    $porcentajePositivos = 0;
+                    $valoracion = 0;
+                }
             @endphp
+
             <div>
                 <p>El {{ $porcentajePositivos }}% usuarios han valorado positivamente esta actividad.</p>
             </div>
@@ -180,9 +189,10 @@
                 <div id="comentarios">
                     @foreach ($comentarios as $comentario)
                         @if (!$comentario->positivo)
-                            <div class="comentario" data-comentario-id="{{ $comentario->id }}" style="background: rgba(255, 0, 0, 0.35)">
-                        @else
-                            <div class="comentario" data-comentario-id="{{ $comentario->id }}">
+                            <div class="comentario" data-comentario-id="{{ $comentario->id }}"
+                                style="background: rgba(255, 0, 0, 0.5)">
+                            @else
+                                <div class="comentario" data-comentario-id="{{ $comentario->id }}">
                         @endif
                         <figcaption class="autor">
                             <div>

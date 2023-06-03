@@ -658,7 +658,7 @@ figure {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem 0rem;
+    padding: 1rem 0.5rem;
     margin: 0rem 1rem;
     height: auto;
     margin-bottom: 2.5rem;

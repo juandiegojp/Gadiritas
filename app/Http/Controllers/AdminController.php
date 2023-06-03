@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -28,12 +29,21 @@ class AdminController extends Controller
         $reservas = Reserva::whereDate('fecha', '=', $fechaActual)->orderBy('created_at', 'desc')->paginate(10);
         $reservasCanceladas = Reserva::whereDate('updated_at', '=', $fechaActual)->where('cancelado', true)->orderBy('created_at', 'desc')->paginate(10);
         $users = User::whereDate('created_at', '=', $fechaActual)->orderBy('created_at', 'desc')->paginate(10);
+        $comentariosTotal = Comentario::get();
+        $comentariosPositivos = Comentario::where('positivo', 1)->get();
+        $comentariosPorActividad = Comentario::select('actividad_id', DB::raw('COUNT(*) as total'), DB::raw('SUM(CASE WHEN positivo THEN 1 ELSE 0 END) as positivos'))
+            ->groupBy('actividad_id')
+            ->get();
+
 
         return view('admin.index', [
             'comentarios' => $comentarios,
             'reservas' => $reservas,
             'reservasCanceladas' => $reservasCanceladas,
             'usuarios' => $users,
+            'comentariosTotal' => $comentariosTotal,
+            'comentariosPositivos' => $comentariosPositivos,
+            'comentariosPorActividad' => $comentariosPorActividad,
         ]);
     }
 
