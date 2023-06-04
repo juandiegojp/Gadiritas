@@ -118,6 +118,7 @@
                     <p class="text-xl font-bold leading-none tracking-tight text-white underline md:text-2xl lg:text-2xl">
                         Punto de encuentro</p>
                     <input type="hidden" name="direccion" id="direccion" value="{{ $actividad->direccion }}">
+                    <div id="map"></div>
                 </div>
                 <div class="flex items-center justify-center w-full">
                     <a id="pdf-link"

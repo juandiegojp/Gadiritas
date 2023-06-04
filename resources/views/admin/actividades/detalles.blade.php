@@ -70,7 +70,7 @@
                 </tr>
             </tbody>
         </table>
-        <div class="flex flex-col w-5/6 mt-4 space-y-4">
+        <div class="flex flex-col w-5/6 my-4 px-4 space-y-4">
             <h2 class="text-4xl font-extrabold underline dark:text-white underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">Descripción: </h2>
             <p class="text-lg font-medium text-gray-900 dark:text-white">{!! nl2br(e($actividad->descripcion)) !!}</p>
         </div>
