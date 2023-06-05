@@ -143,7 +143,7 @@
             } else if (!validarPrecio(duracionInput.value)) {
                 showError(maxPersonasInput,
                     'El número de personas no permite otro valor que no sea numérico, por favor, introduce un valor válido.'
-                    );
+                );
                 errors = true;
             } else {
                 hideError(maxPersonasInput);
@@ -195,10 +195,9 @@
         }
 
         function validarInput(input) {
-            const regex = /^[a-zA-ZáéíóúÁÉÍÓÚ\s]+$/;
+            const regex = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;
             return regex.test(input);
         }
-
 
         function validarPrecio(precio) {
             const regex = /^\d+(\,\d{1,2})?$/;
