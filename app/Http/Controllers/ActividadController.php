@@ -117,6 +117,7 @@ class ActividadController extends Controller
             'user_id' => $request->user_id,
             'destino_id' => $request->destino_id,
             'direccion' => $request->direccion,
+            'horas' => $request->hora,
         ]);
 
         return redirect('actividades/detalles/' . $actividad->id);
