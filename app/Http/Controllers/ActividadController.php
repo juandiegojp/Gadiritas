@@ -62,6 +62,7 @@ class ActividadController extends Controller
             'user_id' => $request->user_id,
             'destino_id' => $request->destino_id,
             'direccion' => $request->direccion,
+            'horas' => $request->hora,
         ]);
 
         return redirect('/actividades/detalles/' . $n_actividad->id);
@@ -129,7 +130,11 @@ class ActividadController extends Controller
      */
     public function borrarActividad(Actividad $actividad)
     {
-        $actividad->delete();
+        if ($actividad->activo) {
+            $actividad->update(['activo' => false]);
+        } else {
+            $actividad->update(['activo' => true]);
+        }
         return redirect('/actividades');
     }
 
