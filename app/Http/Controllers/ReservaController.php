@@ -43,7 +43,7 @@ class ReservaController extends Controller
      * @param  mixed $request
      * @return void
      */
-    public function crear_reserva(Request $request)
+    public function crear_reserva(Request $request, $transactionId)
     {
         $hora = date('H:i:s', strtotime($request->hora));
 
@@ -54,6 +54,7 @@ class ReservaController extends Controller
             'hora' => $hora,
             'personas' => $request->n_personas,
             'precio_total' => ($request->precioAct * $request->n_personas),
+            'pago_id' => $transactionId,
         ]);
 
         $mail = new MailController();

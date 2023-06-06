@@ -91,14 +91,14 @@ class PaypalController extends Controller
 
         try {
             $result = $payment->execute($execution, $this->apiContext);
+            $transactionId = $payment->transactions[0]->related_resources[0]->sale->id;
 
             if ($result->getState() == 'approved') {
                 $requestData = $request->session()->get('requestData');
                 $newRequest = new Request($requestData);
                 $reservaController = new ReservaController();
-                $reservaController->crear_reserva($newRequest);
+                $reservaController->crear_reserva($newRequest, $transactionId);
                 return redirect()->route('usuarios.index')->with('success', '¡La reserva se ha creado correctamente!');
-                // El pago ha sido aprobado, realiza las acciones necesarias aquí
             } else {
                 return redirect()->route('usuarios.index')->with('error', '¡Oh, no! Algo ha salido mal en el proceso...');
             }
