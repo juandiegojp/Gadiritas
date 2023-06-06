@@ -71,9 +71,7 @@ class PaypalController extends Controller
             $payment->create($this->apiContext);
             $approvalUrl = $payment->getApprovalLink();
 
-            $reserva = new ReservaController();
-            $reserva->crear_reserva($request);
-
+            $request->session()->put('requestData', $request->all());
             return redirect($approvalUrl);
         } catch (Exception $ex) {
             Log::error($ex);
@@ -95,8 +93,12 @@ class PaypalController extends Controller
             $result = $payment->execute($execution, $this->apiContext);
 
             if ($result->getState() == 'approved') {
-                // El pago ha sido aprobado, realiza las acciones necesarias aquí
+                $requestData = $request->session()->get('requestData');
+                $newRequest = new Request($requestData);
+                $reservaController = new ReservaController();
+                $reservaController->crear_reserva($newRequest);
                 return redirect()->route('usuarios.index')->with('success', '¡La reserva se ha creado correctamente!');
+                // El pago ha sido aprobado, realiza las acciones necesarias aquí
             } else {
                 return redirect()->route('usuarios.index')->with('error', '¡Oh, no! Algo ha salido mal en el proceso...');
             }
@@ -109,11 +111,11 @@ class PaypalController extends Controller
 
     public function cancel()
     {
-        redirect()->back();
+        return redirect()->route('usuarios.index');
     }
 
     public function error()
     {
-        redirect()->back();
+        return redirect()->route('usuarios.index');
     }
 }

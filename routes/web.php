@@ -91,7 +91,7 @@ Route::middleware(['logout.banned', 'auth'])->group(function () {
     Route::get('/paypal/success', [PaypalController::class, 'success'])->name('paypal.success');
     Route::get('/paypal/error', [PaypalController::class, 'error'])->name('paypal.error');
     Route::post('/paypal/checkout', [PaypalController::class, 'checkout'])->name('paypal.checkout');
-    Route::post('/paypal/cancel', [PaypalController::class, 'cancel'])->name('paypal.cancel');
+    Route::get('/paypal/cancel', [PaypalController::class, 'cancel'])->name('paypal.cancel');
     Route::get('/actividad/pdf/{id}', [ActividadController::class, 'generatePDF'])->name('generar.pdf');
 });
 

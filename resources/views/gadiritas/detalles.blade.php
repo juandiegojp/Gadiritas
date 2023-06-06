@@ -118,7 +118,7 @@
                     <p class="text-xl font-bold leading-none tracking-tight text-white underline md:text-2xl lg:text-2xl">
                         Punto de encuentro</p>
                     <input type="hidden" name="direccion" id="direccion" value="{{ $actividad->direccion }}">
-                    <div id="map"></div>
+
                 </div>
                 <div class="flex items-center justify-center w-full">
                     <a id="pdf-link"
@@ -135,6 +135,7 @@
                     @csrf
                     <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
                     <input type="hidden" name="act_name" id="act_name" value="{{ $actividad->titulo }}">
+                    <input type="hidden" name="usrID" id="usrID" value="{{ Auth::user()->id }}">
                     @include('gadiritas.calendar')
                     <div id="formContainerReserva">
                         <div class="formReserva">
@@ -241,7 +242,7 @@
         $(document).ready(function() {
             var actividadName = document.querySelector('#act_name').value;
             var actividadID = document.querySelector('#act_id').value;
-            console.log(actividadID, actividadName);
+
             const d = new Date();
             d.setTime(d.getTime() + 30 * 24 * 60 * 60 * 1000);
             let expires = "expires=" + d.toUTCString();

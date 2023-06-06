@@ -6,6 +6,7 @@ use App\Models\Destino;
 use App\Models\Reserva;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class ReservaController extends Controller
 {
@@ -45,12 +46,14 @@ class ReservaController extends Controller
     public function crear_reserva(Request $request)
     {
         $hora = date('H:i:s', strtotime($request->hora));
+
         $n_reserva = Reserva::create([
             'actividad_id' => $request->act_id,
-            'user_id' => $request->user()->id,
+            'user_id' => $request->usrID,
             'fecha' => $request->date,
             'hora' => $hora,
             'personas' => $request->n_personas,
+            'precio_total' => ($request->precioAct * $request->n_personas),
         ]);
 
         $mail = new MailController();
@@ -75,7 +78,7 @@ class ReservaController extends Controller
             ->get();
         $destinos = Destino::select('nombre', 'comarca')->get();
         $reservas = Reserva::where('user_id', $request->user()->id)->where('cancelado', false)
-            ->orderBy('fecha', 'DESC')
+            ->orderBy('created_at', 'DESC')
             ->paginate(5);
 
         return view('gadiritas.reservas', compact('reservas', 'comarcas', 'destinos'));
@@ -91,7 +94,7 @@ class ReservaController extends Controller
     {
         if (Auth::user() || Auth::user()->is_admin) {
             $reserva = $request->input('id');
-            Reserva::where('id', $reserva)->update(['cancelado' => true]);
+            Reserva::where('id', $reserva)->update(['cancelado' => true, 'personas' => 0]);
             $mail = new MailController();
             $mail->cancelar();
             if (Auth::user()->is_admin) {
