@@ -27,7 +27,12 @@ class DestinoController extends Controller
      */
     public function destinosForm()
     {
-        return view('admin.destinos.create', []);
+        $comarcas = Destino::select('comarca')
+            ->distinct()
+            ->orderBy('comarca')
+            ->pluck('comarca');
+
+        return view('admin.destinos.create', ['comarcas' => $comarcas]);
     }
 
     /**
