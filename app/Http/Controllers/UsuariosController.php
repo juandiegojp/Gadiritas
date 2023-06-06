@@ -139,9 +139,9 @@ class UsuariosController extends Controller
     public function index()
     {
         $comarcas = Destino::select('comarca')
-            ->groupBy('comarca')
+            ->distinct()
             ->orderBy('comarca')
-            ->get();
+            ->pluck('comarca');
         $destinos = Destino::select('nombre', 'comarca')->get();
         return view('gadiritas.index', [
             'comarcas' => $comarcas,

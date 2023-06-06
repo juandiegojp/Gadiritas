@@ -22,19 +22,8 @@
                 class="flex flex-col p-4 mx-auto mt-4 font-medium border border-gray-900 rounded-lg md:p-0 md:flex-row md:space-x-8 md:mt-0 md:border-0 max-[767px]:grid max-[767px]:grid-cols-3 max-[500px]:grid max-[500px]:grid-cols-2">
                 @foreach ($comarcas as $comarca)
                     <div class="comarca-container max-[767px]:mb-8">
-                        <button>{{ $comarca->comarca }}</button>
-                        <!-- Dropdown menu -->
-                        <div class="comarca">
-                            <ul class="space-y-1">
-                                @foreach ($destinos as $destino)
-                                    @if ($destino->comarca == $comarca->comarca)
-                                        <li><a
-                                                href="{{ route('usuarios.actividades', $destino->nombre) }}">{{ $destino->nombre }}</a>
-                                        </li>
-                                    @endif
-                                @endforeach
-                            </ul>
-                        </div>
+                        <a href="{{ route('usuarios.actividades', $comarca) }}"
+                            class="pr-1 ml-1 md:ml-2">{{ $comarca }}</a>
                     </div>
                 @endforeach
                 <button type="button" id="dropdownDefaultButton" data-dropdown-toggle="dropdown"

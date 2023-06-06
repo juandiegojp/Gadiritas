@@ -152,9 +152,9 @@ class ActividadController extends Controller
     public function busquedaActividades(Request $request)
     {
         $comarcas = Destino::select('comarca')
-            ->groupBy('comarca')
+            ->distinct()
             ->orderBy('comarca')
-            ->get();
+            ->pluck('comarca');
         $destino = Destino::whereRaw(
             'LOWER(unaccent(nombre)) LIKE ?',
             ['%' . mb_strtolower(preg_replace('/[^\p{L}\p{N}\s]/u', '', $request->buscadorHome), 'UTF-8') . '%']
@@ -194,9 +194,9 @@ class ActividadController extends Controller
     public function actividadesResultados($destino)
     {
         $comarcas = Destino::select('comarca')
-            ->groupBy('comarca')
+            ->distinct()
             ->orderBy('comarca')
-            ->get();
+            ->pluck('comarca');
         $destinos = Destino::select('nombre', 'comarca')->get();
         $ciudades = Destino::where('nombre', $destino)->get();
         $actividades = [];
@@ -234,9 +234,9 @@ class ActividadController extends Controller
         $comentariosTotal = Comentario::where('actividad_id', $actividad->id)->get();
         $destinos = Destino::select('nombre', 'comarca')->get();
         $comarcas = Destino::select('comarca')
-            ->groupBy('comarca')
+            ->distinct()
             ->orderBy('comarca')
-            ->get();
+            ->pluck('comarca');
         return view('gadiritas.detalles', compact('actividad', 'comarcas', 'destinos', 'comentarios', 'comentariosPositivos', 'comentariosTotal'));
     }
 
