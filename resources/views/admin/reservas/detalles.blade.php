@@ -11,7 +11,13 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-700/25 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Nombre de la actividad
+                        Id transacción
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Cliente
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Actividad
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Fecha
@@ -35,14 +41,20 @@
             </thead>
             <tbody>
                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <td scope="row" class="px-6 py-4">
+                        {{ $reserva->pago_id }}
+                    </td>
+                    <td scope="row" class="px-6 py-4">
+                        {{ $reserva->user->apellidos}}, {{$reserva->user->name}}
+                    </td>
+                    <td scope="row" class="px-6 py-4">
                         {{ $reserva->actividad->titulo }}
                     </td>
                     <td class="px-6 py-4">
                         {{ $reserva->fecha }} - {{ $reserva->hora }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $reserva->personas * $reserva->actividad->precio }}€
+                        {{ $reserva->precio_total }}€
                     </td>
                     <td class="px-6 py-4">
                         {{ $reserva->actividad->duracion }}h

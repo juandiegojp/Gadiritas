@@ -17,7 +17,7 @@ class ReservaController extends Controller
      */
     public function index()
     {
-        $reservas = Reserva::all()->sortBy('created_at');
+        $reservas = Reserva::orderBy('created_at', 'DESC')->paginate(10);
         return view('admin.reservas.index', [
             'reservas' => $reservas,
         ]);

@@ -1,7 +1,6 @@
 - Refund de las reservas.
 - Reportar comentario.
 - Reportes.
--
 
 
 - Mostrar en el admin toda la información en el dashboard (hoy/últimos 7 días/mes/todo)
@@ -15,6 +14,7 @@
 
 - Alpine (Arreglar las fecha y horas)
 - Arreglar responsive de la valoración
+- responsive del admin
 
 
 tailwind.blade para cambiar el paginate.
@@ -26,4 +26,4 @@ Cambios añadidos:
 - LAS RESERVAS ALMACENAN EL PRECIO TOTAL Y TIENEN LA ID DE LA TRANSICIÓN (PAGO)
 - La ruta de cancelar la reserva es por GET. (funciona)
 - LAS RESERVAS SE HACEN CORRECTAMENTE Y ALMACENAN TODOS LOS DATOS
--
+- ADMIN VE TODOS LOS DATOS DE LA RESERVA (actualizado)

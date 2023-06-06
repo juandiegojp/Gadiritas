@@ -7,8 +7,8 @@
         <input type="text" id="searchInput" onkeyup="search()" placeholder="Buscar"
             class="w-3/4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-50 focus:border-blue-50 p-2.5">
     </div>
-    <div class="flex items-center justify-center mb-4">
-        <table class="w-11/12 text-sm text-left text-gray-500">
+    <div class="flex items-center justify-center flex-col mb-4">
+        <table class="w-11/12 text-sm text-left text-gray-500 mb-4">
             <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white">
                 Reservas
                 <p class="mt-1 text-sm font-normal text-gray-500">
@@ -56,6 +56,7 @@
                 @endforelse
             </tbody>
         </table>
+        {{$reservas->links()}}
     </div>
 
     <script>
