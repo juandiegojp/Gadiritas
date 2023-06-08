@@ -12,6 +12,7 @@ use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
 
 class ActividadController extends Controller
 {
@@ -53,17 +54,48 @@ class ActividadController extends Controller
      */
     public function storeActividades(Request $request)
     {
-        $n_actividad = Actividad::create([
-            'titulo' => $request->titulo,
-            'descripcion' => $request->descripcion,
-            'precio' => $request->precio,
-            'duracion' => $request->duracion,
-            'max_personas' => $request->max_personas,
-            'user_id' => $request->user_id,
-            'destino_id' => $request->destino_id,
-            'direccion' => $request->direccion,
-            'horas' => $request->hora,
-        ]);
+        if ($request->hasFile('imagenes')) {
+            $n_actividad = Actividad::create([
+                'titulo' => $request->titulo,
+                'descripcion' => $request->descripcion,
+                'precio' => $request->precio,
+                'duracion' => $request->duracion,
+                'max_personas' => $request->max_personas,
+                'user_id' => $request->user_id,
+                'destino_id' => $request->destino_id,
+                'direccion' => $request->direccion,
+                'horas' => $request->hora,
+            ]);
+
+            $imagenes = $request->file('imagenes');
+            $imagenPaths = [];
+
+            $count = 1;
+            foreach ($imagenes as $imagen) {
+                if ($count == 1) {
+                    $nombreArchivo = $n_actividad->id . '.jpg';
+                } else {
+                    $nombreArchivo = $n_actividad->id . '-' . $count . '.jpg';
+                }
+
+                // Obtener la ruta completa de la carpeta "resources"
+                $rutaCarpetaResources = resource_path('images');
+
+                // Crear la carpeta "resources" si no existe
+                if (!File::isDirectory($rutaCarpetaResources)) {
+                    File::makeDirectory($rutaCarpetaResources, 0755, true);
+                }
+
+                // Mover la imagen a la carpeta "resources"
+                $imagen->move($rutaCarpetaResources, $nombreArchivo);
+
+                // Guardar la ruta de la imagen en el array
+                $imagenPaths[] = $rutaCarpetaResources . '/' . $nombreArchivo;
+
+                $count++;
+            }
+
+        }
 
         return redirect('/actividades/detalles/' . $n_actividad->id);
     }
