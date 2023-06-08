@@ -152,6 +152,36 @@ class ActividadController extends Controller
             'horas' => $request->hora,
         ]);
 
+        if ($request->hasFile('imagenes')) {
+            $imagenes = $request->file('imagenes');
+            $imagenPaths = [];
+
+            $count = 1;
+            foreach ($imagenes as $imagen) {
+                if ($count == 1) {
+                    $nombreArchivo = $actividad->id . '.jpg';
+                } else {
+                    $nombreArchivo = $actividad->id . '-' . $count . '.jpg';
+                }
+
+                // Obtener la ruta completa de la carpeta "resources"
+                $rutaCarpetaResources = resource_path('images');
+
+                // Crear la carpeta "resources" si no existe
+                if (!File::isDirectory($rutaCarpetaResources)) {
+                    File::makeDirectory($rutaCarpetaResources, 0755, true);
+                }
+
+                // Mover la imagen a la carpeta "resources"
+                $imagen->move($rutaCarpetaResources, $nombreArchivo);
+
+                // Guardar la ruta de la imagen en el array
+                $imagenPaths[] = $rutaCarpetaResources . '/' . $nombreArchivo;
+
+                $count++;
+            }
+        }
+
         return redirect('actividades/detalles/' . $actividad->id);
     }
 
