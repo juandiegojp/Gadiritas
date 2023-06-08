@@ -94,9 +94,7 @@ class ActividadController extends Controller
 
                 $count++;
             }
-
         }
-
         return redirect('/actividades/detalles/' . $n_actividad->id);
     }
 
@@ -245,7 +243,7 @@ class ActividadController extends Controller
             }
             return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos', 'destino', 'ciudades'));
         } else {
-            return view('gadiritas.resultados', ['mensaje' => 'No se encontraron actividades para la ciudad buscada']);
+            return redirect()->route('usuarios.index', compact('comarcas', 'destinos'))->with('error', 'No se encontraron actividades para la ciudad buscada');
         }
     }
 
