@@ -27,7 +27,7 @@ class MailController extends Controller
             'hora' => $reserva->hora,
             'ubicación' => $reserva->actividad->direccion,
             'nPersonas' => $reserva->personas,
-            'precio' => $reserva->personas * $reserva->actividad->precio,
+            'precio' => $reserva->precio_total,
         ];
 
         Mail::to('juandiego.jurado@iesdonana.org')->send(new newReserva($mailData));

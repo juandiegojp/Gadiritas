@@ -168,15 +168,17 @@ class ActividadController extends Controller
             $actividades = [];
             foreach ($ciudades as $ciudad) {
                 foreach ($ciudad->actividad as $actividad) {
-                    $actividades[] = [
-                        'id' => $actividad->id,
-                        'titulo' => $actividad->titulo,
-                        'descripcion' => $actividad->descripcion,
-                        'precio' => $actividad->precio,
-                        'duracion' => $actividad->duracion,
-                        'max_personas' => $actividad->max_personas,
-                        'destino_id' => $actividad->destino_id,
-                    ];
+                    if ($actividad->activo) {
+                        $actividades[] = [
+                            'id' => $actividad->id,
+                            'titulo' => $actividad->titulo,
+                            'descripcion' => $actividad->descripcion,
+                            'precio' => $actividad->precio,
+                            'duracion' => $actividad->duracion,
+                            'max_personas' => $actividad->max_personas,
+                            'destino_id' => $actividad->destino_id,
+                        ];
+                    }
                 }
             }
             return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos', 'destino', 'ciudades'));
@@ -205,15 +207,17 @@ class ActividadController extends Controller
         }
         foreach ($ciudades as $ciudad) {
             foreach ($ciudad->actividad as $actividad) {
-                $actividades[] = [
-                    'id' => $actividad->id,
-                    'titulo' => $actividad->titulo,
-                    'descripcion' => $actividad->descripcion,
-                    'precio' => $actividad->precio,
-                    'duracion' => $actividad->duracion,
-                    'max_personas' => $actividad->max_personas,
-                    'destino_id' => $actividad->destino_id,
-                ];
+                if ($actividad->activo) {
+                    $actividades[] = [
+                        'id' => $actividad->id,
+                        'titulo' => $actividad->titulo,
+                        'descripcion' => $actividad->descripcion,
+                        'precio' => $actividad->precio,
+                        'duracion' => $actividad->duracion,
+                        'max_personas' => $actividad->max_personas,
+                        'destino_id' => $actividad->destino_id,
+                    ];
+                }
             }
         }
         return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos', 'ciudades', 'destino')); // Devolver la vista con los resultados de la búsqueda

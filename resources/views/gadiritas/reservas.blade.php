@@ -39,7 +39,7 @@
                             {{ \Carbon\Carbon::parse($reserva->hora)->format('H:i') }}
                         </td>
                         <td class="text-center">
-                            {{ $reserva->personas * $reserva->actividad->precio }}€
+                            {{ $reserva->precio_total }}€
                         </td>
                         <td class="py-2 text-center">
                             <button type="submit"
@@ -117,7 +117,7 @@
                                     <ul
                                         class="max-w-md mb-4 space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
                                         <li>
-                                            {{ $reserva->personas * $reserva->actividad->precio }}€
+                                            {{ $reserva->precio_total }}€
                                         </li>
                                     </ul>
                                 </div>

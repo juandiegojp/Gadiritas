@@ -139,11 +139,11 @@
                     @include('gadiritas.calendar')
                     <div id="formContainerReserva">
                         <div class="formReserva">
-                            <label for="hora">Selecciona una hora:</label>
-                            <select name="hora" id="hora">
-                                <option value="11:00">11:00</option>
-                                <option value="12:00">12:00</option>
-                            </select>
+                            <label>Selecciona una hora:</label>
+                            <div class="flex flex-row items-center space-x-1">
+                                <input type="radio" name="hora" id="hora" value="{{\Carbon\Carbon::parse($actividad->horas)->format('H:i')}}" checked>
+                                <label for="hora">{{\Carbon\Carbon::parse($actividad->horas)->format('H:i')}}</label>
+                            </div>
                         </div>
                         <div class="formReserva">
                             <label for="n_personas">Nº de personas:</label>

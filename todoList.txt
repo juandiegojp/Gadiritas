@@ -11,6 +11,7 @@
 - Cambio de idioma
 - Logros*
 
+- El admin debe de poder ver las activdiades que están en proceso
 
 - Alpine (Arreglar las fecha y horas)
 - Arreglar responsive de la valoración

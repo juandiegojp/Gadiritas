@@ -6,7 +6,13 @@
     <div class="relative m-2 overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                Detalles de la actividad
+                Estado de la actividad: <span class="uppercase">
+                    @if ($actividad)
+                        Habilitada
+                    @else
+                        Deshabilitada
+                    @endif
+                </span>
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-700/25 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -18,6 +24,9 @@
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Duración
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Hora de inicio
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Nº Personas (Max)
@@ -48,6 +57,9 @@
                         {{ $actividad->duracion }}h
                     </td>
                     <td class="px-6 py-4">
+                        {{ $actividad->horas }}h
+                    </td>
+                    <td class="px-6 py-4">
                         {{ $actividad->max_personas }} personas
                     </td>
                     <td class="px-6 py-4">
@@ -61,17 +73,23 @@
                     </td>
                     <td class="flex flex-col items-center px-6 py-4">
                         <a href=" {{ route('admin.editarActividad', $actividad->id) }} "
-                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
+                            class="font-medium text-blue-600 hover:underline">Editar</a>
                         <a data-modal-target="popup-modal" data-modal-toggle="popup-modal" href="#"
                             class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                            Borrar
+                            @if ($actividad->activo)
+                                Deshabilitar
+                            @else
+                                Habilitar
+                            @endif
                         </a>
                     </td>
                 </tr>
             </tbody>
         </table>
         <div class="flex flex-col w-5/6 my-4 px-4 space-y-4">
-            <h2 class="text-4xl font-extrabold underline dark:text-white underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">Descripción: </h2>
+            <h2
+                class="text-4xl font-extrabold underline dark:text-white underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">
+                Descripción: </h2>
             <p class="text-lg font-medium text-gray-900 dark:text-white">{!! nl2br(e($actividad->descripcion)) !!}</p>
         </div>
     </div>
@@ -99,8 +117,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
-                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">¿Estás seguro de querrer borrar a
-                        este usuario?</h3>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">¿Estás seguro de querrer
+                        @if ($actividad->activo)
+                            deshabilitar
+                        @else
+                            habilitar
+                        @endif esta actividad?</h3>
                     <form action="{{ route('admin.borrarActividad', $actividad->id) }}" method="post">
                         @method('DELETE')
                         @csrf

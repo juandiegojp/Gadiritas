@@ -26,18 +26,28 @@
                         Destino
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Estado
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Acciones
                     </th>
                 </tr>
             </thead>
             <tbody id="searchableContent">
                 @forelse($actividades as $u)
-                    <tr class="bg-white border-b">
+                    <tr class="@if ($u->activo) bg-white @else bg-red-300 @endif border-b">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             {{ $u->titulo }}
                         </th>
                         <td class="px-6 py-4">
                             {{ $u->destino->nombre }}
+                        </td>
+                        <td class="px-6 py-4">
+                            @if ($u->activo)
+                                Activo
+                            @else
+                                Deshabilitado
+                            @endif
                         </td>
                         <td class="px-6 py-4">
                             <a href="{{ route('admin.datellesActividad', $u->id) }}"

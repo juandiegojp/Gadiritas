@@ -20,7 +20,13 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-700/25">
                 <tr>
                     <th scope="col" class="px-6 py-3">
+                        ID Pago
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Actividad
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Fecha
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Usuario
@@ -37,9 +43,15 @@
                         @else
                         <tr class="bg-white border-b">
                     @endif
+                    <td class="px-6 py-4">
+                        {{ $reserva->pago_id }}
+                    </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                         {{ $reserva->actividad->titulo }}
                     </th>
+                    <td class="px-6 py-4">
+                        {{ $reserva->fecha }}
+                    </td>
                     <td class="px-6 py-4">
                         {{ $reserva->user->name }}
                     </td>

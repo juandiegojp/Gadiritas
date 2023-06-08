@@ -46,6 +46,7 @@ class GuiaController extends Controller
                 $query->where('user_id', $userId);
             })
             ->whereDate('fecha', '=', $fechaActual)
+            ->where('cancelado', false)
             ->groupBy('actividad_id', 'fecha', 'hora')
             ->orderBy('hora')
             ->paginate(4);
@@ -56,6 +57,7 @@ class GuiaController extends Controller
                 $query->where('user_id', $userId);
             })
             ->whereDate('fecha', '>', $fechaActual)
+            ->where('cancelado', false)
             ->groupBy('actividad_id', 'fecha', 'hora')
             ->orderBy('fecha')
             ->paginate(4);
@@ -94,6 +96,7 @@ class GuiaController extends Controller
                 $query->where('user_id', $userId);
             })
             ->whereRaw("CONCAT(fecha, ' ', hora) < '{$fechaActual} {$horaActual}'")
+            ->where('cancelado', false)
             ->groupBy('actividad_id', 'fecha', 'hora')
             ->orderBy('fecha', 'DESC')
             ->orderBy('hora', 'DESC')
