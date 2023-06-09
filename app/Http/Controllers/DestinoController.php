@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actividad;
 use App\Models\Destino;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DestinoController extends Controller
@@ -110,5 +113,25 @@ class DestinoController extends Controller
         $idDestino = $request->input('id');
         Destino::where('id', $idDestino)->delete();
         return redirect('/destinos');
+    }
+
+    public function destinosCheck(Request $request)
+    {
+        if ($request->ajax()) {
+            $destino_id = $request->input('destino');
+            $hora = $request->input('hora');
+
+            $parse_hora = Carbon::createFromFormat('H:i', $hora)->setTimezone('Europe/Madrid');
+            $hora_string = $parse_hora->format('H:i:s');
+
+            $destino = Destino::findOrFail($destino_id);
+            $users = User::whereDoesntHave('actividad')
+                ->where('is_guia', true)
+                ->select('id', 'name')
+                ->get();
+
+            return response()->json(['status' => $users]);
+        }
+        return response()->json(['status' => 'Invalid request'], 400);
     }
 }

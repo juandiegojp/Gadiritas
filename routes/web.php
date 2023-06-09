@@ -48,6 +48,7 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     // Destinos
     Route::get('/destinos', [DestinoController::class, 'destinos'])->name('admin.destinos');
     Route::get('/destinos/create', [DestinoController::class, 'destinosForm'])->name('admin.destinosCreate');
+    Route::post('/destinos/check', [DestinoController::class, 'destinosCheck'])->name('admin.destinosCheck');
     Route::post('/destinos/create', [DestinoController::class, 'storeDestinos'])->name('admin.storeDestinos');
     //Route::get('/destinos/detalles/{destino}', [DestinoController::class, 'datellesDestino'])->name('admin.datellesDestino');
     Route::get('/destinos/{destino}/edit', [DestinoController::class, 'editarDestino'])->name('admin.editarDestino');
