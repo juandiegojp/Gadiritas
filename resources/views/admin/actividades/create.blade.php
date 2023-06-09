@@ -223,6 +223,7 @@
             function disponibilidad() {
                 let hora = $("#hora").val();
                 let destino = $("#destino_id").val();
+                let duracion = $("#duracion").val();
 
                 $("#user_id").empty();
 
@@ -231,6 +232,7 @@
                     data: {
                         hora: hora,
                         destino: destino,
+                        duracion: duracion,
                     },
                     type: "POST",
                     dataType: "json",
@@ -239,8 +241,7 @@
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                     },
                     success: (data) => {
-                        console.log(data.status[0].name);
-                        console.log(data.status.length);
+                        console.log(data.status);
                         let cont = data.status.length;
                         const value = data.status;
 

@@ -120,17 +120,42 @@ class DestinoController extends Controller
         if ($request->ajax()) {
             $destino_id = $request->input('destino');
             $hora = $request->input('hora');
+            $duracion = $request->input('duracion');
 
             $parse_hora = Carbon::createFromFormat('H:i', $hora)->setTimezone('Europe/Madrid');
             $hora_string = $parse_hora->format('H:i:s');
-
             $destino = Destino::findOrFail($destino_id);
-            $users = User::whereDoesntHave('actividad')
+            $disponibles = [];
+
+            $users = User::whereHas('actividad', function ($query) use ($destino) {
+                $query->where('destino_id', $destino->id);
+            })
                 ->where('is_guia', true)
                 ->select('id', 'name')
                 ->get();
 
-            return response()->json(['status' => $users]);
+            foreach ($users as $user) {
+                $carbonHora = Carbon::createFromFormat('H:i:s', $hora_string);
+                $horaActividadAntes = $carbonHora->subMinutes(30)->format('H:i:s');
+                $horaActividadDespues = $carbonHora->addMinutes(60)->format('H:i:s');
+
+                $actividadAsignada = Actividad::where('user_id', $user->id)
+                    ->where(function ($query) use ($horaActividadAntes, $horaActividadDespues) {
+                        $query->whereBetween('horas', [$horaActividadAntes, $horaActividadDespues]);
+                    })->exists();
+
+                if (!$actividadAsignada) {
+                    array_push($disponibles, $user);
+                }
+            }
+
+            if (!$disponibles) {
+                $disponibles = User::whereDoesntHave('actividad')
+                    ->where('is_guia', true)
+                    ->select('id', 'name')
+                    ->get();
+            }
+            return response()->json(['status' => $disponibles]);
         }
         return response()->json(['status' => 'Invalid request'], 400);
     }
