@@ -121,11 +121,15 @@
 
                     initDate() {
                         let today = new Date();
+
+                        if (today.getDay() === 1) {
+                            today.setDate(today.getDate() + 1);
+                        }
+
                         this.month = today.getMonth();
                         this.year = today.getFullYear();
                         this.datepickerValue = new Date(this.year, this.month, today.getDate()).toLocaleDateString();
                     },
-
                     isPastDate(date) {
                         var t = new Date();
                         var p = new Date(this.year, this.month, date);
@@ -141,10 +145,10 @@
                     },
 
                     isToday(date) {
-                        const today = new Date();
                         const d = new Date(this.year, this.month, date);
+                        const isSelected = this.datepickerValue === d.toLocaleDateString();
 
-                        return today.toLocaleDateString() === d.toLocaleDateString() ? true : false;
+                        return isSelected;
                     },
 
                     getDateValue(date) {

@@ -74,9 +74,9 @@ class ReservaController extends Controller
     public function reservaUsers(Request $request)
     {
         $comarcas = Destino::select('comarca')
-            ->groupBy('comarca')
+            ->distinct()
             ->orderBy('comarca')
-            ->get();
+            ->pluck('comarca');
         $destinos = Destino::select('nombre', 'comarca')->get();
         $reservas = Reserva::where('user_id', $request->user()->id)->where('cancelado', false)
             ->orderBy('created_at', 'DESC')
