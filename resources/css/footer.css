@@ -1,8 +1,5 @@
 footer {
     background-color: #0e8c7549;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
 }
 
 /* Tamaño para los iconos del footer */
@@ -41,11 +38,4 @@ footer div {
     font-size: medium;
     --tw-text-opacity: 1;
     color: rgb(75 85 99 / var(--tw-text-opacity));
-}
-
-/* Media Queries para modo responsive */
-@media (max-height: 500px) {
-    footer {
-        position: static; /* Cambia la posición a estática en pantallas más pequeñas */
-    }
 }

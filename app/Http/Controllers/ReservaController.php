@@ -59,10 +59,25 @@ class ReservaController extends Controller
 
         $mail = new MailController();
         $mail->index($n_reserva);
+    }
 
-        if ($request->precioAct == 0) {
-            return redirect()->route('usuarios.index')->with('success', '¡La reserva se ha creado correctamente!');
-        }
+    public function freeTour(Request $request)
+    {
+        $hora = date('H:i:s', strtotime($request->hora));
+
+        $n_reserva = Reserva::create([
+            'actividad_id' => $request->act_id,
+            'user_id' => $request->usrID,
+            'fecha' => $request->date,
+            'hora' => $hora,
+            'personas' => $request->n_personas,
+            'precio_total' => ($request->precioAct * $request->n_personas),
+        ]);
+
+        $mail = new MailController();
+        $mail->index($n_reserva);
+
+        return redirect()->route('usuarios.index')->with('success', '¡La reserva se ha creado correctamente!');
     }
 
     /**

@@ -17,6 +17,7 @@
 - Arreglar responsive de la valoración
 - responsive del admin
 
+- Buscar por título de la actividad
 
 tailwind.blade para cambiar el paginate.
 

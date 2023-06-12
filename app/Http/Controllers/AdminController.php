@@ -26,7 +26,7 @@ class AdminController extends Controller
         $fechaActual = Carbon::now()->toDateString();
 
         $comentarios = Comentario::orderBy('created_at', 'desc')->get();
-        $reservas = Reserva::whereDate('fecha', '=', $fechaActual)->orderBy('created_at', 'desc')->paginate(10);
+        $reservas = Reserva::whereDate('created_at', '=', $fechaActual)->orderBy('created_at', 'desc')->paginate(10);
         $reservasCanceladas = Reserva::whereDate('updated_at', '=', $fechaActual)->where('cancelado', true)->orderBy('created_at', 'desc')->paginate(10);
         $users = User::whereDate('created_at', '=', $fechaActual)->orderBy('created_at', 'desc')->paginate(10);
         $comentariosTotal = Comentario::get();

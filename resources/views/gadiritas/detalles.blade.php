@@ -118,7 +118,7 @@
                     <p class="text-xl font-bold leading-none tracking-tight text-white underline md:text-2xl lg:text-2xl">
                         Punto de encuentro</p>
                     <input type="hidden" name="direccion" id="direccion" value="{{ $actividad->direccion }}">
-
+                    <div id="map"></div>
                 </div>
                 <div class="flex items-center justify-center w-full">
                     <a id="pdf-link"
@@ -130,8 +130,9 @@
             <div class="w-1/2 ml-4" id="reserva">
                 @if ($actividad->precio == 0)
                     <form action="{{ route('usuarios.crear_reserva') }}" method="post" id="reservarActividad">
+                @else
+                    <form action="{{ route('paypal.checkout') }}" method="post" id="reservarActividad">
                 @endif
-                <form action="{{ route('paypal.checkout') }}" method="post" id="reservarActividad">
                     @csrf
                     <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
                     <input type="hidden" name="act_name" id="act_name" value="{{ $actividad->titulo }}">
