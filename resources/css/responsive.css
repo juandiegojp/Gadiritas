@@ -65,6 +65,12 @@
     #inputFecha {
         width: 16rem;
     }
+
+    .valoracion {
+        top: 40%;
+        left: 0;
+        width: auto;
+    }
 }
 
 @media (max-width: 742px) {
@@ -148,7 +154,7 @@
         background-color: #fff;
     }
 
-    .overlay a{
+    .overlay a {
         text-decoration: underline;
         font-size: small;
     }
@@ -197,5 +203,12 @@
 
     #inputFecha {
         width: auto;
+    }
+
+    .valoracion {
+        top: 45%;
+        left: 0;
+        width: auto;
+        padding: 0;
     }
 }
