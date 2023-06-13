@@ -14,7 +14,12 @@
                 <p class="mt-1 text-sm font-normal text-gray-500">
                     Aquí se muestran algunos de los datos de las reservas hechas por los usuarios. Puedes ver más
                     información de un usuario haciendo click en
-                    "Ver detalles".
+                    "Ver detalles". <br><br>
+                    Leyenda: Las reservas en color rojo significa que la reserva ha sido cancelada. Si está de color
+                    amarillo es que está pendiente de que
+                    el guia lleve a cabo la actividad. Si no tiene ninguna de los dos colores anteriores mencionados, es que
+                    la actividad de se ha realizado
+                    con éxito.
                 </p>
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-700/25">
@@ -41,34 +46,37 @@
                     @if ($reserva->cancelado)
                         <tr class="bg-red-200 border-b">
                         @else
+                            @if ($reserva->fecha > $fechaActual)
+                        <tr class="bg-yellow-100 border-b">
+                        @else
                         <tr class="bg-white border-b">
                     @endif
-                    <td class="px-6 py-4">
-                        {{ $reserva->pago_id }}
-                    </td>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900">
-                        {{ $reserva->actividad->titulo }}
-                    </th>
-                    <td class="px-6 py-4">
-                        {{ $reserva->fecha }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ $reserva->user->name }}
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="{{ route('admin.reserva.detalles', $reserva->id) }}"
-                            class="font-medium text-gray-600 md:hover:text-blue-700 md:p-0">Ver detalles</a>
-                    </td>
-                    </tr>
-                @empty
-                    <h1
-                        class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
-                        Nada que mostrar aquí.
-                    </h1>
+                @endif
+                <td class="px-6 py-4">
+                    {{ $reserva->pago_id }}
+                </td>
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900">
+                    {{ $reserva->actividad->titulo }}
+                </th>
+                <td class="px-6 py-4">
+                    {{ $reserva->fecha }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ $reserva->user->name }}
+                </td>
+                <td class="px-6 py-4">
+                    <a href="{{ route('admin.reserva.detalles', $reserva->id) }}"
+                        class="font-medium text-gray-600 md:hover:text-blue-700 md:p-0">Ver detalles</a>
+                </td>
+                </tr>
+            @empty
+                <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
+                    Nada que mostrar aquí.
+                </h1>
                 @endforelse
             </tbody>
         </table>
-        {{$reservas->links()}}
+        {{ $reservas->links() }}
     </div>
 
     <script>

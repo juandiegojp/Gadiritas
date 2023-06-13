@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Destino;
 use App\Models\Reserva;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 
 class ReservaController extends Controller
 {
@@ -17,9 +19,11 @@ class ReservaController extends Controller
      */
     public function index()
     {
+        $fechaActual = Carbon::now()->toDateString();
+        $horaActual = Carbon::now()->toTimeString();
         $reservas = Reserva::orderBy('created_at', 'DESC')->paginate(10);
         return view('admin.reservas.index', [
-            'reservas' => $reservas,
+            'reservas' => $reservas, 'fechaActual' => $fechaActual,'horaActual' => $horaActual,
         ]);
     }
 

@@ -1,12 +1,4 @@
-- Refund de las reservas.
 - Reportar comentario.
 - Reportes.
-
-- Modificar los detalles por un modal.
-
-- Cambio de idioma
-- Logros*
-
-- El admin debe de poder ver las activdiades que están en proceso
 
 - Buscar por título de la actividad
