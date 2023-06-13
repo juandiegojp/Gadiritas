@@ -109,8 +109,8 @@
             </div>
         </div>
 
-        <div class="flex items-start justify-center my-6">
-            <div class="w-1/2" id="descMap">
+        <div class="flex items-start justify-center my-6 max-[742px]:flex-col">
+            <div class="w-1/2 max-[742px]:w-full" id="descMap">
                 <p class="text-xl font-bold leading-none tracking-tight text-white underline md:text-2xl lg:text-3xl">
                     Descripción</p>
                 {!! nl2br(e($actividad->descripcion)) !!}
@@ -127,7 +127,7 @@
                         Generar PDF</a>
                 </div>
             </div>
-            <div class="w-1/2 ml-4" id="reserva">
+            <div class="w-1/2 ml-4 max-[742px]:w-full max-[742px]:ml-0 max-[742px]:mt-4" id="reserva">
                 @if ($actividad->precio == 0)
                     <form action="{{ route('usuarios.crear_reserva') }}" method="post" id="reservarActividad">
                 @else

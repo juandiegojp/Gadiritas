@@ -4,9 +4,9 @@
             <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="logo Gadiritas" id="navbarLogo" class="mr-4">
         </a>
         @if (auth()->check())
-        <div class="flex md:order-2">
+        <div class="flex min-[800px]:order-2">
             <button data-collapse-toggle="navbar-sticky" type="button"
-                class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg min-[800px]:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
                 aria-controls="navbar-sticky" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
                 <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
@@ -17,17 +17,17 @@
                 </svg>
             </button>
         </div>
-        <div class="items-center justify-between hidden w-full md:flex md:flex-col md:w-auto md:order-1" id="navbar-sticky">
+        <div class="items-center justify-between hidden w-full min-[800px]:flex min-[800px]:flex-col min-[800px]:w-auto min-[800px]:order-1" id="navbar-sticky">
             <div
-                class="flex flex-col p-4 mx-auto mt-4 font-medium border border-gray-900 rounded-lg md:p-0 md:flex-row md:space-x-8 md:mt-0 md:border-0 max-[767px]:grid max-[767px]:grid-cols-3 max-[500px]:grid max-[500px]:grid-cols-2">
+                class="flex flex-col p-4 mx-auto mt-4 font-medium border border-gray-900 rounded-lg min-[800px]:p-0 min-[800px]:flex-row min-[800px]:space-x-8 min-[800px]:mt-0 min-[800px]:border-0 max-[800px]:grid max-[800px]:grid-cols-3 max-[500px]:grid max-[500px]:grid-cols-2">
                 @foreach ($comarcas as $comarca)
-                    <div class="comarca-container max-[767px]:mb-8">
+                    <div class="comarca-container max-[800px]:mb-8">
                         <a href="{{ route('usuarios.actividades', $comarca) }}"
-                            class="pr-1 ml-1 md:ml-2">{{ $comarca }}</a>
+                            class="pr-1 ml-1 min-[800px]:ml-2">{{ $comarca }}</a>
                     </div>
                 @endforeach
                 <button type="button" id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                    class="inline-flex items-center pl-6 text-sm font-medium text-center rounded-lg focus:underline hover:underline max-[767px]:mt-8">
+                    class="inline-flex items-center pl-6 text-sm font-medium text-center rounded-lg focus:underline hover:underline max-[800px]:mt-8">
                     {{ auth()->user()->name }}
                     <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
