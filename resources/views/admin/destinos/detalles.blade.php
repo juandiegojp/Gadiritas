@@ -36,7 +36,7 @@
             </thead>
             <tbody>
                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                         #{{ $destino->id }}
                     </td>
                     <th class="px-6 py-4">

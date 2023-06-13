@@ -6,12 +6,12 @@ use App\Models\Actividad;
 use App\Models\Comentario;
 use App\Models\Destino;
 use App\Models\Empleo;
-use App\Models\Guia;
 use App\Models\Reserva;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -23,20 +23,27 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $actividades = Actividad::orderBy('created_at', 'desc')->get();
+        $fechaActual = Carbon::now()->toDateString();
+
         $comentarios = Comentario::orderBy('created_at', 'desc')->get();
-        $destinos = Destino::orderBy('created_at', 'desc')->get();
-        $guias = Guia::orderBy('created_at', 'desc')->get();
-        $reservas = Reserva::orderBy('created_at', 'desc')->paginate(10);
-        $users = User::orderBy('created_at', 'desc')->paginate(10);
+        $reservas = Reserva::whereDate('created_at', '=', $fechaActual)->orderBy('created_at', 'desc')->paginate(10);
+        $reservasCanceladas = Reserva::whereDate('updated_at', '=', $fechaActual)->where('cancelado', true)->orderBy('created_at', 'desc')->paginate(10);
+        $users = User::whereDate('created_at', '=', $fechaActual)->orderBy('created_at', 'desc')->paginate(10);
+        $comentariosTotal = Comentario::get();
+        $comentariosPositivos = Comentario::where('positivo', 1)->get();
+        $comentariosPorActividad = Comentario::select('actividad_id', DB::raw('COUNT(*) as total'), DB::raw('SUM(CASE WHEN positivo THEN 1 ELSE 0 END) as positivos'))
+            ->groupBy('actividad_id')
+            ->get();
+
 
         return view('admin.index', [
-            'actividades' => $actividades,
             'comentarios' => $comentarios,
-            'destinos' => $destinos,
-            'guias' => $guias,
             'reservas' => $reservas,
+            'reservasCanceladas' => $reservasCanceladas,
             'usuarios' => $users,
+            'comentariosTotal' => $comentariosTotal,
+            'comentariosPositivos' => $comentariosPositivos,
+            'comentariosPorActividad' => $comentariosPorActividad,
         ]);
     }
 

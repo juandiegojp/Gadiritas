@@ -138,8 +138,18 @@ $(function () {
         var contenido = $("#contenido").val();
         var positivo = $("#positivo").val();
         var negativo = $("#negativo").val();
-        console.log(actividadId);
-        console.log(contenido);
+        //console.log(actividadId);
+        //console.log(contenido);
+
+        var valoracionPositiva = document.getElementById("positivo").value;
+        var valoracionNegativa = document.getElementById("negativo").value;
+
+        if (valoracionPositiva === "" && valoracionNegativa === "") {
+            alert(
+                "Debes seleccionar una valoración (positiva o negativa) antes de enviar el comentario."
+            );
+            return false;
+        }
 
         // Crear el objeto de datos para enviar a través de AJAX
         var data = {
@@ -161,7 +171,7 @@ $(function () {
             },
             success: function (response) {
                 // Manejar la respuesta del servidor
-                console.log(response);
+                //console.log(response);
 
                 // Crear el HTML para el nuevo comentario
                 var nuevoComentarioHTML = `
@@ -185,6 +195,11 @@ $(function () {
                 var btnNegativo = document.getElementById("btnNegativo");
                 btnPositivo.style.backgroundColor = "";
                 btnNegativo.style.backgroundColor = "";
+
+                var valoracionPositiva = document.getElementById("positivo");
+                var valoracionNegativa = document.getElementById("negativo");
+                valoracionPositiva.value = "";
+                valoracionNegativa.value = "";
             },
             error: function (xhr, status, error) {
                 // Manejar los errores de la solicitud AJAX
@@ -228,7 +243,7 @@ $(function () {
                 },
                 success: function (response) {
                     // Manejar la respuesta del servidor
-                    console.log(response);
+                    //console.log(response);
                     formulario.closest(".comentario").remove();
                 },
                 error: function (xhr, status, error) {

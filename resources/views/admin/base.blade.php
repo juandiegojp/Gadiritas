@@ -5,16 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/x-icon" href="{{ Vite::asset('resources/images/logoico.ico') }}" />
     <title>@yield('title')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <style>
         img {
             width: 6em;
             height: 6em;
             margin-right: 0.5em;
         }
+
         #navbarAdmin {
             background: linear-gradient(270deg, #0a3e4295, rgba(255, 0, 0, 0) 70.71%);
         }
@@ -65,6 +72,10 @@
                             class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">Reservas</a>
                     </li>
                     <li>
+                        <a href="{{ route('admin.comentarios') }}"
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">Comentarios</a>
+                    </li>
+                    <li>
                         <a href="{{ route('admin.cvs') }}"
                             class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">Empleo</a>
                     </li>
@@ -87,6 +98,9 @@
         <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
             <li>
                 <a href="/profile" class="block px-4 py-2 hover:bg-gray-300">Perfil</a>
+            </li>
+            <li>
+                <a href="/index" class="block px-4 py-2 hover:bg-gray-300">Vista usuario</a>
             </li>
             <li>
                 <a href="{{ route('logout') }}" class="block px-4 py-2 text-red-500 hover:bg-red-200">

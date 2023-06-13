@@ -304,6 +304,36 @@ div .comarca-container {
     overflow: hidden;
 }
 
+:root {
+    --color-inactivo: #5f5050;
+    --color-hover: #ffa400;
+}
+
+.valoracion {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    color: rgb(255, 255, 255);
+    padding: 0.5rem 0.3rem;
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    font-size: large;
+    background-color: rgba(0, 0, 0, 0.45);
+    border-radius: 0.5rem;
+}
+
+.valoracion button {
+    background-color: initial;
+    border: 0;
+    color: var(--color-hover);
+}
+
+
+
 #hero img {
     width: 100%;
     height: 100%;
@@ -321,6 +351,7 @@ div .comarca-container {
     background-color: rgba(0, 0, 0, 0.25);
     padding: 0.25rem;
     width: auto; /* Ajusta el ancho del nav al 100% del contenedor */
+    border-radius: 0.5rem;
 }
 
 #Breadcrumb a {
@@ -627,7 +658,7 @@ figure {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem 0rem;
+    padding: 1rem 0.5rem;
     margin: 0rem 1rem;
     height: auto;
     margin-bottom: 2.5rem;
@@ -799,6 +830,7 @@ figure {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    visibility: hidden;
 }
 
 #datosCookie a {

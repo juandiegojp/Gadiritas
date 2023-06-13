@@ -37,7 +37,7 @@
             <tbody>
                 @forelse($destinos as $u)
                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                             {{ $u->nombre }}
                         </th>
                         <td class="px-6 py-4">
@@ -48,7 +48,7 @@
                         </td>
                         <td class="px-6 py-4 flex justify-between items-center">
                             <a href=" {{ route('admin.editarDestino', $u->id) }} "
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Editar</a>
                             <form action=" {{ route('admin.borrarDestino') }} " method="POST" class="inline">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $u->id }}">

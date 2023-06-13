@@ -22,7 +22,7 @@ class UsuariosController extends Controller
     {
         $reservas = Reserva::all();
         $users = User::where('is_guia', false)
-            ->orderBy('is_admin')
+            ->orderBy('is_admin', 'DESC')
             ->get();
 
         return view('admin.usuarios.index', [
@@ -55,6 +55,7 @@ class UsuariosController extends Controller
             'apellidos' => $request->apellidos,
             'email' => $request->email,
             'telefono' => $request->tlf,
+            'fecha_nacimiento' => $request->fecha_nacimiento,
             'password' => Hash::make($request->password1),
             'is_admin' => $request->input('is_admin') ? 'True' : 'False',
             'is_guia' => $request->input('is_guia') ? 'True' : 'False',
@@ -138,9 +139,9 @@ class UsuariosController extends Controller
     public function index()
     {
         $comarcas = Destino::select('comarca')
-            ->groupBy('comarca')
+            ->distinct()
             ->orderBy('comarca')
-            ->get();
+            ->pluck('comarca');
         $destinos = Destino::select('nombre', 'comarca')->get();
         return view('gadiritas.index', [
             'comarcas' => $comarcas,

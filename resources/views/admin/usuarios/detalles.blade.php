@@ -3,7 +3,7 @@
     Admin | Detalles
 @endsection
 @section('content')
-    <div class="flex items-center justify-center">
+    <div class="flex items-center justify-center overflow-x-auto">
         <table class="w-11/12 text-sm text-left text-gray-500">
             <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                 Detalles del cliente
@@ -41,7 +41,7 @@
             </thead>
             <tbody>
                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                         #{{ $usuario->id }}
                     </td>
                     <th class="px-6 py-4">
@@ -70,7 +70,7 @@
                     </td>
                     <td class="flex flex-col items-center justify-between px-6 py-4 space-y-2">
                         <a href=" {{ route('admin.editarUsuario', $usuario->id) }} "
-                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Editar</a>
                         @if (!$usuario->isBanned())
                             <a data-modal-target="banhammer" data-modal-toggle="banhammer" href="#"
                                 class="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">

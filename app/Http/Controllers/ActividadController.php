@@ -12,6 +12,7 @@ use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
 
 class ActividadController extends Controller
 {
@@ -53,17 +54,47 @@ class ActividadController extends Controller
      */
     public function storeActividades(Request $request)
     {
-        $n_actividad = Actividad::create([
-            'titulo' => $request->titulo,
-            'descripcion' => $request->descripcion,
-            'precio' => $request->precio,
-            'duracion' => $request->duracion,
-            'max_personas' => $request->max_personas,
-            'user_id' => $request->user_id,
-            'destino_id' => $request->destino_id,
-            'direccion' => $request->direccion,
-        ]);
+        if ($request->hasFile('imagenes')) {
+            $n_actividad = Actividad::create([
+                'titulo' => $request->titulo,
+                'descripcion' => $request->descripcion,
+                'precio' => $request->precio,
+                'duracion' => $request->duracion,
+                'max_personas' => $request->max_personas,
+                'user_id' => $request->user_id,
+                'destino_id' => $request->destino_id,
+                'direccion' => $request->direccion,
+                'horas' => $request->hora,
+            ]);
 
+            $imagenes = $request->file('imagenes');
+            $imagenPaths = [];
+
+            $count = 1;
+            foreach ($imagenes as $imagen) {
+                if ($count == 1) {
+                    $nombreArchivo = $n_actividad->id . '.jpg';
+                } else {
+                    $nombreArchivo = $n_actividad->id . '-' . $count . '.jpg';
+                }
+
+                // Obtener la ruta completa de la carpeta "resources"
+                $rutaCarpetaResources = resource_path('images');
+
+                // Crear la carpeta "resources" si no existe
+                if (!File::isDirectory($rutaCarpetaResources)) {
+                    File::makeDirectory($rutaCarpetaResources, 0755, true);
+                }
+
+                // Mover la imagen a la carpeta "resources"
+                $imagen->move($rutaCarpetaResources, $nombreArchivo);
+
+                // Guardar la ruta de la imagen en el array
+                $imagenPaths[] = $rutaCarpetaResources . '/' . $nombreArchivo;
+
+                $count++;
+            }
+        }
         return redirect('/actividades/detalles/' . $n_actividad->id);
     }
 
@@ -116,7 +147,38 @@ class ActividadController extends Controller
             'user_id' => $request->user_id,
             'destino_id' => $request->destino_id,
             'direccion' => $request->direccion,
+            'horas' => $request->hora,
         ]);
+
+        if ($request->hasFile('imagenes')) {
+            $imagenes = $request->file('imagenes');
+            $imagenPaths = [];
+
+            $count = 1;
+            foreach ($imagenes as $imagen) {
+                if ($count == 1) {
+                    $nombreArchivo = $actividad->id . '.jpg';
+                } else {
+                    $nombreArchivo = $actividad->id . '-' . $count . '.jpg';
+                }
+
+                // Obtener la ruta completa de la carpeta "resources"
+                $rutaCarpetaResources = resource_path('images');
+
+                // Crear la carpeta "resources" si no existe
+                if (!File::isDirectory($rutaCarpetaResources)) {
+                    File::makeDirectory($rutaCarpetaResources, 0755, true);
+                }
+
+                // Mover la imagen a la carpeta "resources"
+                $imagen->move($rutaCarpetaResources, $nombreArchivo);
+
+                // Guardar la ruta de la imagen en el array
+                $imagenPaths[] = $rutaCarpetaResources . '/' . $nombreArchivo;
+
+                $count++;
+            }
+        }
 
         return redirect('actividades/detalles/' . $actividad->id);
     }
@@ -129,7 +191,11 @@ class ActividadController extends Controller
      */
     public function borrarActividad(Actividad $actividad)
     {
-        $actividad->delete();
+        if ($actividad->activo) {
+            $actividad->update(['activo' => false]);
+        } else {
+            $actividad->update(['activo' => true]);
+        }
         return redirect('/actividades');
     }
 
@@ -146,9 +212,9 @@ class ActividadController extends Controller
     public function busquedaActividades(Request $request)
     {
         $comarcas = Destino::select('comarca')
-            ->groupBy('comarca')
+            ->distinct()
             ->orderBy('comarca')
-            ->get();
+            ->pluck('comarca');
         $destino = Destino::whereRaw(
             'LOWER(unaccent(nombre)) LIKE ?',
             ['%' . mb_strtolower(preg_replace('/[^\p{L}\p{N}\s]/u', '', $request->buscadorHome), 'UTF-8') . '%']
@@ -162,20 +228,22 @@ class ActividadController extends Controller
             $actividades = [];
             foreach ($ciudades as $ciudad) {
                 foreach ($ciudad->actividad as $actividad) {
-                    $actividades[] = [
-                        'id' => $actividad->id,
-                        'titulo' => $actividad->titulo,
-                        'descripcion' => $actividad->descripcion,
-                        'precio' => $actividad->precio,
-                        'duracion' => $actividad->duracion,
-                        'max_personas' => $actividad->max_personas,
-                        'destino_id' => $actividad->destino_id,
-                    ];
+                    if ($actividad->activo) {
+                        $actividades[] = [
+                            'id' => $actividad->id,
+                            'titulo' => $actividad->titulo,
+                            'descripcion' => $actividad->descripcion,
+                            'precio' => $actividad->precio,
+                            'duracion' => $actividad->duracion,
+                            'max_personas' => $actividad->max_personas,
+                            'destino_id' => $actividad->destino_id,
+                        ];
+                    }
                 }
             }
             return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos', 'destino', 'ciudades'));
         } else {
-            return view('gadiritas.resultados', ['mensaje' => 'No se encontraron actividades para la ciudad buscada']);
+            return redirect()->route('usuarios.index', compact('comarcas', 'destinos'))->with('error', 'No se encontraron actividades para la ciudad buscada');
         }
     }
 
@@ -188,9 +256,9 @@ class ActividadController extends Controller
     public function actividadesResultados($destino)
     {
         $comarcas = Destino::select('comarca')
-            ->groupBy('comarca')
+            ->distinct()
             ->orderBy('comarca')
-            ->get();
+            ->pluck('comarca');
         $destinos = Destino::select('nombre', 'comarca')->get();
         $ciudades = Destino::where('nombre', $destino)->get();
         $actividades = [];
@@ -199,15 +267,17 @@ class ActividadController extends Controller
         }
         foreach ($ciudades as $ciudad) {
             foreach ($ciudad->actividad as $actividad) {
-                $actividades[] = [
-                    'id' => $actividad->id,
-                    'titulo' => $actividad->titulo,
-                    'descripcion' => $actividad->descripcion,
-                    'precio' => $actividad->precio,
-                    'duracion' => $actividad->duracion,
-                    'max_personas' => $actividad->max_personas,
-                    'destino_id' => $actividad->destino_id,
-                ];
+                if ($actividad->activo) {
+                    $actividades[] = [
+                        'id' => $actividad->id,
+                        'titulo' => $actividad->titulo,
+                        'descripcion' => $actividad->descripcion,
+                        'precio' => $actividad->precio,
+                        'duracion' => $actividad->duracion,
+                        'max_personas' => $actividad->max_personas,
+                        'destino_id' => $actividad->destino_id,
+                    ];
+                }
             }
         }
         return view('gadiritas.resultados', compact('actividades', 'comarcas', 'destinos', 'ciudades', 'destino')); // Devolver la vista con los resultados de la búsqueda
@@ -223,13 +293,15 @@ class ActividadController extends Controller
     public function detalles($destino)
     {
         $actividad = Actividad::find($destino);
-        $comentarios = Comentario::where('actividad_id', $actividad->id)->orderBy('created_at', 'DESC')->simplePaginate(6);
+        $comentarios = Comentario::where('actividad_id', $actividad->id)->orderBy('created_at', 'DESC')->paginate(6);
+        $comentariosPositivos = Comentario::where('actividad_id', $actividad->id)->where('positivo', 1)->get();
+        $comentariosTotal = Comentario::where('actividad_id', $actividad->id)->get();
         $destinos = Destino::select('nombre', 'comarca')->get();
         $comarcas = Destino::select('comarca')
-            ->groupBy('comarca')
+            ->distinct()
             ->orderBy('comarca')
-            ->get();
-        return view('gadiritas.detalles', compact('actividad', 'comarcas', 'destinos', 'comentarios'));
+            ->pluck('comarca');
+        return view('gadiritas.detalles', compact('actividad', 'comarcas', 'destinos', 'comentarios', 'comentariosPositivos', 'comentariosTotal'));
     }
 
 

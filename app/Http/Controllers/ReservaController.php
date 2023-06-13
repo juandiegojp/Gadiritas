@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Destino;
 use App\Models\Reserva;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 
 class ReservaController extends Controller
 {
@@ -16,9 +19,11 @@ class ReservaController extends Controller
      */
     public function index()
     {
-        $reservas = Reserva::all()->sortBy('created_at');
+        $fechaActual = Carbon::now()->toDateString();
+        $horaActual = Carbon::now()->toTimeString();
+        $reservas = Reserva::orderBy('created_at', 'DESC')->paginate(10);
         return view('admin.reservas.index', [
-            'reservas' => $reservas,
+            'reservas' => $reservas, 'fechaActual' => $fechaActual,'horaActual' => $horaActual,
         ]);
     }
 
@@ -42,23 +47,41 @@ class ReservaController extends Controller
      * @param  mixed $request
      * @return void
      */
-    public function crear_reserva(Request $request)
+    public function crear_reserva(Request $request, $transactionId)
     {
         $hora = date('H:i:s', strtotime($request->hora));
+
         $n_reserva = Reserva::create([
             'actividad_id' => $request->act_id,
-            'user_id' => $request->user()->id,
+            'user_id' => $request->usrID,
             'fecha' => $request->date,
             'hora' => $hora,
             'personas' => $request->n_personas,
+            'precio_total' => ($request->precioAct * $request->n_personas),
+            'pago_id' => $transactionId,
+        ]);
+
+        $mail = new MailController();
+        $mail->index($n_reserva);
+    }
+
+    public function freeTour(Request $request)
+    {
+        $hora = date('H:i:s', strtotime($request->hora));
+
+        $n_reserva = Reserva::create([
+            'actividad_id' => $request->act_id,
+            'user_id' => $request->usrID,
+            'fecha' => $request->date,
+            'hora' => $hora,
+            'personas' => $request->n_personas,
+            'precio_total' => ($request->precioAct * $request->n_personas),
         ]);
 
         $mail = new MailController();
         $mail->index($n_reserva);
 
-        if ($request->precioAct == 0) {
-            return redirect()->route('usuarios.index')->with('success', '¡La reserva se ha creado correctamente!');
-        }
+        return redirect()->route('usuarios.index')->with('success', '¡La reserva se ha creado correctamente!');
     }
 
     /**
@@ -70,11 +93,11 @@ class ReservaController extends Controller
     public function reservaUsers(Request $request)
     {
         $comarcas = Destino::select('comarca')
-            ->groupBy('comarca')
+            ->distinct()
             ->orderBy('comarca')
-            ->get();
+            ->pluck('comarca');
         $destinos = Destino::select('nombre', 'comarca')->get();
-        $reservas = Reserva::where('user_id', $request->user()->id)
+        $reservas = Reserva::where('user_id', $request->user()->id)->where('cancelado', false)
             ->orderBy('created_at', 'DESC')
             ->paginate(5);
 
@@ -89,9 +112,9 @@ class ReservaController extends Controller
      */
     public function borrarReserva(Request $request)
     {
-        if (Auth::user()) {
+        if (Auth::user() || Auth::user()->is_admin) {
             $reserva = $request->input('id');
-            Reserva::where('id', $reserva)->delete();
+            Reserva::where('id', $reserva)->update(['cancelado' => true, 'personas' => 0]);
             $mail = new MailController();
             $mail->cancelar();
             if (Auth::user()->is_admin) {

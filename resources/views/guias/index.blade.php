@@ -43,9 +43,9 @@
                 <p>No hay reservas para hoy.</p>
             @endif
         </div>
-        <div class="w-1/2 mt-4 max-[900px]:w-full">
+        <div class="w-1/2 mt-4 ml-4 max-[900px]:w-full max-[900px]:text-center">
             <h1 class="flex items-center justify-center mb-4 text-xl font-extrabold">Próximas reservas</h1>
-            <div class="grid grid-cols-2 max-[900px]:grid-cols-4" id="reservas">
+            <div class="grid grid-cols-2 max-[900px]:grid-cols-4 max-[650px]:grid-cols-2" id="reservas">
                 @if (count($reservas) > 0)
                     @for ($i = 0; $i < count($reservas); $i++)
                         <a href="#" data-modal-target="modal{{ $i }}"

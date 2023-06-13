@@ -47,7 +47,8 @@ class AuthenticatedSessionController extends Controller
 
         // Eliminar la cookie
         Cookie::queue(Cookie::forget('Gadiritas'));
-        Cookie::queue(Cookie::forget('cookieAccepted'));
+        Cookie::queue(Cookie::forget('actividad'));
+        Cookie::queue(Cookie::forget('actividadID'));
 
         $request->session()->invalidate();
 

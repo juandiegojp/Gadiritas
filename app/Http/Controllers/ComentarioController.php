@@ -14,7 +14,10 @@ class ComentarioController extends Controller
      */
     public function index()
     {
-        //
+        $comentarios = Comentario::all()->sortBy('created_at');
+        return view('admin.comentarios', [
+            'comentarios' => $comentarios,
+        ]);
     }
 
     /**

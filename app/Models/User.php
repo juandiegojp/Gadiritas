@@ -23,6 +23,7 @@ class User extends Authenticatable
         'apellidos',
         'email',
         'telefono',
+        'fecha_nacimiento',
         'password',
         'is_admin',
         'is_guia',
@@ -69,6 +70,6 @@ class User extends Authenticatable
 
     public function actividad()
     {
-        return $this->belongsTo(Actividad::class);
+        return $this->hasMany(Actividad::class);
     }
 }

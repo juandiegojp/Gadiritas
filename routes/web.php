@@ -48,6 +48,7 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     // Destinos
     Route::get('/destinos', [DestinoController::class, 'destinos'])->name('admin.destinos');
     Route::get('/destinos/create', [DestinoController::class, 'destinosForm'])->name('admin.destinosCreate');
+    Route::post('/destinos/check', [DestinoController::class, 'destinosCheck'])->name('admin.destinosCheck');
     Route::post('/destinos/create', [DestinoController::class, 'storeDestinos'])->name('admin.storeDestinos');
     //Route::get('/destinos/detalles/{destino}', [DestinoController::class, 'datellesDestino'])->name('admin.datellesDestino');
     Route::get('/destinos/{destino}/edit', [DestinoController::class, 'editarDestino'])->name('admin.editarDestino');
@@ -67,6 +68,9 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('/reservas', [ReservaController::class, 'index'])->name('admin.reservas');
     Route::get('/reservas/detalles/{reserva}', [ReservaController::class, 'detallesReserva'])->name('admin.reserva.detalles');
 
+    // Comentarios
+    Route::get('/comentarios', [ComentarioController::class, 'index'])->name('admin.comentarios');
+    //empleo
     Route::get('/admin/cvs', [AdminController::class, 'showCVs'])->name('admin.cvs');
     Route::get('/admin/cvs/{id}/download', [AdminController::class, 'downloadCV'])->name('admin.cvs.download');
 });
@@ -78,7 +82,7 @@ Route::middleware(['logout.banned', 'auth'])->group(function () {
     Route::post('/resultados/filtrar', [ActividadController::class, 'filtrar'])->name('actividades.filtrar');
     Route::get('/resultados/{destino}', [ActividadController::class, 'actividadesResultados'])->name('usuarios.actividades');
     Route::get('/detalles/{destino}', [ActividadController::class, 'detalles'])->name('usuarios.detalles');
-    Route::post('/detalles/reserva/create', [ReservaController::class, 'crear_reserva'])->name('usuarios.crear_reserva');
+    Route::post('/detalles/reserva/create', [ReservaController::class, 'freeTour'])->name('usuarios.crear_reserva');
     Route::post('/actividad/check', [ActividadController::class, 'actividadCheck'])->name('usuarios.actividadCheck');
     Route::post('/detalles/{destino}/comment', [ComentarioController::class, 'store'])->name('usuarios.crearComentario');
     Route::put('/comentarios/{comentarioID}', [ComentarioController::class, 'update'])->name('usuarios.editarComentario');
@@ -88,7 +92,7 @@ Route::middleware(['logout.banned', 'auth'])->group(function () {
     Route::get('/paypal/success', [PaypalController::class, 'success'])->name('paypal.success');
     Route::get('/paypal/error', [PaypalController::class, 'error'])->name('paypal.error');
     Route::post('/paypal/checkout', [PaypalController::class, 'checkout'])->name('paypal.checkout');
-    Route::post('/paypal/cancel', [PaypalController::class, 'cancel'])->name('paypal.cancel');
+    Route::get('/paypal/cancel', [PaypalController::class, 'cancel'])->name('paypal.cancel');
     Route::get('/actividad/pdf/{id}', [ActividadController::class, 'generatePDF'])->name('generar.pdf');
 });
 

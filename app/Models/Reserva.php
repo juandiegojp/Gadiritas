@@ -11,7 +11,7 @@ class Reserva extends Model
 
     protected $fillable = [
         'actividad_id', 'user_id','fecha',
-        'hora', 'personas'
+        'hora', 'personas', 'precio_total', 'pago_id'
     ];
 
     /**

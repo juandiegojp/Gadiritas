@@ -38,6 +38,39 @@
                 </li>
             </ol>
         </nav>
+        <div class="valoracion">
+            @php
+                $totalComentarios = $comentariosTotal->count();
+                $totalComentariosPositivos = $comentariosPositivos->count();
+
+                if ($totalComentarios > 0) {
+                    $porcentajePositivos = round(($totalComentariosPositivos / $totalComentarios) * 100, 2);
+                    $valoracion = ceil($porcentajePositivos / 20);
+                } else {
+                    $porcentajePositivos = 0;
+                    $valoracion = 0;
+                }
+            @endphp
+
+            <div>
+                <p>El {{ $porcentajePositivos }}% usuarios han valorado positivamente esta actividad.</p>
+            </div>
+            <div>
+                @if ($valoracion >= 0 && $valoracion <= 5)
+                    @for ($i = 1; $i <= 5; $i++)
+                        <button>
+                            @if ($i <= $valoracion)
+                                <i class="fas fa-star"></i>
+                            @else
+                                <i class="far fa-star"></i>
+                            @endif
+                        </button>
+                    @endfor
+                    ({{ count($comentariosTotal) }} valoraciones)
+                @endif
+            </div>
+
+        </div>
         <img src="{{ Vite::asset("resources/images/{$actividad->id}.jpg") }}" alt="{{ $actividad->destino->nombre }}">
     </div>
     <div class="mx-6 mt-4 mb-12">
@@ -76,8 +109,8 @@
             </div>
         </div>
 
-        <div class="flex items-start justify-center my-6">
-            <div class="w-1/2" id="descMap">
+        <div class="flex items-start justify-center my-6 max-[742px]:flex-col">
+            <div class="w-1/2 max-[742px]:w-full" id="descMap">
                 <p class="text-xl font-bold leading-none tracking-tight text-white underline md:text-2xl lg:text-3xl">
                     Descripción</p>
                 {!! nl2br(e($actividad->descripcion)) !!}
@@ -85,6 +118,7 @@
                     <p class="text-xl font-bold leading-none tracking-tight text-white underline md:text-2xl lg:text-2xl">
                         Punto de encuentro</p>
                     <input type="hidden" name="direccion" id="direccion" value="{{ $actividad->direccion }}">
+                    <div id="map"></div>
                 </div>
                 <div class="flex items-center justify-center w-full">
                     <a id="pdf-link"
@@ -93,36 +127,41 @@
                         Generar PDF</a>
                 </div>
             </div>
-            <div class="w-1/2 ml-4" id="reserva">
+            <div class="w-1/2 ml-4 max-[742px]:w-full max-[742px]:ml-0 max-[742px]:mt-4" id="reserva">
                 @if ($actividad->precio == 0)
-                    <form action="{{ route('usuarios.crear_reserva') }}" method="post">
+                    <form action="{{ route('usuarios.crear_reserva') }}" method="post" id="reservarActividad">
+                    @else
+                        <form action="{{ route('paypal.checkout') }}" method="post" id="reservarActividad">
                 @endif
-                <form action="{{ route('paypal.checkout') }}" method="post" id="reservarActividad">
-                    @csrf
-                    <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
-                    <input type="hidden" name="act_name" id="act_name" value="{{ $actividad->titulo }}">
-                    @include('gadiritas.calendar')
-                    <div id="formContainerReserva">
-                        <div class="formReserva">
-                            <label for="hora">Selecciona una hora:</label>
-                            <select name="hora" id="hora">
-                                <option value="11:00">11:00</option>
-                                <option value="12:00">12:00</option>
-                            </select>
-                        </div>
-                        <div class="formReserva">
-                            <label for="n_personas">Nº de personas:</label>
-                            <select name="n_personas" id="n_personas"></select>
-                        </div>
-
-                        <div class="formReserva">
-                            <label for="precioTotal">Precio total:</label>
-                            <input type="hidden" name="precioAct" id="precioAct" value="{{ $actividad->precio }}">
-                            <input type="hidden" name="amount">
-                            <p id="precioTotal" name="precioTotal"></p>
+                <p class="text-xl font-bold leading-none tracking-tight text-black underline md:text-2xl lg:text-3xl text-center mb-4">
+                    ¡Reserva ahora!</p>
+                @csrf
+                <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
+                <input type="hidden" name="act_name" id="act_name" value="{{ $actividad->titulo }}">
+                <input type="hidden" name="usrID" id="usrID" value="{{ Auth::user()->id }}">
+                @include('gadiritas.calendar')
+                <div id="formContainerReserva">
+                    <div class="formReserva">
+                        <label>Selecciona una hora:</label>
+                        <div class="flex flex-row items-center space-x-1">
+                            <input type="radio" name="hora" id="hora"
+                                value="{{ \Carbon\Carbon::parse($actividad->horas)->format('H:i') }}" checked>
+                            <label for="hora">{{ \Carbon\Carbon::parse($actividad->horas)->format('H:i') }}</label>
                         </div>
                     </div>
-                    <button type="submit">Reservar</button>
+                    <div class="formReserva">
+                        <label for="n_personas">Nº de personas:</label>
+                        <select name="n_personas" id="n_personas"></select>
+                    </div>
+
+                    <div class="formReserva">
+                        <label for="precioTotal">Precio total:</label>
+                        <input type="hidden" name="precioAct" id="precioAct" value="{{ $actividad->precio }}">
+                        <input type="hidden" name="amount">
+                        <p id="precioTotal" name="precioTotal"></p>
+                    </div>
+                </div>
+                <button type="submit">Reservar</button>
                 </form>
             </div>
         </div>
@@ -155,54 +194,59 @@
                 <p>Comentarios de otros usuarios:</p>
                 <div id="comentarios">
                     @foreach ($comentarios as $comentario)
-                        <div class="comentario" data-comentario-id="{{ $comentario->id }}">
-                            <figcaption class="autor">
-                                <div>
-                                    <cite>{{ $comentario->user->name }} {{ $comentario->user->apellidos }}</cite>
-                                </div>
-                            </figcaption>
-                            @if ($comentario->user_id == Auth::id())
-                                <button class="editar">
-                                    <span class="editar-texto">
-                                        Editar
-                                    </span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                        <path
-                                            d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                                    </svg>
-                                </button>
-                            @endif
-                            <p class="contenido">{{ $comentario->contenido }}</p>
-                            <form action="{{ route('usuarios.editarComentario', $comentario->id) }}" method="POST"
+                        @if (!$comentario->positivo)
+                            <div class="comentario" data-comentario-id="{{ $comentario->id }}"
+                                style="background: rgba(255, 0, 0, 0.5)">
+                            @else
+                                <div class="comentario" data-comentario-id="{{ $comentario->id }}">
+                        @endif
+                        <figcaption class="autor">
+                            <div>
+                                <cite>{{ $comentario->user->name }} {{ $comentario->user->apellidos }}</cite>
+                            </div>
+                        </figcaption>
+                        @if ($comentario->user_id == Auth::id())
+                            <button class="editar">
+                                <span class="editar-texto">
+                                    Editar
+                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path
+                                        d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                </svg>
+                            </button>
+                        @endif
+                        <p class="contenido">{{ $comentario->contenido }}</p>
+                        <form action="{{ route('usuarios.editarComentario', $comentario->id) }}" method="POST"
+                            class="formComentario" hidden>
+                            @csrf
+                            @method('PUT')
+                            <div class="form-group">
+                                <label for="contenido">Editar comentario:</label>
+                                <textarea name="contenido" id="contenido" rows="4" class="form-control">{{ $comentario->contenido }}</textarea>
+                            </div>
+                            <button type="submit" id="editarComentario">Guardar cambios</button>
+                            <form action="{{ route('usuarios.borrarComentario') }}" method="POST"
                                 class="formComentario" hidden>
                                 @csrf
-                                @method('PUT')
-                                <div class="form-group">
-                                    <label for="contenido">Editar comentario:</label>
-                                    <textarea name="contenido" id="contenido" rows="4" class="form-control">{{ $comentario->contenido }}</textarea>
-                                </div>
-                                <button type="submit" id="editarComentario">Guardar cambios</button>
-                                <form action="{{ route('usuarios.borrarComentario') }}" method="POST"
-                                    class="formComentario" hidden>
-                                    @csrf
-                                    <input type="hidden" name="comentarioID" id="comentarioID"
-                                        value="{{ $comentario->id }}">
-                                    <button type="submit" id="borrarComentario">Borrar comentario</button>
-                                </form>
+                                <input type="hidden" name="comentarioID" id="comentarioID"
+                                    value="{{ $comentario->id }}">
+                                <button type="submit" id="borrarComentario">Borrar comentario</button>
                             </form>
-                        </div>
-                    @endforeach
+                        </form>
                 </div>
-                {{ $comentarios->links() }}
+                @endforeach
             </div>
+            {{ $comentarios->links() }}
         </div>
+    </div>
     </div>
     <script defer>
         $(document).ready(function() {
             var actividadName = document.querySelector('#act_name').value;
             var actividadID = document.querySelector('#act_id').value;
-            console.log(actividadID, actividadName);
+
             const d = new Date();
             d.setTime(d.getTime() + 30 * 24 * 60 * 60 * 1000);
             let expires = "expires=" + d.toUTCString();
