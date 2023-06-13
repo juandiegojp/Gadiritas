@@ -241,7 +241,7 @@
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                     },
                     success: (data) => {
-                        console.log(data.status);
+                        //console.log(data.status);
                         let cont = data.status.length;
                         const value = data.status;
 

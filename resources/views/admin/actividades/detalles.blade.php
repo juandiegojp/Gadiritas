@@ -47,7 +47,7 @@
             </thead>
             <tbody>
                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                         {{ $actividad->titulo }}
                     </td>
                     <td class="px-6 py-4">
@@ -73,7 +73,7 @@
                     </td>
                     <td class="flex flex-col items-center px-6 py-4">
                         <a href=" {{ route('admin.editarActividad', $actividad->id) }} "
-                            class="font-medium text-blue-600 hover:underline">Editar</a>
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Editar</a>
                         <a data-modal-target="popup-modal" data-modal-toggle="popup-modal" href="#"
                             class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                             @if ($actividad->activo)

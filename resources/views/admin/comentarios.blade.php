@@ -7,7 +7,7 @@
         <input type="text" id="searchInput" onkeyup="search()" placeholder="Buscar"
             class="w-3/4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-50 focus:border-blue-50 p-2.5">
     </div>
-    <div class="flex items-center justify-center mb-4">
+    <div class="flex items-center justify-center mb-4 overflow-x-auto">
         <table class="w-11/12 text-sm text-left text-gray-500">
             <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white">
                 Comentarios
@@ -35,16 +35,16 @@
             <tbody id="searchableContent">
                 @forelse($comentarios as $comentario)
                     <tr class="bg-white border-b">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 w-1/4">
                             {{ $comentario->actividad->titulo }}
                         </th>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 w-1/4">
                             {{ $comentario->user->name }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 w-1/4">
                             {{ $comentario->contenido }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 w-1/4">
                             <a href="#" class="font-medium text-gray-600 md:hover:text-blue-700 md:p-0">Ver
                                 detalles</a>
                         </td>

@@ -54,7 +54,7 @@
                     </li>
                 </ol>
             @empty
-                <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900">
+                <h1 class="mb-4 text-lg leading-none tracking-tight text-gray-900 w-full text-center">
                     No se ha registrado hoy ningún usuario nuevo.</h1>
             @endforelse
             {{ $usuarios->links() }}
@@ -75,7 +75,7 @@
                     </li>
                 </ol>
             @empty
-                <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900">
+                <h1 class="mb-4 text-lg leading-none tracking-tight text-gray-900 w-full text-center">
                     No se ha creado hoy ninguna reserva nueva.</h1>
             @endforelse
             {{ $reservas->links() }}
@@ -102,7 +102,7 @@
                     </li>
                 </ol>
             @empty
-                <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900">
+                <h1 class="mb-4 text-lg leading-none tracking-tight text-gray-900 w-full text-center">
                     No se ha cancelado ninguna reserva hoy.</h1>
             @endforelse
             {{ $reservasCanceladas->links() }}

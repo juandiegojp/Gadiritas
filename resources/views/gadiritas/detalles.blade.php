@@ -130,35 +130,38 @@
             <div class="w-1/2 ml-4 max-[742px]:w-full max-[742px]:ml-0 max-[742px]:mt-4" id="reserva">
                 @if ($actividad->precio == 0)
                     <form action="{{ route('usuarios.crear_reserva') }}" method="post" id="reservarActividad">
-                @else
-                    <form action="{{ route('paypal.checkout') }}" method="post" id="reservarActividad">
+                    @else
+                        <form action="{{ route('paypal.checkout') }}" method="post" id="reservarActividad">
                 @endif
-                    @csrf
-                    <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
-                    <input type="hidden" name="act_name" id="act_name" value="{{ $actividad->titulo }}">
-                    <input type="hidden" name="usrID" id="usrID" value="{{ Auth::user()->id }}">
-                    @include('gadiritas.calendar')
-                    <div id="formContainerReserva">
-                        <div class="formReserva">
-                            <label>Selecciona una hora:</label>
-                            <div class="flex flex-row items-center space-x-1">
-                                <input type="radio" name="hora" id="hora" value="{{\Carbon\Carbon::parse($actividad->horas)->format('H:i')}}" checked>
-                                <label for="hora">{{\Carbon\Carbon::parse($actividad->horas)->format('H:i')}}</label>
-                            </div>
-                        </div>
-                        <div class="formReserva">
-                            <label for="n_personas">Nº de personas:</label>
-                            <select name="n_personas" id="n_personas"></select>
-                        </div>
-
-                        <div class="formReserva">
-                            <label for="precioTotal">Precio total:</label>
-                            <input type="hidden" name="precioAct" id="precioAct" value="{{ $actividad->precio }}">
-                            <input type="hidden" name="amount">
-                            <p id="precioTotal" name="precioTotal"></p>
+                <p class="text-xl font-bold leading-none tracking-tight text-white underline md:text-2xl lg:text-3xl">
+                    ¡Reserva ahora!</p>
+                @csrf
+                <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
+                <input type="hidden" name="act_name" id="act_name" value="{{ $actividad->titulo }}">
+                <input type="hidden" name="usrID" id="usrID" value="{{ Auth::user()->id }}">
+                @include('gadiritas.calendar')
+                <div id="formContainerReserva">
+                    <div class="formReserva">
+                        <label>Selecciona una hora:</label>
+                        <div class="flex flex-row items-center space-x-1">
+                            <input type="radio" name="hora" id="hora"
+                                value="{{ \Carbon\Carbon::parse($actividad->horas)->format('H:i') }}" checked>
+                            <label for="hora">{{ \Carbon\Carbon::parse($actividad->horas)->format('H:i') }}</label>
                         </div>
                     </div>
-                    <button type="submit">Reservar</button>
+                    <div class="formReserva">
+                        <label for="n_personas">Nº de personas:</label>
+                        <select name="n_personas" id="n_personas"></select>
+                    </div>
+
+                    <div class="formReserva">
+                        <label for="precioTotal">Precio total:</label>
+                        <input type="hidden" name="precioAct" id="precioAct" value="{{ $actividad->precio }}">
+                        <input type="hidden" name="amount">
+                        <p id="precioTotal" name="precioTotal"></p>
+                    </div>
+                </div>
+                <button type="submit">Reservar</button>
                 </form>
             </div>
         </div>

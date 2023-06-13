@@ -39,6 +39,7 @@ class GuiaController extends Controller
         $userId = $user->id;
 
         $fechaActual = Carbon::now()->toDateString();
+        $horaActual = Carbon::now()->toTimeString();
 
         $reservasHoy = Reserva::select('actividad_id', 'hora', DB::raw('CAST(fecha AS date) AS fecha'), DB::raw('SUM(personas) AS personas'))
             ->with('actividad')
@@ -62,11 +63,17 @@ class GuiaController extends Controller
             ->orderBy('fecha')
             ->paginate(4);
 
-        $nReservas = Reserva::select('actividad_id')
+        $nReservas = Reserva::select('actividad_id', 'hora', DB::raw('CAST(fecha AS date) AS fecha'))
             ->with('actividad')
             ->whereHas('actividad', function ($query) use ($userId) {
                 $query->where('user_id', $userId);
-            })->get();
+            })
+            ->whereRaw("CONCAT(fecha, ' ', hora) < '{$fechaActual} {$horaActual}'")
+            ->where('cancelado', false)
+            ->groupBy('actividad_id', 'fecha', 'hora')
+            ->orderBy('fecha', 'DESC')
+            ->orderBy('hora', 'DESC')
+            ->get();
 
         return view('guias.index', [
             'reservas' => $reservas,
@@ -102,11 +109,17 @@ class GuiaController extends Controller
             ->orderBy('hora', 'DESC')
             ->paginate(12);
 
-        $nReservas = Reserva::select('actividad_id')
+        $nReservas = Reserva::select('actividad_id', 'hora', DB::raw('CAST(fecha AS date) AS fecha'))
             ->with('actividad')
             ->whereHas('actividad', function ($query) use ($userId) {
                 $query->where('user_id', $userId);
-            })->get();
+            })
+            ->whereRaw("CONCAT(fecha, ' ', hora) < '{$fechaActual} {$horaActual}'")
+            ->where('cancelado', false)
+            ->groupBy('actividad_id', 'fecha', 'hora')
+            ->orderBy('fecha', 'DESC')
+            ->orderBy('hora', 'DESC')
+            ->get();
 
         return view('guias.historial', [
             'reservas' => $reservas,

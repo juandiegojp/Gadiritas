@@ -83,9 +83,9 @@
                     freeTour = 1;
                 }
 
-                console.log("Orden:" + orden);
-                console.log("DestinoID:" + destino_id);
-                console.log("Free tout: " + freeTour);
+                //console.log("Orden:" + orden);
+                //console.log("DestinoID:" + destino_id);
+                //console.log("Free tout: " + freeTour);
 
                 $.ajax({
                     url: "/resultados/filtrar",
@@ -102,7 +102,7 @@
                     },
                     success: function(data) {
                         var actividades = data.actividades;
-                        console.log(actividades);
+                        //console.log(actividades);
                         var html = '';
                         actividades.forEach(function(actividad) {
                             html += '<figure class="max-w-lg">';

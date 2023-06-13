@@ -138,8 +138,8 @@ $(function () {
         var contenido = $("#contenido").val();
         var positivo = $("#positivo").val();
         var negativo = $("#negativo").val();
-        console.log(actividadId);
-        console.log(contenido);
+        //console.log(actividadId);
+        //console.log(contenido);
 
         var valoracionPositiva = document.getElementById("positivo").value;
         var valoracionNegativa = document.getElementById("negativo").value;
@@ -171,7 +171,7 @@ $(function () {
             },
             success: function (response) {
                 // Manejar la respuesta del servidor
-                console.log(response);
+                //console.log(response);
 
                 // Crear el HTML para el nuevo comentario
                 var nuevoComentarioHTML = `
@@ -243,7 +243,7 @@ $(function () {
                 },
                 success: function (response) {
                     // Manejar la respuesta del servidor
-                    console.log(response);
+                    //console.log(response);
                     formulario.closest(".comentario").remove();
                 },
                 error: function (xhr, status, error) {

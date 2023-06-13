@@ -2,30 +2,11 @@
 - Reportar comentario.
 - Reportes.
 
-
-- Mostrar en el admin toda la información en el dashboard (hoy/últimos 7 días/mes/todo)
-- El admin debe de poder borrar los comentarios de los usuarios.
 - Modificar los detalles por un modal.
-
 
 - Cambio de idioma
 - Logros*
 
 - El admin debe de poder ver las activdiades que están en proceso
 
-- Alpine (Arreglar las fecha y horas)
-- Arreglar responsive de la valoración
-- responsive del admin
-
 - Buscar por título de la actividad
-
-tailwind.blade para cambiar el paginate.
-
-
-Cambios añadidos:
-- DIAS LIBRES SON LOS LUNES. EN EL CALENDARIO NO SE PODRÁ SELECCIONAR LOS LUNES.
-- LAS RESERVAS CANCELADAS PASAN A 0 Y SUS HUECOS QUEDAN LIBRES.
-- LAS RESERVAS ALMACENAN EL PRECIO TOTAL Y TIENEN LA ID DE LA TRANSICIÓN (PAGO)
-- La ruta de cancelar la reserva es por GET. (funciona)
-- LAS RESERVAS SE HACEN CORRECTAMENTE Y ALMACENAN TODOS LOS DATOS
-- ADMIN VE TODOS LOS DATOS DE LA RESERVA (actualizado)

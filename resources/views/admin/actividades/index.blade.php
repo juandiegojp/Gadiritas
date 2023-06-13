@@ -7,7 +7,7 @@
         <input type="text" id="searchInput" onkeyup="search()" placeholder="Buscar"
             class="w-3/4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-50 focus:border-blue-50 p-2.5">
     </div>
-    <div class="flex items-center justify-center mb-4">
+    <div class="flex items-center justify-center mb-4 overflow-x-auto">
         <table class="w-11/12 text-sm text-left text-gray-500">
             <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white">
                 Actividades
@@ -36,7 +36,7 @@
             <tbody id="searchableContent">
                 @forelse($actividades as $u)
                     <tr class="@if ($u->activo) bg-white @else bg-red-300 @endif border-b">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900">
                             {{ $u->titulo }}
                         </th>
                         <td class="px-6 py-4">
