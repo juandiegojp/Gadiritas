@@ -100,6 +100,9 @@
                 <a href="/profile" class="block px-4 py-2 hover:bg-gray-300">Perfil</a>
             </li>
             <li>
+                <a href="/index" class="block px-4 py-2 hover:bg-gray-300">Vista usuario</a>
+            </li>
+            <li>
                 <a href="{{ route('logout') }}" class="block px-4 py-2 text-red-500 hover:bg-red-200">
                     Cerrar sesión</a>
             </li>

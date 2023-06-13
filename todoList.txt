@@ -1,4 +1,0 @@
-- Reportar comentario.
-- Reportes.
-
-- Buscar por título de la actividad

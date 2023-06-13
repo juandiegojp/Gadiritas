@@ -82,6 +82,8 @@
         </div>
         <div class="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50">
             <h2 class="mb-4 text-2xl font-semibold text-center underline">Comentarios denunciados</h2>
+            <h1 class="mb-4 text-lg leading-none tracking-tight text-gray-900 w-full text-center">
+                No se ha reportado ningún comentario hoy.</h1>
 
         </div>
         <div class="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50">
@@ -91,14 +93,11 @@
                     class="text-lg font-semibold text-gray-900">{{ Carbon\Carbon::parse($reserva->created_at)->isSameAs('d', Carbon\Carbon::now()) ? 'Hoy' : Carbon\Carbon::parse($reserva->created_at)->diffForHumans(['parts' => 1]) }}</time>
                 <ol class="mt-3 divide-y divider-gray-200">
                     <li>
-                        <button type="button"
-                            class="block p-3 text-gray-600 pointer-events-none sm:flex hover:bg-gray-100">
+                        <a href="{{ route('admin.reserva.detalles', $reserva->id) }}">
                             <div class="text-base font-normal">{{ $reserva->user->name }} {{ $reserva->user->apellidos }}
                                 ha
-                                reservado la actividad <span
-                                    class="text-black underline">{{ ucfirst($reserva->actividad->titulo) }}</span>.
+                                cancelado la actividad <span class="text-black underline">{{ ucfirst($reserva->actividad->titulo) }}</span>.
                             </div>
-                        </button>
                     </li>
                 </ol>
             @empty

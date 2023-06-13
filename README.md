@@ -1,6 +1,8 @@
-% "Gadiritas"
-% Juan Diego Jurado Pimentel
-% Curso 2022/23
+<p align="center">
+  <img src="resources/images/logo.png" alt="logo"/>  
+</p>
+<p align="center">GADIRITAS</p>
+<p align="center">Juan Diego Jurado Pimentel (Curso 2022/23)</p>
 
 # Descripción general del proyecto
 

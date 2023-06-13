@@ -133,7 +133,7 @@
                     @else
                         <form action="{{ route('paypal.checkout') }}" method="post" id="reservarActividad">
                 @endif
-                <p class="text-xl font-bold leading-none tracking-tight text-white underline md:text-2xl lg:text-3xl">
+                <p class="text-xl font-bold leading-none tracking-tight text-black underline md:text-2xl lg:text-3xl text-center mb-4">
                     ¡Reserva ahora!</p>
                 @csrf
                 <input type="hidden" name="act_id" id="act_id" value="{{ $actividad->id }}">
