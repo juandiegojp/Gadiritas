@@ -3,10 +3,19 @@
     Admin | Detalles reserva
 @endsection
 @section('content')
+    <script>
+        function cambiar(el, id) {
+            el.preventDefault();
+            const oculto = document.getElementById('oculto');
+            oculto.setAttribute('value', id);
+        }
+    </script>
     <div class="relative m-2 overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                Detalles de la reserva @if ($reserva->cancelado) <span class="text-red-500 font-extrabold">(CANCELADA)</span> @endif
+                Detalles de la reserva @if ($reserva->cancelado)
+                    <span class="text-red-500 font-extrabold">(CANCELADA)</span>
+                @endif
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-700/25 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -45,7 +54,7 @@
                         {{ $reserva->pago_id }}
                     </td>
                     <td scope="row" class="px-6 py-4">
-                        {{ $reserva->user->apellidos}}, {{$reserva->user->name}}
+                        {{ $reserva->user->apellidos }}, {{ $reserva->user->name }}
                     </td>
                     <td scope="row" class="px-6 py-4">
                         {{ $reserva->actividad->titulo }}
@@ -66,16 +75,18 @@
                         {{ $reserva->actividad->direccion }}
                     </td>
                     <td class="flex flex-col items-center px-6 py-4">
-                        <a data-modal-target="popup-modal" data-modal-toggle="popup-modal" href="#"
-                            class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                            Borrar
-                        </a>
+                        <form action=" {{ route('usuarios.borrarReserva') }} " method="POST">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $reserva->id }}">
+                            <button type="submit" onclick="cambiar(event, {{ $reserva->id }})"
+                                class="px-4 py-2 text-sm font-medium text-white bg-red-700 rounded-lg focus:outline-none hover:bg-red-800 focus:ring-4 focus:ring-red-300"
+                                data-modal-toggle="popup-modal">Cancelar</button>
+                        </form>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-
 
     <!-- Modal -->
     <div id="popup-modal" tabindex="-1"
@@ -104,10 +115,10 @@
                     <form action="{{ route('usuarios.borrarReserva') }}" method="post">
                         @method('DELETE')
                         @csrf
-                        <input type="hidden" name="id" value="{{$reserva->id}}">
+                        <input id="oculto" type="hidden" name="id">
                         <button data-modal-hide="popup-modal" type="submit"
                             class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-                            Borrar
+                            Cancelar
                         </button>
                     </form>
                     <button data-modal-hide="popup-modal" type="button"

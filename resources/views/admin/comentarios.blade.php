@@ -44,9 +44,14 @@
                         <td class="px-6 py-4 w-1/4">
                             {{ $comentario->contenido }}
                         </td>
-                        <td class="px-6 py-4 w-1/4">
-                            <a href="#" class="font-medium text-gray-600 md:hover:text-blue-700 md:p-0">Ver
-                                detalles</a>
+                        <td>
+                            <form action="{{ route('usuarios.borrarComentario') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="comentarioID" id="comentarioID" value="{{ $comentario->id }}">
+                                <button type="submit"
+                                    class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Borrar
+                                    comentario</button>
+                            </form>
                         </td>
                     </tr>
                 @empty

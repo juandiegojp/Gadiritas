@@ -144,7 +144,7 @@
                     <div class="formReserva">
                         <label>Selecciona una hora:</label>
                         <div class="flex flex-row items-center space-x-1">
-                            <input type="radio" name="hora" id="hora"
+                            <input type="radio" name="hora" id="hora" x-ref="horaInput"
                                 value="{{ \Carbon\Carbon::parse($actividad->horas)->format('H:i') }}" checked>
                             <label for="hora">{{ \Carbon\Carbon::parse($actividad->horas)->format('H:i') }}</label>
                         </div>
