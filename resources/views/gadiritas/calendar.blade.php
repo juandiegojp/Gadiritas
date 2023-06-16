@@ -126,14 +126,30 @@
                             today.setDate(today.getDate() + 1);
                         }
 
+                        const selectedHour = parseInt(document.getElementById('hora').value.split(':')[0]);
+                        const selectedMinute = parseInt(document.getElementById('hora').value.split(':')[1]);
+
                         this.month = today.getMonth();
                         this.year = today.getFullYear();
                         this.datepickerValue = new Date(this.year, this.month, today.getDate()).toLocaleDateString();
+                        if (selectedHour < today.getHours() || (selectedHour === today.getHours() && selectedMinute < today
+                                .getMinutes())) {
+                            today.setDate(today.getDate() + 1);
+                            this.datepickerValue = new Date(this.year, this.month, today.getDate()).toLocaleDateString();
+                        }
                     },
                     isPastDate(date) {
                         var t = new Date();
                         var p = new Date(this.year, this.month, date);
+                        const selectedHour = parseInt(document.getElementById('hora').value.split(':')[0]);
+                        const selectedMinute = parseInt(document.getElementById('hora').value.split(':')[1]);
+
                         p.setDate(p.getDate() + 1);
+
+                        if (selectedHour < t.getHours() || (selectedHour === t.getHours() && selectedMinute < t.getMinutes())) {
+                            t.setDate(t.getDate() + 1);
+                        }
+
                         return t > p ? true : false;
                     },
 

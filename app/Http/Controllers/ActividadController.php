@@ -265,6 +265,10 @@ class ActividadController extends Controller
         if (!$ciudades->isNotEmpty()) {
             $ciudades = Destino::where('comarca', $destino)->get();
         }
+
+        if (!$ciudades->isNotEmpty()) {
+            return redirect()->route('usuarios.index', compact('comarcas', 'destinos'))->with('error', 'No se encontraron actividades para la ciudad buscada');
+        }
         foreach ($ciudades as $ciudad) {
             foreach ($ciudad->actividad as $actividad) {
                 if ($actividad->activo) {
@@ -293,6 +297,11 @@ class ActividadController extends Controller
     public function detalles($destino)
     {
         $actividad = Actividad::find($destino);
+
+        if (!$actividad || !$actividad->activo ) {
+            return redirect()->route('usuarios.index')->with('error', '¡Error! La actividad a la que intentas acceder no existe');
+        }
+
         $comentarios = Comentario::where('actividad_id', $actividad->id)->orderBy('created_at', 'DESC')->paginate(6);
         $comentariosPositivos = Comentario::where('actividad_id', $actividad->id)->where('positivo', 1)->get();
         $comentariosTotal = Comentario::where('actividad_id', $actividad->id)->get();
